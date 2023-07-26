@@ -1,26 +1,36 @@
+import { histories } from "../util/global";
+import { convertOriginPathname } from "../util/tool";
+
 export default class Navigator {
-  to(path) {
-    history.pushState({}, "", path);
-    window.dispatchEvent(new HashChangeEvent("pagechange", { name: "test" }));
+  index = 0;
+  to(path, props = {}) {
+    if (convertOriginPathname(location.pathname) === path) return;
+    history.pushState(props, "", path);
   }
 
   back(num = 1) {
-    if (currentPage.index - 1 < 0) {
+    console.log(this.index);
+    if (this.index - 1 < 0) {
+      console.log("페이지 없음");
       /* 더 이상 페이지 없음 */
       return;
     }
 
-    currentPage.index = currentPage.index - 1;
-    currentPage.page = pages[currentPage.index - 1];
+    this.to(histories[this.index - 1], { stopPropagation: true });
+    console.log(histories[this.index - 1]);
+    this.index = this.index - 1;
   }
 
   forward(num = 1) {
-    if (currentPage.index + 1 > pages.length) {
+    console.log(this.index);
+    if (this.index + 1 > histories.length - 1) {
+      console.log("페이지 없음");
       /* 더 이상 페이지 없음 */
       return;
     }
 
-    currentPage.index = currentPage.index + 1;
-    currentPage.page = pages[currentPage.index + 1];
+    this.to(histories[this.index + 1], { stopPropagation: true });
+    console.log(histories[this.index + 1]);
+    this.index = this.index + 1;
   }
 }

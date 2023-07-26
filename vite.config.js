@@ -9,16 +9,14 @@ export default defineConfig(({ command, mode }) => {
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
-    base: "",
+    base: process.env.NODE_ENV === "development" ? "" : "/portfolio-renew/",
     server: {
       host: process.env.HOST || "0.0.0.0",
       port: process.env.PORT || 3000,
-      base: "",
     },
     preview: {
       host: process.env.HOST || "0.0.0.0",
       port: process.env.PORT || 3000,
-      base: "",
     },
     build: {
       outDir: "dist",

@@ -1,3 +1,5 @@
+import { basePath } from "./global";
+
 export const valueConvert = (value) => value ?? "";
 export const valueConvertToObject = (value) => value ?? {};
 export const valueConvertToFunction = (value) => value ?? (() => {});
@@ -12,3 +14,5 @@ export const objectValueConvert = (obj) =>
         : valueConvert(v),
     ])
   );
+export const convertOriginPathname = (pathname) =>
+  pathname.replace(basePath, "/");

@@ -1,5 +1,5 @@
-import { APP, currentPage, pages } from "../util/global";
-import { objectValueConvert } from "../util/tool";
+import { APP, currentPage, histories, pages } from "../util/global";
+import { convertOriginPathname, objectValueConvert } from "../util/tool";
 
 export default class Router {
   firstPage = false;
@@ -13,7 +13,10 @@ export default class Router {
         window.dispatchEvent(new CustomEvent("pushstate"));
         window.dispatchEvent(
           new CustomEvent("pagechange", {
-            detail: { path: location.pathname, props: history.state },
+            detail: {
+              path: convertOriginPathname(location.pathname),
+              props: history.state,
+            },
           })
         );
       };
@@ -23,7 +26,10 @@ export default class Router {
         window.dispatchEvent(new CustomEvent("replacestate"));
         window.dispatchEvent(
           new CustomEvent("pagechange", {
-            detail: { path: location.pathname, props: history.state },
+            detail: {
+              path: convertOriginPathname(location.pathname),
+              props: history.state,
+            },
           })
         );
       };
@@ -31,7 +37,10 @@ export default class Router {
       window.addEventListener("popstate", function (e) {
         window.dispatchEvent(
           new CustomEvent("pagechange", {
-            detail: { path: location.pathname, props: history.state },
+            detail: {
+              path: convertOriginPathname(location.pathname),
+              props: history.state,
+            },
           })
         );
       });
@@ -39,8 +48,10 @@ export default class Router {
 
     /* 첫 시작 제어 */
     window.addEventListener("load", (e) => {
-      console.log(2, e);
-      this.#changeCurrentPage(location.pathname, {});
+      console.log(2, e, convertOriginPathname(location.pathname));
+      histories.push(convertOriginPathname(location.pathname));
+      this.#changeCurrentPage(convertOriginPathname(location.pathname), {});
+      console.log("current history", histories);
     });
     // /* 뒤로가기 제어 */
     // window.addEventListener("popstate", (e) => {
@@ -52,9 +63,14 @@ export default class Router {
     // });
     /* 페이지 이동 제어 */
     window.addEventListener("pagechange", ({ detail }) => {
-      console.log("page change");
+      console.log("page change", detail);
       const { path, props } = detail;
+      console.trace(props.stopPropagation);
+      if (!props.stopPropagation) {
+        histories.push(convertOriginPathname(location.pathname));
+      }
       this.#changeCurrentPage(path, props);
+      console.log("current history", histories);
     });
   }
 

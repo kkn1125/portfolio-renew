@@ -6,10 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
+    "preview": "cross-env NODE_ENV=production vite preview",
     "serve": "cross-env NODE_ENV=production serve -l 5000 -s dist/",
     "gen-pages": "node server/generate_pages.js",
     "build": "vite build",
-    "postbuild": "node server/generate_pages.js"
+    "postbuild": "node server/generate_pages.js",
+    "deploy": "cd dist/ && git init && git add -A && git commit -m \"gh-pages auto deploy\" && git push https://github.com/kkn1125/portfolio-renew.git master:gh-pages -f"
   },
   "keywords": [],
   "author": "",
