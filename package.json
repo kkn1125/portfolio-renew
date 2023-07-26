@@ -1,0 +1,22 @@
+{
+  "name": "new_portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "serve": "cross-env NODE_ENV=production serve -l 5000 -s dist/",
+    "gen-pages": "node server/generate_pages.js",
+    "build": "vite build",
+    "postbuild": "node server/generate_pages.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "sass": "^1.64.1",
+    "vite": "^4.4.7"
+  }
+}
