@@ -48,10 +48,10 @@ export default class Router {
 
     /* 첫 시작 제어 */
     window.addEventListener("load", (e) => {
-      console.log(2, e, convertOriginPathname(location.pathname));
+      // console.log(2, e, convertOriginPathname(location.pathname));
       histories.push(convertOriginPathname(location.pathname));
       this.#changeCurrentPage(convertOriginPathname(location.pathname), {});
-      console.log("current history", histories);
+      // console.log("current history", histories);
     });
     // /* 뒤로가기 제어 */
     // window.addEventListener("popstate", (e) => {
@@ -63,14 +63,14 @@ export default class Router {
     // });
     /* 페이지 이동 제어 */
     window.addEventListener("pagechange", ({ detail }) => {
-      console.log("page change", detail);
+      // console.log("page change", detail);
       const { path, props } = detail;
-      console.trace(props.stopPropagation);
+      // console.trace(props.stopPropagation);
       if (!props.stopPropagation) {
         histories.push(convertOriginPathname(location.pathname));
       }
       this.#changeCurrentPage(path, props);
-      console.log("current history", histories);
+      // console.log("current history", histories);
     });
   }
 
@@ -106,8 +106,6 @@ export default class Router {
     for (let page of _pages) {
       this.setPage(page);
     }
-    console.log(currentPage);
-    console.log(pages);
   }
 
   render(props = {}) {

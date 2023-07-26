@@ -16,3 +16,5 @@ export const objectValueConvert = (obj) =>
   );
 export const convertOriginPathname = (pathname) =>
   pathname.replace(basePath, "/");
+export const revertOriginPathname = (pathname) =>
+  basePath + pathname.replace("/", "");
