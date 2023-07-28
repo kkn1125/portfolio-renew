@@ -1,0 +1,43 @@
+@mixin px($num) {
+  padding-left: #{1 + $num * 0.1 * $ratio}rem;
+  padding-right: #{1 + $num * 0.1 * $ratio}rem;
+}
+
+@mixin py($num) {
+  padding-top: #{1 + $num * 0.1 * $ratio}rem;
+  padding-bottom: #{1 + $num * 0.1 * $ratio}rem;
+}
+
+@mixin d-flex {
+  display: flex;
+}
+@mixin flex-direction-row {
+  flex-direction: row;
+}
+@mixin flex-direction-column {
+  flex-direction: column;
+}
+@mixin justify-content-center {
+  justify-content: center;
+}
+@mixin justify-content-between {
+  justify-content: space-between;
+}
+@mixin align-items-center {
+  align-items: center;
+}
+@mixin align-items-start {
+  align-items: flex-start;
+}
+@mixin flex-1 {
+  flex: 1;
+}
+@mixin t-center {
+  text-align: center;
+}
+@mixin t-start {
+  text-align: left;
+}
+@mixin t-end {
+  text-align: right;
+}

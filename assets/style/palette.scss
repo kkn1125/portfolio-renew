@@ -1,0 +1,35 @@
+// @use "sass:math";
+
+// /** Returns an at least one byte hex value */
+// @function dec-to-hex($d) {
+//   $hexVals: "A" "B" "C" "D" "E" "F";
+//   $base: 16;
+//   $quotient: $d;
+//   $result: "";
+//   @if $d == 0 {
+//     $result: "00";
+//   }
+//   @while $quotient != 0 {
+//     $mod: $quotient % $base;
+//     $quotient: floor(math.div($quotient, $base));
+//     @if $mod > 9 {
+//       $mod: nth($hexVals, $mod - 9);
+//     }
+//     @if $d < $base {
+//       $result: "0" + $mod;
+//     } @else {
+//       $result: $mod + $result;
+//     }
+//   }
+//   @return $result;
+// }
+
+$primary-color: #2f3be9;
+$secondary-color: #e92fa2;
+$success-color: #2fe98c;
+$info-color: #2f80e9;
+$warn-color: #e9be2f;
+$error-color: #e92f4e;
+$black-color: #333333;
+$gray-color: #656565;
+$white-color: #ffffff;

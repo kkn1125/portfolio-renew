@@ -1,3 +1,9 @@
+@use "sass:math";
+
+@import "./variables.scss";
+@import "./mixin.scss";
+@import "./palette.scss";
+
 html,
 body,
 #app {
@@ -6,60 +12,173 @@ body,
 }
 
 #app {
+  @include d-flex;
+  @include flex-direction-column;
+
   #gnb {
-    background-color: grey;
+    background-color: #ffffff;
+    box-shadow: 0 0 0.5rem 0 #00000056;
   }
 }
 
 .d-flex {
-  display: flex;
+  @include d-flex;
 }
 
 .flex-row {
-  flex-direction: row;
+  @include flex-direction-row;
 }
 .flex-col {
-  flex-direction: column;
+  @include flex-direction-column;
 }
 .justify-content-center {
-  justify-content: center;
+  @include justify-content-center;
 }
 .justify-content-between {
-  justify-content: space-between;
+  @include justify-content-between;
 }
 .align-items-center {
-  align-items: center;
+  @include align-items-center;
 }
 .align-items-between {
-  align-items: flex-start;
+  @include align-items-start;
 }
 
-.gap-1 {
-  gap: 1rem;
+@for $num from $start to $limit {
+  .gap-#{$num} {
+    gap: #{$num}rem;
+  }
+  .p-#{$num} {
+    @include py($num);
+    @include py($num);
+    @include py($num);
+    @include px($num);
+  }
+  .py-#{$num} {
+    @include py($num);
+  }
+  .px-#{$num} {
+    @include px($num);
+  }
 }
 
-.p-5 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+@for $num from $start to $limit {
+  .h-#{($num - 1) * 25} {
+    height: #{($num - 1) * 25} + "%";
+  }
+  .w-#{($num - 1) * 25} {
+    width: #{($num - 1) * 25} + "%";
+  }
+  .vh-#{($num - 1) * 25} {
+    height: #{($num - 1) * 25} + "vh";
+  }
+  .vw-#{($num - 1) * 25} {
+    width: #{($num - 1) * 25} + "vw";
+  }
 }
 
-.py-1 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.f-bold {
+  font-weight: $bold-size;
 }
 
-.py-5 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.f-normal {
+  font-weight: $normal-size;
 }
 
-.px-5 {
-  padding-left: 5rem;
-  padding-right: 5rem;
+.f-small {
+  font-weight: $small-size;
 }
 
-.h-100 {
-  height: 100%;
+.t-uppercase {
+  text-transform: uppercase;
+}
+
+.t-capitalize {
+  text-transform: capitalize;
+}
+
+.t-lowercase {
+  text-transform: lowercase;
+}
+
+.t-center {
+  @include t-center;
+}
+.t-start {
+  @include t-start;
+}
+.t-end {
+  @include t-end;
+}
+
+main {
+  @include d-flex;
+  @include flex-1;
+}
+
+footer {
+  // background-color: #56565656;
+  @include py(2);
+}
+
+@for $step from $start to $limit {
+  $temp: ($step - 1) * 25;
+  .bg-primary#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($primary-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-secondary#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($secondary-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-info#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($info-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-success#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($success-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-warn#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($warn-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-error#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($error-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-black#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($black-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-gray#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($gray-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .bg-white#{if($temp == 0, "", "-#{$temp}")} {
+    background-color: rgba($white-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+}
+
+@for $step from $start to $limit {
+  $temp: ($step - 1) * 25;
+  .text-primary#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($primary-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-secondary#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($secondary-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-info#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($info-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-success#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($success-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-warn#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($warn-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-error#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($error-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-black#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($black-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-gray#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($gray-color, 1 - ($step - 1) * 25 * 0.01);
+  }
+  .text-white#{if($temp == 0, "", "-#{$temp}")} {
+    color: rgba($white-color, 1 - ($step - 1) * 25 * 0.01);
+  }
 }
