@@ -1,5 +1,5 @@
 export const APP = () => document.querySelector("#app");
-
+export const MAIN = () => document.querySelector("#main");
 export const basePath = import.meta.env.DEV ? "/" : "/portfolio-renew/";
 
 /* classes variables */
@@ -23,3 +23,27 @@ export const convertToPageTemplate = (content, props) =>
 
 export const BRAND = import.meta.env.VITE_BRAND;
 export const YEAR = import.meta.env.VITE_YEAR;
+export const menuPanel = () => document.querySelector("#menu-panel");
+export const isClosed = () => menuPanel().classList.contains("close");
+export const GNB_MENU = () => document.querySelector("#gnb-menu");
+
+export const MENU_LIST = [
+  {
+    name: "resume",
+    path: "/",
+  },
+  // {
+  //   name: "resume",
+  //   path: "/resume",
+  // },
+  {
+    name: "portfolio",
+    path: "/portfolio",
+  },
+  {
+    name: "about",
+    path: "/about",
+  },
+];
+
+export const PROFILE_IMG = import.meta.env.VITE_PROFILE_IMAGE;

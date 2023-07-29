@@ -1,46 +1,87 @@
 @use "sass:math";
 
+@import "./palette.scss";
 @import "./variables.scss";
 @import "./mixin.scss";
-@import "./palette.scss";
+@import "./common.scss";
 
-html,
-body,
-#app {
-  margin: 0;
-  height: 100%;
+.overflow-none {
+  @include overflow-none;
+}
+.overflow-auto {
+  @include overflow-auto;
+}
+.overflow-y-auto {
+  @include overflow-y-auto;
+}
+.overflow-x-auto {
+  @include overflow-x-auto;
 }
 
-#app {
-  @include d-flex;
-  @include flex-direction-column;
-
-  #gnb {
-    background-color: #ffffff;
-    box-shadow: 0 0 0.5rem 0 #00000056;
-  }
+/* display options */
+.d-inline {
+  @include d-inline;
 }
-
+.d-inline-block {
+  @include d-inline-block;
+}
+.d-block {
+  @include d-block;
+}
 .d-flex {
   @include d-flex;
+}
+.d-none {
+  @include d-none;
+}
+
+.flex-1 {
+  @include flex-1;
+}
+.flex-auto {
+  @include flex-auto;
+}
+.flex-0-1-100 {
+  @include flex-0-1-100;
+}
+.flex-1-1-100 {
+  @include flex-1-1-100;
+}
+.flex-1-0-100 {
+  @include flex-1-0-100;
+}
+.flex-0-0-100 {
+  @include flex-0-0-100;
+}
+.flex-0-1-auto {
+  flex: 0 1 auto;
+}
+.flex-0-0-auto {
+  flex: 0 0 auto;
+}
+.flex-1-0-auto {
+  flex: 1 0 auto;
+}
+.flex-1-1-auto {
+  flex: 1 1 auto;
 }
 
 .flex-row {
   @include flex-direction-row;
 }
-.flex-col {
+.flex-column {
   @include flex-direction-column;
 }
-.justify-content-center {
+.justify-content-#{$center} {
   @include justify-content-center;
 }
 .justify-content-between {
   @include justify-content-between;
 }
-.align-items-center {
+.align-items-#{$center} {
   @include align-items-center;
 }
-.align-items-between {
+.align-items-start {
   @include align-items-start;
 }
 
@@ -49,34 +90,66 @@ body,
     gap: #{$num}rem;
   }
   .p-#{$num} {
-    @include py($num);
-    @include py($num);
-    @include py($num);
-    @include px($num);
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include py($temp);
+    @include py($temp);
+    @include py($temp);
+    @include px($temp);
   }
   .py-#{$num} {
-    @include py($num);
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include py($temp);
   }
   .px-#{$num} {
-    @include px($num);
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include px($temp);
   }
 }
 
+/* width, height options */
 @for $num from $start to $limit {
+  $temp: ($num - 1) * 25;
   .h-#{($num - 1) * 25} {
-    height: #{($num - 1) * 25} + "%";
+    @include height(#{($num - 1) * 25} + "%");
   }
   .w-#{($num - 1) * 25} {
-    width: #{($num - 1) * 25} + "%";
+    @include width(#{($num - 1) * 25} + "%");
   }
   .vh-#{($num - 1) * 25} {
-    height: #{($num - 1) * 25} + "vh";
+    @include height(#{($num - 1) * 25} + "vh");
   }
   .vw-#{($num - 1) * 25} {
-    width: #{($num - 1) * 25} + "vw";
+    @include width(#{($num - 1) * 25} + "vw");
+  }
+
+  .h-min-#{($num - 1) * 25} {
+    @include min-height(#{($num - 1) * 25} + "%");
+  }
+  .w-min-#{($num - 1) * 25} {
+    @include min-width(#{($num - 1) * 25} + "%");
+  }
+  .vh-min-#{($num - 1) * 25} {
+    @include min-height(#{($num - 1) * 25} + "vh");
+  }
+  .vw-min-#{($num - 1) * 25} {
+    @include min-width(#{($num - 1) * 25} + "vw");
+  }
+
+  .h-max-#{($num - 1) * 25} {
+    @include max-height(#{($num - 1) * 25} + "%");
+  }
+  .w-max-#{($num - 1) * 25} {
+    @include max-width(#{($num - 1) * 25} + "%");
+  }
+  .vh-max-#{($num - 1) * 25} {
+    @include max-height(#{($num - 1) * 25} + "vh");
+  }
+  .vw-max-#{($num - 1) * 25} {
+    @include max-width(#{($num - 1) * 25} + "vw");
   }
 }
 
+/* text options */
 .f-bold {
   font-weight: $bold-size;
 }
@@ -89,96 +162,538 @@ body,
   font-weight: $small-size;
 }
 
-.t-uppercase {
+.text-uppercase {
   text-transform: uppercase;
 }
 
-.t-capitalize {
+.text-capitalize {
   text-transform: capitalize;
 }
 
-.t-lowercase {
+.text-lowercase {
   text-transform: lowercase;
 }
-
-.t-center {
+.text-center {
   @include t-center;
 }
-.t-start {
+.text-start {
   @include t-start;
 }
-.t-end {
+.text-end {
   @include t-end;
 }
-
-main {
-  @include d-flex;
-  @include flex-1;
+.text-decoration-none {
+  text-decoration: none;
 }
 
-footer {
-  // background-color: #56565656;
-  @include py(2);
+@for $step from 0 to 21 {
+  .responsive-fs-width-#{$step} {
+    --responsive-fs: #{$step}vw;
+  }
+  .fs-#{$step} {
+    font-size: calc(var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem);
+  }
 }
 
+/* background color options */
 @for $step from $start to $limit {
   $temp: ($step - 1) * 25;
+  $opcaity: 1 - ($step - 1) * 25 * 0.01;
+
   .bg-primary#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($primary-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $primary-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-secondary#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($secondary-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $secondary-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-info#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($info-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $info-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-success#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($success-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $success-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-warn#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($warn-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $warn-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-error#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($error-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $error-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-black#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($black-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $black-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-gray#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($gray-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $gray-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
   .bg-white#{if($temp == 0, "", "-#{$temp}")} {
-    background-color: rgba($white-color, 1 - ($step - 1) * 25 * 0.01);
+    --bg-opacity: #{$opcaity};
+    background-color: rgba(
+      $white-color,
+      var(--opacity, var(--bg-opacity, #{$opcaity}))
+    );
   }
+}
+
+// ################################
+// ################################
+// ##                            ##
+// ##-----Text_Color_Options-----##
+// ##                            ##
+// ################################
+// ################################
+
+@for $step from $start to $limit {
+  $temp: ($step - 1) * 25;
+  $opcaity: 1 - ($step - 1) * 25 * 0.01;
+
+  .text-primary#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba(
+      $primary-color,
+      var(--opacity, var(--text-opacity, #{$opcaity}))
+    );
+  }
+  .text-secondary#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba(
+      $secondary-color,
+      var(--opacity, var(--text-opacity, #{$opcaity}))
+    );
+  }
+  .text-info#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba($info-color, var(--opacity, var(--text-opacity, #{$opcaity})));
+  }
+  .text-success#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba(
+      $success-color,
+      var(--opacity, var(--text-opacity, #{$opcaity}))
+    );
+  }
+  .text-warn#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba($warn-color, var(--opacity, var(--text-opacity, #{$opcaity})));
+  }
+  .text-error#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba($error-color, var(--opacity, var(--text-opacity, #{$opcaity})));
+  }
+  .text-black#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba($black-color, var(--opacity, var(--text-opacity, #{$opcaity})));
+  }
+  .text-gray#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba($gray-color, var(--opacity, var(--text-opacity, #{$opcaity})));
+  }
+  .text-white#{if($temp == 0, "", "-#{$temp}")} {
+    --text-opacity: #{$opcaity};
+    color: rgba($white-color, var(--opacity, var(--text-opacity, #{$opcaity})));
+  }
+}
+
+.btn {
+  border: none;
+  color: $white-color;
+  font-weight: 700;
+  font-size: 1rem;
+  @include py(0.5rem);
+  @include px(1rem);
+  @include border-radius(0.3rem);
 }
 
 @for $step from $start to $limit {
   $temp: ($step - 1) * 25;
-  .text-primary#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($primary-color, 1 - ($step - 1) * 25 * 0.01);
+  $opcaity: 1 - ($step - 1) * 25 * 0.01;
+
+  .btn-primary#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $primary-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-secondary#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($secondary-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-secondary#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $secondary-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-info#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($info-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-info#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $info-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-success#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($success-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-success#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $success-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-warn#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($warn-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-warn#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $warn-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-error#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($error-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-error#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $error-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-black#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($black-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-black#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $black-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-gray#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($gray-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-gray#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $gray-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
-  .text-white#{if($temp == 0, "", "-#{$temp}")} {
-    color: rgba($white-color, 1 - ($step - 1) * 25 * 0.01);
+  .btn-white#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    background-color: rgba(
+      $white-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
   }
 }
+
+.emoji-color-primary {
+  @include emoji-color($primary-color);
+}
+.emoji-color-secondary {
+  @include emoji-color($secondary-color);
+}
+.emoji-color-info {
+  @include emoji-color($info-color);
+}
+.emoji-color-success {
+  @include emoji-color($success-color);
+}
+.emoji-color-warn {
+  @include emoji-color($warn-color);
+}
+.emoji-color-error {
+  @include emoji-color($error-color);
+}
+.emoji-color-black {
+  @include emoji-color($black-color);
+}
+.emoji-color-gray {
+  @include emoji-color($gray-color);
+}
+.emoji-color-white {
+  @include emoji-color($white-color);
+}
+
+// ###############################################################
+// ###############################################################
+// ##                                                           ##
+// ##　　　　　텍스트 배경색 투명도 우선 적용 위해 하단 작성　　　　　　　　##
+// ##                                                           ##
+// ###############################################################
+// ###############################################################
+
+@for $step from 0 to 101 {
+  .opacity#{if($step == 0, "", "-#{$step}")} {
+    --opacity: #{1 - $step * 0.01};
+  }
+}
+
+@for $step from 0 to 101 {
+  .text-opacity#{if($step == 0, "", "-#{$step}")} {
+    --text-opacity: #{1 - $step * 0.01};
+  }
+}
+
+@for $step from 0 to 101 {
+  .bg-opacity#{if($step == 0, "", "-#{$step}")} {
+    --bg-opacity: #{1 - $step * 0.01};
+  }
+}
+
+.user-select-none {
+  user-select: none;
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-sticky {
+  position: sticky;
+}
+
+.position-static {
+  position: static;
+}
+
+@for $step from $start to $limit {
+  $temp: ($step - 1) * 25;
+  .top-#{$temp} {
+    top: #{$temp} + "%";
+  }
+  .bottom-#{$temp} {
+    bottom: #{$temp} + "%";
+  }
+  .left-#{$temp} {
+    left: #{$temp} + "%";
+  }
+  .right-#{$temp} {
+    right: #{$temp} + "%";
+  }
+}
+
+.position-center {
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.position-x-center {
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+.position-y-center {
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+@for $step from $start to 101 {
+  $temp: ($step - 1);
+  $width: 100 - ($step - 1);
+
+  .container#{if($temp == 0, "", "-#{$width}")} {
+    width: #{$width} + "%";
+    margin-left: auto;
+    margin-right: auto;
+    @include py(1rem);
+  }
+}
+
+@for $step from $start to $limit {
+  $temp: $step;
+  $size: 1 + ($step - 1) * 0.75;
+
+  .text-title#{"-#{$temp}"} {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: #{$size} + "rem";
+    @include mb(#{$size * 0.5} + "rem");
+  }
+}
+
+.profile-responsive {
+  height: 200px;
+  max-height: 40vw;
+}
+
+.aspect-ratio-16-9 {
+  aspect-ratio: 16/9;
+}
+.aspect-ratio-9-16 {
+  aspect-ratio: 9/16;
+}
+
+.list {
+  $common-gap: 0.5rem;
+  flex: 1;
+  gap: $common-gap;
+
+  & .list-item {
+    font-weight: 200;
+    font-size: calc(0.5rem + 0.5vw);
+    text-decoration: none;
+    display: flex;
+    gap: 5rem;
+
+    & .header {
+      text-transform: capitalize;
+      font-weight: 700;
+      min-width: 5%;
+    }
+    & .body {
+      flex: 1;
+    }
+
+    &:not(:last-of-type) /* :is(& .body) */ {
+      padding-bottom: $common-gap;
+      border-bottom: 1px solid rgba($black-color, 0.55);
+    }
+  }
+}
+
+// @include tablet {
+//   .d-none-md {
+//     @include d-none;
+//   }
+// }
+// @include desktop {
+//   .d-none-lg {
+//     @include d-none;
+//   }
+// }
+// @include responsive {
+//   .d-none-xl {
+//     @include d-none;
+//   }
+// }
+// @include responsive {
+//   .d-none-xxl {
+//     @include d-none;
+//   }
+// }
+
+// @media (min-width: 0px) and (max-width: $mobile) {
+//   .d-none-sm {
+//     @include d-none;
+//   }
+//   .d-inline-sm {
+//     @include d-inline;
+//   }
+//   .d-inline-block-sm {
+//     @include d-inline-block;
+//   }
+//   .d-block-sm {
+//     @include d-block;
+//   }
+//   .d-flex-sm {
+//     @include d-flex;
+//   }
+// }
+// @media (min-width: $mobile) and (max-width: $tablet) {
+//   .d-none-md {
+//     @include d-none;
+//   }
+//   .d-inline-md {
+//     @include d-inline;
+//   }
+//   .d-inline-block-md {
+//     @include d-inline-block;
+//   }
+//   .d-block-md {
+//     @include d-block;
+//   }
+//   .d-flex-md {
+//     @include d-flex;
+//   }
+// }
+// @media (min-width: $tablet) and (max-width: $desktop) {
+//   .d-none-lg {
+//     @include d-none;
+//   }
+//   .d-inline-lg {
+//     @include d-inline;
+//   }
+//   .d-inline-block-lg {
+//     @include d-inline-block;
+//   }
+//   .d-block-lg {
+//     @include d-block;
+//   }
+//   .d-flex-lg {
+//     @include d-flex;
+//   }
+// }
+// @media (min-width: $desktop) and (max-width: $wide) {
+//   .d-none-xl {
+//     @include d-none;
+//   }
+//   .d-inline-xl {
+//     @include d-inline;
+//   }
+//   .d-inline-block-xl {
+//     @include d-inline-block;
+//   }
+//   .d-block-xl {
+//     @include d-block;
+//   }
+//   .d-flex-xl {
+//     @include d-flex;
+//   }
+// }
+// @media (min-width: $wide) {
+//   .d-none-xxl {
+//     @include d-none;
+//   }
+//   .d-inline-xxl {
+//     @include d-inline;
+//   }
+//   .d-inline-block-xxl {
+//     @include d-inline-block;
+//   }
+//   .d-block-xxl {
+//     @include d-block;
+//   }
+//   .d-flex-xxl {
+//     @include d-flex;
+//   }
+// }
+
+/* responsive 하단 배치 (우선 적용) */
+@import "./responsive.scss";

@@ -1,13 +1,64 @@
+@mixin ps($num) {
+  padding-left: $num;
+}
+@mixin pe($num) {
+  padding-right: $num;
+}
+@mixin pt($num) {
+  padding-top: $num;
+}
+@mixin pb($num) {
+  padding-bottom: $num;
+}
 @mixin px($num) {
-  padding-left: #{1 + $num * 0.1 * $ratio}rem;
-  padding-right: #{1 + $num * 0.1 * $ratio}rem;
+  @include ps($num);
+  @include pe($num);
 }
-
 @mixin py($num) {
-  padding-top: #{1 + $num * 0.1 * $ratio}rem;
-  padding-bottom: #{1 + $num * 0.1 * $ratio}rem;
+  @include pt($num);
+  @include pb($num);
+}
+@mixin p($num) {
+  @include px($num);
+  @include py($num);
+}
+@mixin ms($num) {
+  margin-left: $num;
+}
+@mixin me($num) {
+  margin-right: $num;
+}
+@mixin mt($num) {
+  margin-top: $num;
+}
+@mixin mb($num) {
+  margin-bottom: $num;
+}
+@mixin mx($num) {
+  @include ps($num);
+  @include pe($num);
+}
+@mixin my($num) {
+  @include pt($num);
+  @include pb($num);
+}
+@mixin m($num) {
+  @include px($num);
+  @include py($num);
 }
 
+@mixin d-none {
+  display: none;
+}
+@mixin d-inline {
+  display: inline;
+}
+@mixin d-inline-block {
+  display: inline-block;
+}
+@mixin d-block {
+  display: block;
+}
 @mixin d-flex {
   display: flex;
 }
@@ -32,6 +83,21 @@
 @mixin flex-1 {
   flex: 1;
 }
+@mixin flex-0-1-100 {
+  flex: 0 1 100%;
+}
+@mixin flex-1-1-100 {
+  flex: 1 1 100%;
+}
+@mixin flex-1-0-100 {
+  flex: 1 0 100%;
+}
+@mixin flex-0-0-100 {
+  flex: 1 0 100%;
+}
+@mixin flex-auto {
+  flex: auto;
+}
 @mixin t-center {
   text-align: center;
 }
@@ -40,4 +106,107 @@
 }
 @mixin t-end {
   text-align: right;
+}
+
+@mixin overflow-none {
+  overflow: none;
+}
+@mixin overflow-auto {
+  overflow: auto;
+}
+@mixin overflow-y-auto {
+  overflow-y: auto;
+}
+@mixin overflow-x-auto {
+  overflow-x: auto;
+}
+@mixin width($width) {
+  width: #{$width};
+}
+@mixin height($height) {
+  height: #{$height};
+}
+@mixin max-width($width) {
+  max-width: #{$width};
+}
+@mixin max-height($height) {
+  max-height: #{$height};
+}
+@mixin min-width($width) {
+  min-width: #{$width};
+}
+@mixin min-height($height) {
+  min-height: #{$height};
+}
+@mixin transition($time, $action) {
+  transition: $time $action;
+  -webkit-transition: $time $action;
+  -moz-transition: $time $action;
+  -ms-transition: $time $action;
+  -o-transition: $time $action;
+}
+@mixin emoji-color($color) {
+  color: transparent;
+  text-shadow: 0 0 0 $color;
+}
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin mobile {
+  @media (min-width: 0px) and (max-width: $mobile) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: $tablet) and (max-width: $desktop) {
+    @content;
+  }
+}
+@mixin wide {
+  @media (min-width: $desktop) and (max-width: $wide) {
+    @content;
+  }
+}
+@mixin over-wide {
+  @media (min-width: $wide) {
+    @content;
+  }
+}
+
+@mixin responsive($name) {
+  @include mobile {
+    .#{$name}-sm {
+      @content;
+    }
+  }
+  @include tablet {
+    .#{$name}-md {
+      @content;
+    }
+  }
+  @include desktop {
+    .#{$name}-lg {
+      @content;
+    }
+  }
+  @include wide {
+    .#{$name}-xl {
+      @content;
+    }
+  }
+  @include over-wide {
+    .#{$name}-xxl {
+      @content;
+    }
+  }
 }

@@ -1,11 +1,13 @@
 import manager from "../core";
 import { convertToPageTemplate } from "../util/global";
 
-
 export default ({ name = "" }) => `
-	<div>
+	<div class="container-80 d-flex flex-column gap-5">
 		
-		<button onclick="manager.navigator.to('/about')">to about</button>
+		<div class="text-title-3">
+			test
+		</div>
+	
 	</div>
 `;
 

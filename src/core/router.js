@@ -1,9 +1,19 @@
-import { APP, currentPage, histories, pages } from "../util/global";
+import Default from "../layout/Default";
+import {
+  APP,
+  currentPage,
+  GNB_MENU,
+  histories,
+  MAIN,
+  pages,
+} from "../util/global";
 import { convertOriginPathname, objectValueConvert } from "../util/tool";
 
 export default class Router {
   firstPage = false;
   constructor() {
+    this.renderBase();
+
     (function () {
       var pushState = history.pushState;
       var replaceState = history.replaceState;
@@ -108,13 +118,43 @@ export default class Router {
     }
   }
 
+  renderBase(props = {}) {
+    // ${element({ ...gProps, ...props })}
+    this.#clearApp();
+    this.#insertApp(Default(props));
+  }
+
   render(props = {}) {
-    if (currentPage.page) {
-      this.#clearApp();
-      this.#insertApp(currentPage.page.page(props));
-    } else {
-      this.#insertApp(pages.find((page) => page.name === "404")?.page(props));
-      throw new Error("페이지가 없습니다.");
+    try {
+      setTimeout(() => {
+        try {
+          const menuItems = GNB_MENU().querySelectorAll(".item");
+          if (menuItems.length > 0) {
+            const list = Array.from(menuItems);
+            list.forEach((item) => {
+              item.classList.remove("current");
+            });
+            const foundPage = list.find((item) =>
+              item.innerText.match(new RegExp(currentPage.page.name, "gi"))
+            );
+            if (foundPage) {
+              foundPage.classList.add("current");
+            }
+          }
+        } catch (error) {}
+      }, 0);
+      if (currentPage.page) {
+        this.#clearMain();
+        this.#insertMain(currentPage.page.page(props));
+      } else {
+        this.#clearMain();
+        this.#insertMain(
+          pages.find((page) => page.name === "404")?.page(props)
+        );
+        throw new Error("페이지가 없습니다.");
+      }
+    } catch (err) {
+      console.debug(`안내: ${err.message}`);
     }
   }
 
@@ -123,8 +163,17 @@ export default class Router {
   }
 
   #insertApp(page) {
+    const docu = new DOMParser().parseFromString(page(), "text/html");
+    APP().append(...Array.from(docu.body.children));
+  }
+
+  #clearMain() {
+    MAIN().innerHTML = "";
+  }
+
+  #insertMain(page) {
     const docu = new DOMParser().parseFromString(page, "text/html");
 
-    APP().append(...Array.from(docu.body.children));
+    MAIN().append(...Array.from(docu.body.children));
   }
 }

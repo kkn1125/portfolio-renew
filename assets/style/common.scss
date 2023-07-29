@@ -1,0 +1,200 @@
+html,
+body {
+  overflow: hidden;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  @include height(100%);
+}
+
+#app {
+  @include d-flex;
+  @include flex-direction-column;
+
+  #gnb {
+    background-color: #ffffff;
+    box-shadow: 0 0 0.5rem 0 #00000056;
+
+    #brand {
+      cursor: pointer;
+    }
+
+    #gnb-menu {
+      .item {
+        cursor: pointer;
+        color: rgba($black-color, 0.65);
+        @include transition(150ms, ease-in-out);
+
+        &.current {
+          color: rgba($primary-color, 0.85);
+        }
+
+        &::before {
+          @include transition(150ms, ease-in-out);
+          content: "";
+          width: 100%;
+          height: 3px;
+          background-color: rgba($black-color, 0.25);
+          position: absolute;
+          bottom: -5px;
+          left: -100%;
+          opacity: 0;
+        }
+
+        &:hover {
+          position: relative;
+          &::before {
+            left: 0;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    #menu {
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      @keyframes menu-cross-top {
+        0% {
+          transform: rotate(0deg) translate(0px, 0px);
+          -webkit-transform: rotate(0deg) translate(0px, 0px);
+          -moz-transform: rotate(0deg) translate(0px, 0px);
+          -ms-transform: rotate(0deg) translate(0px, 0px);
+          -o-transform: rotate(0deg) translate(0px, 0px);
+        }
+        100% {
+          transform: rotate(45deg) translate(7.5px, 6.5px);
+          -webkit-transform: rotate(45deg) translate(7.5px, 6.5px);
+          -moz-transform: rotate(45deg) translate(7.5px, 6.5px);
+          -ms-transform: rotate(45deg) translate(7.5px, 6.5px);
+          -o-transform: rotate(45deg) translate(7.5px, 6.5px);
+        }
+      }
+      @keyframes menu-cross-middle {
+        0% {
+          opacity: 1;
+          transform: translate(0%);
+          -webkit-transform: translate(0%);
+          -moz-transform: translate(0%);
+          -ms-transform: translate(0%);
+          -o-transform: translate(0%);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(100%);
+          -webkit-transform: translateX(100%);
+          -moz-transform: translateX(100%);
+          -ms-transform: translateX(100%);
+          -o-transform: translateX(100%);
+        }
+      }
+      @keyframes menu-cross-bottom {
+        0% {
+          transform: rotate(0deg) translate(0px, 0px);
+          -webkit-transform: rotate(0deg) translate(0px, 0px);
+          -moz-transform: rotate(0deg) translate(0px, 0px);
+          -ms-transform: rotate(0deg) translate(0px, 0px);
+          -o-transform: rotate(0deg) translate(0px, 0px);
+        }
+        100% {
+          transform: rotate(-45deg) translate(7.5px, -6.5px);
+          -webkit-transform: rotate(-45deg) translate(7.5px, -6.5px);
+          -moz-transform: rotate(-45deg) translate(7.5px, -6.5px);
+          -ms-transform: rotate(-45deg) translate(7.5px, -6.5px);
+          -o-transform: rotate(-45deg) translate(7.5px, -6.5px);
+        }
+      }
+
+      &:hover {
+        & {
+          cursor: pointer;
+        }
+        & .menu-line {
+          --hover-opacity: 1;
+        }
+
+        & .menu-line:first-child {
+          animation: menu-cross-top 150ms ease-in-out both;
+          -webkit-animation: menu-cross-top 150ms ease-in-out both;
+        }
+        & .menu-line:nth-child(2) {
+          animation: menu-cross-middle 150ms ease-in-out both;
+          -webkit-animation: menu-cross-middle 150ms ease-in-out both;
+        }
+        & .menu-line:last-of-type {
+          animation: menu-cross-bottom 150ms ease-in-out both;
+          -webkit-animation: menu-cross-bottom 150ms ease-in-out both;
+        }
+      }
+
+      .menu-line {
+        display: block;
+        width: 30px;
+        height: 5px;
+        background-color: rgba(#565656, var(--hover-opacity, 0.55));
+        @include transition(150ms, ease-in-out);
+      }
+    }
+  }
+
+  #menu-panel {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($primary-color, 0.75);
+    user-select: none;
+
+    @include transition(150ms, ease-in-out);
+
+    &.close {
+      left: 100%;
+      // display: none;
+    }
+    &.open {
+      left: 0;
+      // display: none;
+    }
+
+    & #menu-panel-exit-btn {
+      $gap: 30px;
+      position: absolute;
+      top: $gap;
+      right: $gap;
+      border: none;
+      background-color: $error-color;
+      --responsive-fs: 0px;
+      cursor: pointer;
+      @include emoji-color($white-color);
+      @include p(0.5rem);
+      outline: none;
+
+      &:hover {
+        filter: brightness(0.95);
+        -webkit-filter: brightness(0.95);
+      }
+      &:active {
+        filter: brightness(0.85);
+        -webkit-filter: brightness(0.85);
+      }
+    }
+
+    & .menu-panel-item {
+      @include transition(150ms, ease-in-out);
+      &.hover-action:hover {
+        cursor: pointer;
+        text-shadow: 0 0 1rem $white-color;
+        color: rgba($primary-color, var(--text-opacity, 1));
+      }
+    }
+  }
+
+  footer {
+  }
+}

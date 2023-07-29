@@ -1,0 +1,48 @@
+//////////////// 반응형 처리
+
+@include responsive("d-block") {
+  @include d-block;
+}
+@include responsive("d-inline") {
+  @include d-inline;
+}
+@include responsive("d-inline-block") {
+  @include d-inline-block;
+}
+@include responsive("d-flex") {
+  @include d-flex;
+}
+@include responsive("d-none") {
+  @include d-none;
+}
+
+@include responsive("overflow-none") {
+  @include overflow-none;
+}
+@include responsive("overflow-auto") {
+  @include overflow-auto;
+}
+@include responsive("overflow-y-auto") {
+  @include overflow-y-auto;
+}
+@include responsive("overflow-x-auto") {
+  @include overflow-x-auto;
+}
+@include responsive("flex-row") {
+  @include flex-direction-row;
+}
+@include responsive("flex-column") {
+  @include flex-direction-column;
+}
+@include responsive("justify-content-#{$center}") {
+  @include justify-content-center;
+}
+@include responsive("justify-content-between") {
+  @include justify-content-between;
+}
+@include responsive("align-items-#{$center}") {
+  @include align-items-center;
+}
+@include responsive("align-items-start") {
+  @include align-items-start;
+}
