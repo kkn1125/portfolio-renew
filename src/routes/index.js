@@ -6,7 +6,6 @@ import Resume from "../templates/Resume";
 
 export default [
   { name: "resume", path: "/", page: Resume },
-  // { name: "resume", path: "/resume", page: Resume },
   { name: "portfolio", path: "/portfolio", page: Portfolio },
   { name: "about", path: "/about", page: About },
   { name: "404", path: "/404", page: _404 },

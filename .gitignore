@@ -3,3 +3,4 @@ node_modules/
 server/
 generate_pages.js
 # views/
+dist/
