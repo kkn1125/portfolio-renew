@@ -148,7 +148,7 @@ body,
     top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba($primary-color, 0.75);
+    // background-color: rgba($primary-color, 0.75);
     user-select: none;
 
     @include transition(150ms, ease-in-out);
@@ -186,12 +186,29 @@ body,
     }
 
     & .menu-panel-item {
+      color: #373737;
       @include transition(150ms, ease-in-out);
       &.hover-action:hover {
         cursor: pointer;
-        text-shadow: 0 0 1rem $white-color;
-        color: rgba($primary-color, var(--text-opacity, 1));
+        text-shadow: 0 0 1rem $black-color;
+        color: rgba($white-color, var(--text-opacity, 1));
       }
+    }
+    backdrop-filter: blur(5px);
+  }
+
+  .list-item {
+    .skill-icon {
+      $icon-size: 60px;
+      width: $icon-size;
+      height: $icon-size;
+    }
+  }
+
+  .title-to-content {
+    &::before {
+      content: attr(title);
+      text-transform: capitalize;
     }
   }
 

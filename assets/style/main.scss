@@ -2,6 +2,7 @@
 
 @import "./palette.scss";
 @import "./variables.scss";
+@import "./fontface.scss";
 @import "./mixin.scss";
 @import "./common.scss";
 
@@ -27,6 +28,9 @@
 }
 .d-block {
   @include d-block;
+}
+.d-inline-flex {
+  @include d-inline-flex;
 }
 .d-flex {
   @include d-flex;
@@ -66,6 +70,13 @@
   flex: 1 1 auto;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
 .flex-row {
   @include flex-direction-row;
 }
@@ -85,24 +96,18 @@
   @include align-items-start;
 }
 
+@for $step from $start to $limit {
+  .divider#{"-#{$step}"} {
+    @include my(#{$step} + "rem");
+  }
+}
+
 @for $num from $start to $limit {
   .gap-#{$num} {
     gap: #{$num}rem;
   }
-  .p-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
-    @include py($temp);
-    @include py($temp);
-    @include py($temp);
-    @include px($temp);
-  }
-  .py-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
-    @include py($temp);
-  }
-  .px-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
-    @include px($temp);
+  .list-gap-#{$num} {
+    --list-gap: #{$num}rem;
   }
 }
 
@@ -147,43 +152,6 @@
   .vw-max-#{($num - 1) * 25} {
     @include max-width(#{($num - 1) * 25} + "vw");
   }
-}
-
-/* text options */
-.f-bold {
-  font-weight: $bold-size;
-}
-
-.f-normal {
-  font-weight: $normal-size;
-}
-
-.f-small {
-  font-weight: $small-size;
-}
-
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-.text-capitalize {
-  text-transform: capitalize;
-}
-
-.text-lowercase {
-  text-transform: lowercase;
-}
-.text-center {
-  @include t-center;
-}
-.text-start {
-  @include t-start;
-}
-.text-end {
-  @include t-end;
-}
-.text-decoration-none {
-  text-decoration: none;
 }
 
 @for $step from 0 to 21 {
@@ -536,14 +504,83 @@
   }
 }
 
+.text-title-deco-end {
+  --deco-size: 10px;
+  position: absolute;
+  background-color: rgba($gray-color, 0.75);
+  width: var(--deco-size, 15px);
+  height: var(--deco-size, 15px);
+  top: 50%;
+  right: 0;
+  z-index: 5;
+  @include transform(translateY(-50%));
+}
+
+.text-title-dash-start {
+  &::before {
+    content: "";
+    vertical-align: middle;
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    border-bottom: 2px dotted #ccc;
+    margin: 0 2% 0 -55%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+}
+.text-title-dash-both {
+  &::before,
+  &::after {
+    content: "";
+    vertical-align: middle;
+    display: inline-block;
+    width: 50%;
+    height: 1px;
+    border-bottom: 2px dotted #ccc;
+    margin: 0 2% 0 -55%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+  &::after {
+    margin: 0 -55% 0 2%;
+  }
+}
+.text-title-dash-end {
+  &::after {
+    content: "";
+    vertical-align: middle;
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    border-bottom: 2px dotted #ccc;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+}
+
 @for $step from $start to $limit {
   $temp: $step;
   $size: 1 + ($step - 1) * 0.75;
 
   .text-title#{"-#{$temp}"} {
+    $shadow-size: 2px;
+    position: relative;
+    overflow: hidden;
     font-weight: 700;
+    // text-align: center;
     text-transform: uppercase;
     font-size: #{$size} + "rem";
+    // -webkit-text-stroke: $shadow-size $white-color;
     @include mb(#{$size * 0.5} + "rem");
   }
 }
@@ -561,9 +598,9 @@
 }
 
 .list {
-  $common-gap: 0.5rem;
+  // --lits-gap: 0.5rem;
   flex: 1;
-  gap: $common-gap;
+  // gap: var(--lits-gap, 0px);
 
   & .list-item {
     font-weight: 200;
@@ -572,6 +609,11 @@
     display: flex;
     gap: 5rem;
 
+    &.dense {
+      font-size: calc(0.3rem + 0.5vw);
+      --list-gap: 0.4rem;
+    }
+
     & .header {
       text-transform: capitalize;
       font-weight: 700;
@@ -579,121 +621,186 @@
     }
     & .body {
       flex: 1;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     &:not(:last-of-type) /* :is(& .body) */ {
-      padding-bottom: $common-gap;
+      padding-bottom: var(--list-gap, 0.5rem);
+      margin-bottom: var(--list-gap, 0.5rem);
       border-bottom: 1px solid rgba($black-color, 0.55);
     }
   }
 }
 
-// @include tablet {
-//   .d-none-md {
-//     @include d-none;
-//   }
-// }
-// @include desktop {
-//   .d-none-lg {
-//     @include d-none;
-//   }
-// }
-// @include responsive {
-//   .d-none-xl {
-//     @include d-none;
-//   }
-// }
-// @include responsive {
-//   .d-none-xxl {
-//     @include d-none;
-//   }
-// }
+/* text options */
+.f-bold {
+  font-weight: $bold-size;
+}
 
-// @media (min-width: 0px) and (max-width: $mobile) {
-//   .d-none-sm {
-//     @include d-none;
-//   }
-//   .d-inline-sm {
-//     @include d-inline;
-//   }
-//   .d-inline-block-sm {
-//     @include d-inline-block;
-//   }
-//   .d-block-sm {
-//     @include d-block;
-//   }
-//   .d-flex-sm {
-//     @include d-flex;
-//   }
-// }
-// @media (min-width: $mobile) and (max-width: $tablet) {
-//   .d-none-md {
-//     @include d-none;
-//   }
-//   .d-inline-md {
-//     @include d-inline;
-//   }
-//   .d-inline-block-md {
-//     @include d-inline-block;
-//   }
-//   .d-block-md {
-//     @include d-block;
-//   }
-//   .d-flex-md {
-//     @include d-flex;
-//   }
-// }
-// @media (min-width: $tablet) and (max-width: $desktop) {
-//   .d-none-lg {
-//     @include d-none;
-//   }
-//   .d-inline-lg {
-//     @include d-inline;
-//   }
-//   .d-inline-block-lg {
-//     @include d-inline-block;
-//   }
-//   .d-block-lg {
-//     @include d-block;
-//   }
-//   .d-flex-lg {
-//     @include d-flex;
-//   }
-// }
-// @media (min-width: $desktop) and (max-width: $wide) {
-//   .d-none-xl {
-//     @include d-none;
-//   }
-//   .d-inline-xl {
-//     @include d-inline;
-//   }
-//   .d-inline-block-xl {
-//     @include d-inline-block;
-//   }
-//   .d-block-xl {
-//     @include d-block;
-//   }
-//   .d-flex-xl {
-//     @include d-flex;
-//   }
-// }
-// @media (min-width: $wide) {
-//   .d-none-xxl {
-//     @include d-none;
-//   }
-//   .d-inline-xxl {
-//     @include d-inline;
-//   }
-//   .d-inline-block-xxl {
-//     @include d-inline-block;
-//   }
-//   .d-block-xxl {
-//     @include d-block;
-//   }
-//   .d-flex-xxl {
-//     @include d-flex;
-//   }
-// }
+.f-normal {
+  font-weight: $normal-size;
+}
+
+.f-small {
+  font-weight: $small-size;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-center {
+  @include t-center;
+}
+.text-start {
+  @include t-start;
+}
+.text-end {
+  @include t-end;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
+
+@for $num from $start to $limit {
+  .p-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include py($temp);
+    @include py($temp);
+    @include py($temp);
+    @include px($temp);
+  }
+  .pt-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include pt($temp);
+  }
+  .ps-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include ps($temp);
+  }
+  .pe-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include pe($temp);
+  }
+  .pb-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include pb($temp);
+  }
+  .py-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include py($temp);
+  }
+  .px-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include px($temp);
+  }
+  .m-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include my($temp);
+    @include my($temp);
+    @include my($temp);
+    @include mx($temp);
+  }
+  .mt-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include mt($temp);
+  }
+  .ms-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include ms($temp);
+  }
+  .me-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include me($temp);
+  }
+  .mb-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include mb($temp);
+  }
+  .my-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include my($temp);
+  }
+  .mx-#{$num} {
+    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
+    @include mx($temp);
+  }
+}
+
+.border {
+  border-style: solid;
+}
+
+.border-solid {
+  border-style: solid;
+}
+.border-dashed {
+  border-style: dashed;
+}
+
+@for $step from $start to $limit {
+  .border-line-#{$step} {
+    border-width: #{$step} + "px";
+  }
+}
+
+@for $step from $start to $limit {
+  $temp: ($step - 1) * 25;
+  $opacity: 1- $temp * 0.01;
+
+  .border-primary#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($primary-color, var(--border-opacity, 1));
+  }
+  .border-secondary#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($secondary-color, var(--border-opacity, 1));
+  }
+  .border-info#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($info-color, var(--border-opacity, 1));
+  }
+  .border-success#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($success-color, var(--border-opacity, 1));
+  }
+  .border-warn#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($warn-color, var(--border-opacity, 1));
+  }
+  .border-error#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($error-color, var(--border-opacity, 1));
+  }
+  .border-black#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($black-color, var(--border-opacity, 1));
+  }
+  .border-gray#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($gray-color, var(--border-opacity, 1));
+  }
+  .border-white#{if($temp == 0, "", "-#{$temp}")} {
+    --border-opacity: #{$opacity};
+    border-color: rgba($white-color, var(--border-opacity, 1));
+  }
+}
+
+@for $step from $start to 101 {
+  $temp: 100 - $step;
+
+  .border-opacity-#{$temp} {
+    --border-opacity: $temp * 0.01;
+  }
+}
 
 /* responsive 하단 배치 (우선 적용) */
 @import "./responsive.scss";
