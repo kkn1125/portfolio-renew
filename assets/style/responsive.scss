@@ -1,21 +1,5 @@
 //////////////// 반응형 처리
 
-@include responsive("d-block") {
-  @include d-block;
-}
-@include responsive("d-inline") {
-  @include d-inline;
-}
-@include responsive("d-inline-block") {
-  @include d-inline-block;
-}
-@include responsive("d-flex") {
-  @include d-flex;
-}
-@include responsive("d-none") {
-  @include d-none;
-}
-
 @include responsive("overflow-none") {
   @include overflow-none;
 }
@@ -45,4 +29,20 @@
 }
 @include responsive("align-items-start") {
   @include align-items-start;
+}
+
+@include responsive("d-block") {
+  @include d-block;
+}
+@include responsive("d-inline") {
+  @include d-inline;
+}
+@include responsive("d-inline-block") {
+  @include d-inline-block;
+}
+@include responsive("d-flex") {
+  @include d-flex;
+}
+@include responsive("d-none") {
+  @include d-none;
 }

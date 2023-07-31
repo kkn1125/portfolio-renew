@@ -1,4 +1,4 @@
-import { isClosed, menuPanel } from "../util/global";
+import { dataList, isClosed, menuPanel } from "../util/global";
 
 export default class UI {
   constructor() {
@@ -19,6 +19,22 @@ export default class UI {
           this.openMenuPanel();
         } else {
           this.closeMenuPanel();
+        }
+      }
+
+      if (
+        target.closest(".list-toggle") ||
+        target.classList.contains("list-toggle")
+      ) {
+        const divider = target.parentElement.parentElement.nextElementSibling;
+        const list =
+          target.parentElement.parentElement.nextElementSibling
+            .nextElementSibling;
+        const isOpen = list.classList.contains("list-open");
+        if (isOpen) {
+          this.closeList(list, target, divider);
+        } else {
+          this.openList(list, target, divider);
         }
       }
 
@@ -49,5 +65,21 @@ export default class UI {
   closeMenuPanel() {
     menuPanel().classList.remove("open");
     menuPanel().classList.add("close");
+  }
+  openList(list, target, divider) {
+    divider.classList.remove("py-0");
+    target.innerText = "닫기";
+    target.classList.remove("btn-info");
+    target.classList.add("btn-gray");
+    list.classList.add("list-open");
+    list.classList.remove("list-close");
+  }
+  closeList(list, target, divider) {
+    divider.classList.add("py-0");
+    target.innerText = "펼치기";
+    target.classList.add("btn-info");
+    target.classList.remove("btn-gray");
+    list.classList.add("list-close");
+    list.classList.remove("list-open");
   }
 }

@@ -18,3 +18,79 @@ export const convertOriginPathname = (pathname) =>
   pathname.replace(basePath, "/");
 export const revertOriginPathname = (pathname) =>
   basePath + pathname.replace("/", "");
+export const extractTime = (time) =>
+  `${time.getFullYear()}. ${time.getMonth()}`;
+
+export const renderProjectList = (
+  item
+) => `<div class="text-title-1 text-center mb-2 d-flex justify-content-between">
+  <span class="d-inline-flex gap-1 align-items-center">
+    <span>${item.title}</span
+    <span>${extractTime(item.start)} ~ ${
+      item.inProgress ? "진행 중" : extractTime(item.end)
+    }</span>
+  </span>
+  <span>
+    <span class="tag tag-gray">${item.team}</span>
+    <span class="tag tag-secondary">${item.role}</span>
+    <button class="btn btn-${item.listOpen?'gray':'info'} list-toggle" data-title="${item.title}">${
+      item.listOpen ? "닫기" : "펼치기"
+    }</button>
+  </span>
+</div>
+${item.desc?`<div class="blockquote">${item.desc}</div>`:``}
+<div class="divider-1"></div>
+<div class="d-flex flex-column list-gap-2 list ${
+  item.listOpen ? "list-open" : "list-close"
+}">
+${item.list
+  .map(
+    (line) => `<div class="list-item dense">
+<span class="header">${line.header}</span>
+<span class="body">${line.body}</span>
+</div>`
+  )
+  .join("")}
+</div>`;
+export const renderWorkExprienceList = (
+  item
+) => `<div class="text-title-1 text-center mb-2 d-flex justify-content-between">
+  <span class="d-inline-flex gap-1 align-items-center">
+    <span>${item.title}</span>
+    <span>${extractTime(item.start)} ~ ${
+    item.inProgress ? "재직 중" : extractTime(item.end)
+    }</span>
+  </span>
+  <span>
+    <span class="tag tag-gray">${item.team}</span>
+    <span class="tag tag-secondary">${item.role}</span>
+    <button class="btn btn-${item.listOpen?'gray':'info'} list-toggle" data-title="${item.title}">${
+      item.listOpen ? "닫기" : "펼치기"
+    }</button>
+  </span>
+</div>
+${item.desc?`<div class="blockquote">${item.desc}</div>`:``}
+<div class="divider-1"></div>
+<div class="d-flex flex-column list-gap-2 list ${
+  item.listOpen ? "list-open" : "list-close"
+}">
+${item.list
+  .map(
+    (line) => `<div class="list-item dense">
+<span class="header">${line.header}</span>
+<span class="body">${line.body}</span>
+</div>`
+  )
+  .join("")}
+</div>`;
+
+/**
+ *
+ * @param {any} list
+ * @param {'project'|'work'} type
+ * @returns
+ */
+export const renderDataList = (list, type = "project") =>
+  list
+    .map(type === "project" ? renderProjectList : renderWorkExprienceList)
+    .join(`<div class="divider-2"></div>`);

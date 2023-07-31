@@ -1,20 +1,20 @@
 import icons from "../../assets/icons";
 import ProfileList from "../../component/ProfileList";
+import ProjectExprience from "../../component/ProjectExprience";
 import SkillIcon from "../../component/SkillIcon";
 import WorkExprience from "../../component/WorkExprience";
-import { PROFILE_IMG } from "../util/global";
+import { PROFILE_IMG, textTitle } from "../util/global";
+import { renderDataList } from "../util/tool";
 
 export default ({ title = "" }) => `
 	<div class="container-50 d-flex flex-column gap-5">
 		<div>
 			
-			<div class="text-title-3 text-center">
-				Resume
-			</div>
+			${textTitle("resume", 3, true, false)}
 
 			<div class="divider-2"></div>
 
-			<div class="d-flex flex-column-sm flex-row-md gap-2 align-items-center">
+			<div class="d-flex flex-column flex-row-lg gap-2 align-items-center">
 				<div class="d-flex border border-line-1 border-gray-75">
 					<img src="${PROFILE_IMG}" class="profile-responsive" />
 				</div>
@@ -32,64 +32,72 @@ export default ({ title = "" }) => `
 
 			<div class="divider-2"></div>
 
-			<div class="text-title-2 text-title-dash-end mb-2">
-					Skills
-			</div>
-
+			${textTitle("skills", 2)}
+			<div class="divider-1"></div>
 			<div class="d-flex flex-column list-gap-2 list">
 
-				<div class="text-title-1 text-title-dash-end text-capitalize">
+				<div class="divider-1"></div>
+				<div class="list-item justify-content-center align-items-center flex-wrap">
+					<div class="text-gray text-uppercase f-bold">
 					frontend
-				</div>
-				<div class="divider-1"></div>
-				<div class="list-item justify-content-center">
-					${SkillIcon("javascript")}
-					${SkillIcon("typescript")}
-					${SkillIcon("sass")}
-					${SkillIcon("styledcomponent")}
-					${SkillIcon("mui")}
-				</div>
-				
-				<div class="text-title-1 text-title-dash-end text-capitalize">
-					backend
-				</div>
-				<div class="divider-1"></div>
-				<div class="list-item justify-content-center flex-wrap">
-					${SkillIcon("mariadb")}
-					${SkillIcon("docker")}
-					${SkillIcon("nginx")}
-					${SkillIcon("express")}
-					${SkillIcon("fastify")}
-					${SkillIcon("socketio")}
-					${SkillIcon("uwebsockets")}
-					${SkillIcon("jwt")}
+					</div>
+					<div class="d-flex flex-1 justify-content-start gap-3">
+						${SkillIcon("javascript")}
+						${SkillIcon("typescript")}
+						${SkillIcon("sass")}
+						${SkillIcon("styled-component")}
+						${SkillIcon("mui")}
+					</div>
 				</div>
 				
-				<div class="text-title-1 text-title-dash-end text-capitalize">
-					testing
-				</div>
 				<div class="divider-1"></div>
-				<div class="list-item justify-content-center">
-					${SkillIcon("jest")}
+				<div class="list-item justify-content-center align-items-center flex-wrap">
+					<div class="text-gray text-uppercase f-bold">
+						backend
+					</div>
+					<div class="d-flex flex-1 justify-content-start gap-3">
+						${SkillIcon("mariadb")}
+						${SkillIcon("docker")}
+						${SkillIcon("nginx")}
+						${SkillIcon("express")}
+						${SkillIcon("fastify")}
+						${SkillIcon("socketio")}
+						${SkillIcon("uwebsockets")}
+						${SkillIcon("jwt")}
+					</div>
 				</div>
 				
-				<div class="text-title-1 text-title-dash-end text-capitalize">
-					network
+				<div class="divider-1"></div>
+				<div class="list-item justify-content-center align-items-center flex-wrap">
+					<div class="text-gray text-uppercase f-bold">
+						testing
+					</div>
+					<div class="d-flex flex-1 justify-content-start gap-3">
+						${SkillIcon("jest")}
+					</div>
 				</div>
-				<div class="list-item justify-content-center">
-					${SkillIcon("xterm")}
-					${SkillIcon("postman")}
+				
+				<div class="list-item justify-content-center align-items-center flex-wrap">
+					<div class="text-gray text-uppercase f-bold">
+						network
+					</div>
+					<div class="d-flex flex-1 justify-content-start gap-3">
+						${SkillIcon("xterm")}
+						${SkillIcon("postman")}
+					</div>
 				</div>
 
 			</div>
 
 			<div class="divider-2"></div>
+			
+			${textTitle("Project", 2)}
+			${renderDataList(ProjectExprience)}
+			
+			<div class="divider-2"></div>
 
-			<div class="text-title-2 text-title-dash-end mb-2">
-				work exprience <span class="text-title-deco-end"></span>
-			</div>
-
-			${WorkExprience}
+			${textTitle("work exprience", 2)}
+			${renderDataList(WorkExprience, "work")}
 	
 		</div>
 

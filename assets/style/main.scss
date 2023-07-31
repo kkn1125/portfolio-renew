@@ -99,6 +99,7 @@
 @for $step from $start to $limit {
   .divider#{"-#{$step}"} {
     @include my(#{$step} + "rem");
+    @include transition(150ms, ease-in-out);
   }
 }
 
@@ -293,6 +294,7 @@
 }
 
 .btn {
+  cursor: pointer;
   border: none;
   color: $white-color;
   font-weight: 700;
@@ -300,6 +302,29 @@
   @include py(0.5rem);
   @include px(1rem);
   @include border-radius(0.3rem);
+
+  &:hover {
+    filter: brightness(0.95);
+    -webkit-filter: brightness(0.95);
+  }
+  &:active {
+    filter: brightness(0.85);
+    -webkit-filter: brightness(0.85);
+  }
+}
+
+.tag {
+  font-weight: 0.85rem;
+  font-size: 0.85rem;
+  @include py(0.2rem);
+  @include px(0.5rem);
+  @include border-radius(0.3rem);
+}
+
+.blockquote {
+  border-left: 3px solid $gray-color;
+  @include py(1rem);
+  @include ps(1rem);
 }
 
 @for $step from $start to $limit {
@@ -308,6 +333,21 @@
 
   .btn-primary#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-primary-color;
+    background-color: rgba(
+      $primary-color,
+      var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
+  }
+}
+
+@for $step from $start to $limit {
+  $temp: ($step - 1) * 25;
+  $opcaity: 1 - ($step - 1) * 25 * 0.01;
+
+  .btn-primary#{if($temp == 0, "", "-#{$temp}")} {
+    --btn-opacity: #{$opcaity};
+    color: $contrast-primary-color;
     background-color: rgba(
       $primary-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -315,6 +355,7 @@
   }
   .btn-secondary#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-secondary-color;
     background-color: rgba(
       $secondary-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -322,6 +363,7 @@
   }
   .btn-info#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-info-color;
     background-color: rgba(
       $info-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -329,6 +371,7 @@
   }
   .btn-success#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-success-color;
     background-color: rgba(
       $success-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -336,6 +379,7 @@
   }
   .btn-warn#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-warn-color;
     background-color: rgba(
       $warn-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -343,6 +387,7 @@
   }
   .btn-error#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-error-color;
     background-color: rgba(
       $error-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -350,6 +395,7 @@
   }
   .btn-black#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-black-color;
     background-color: rgba(
       $black-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -357,6 +403,7 @@
   }
   .btn-gray#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-gray-color;
     background-color: rgba(
       $gray-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
@@ -364,9 +411,82 @@
   }
   .btn-white#{if($temp == 0, "", "-#{$temp}")} {
     --btn-opacity: #{$opcaity};
+    color: $contrast-white-color;
     background-color: rgba(
       $white-color,
       var(--opacity, var(--btn-opacity, #{$opcaity}))
+    );
+  }
+  .tag-primary#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-primary-color;
+    background-color: rgba(
+      $primary-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-secondary#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-secondary-color;
+    background-color: rgba(
+      $secondary-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-info#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-info-color;
+    background-color: rgba(
+      $info-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-success#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-success-color;
+    background-color: rgba(
+      $success-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-warn#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-warn-color;
+    background-color: rgba(
+      $warn-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-error#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-error-color;
+    background-color: rgba(
+      $error-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-black#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-black-color;
+    background-color: rgba(
+      $black-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-gray#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-gray-color;
+    background-color: rgba(
+      $gray-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
+    );
+  }
+  .tag-white#{if($temp == 0, "", "-#{$temp}")} {
+    --tag-opacity: #{$opcaity};
+    color: $contrast-white-color;
+    background-color: rgba(
+      $white-color,
+      var(--opacity, var(--tag-opacity, #{$opcaity}))
     );
   }
 }
@@ -505,76 +625,70 @@
 }
 
 .text-title-deco-end {
-  --deco-size: 10px;
+  --deco-radius: 0px;
+  --deco-size: 8px;
   position: absolute;
-  background-color: rgba($gray-color, 0.75);
-  width: var(--deco-size, 15px);
-  height: var(--deco-size, 15px);
   top: 50%;
   right: 0;
-  z-index: 5;
+  background-color: rgba($gray-color, 0.95);
+  width: var(--deco-size, 15px);
+  height: var(--deco-size, 15px);
+  @include border-radius(var(--deco-radius, 0px));
   @include transform(translateY(-50%));
+}
+.text-title-deco-circle {
+  --deco-radius: 0.5rem;
 }
 
 .text-title-dash-start {
   &::before {
     content: "";
+    flex: 1;
     vertical-align: middle;
     display: inline-block;
     width: 100%;
-    height: 1px;
-    border-bottom: 2px dotted #ccc;
-    margin: 0 2% 0 -55%;
-    position: absolute;
-    left: 0;
-    z-index: -1;
-    top: 50%;
-    @include transform(translateY(-50%));
+    height: 0px;
+    border-bottom: 2px dashed #ccc;
+    margin: 0 2% 0 -50%;
   }
 }
 .text-title-dash-both {
   &::before,
   &::after {
     content: "";
+    flex: 1;
     vertical-align: middle;
     display: inline-block;
     width: 50%;
-    height: 1px;
-    border-bottom: 2px dotted #ccc;
-    margin: 0 2% 0 -55%;
-    position: absolute;
-    left: 0;
-    z-index: -1;
-    top: 50%;
-    @include transform(translateY(-50%));
+    height: 0px;
+    border-bottom: 2px dashed #ccc;
+    margin: 0 2% 0 -50%;
   }
   &::after {
-    margin: 0 -55% 0 2%;
+    margin: 0 -50% 0 2%;
   }
 }
 .text-title-dash-end {
   &::after {
     content: "";
+    flex: 1;
     vertical-align: middle;
     display: inline-block;
     width: 100%;
-    height: 1px;
-    border-bottom: 2px dotted #ccc;
-    position: absolute;
-    left: 0;
-    z-index: -1;
-    top: 50%;
-    @include transform(translateY(-50%));
+    height: 0px;
+    border-bottom: 2px dashed #ccc;
+    margin: 0 -50% 0 2%;
   }
 }
 
 @for $step from $start to $limit {
   $temp: $step;
-  $size: 1 + ($step - 1) * 0.75;
+  $size: 1 + ($step - 1) * 0.75 + 0.25;
 
   .text-title#{"-#{$temp}"} {
-    $shadow-size: 2px;
+    // $shadow-size: 2px;
     position: relative;
+    display: flex;
     overflow: hidden;
     font-weight: 700;
     // text-align: center;
@@ -582,6 +696,12 @@
     font-size: #{$size} + "rem";
     // -webkit-text-stroke: $shadow-size $white-color;
     @include mb(#{$size * 0.5} + "rem");
+
+    & span:first-child {
+      flex: 0 0 auto;
+    }
+
+    align-items: center;
   }
 }
 
@@ -598,13 +718,27 @@
 }
 
 .list {
+  position: relative;
   // --lits-gap: 0.5rem;
   flex: 1;
   // gap: var(--lits-gap, 0px);
+  @include transition(500ms, ease-in-out);
+  height: 100%;
+
+  &.list-open {
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 1000px;
+  }
+  &.list-close {
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 0px;
+  }
 
   & .list-item {
     font-weight: 200;
-    font-size: calc(0.5rem + 0.5vw);
+    font-size: calc(0.4rem + 0.5vw);
     text-decoration: none;
     display: flex;
     gap: 5rem;
@@ -616,19 +750,27 @@
 
     & .header {
       text-transform: capitalize;
-      font-weight: 700;
+      font-weight: 500;
       min-width: 5%;
     }
     & .body {
       flex: 1;
       white-space: pre-wrap;
       word-break: break-all;
+      text-align: right;
+      & * {
+        text-decoration: none;
+      }
+      & [href] {
+        font-weight: 500;
+        color: rgba($info-color, 1);
+      }
     }
 
     &:not(:last-of-type) /* :is(& .body) */ {
       padding-bottom: var(--list-gap, 0.5rem);
       margin-bottom: var(--list-gap, 0.5rem);
-      border-bottom: 1px solid rgba($black-color, 0.55);
+      border-bottom: 1px solid rgba($gray-color, 0.25);
     }
   }
 }
@@ -670,67 +812,54 @@
   text-decoration: none;
 }
 
-@for $num from $start to $limit {
+@for $num from 0 to $limit {
+  $temp: #{if($num == 0, 0, 1) + $num * 0.1 * $ratio} + "rem";
   .p-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include py($temp);
     @include py($temp);
     @include py($temp);
     @include px($temp);
   }
   .pt-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include pt($temp);
   }
   .ps-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include ps($temp);
   }
   .pe-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include pe($temp);
   }
   .pb-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include pb($temp);
   }
   .py-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include py($temp);
   }
   .px-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include px($temp);
   }
   .m-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include my($temp);
     @include my($temp);
     @include my($temp);
     @include mx($temp);
   }
   .mt-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include mt($temp);
   }
   .ms-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include ms($temp);
   }
   .me-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include me($temp);
   }
   .mb-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include mb($temp);
   }
   .my-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include my($temp);
   }
   .mx-#{$num} {
-    $temp: #{1 + $num * 0.1 * $ratio} + "rem";
     @include mx($temp);
   }
 }

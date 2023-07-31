@@ -24,12 +24,104 @@
 //   @return $result;
 // }
 
-$primary-color: #2f3be9;
-$secondary-color: #e92fa2;
-$success-color: #2fe98c;
-$info-color: #2f80e9;
-$warn-color: #e9be2f;
+// 함수 이름: color-contrast
+// 매개변수: $color1 - 대비를 비교할 첫 번째 색상
+//          $color2 - 대비를 비교할 두 번째 색상
+// 반환값: 대비 점수 (0부터 21까지의 값)
+
+@function get-color-value($color) {
+  @return (red($color) * 0.299) + (green($color) * 0.587) +
+    (blue($color) * 0.114);
+}
+@function color-contrast($color1, $color2) {
+  // RGB 값을 가져오는 내부 함수
+
+  // 상대적 밝기 계산
+  $luminance1: get-color-value($color1);
+  $luminance2: get-color-value($color2);
+
+  // 대비 계산
+  $contrast: calc(abs($luminance1 - $luminance2) / 255);
+  // @debug "#{$contrast}대비";
+  // 대비 점수를 0에서 21 사이로 정규화
+  @if $contrast > 0.5 {
+    @return 21;
+  } @else {
+    @return floor($contrast * 21);
+  }
+}
+
+$primary-color: #4651e9;
+$secondary-color: #e0379f;
+$success-color: #41ec96;
+$info-color: #2977df;
+$warn-color: #e7c247;
 $error-color: #e92f4e;
-$black-color: #333333;
+$black-color: #000000;
 $gray-color: #656565;
 $white-color: #ffffff;
+
+@function use-text-color($color) {
+  $recommand-white: color-contrast($color, $white-color);
+  $recommand-black: color-contrast($color, $black-color);
+  @if $recommand-white > $recommand-black {
+    @return $white-color;
+  } @else {
+    @return $black-color;
+  }
+}
+
+$contrast-primary-color: #{use-text-color($primary-color)};
+$contrast-secondary-color: #{use-text-color($secondary-color)};
+$contrast-success-color: #{use-text-color($success-color)};
+$contrast-info-color: #{use-text-color($info-color)};
+$contrast-warn-color: #{use-text-color($warn-color)};
+$contrast-error-color: #{use-text-color($error-color)};
+$contrast-black-color: #{use-text-color($black-color)};
+$contrast-gray-color: #{use-text-color($gray-color)};
+$contrast-white-color: #{use-text-color($white-color)};
+
+// // 사용 예시
+// $color1: #000000; // 검은색
+// $color2: #ffffff; // 흰색
+// $color3: $primary-color; // 흰색
+
+// $contrastScore: color-contrast($primary-color, $color1); // 대비 점수 계산
+// $contrastScore2: color-contrast($secondary-color, $color1); // 대비 점수 계산
+// $contrastScore3: color-contrast($info-color, $color1); // 대비 점수 계산
+// $contrastScore4: color-contrast($success-color, $color1); // 대비 점수 계산
+// $contrastScore5: color-contrast($warn-color, $color1); // 대비 점수 계산
+// $contrastScore6: color-contrast($error-color, $color1); // 대비 점수 계산
+// $contrastScore7: color-contrast($black-color, $color1); // 대비 점수 계산
+// $contrastScore8: color-contrast($gray-color, $color1); // 대비 점수 계산
+// $contrastScore9: color-contrast($white-color, $color1); // 대비 점수 계산
+
+// $contrastScore-1: color-contrast($primary-color, $color2); // 대비 점수 계산
+// $contrastScore2-1: color-contrast($secondary-color, $color2); // 대비 점수 계산
+// $contrastScore3-1: color-contrast($info-color, $color2); // 대비 점수 계산
+// $contrastScore4-1: color-contrast($success-color, $color2); // 대비 점수 계산
+// $contrastScore5-1: color-contrast($warn-color, $color2); // 대비 점수 계산
+// $contrastScore6-1: color-contrast($error-color, $color2); // 대비 점수 계산
+// $contrastScore7-1: color-contrast($black-color, $color2); // 대비 점수 계산
+// $contrastScore8-1: color-contrast($gray-color, $color2); // 대비 점수 계산
+// $contrastScore9-1: color-contrast($white-color, $color2); // 대비 점수 계산
+
+// @debug "primary-dark 대비 점수는 #{$contrastScore} 입니다.";
+// @debug "secondary-dark 대비 점수는 #{$contrastScore2} 입니다.";
+// @debug "info-dark 대비 점수는 #{$contrastScore3} 입니다.";
+// @debug "success-dark 대비 점수는 #{$contrastScore4} 입니다.";
+// @debug "warn-dark 대비 점수는 #{$contrastScore5} 입니다.";
+// @debug "error-dark 대비 점수는 #{$contrastScore6} 입니다.";
+// @debug "black-dark 대비 점수는 #{$contrastScore7} 입니다.";
+// @debug "gray-dark 대비 점수는 #{$contrastScore8} 입니다.";
+// @debug "white-dark 대비 점수는 #{$contrastScore9} 입니다.";
+// @debug "=====================================================";
+// @debug "primary-white 대비 점수는 #{$contrastScore-1} 입니다.";
+// @debug "secondary-white 대비 점수는 #{$contrastScore2-1} 입니다.";
+// @debug "info-white 대비 점수는 #{$contrastScore3-1} 입니다.";
+// @debug "success-white 대비 점수는 #{$contrastScore4-1} 입니다.";
+// @debug "warn-white 대비 점수는 #{$contrastScore5-1} 입니다.";
+// @debug "error-white 대비 점수는 #{$contrastScore6-1} 입니다.";
+// @debug "black-white 대비 점수는 #{$contrastScore7-1} 입니다.";
+// @debug "gray-white 대비 점수는 #{$contrastScore8-1} 입니다.";
+// @debug "white-white 대비 점수는 #{$contrastScore9-1} 입니다.";

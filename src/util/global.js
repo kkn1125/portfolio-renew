@@ -24,8 +24,24 @@ export const convertToPageTemplate = (content, props) =>
 export const BRAND = import.meta.env.VITE_BRAND;
 export const YEAR = import.meta.env.VITE_YEAR;
 export const menuPanel = () => document.querySelector("#menu-panel");
+export const dataList = (title) =>
+  document.querySelector(`[data-title='${title}']`);
 export const isClosed = () => menuPanel().classList.contains("close");
 export const GNB_MENU = () => document.querySelector("#gnb-menu");
+export const textTitle = (
+  title,
+  size,
+  center,
+  usedeco = true
+) => `<div class="text-title-${size || 1} ${
+  usedeco ? `text-title-dash-${center ? "both" : "end"}` : ""
+} text-capitalize${center ? " text-center" : ""}">
+<span>${title}</span>
+${
+  !usedeco || center
+    ? ""
+    : `<span class="text-title-deco-end text-title-deco-circle"></span>`
+}</div>`;
 
 export const MENU_LIST = [
   {
