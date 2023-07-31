@@ -23,5 +23,8 @@ export default defineConfig(({ command, mode }) => {
       minify: true,
       cssMinify: true,
     },
+    esbuild: {
+      minifyIdentifiers: false,
+    },
   };
 });
