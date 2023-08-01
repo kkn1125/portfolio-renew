@@ -1,7 +1,7 @@
 export default [
   {
-    title: "육아 교육 메타버스 서비스 백오피스 구축",
-    desc: "",
+    title: "육아 교육 메타버스 백오피스",
+    desc: "육아 정보를 공유 서비스 백오피스 제작",
     team: "(주)프로젝트그룹 앤더",
     role: "frontend, backend",
     start: new Date(2023, 5),
@@ -38,8 +38,8 @@ export default [
     ],
   },
   {
-    title: "육아 교육 메타버스 서비스 API 서버 구축",
-    desc: "",
+    title: "육아 교육 메타버스 API 서버",
+    desc: "엄마와 자녀 또는 예비 엄마들이 3D 웹 메타버스 내에서 교육을 시청하고, 육아에 대한 정보를 공유하는 서비스",
     team: "(주)프로젝트그룹 앤더",
     role: "backend",
     start: new Date(2023, 3),
@@ -75,8 +75,8 @@ export default [
     ],
   },
   {
-    title: "라이브커머스 스트리밍 서비스 제작",
-    desc: "",
+    title: "라이브커머스 스트리밍 서비스",
+    desc: "실시간으로 라이브 방송을 송출하고 시청자에게 팝업 태그를 올려 구매 링크를 노출시키며, 영상 녹화 및 스트리밍 기술을 이용한 부분 재생 제작",
     team: "(주)프로젝트그룹 앤더",
     role: "frontend, backend",
     start: new Date(2023, 1),
@@ -116,8 +116,8 @@ export default [
     ],
   },
   {
-    title: "WebRTC 화상회의 서비스 제작",
-    desc: "",
+    title: "WebRTC 화상회의 서비스",
+    desc: "N:M 화상회의, 채팅 가능한 RTC 서비스 제작",
     team: "(주)프로젝트그룹 앤더",
     role: "frontend, backend",
     start: new Date(2022, 10),
@@ -144,8 +144,8 @@ export default [
     ],
   },
   {
-    title: "3D 메타버스 멀티플레이 소켓 서버 제작 및 DB 이중화",
-    desc: "",
+    title: "3D 메타버스 소켓 서버",
+    desc: "멀티플레이 가능한 웹 메타버스 소켓 서버를 제작하고, 동접자 200명 처리",
     team: "(주)프로젝트그룹 앤더",
     role: "backend",
     start: new Date(2022, 9),
@@ -173,8 +173,8 @@ export default [
     ],
   },
   {
-    title: "NFTMarketplace 제작",
-    desc: "",
+    title: "NFTMarketplace",
+    desc: "자체 디자인 제작한 카드를 판매하는 블록체인을 연동한 마켓과 메인페이지 제작",
     team: "(주)리본소프트",
     role: "backend",
     start: new Date(2022, 5),

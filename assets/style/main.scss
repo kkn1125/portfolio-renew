@@ -314,8 +314,8 @@
 }
 
 .tag {
-  font-weight: 0.85rem;
-  font-size: 0.85rem;
+  font-weight: 500;
+  font-size: 0.65rem;
   @include py(0.2rem);
   @include px(0.5rem);
   @include border-radius(0.3rem);
@@ -325,6 +325,10 @@
   border-left: 3px solid $gray-color;
   @include py(1rem);
   @include ps(1rem);
+}
+
+.btn-small {
+  font-size: 0.85rem;
 }
 
 @for $step from $start to $limit {

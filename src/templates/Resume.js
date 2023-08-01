@@ -7,12 +7,12 @@ import { PROFILE_IMG, textTitle } from "../util/global";
 import { renderDataList } from "../util/tool";
 
 export default ({ title = "" }) => `
-	<div class="container-50 d-flex flex-column gap-5">
+	<div class="container-70 d-flex flex-column gap-5">
 		<div>
 			
 			${textTitle("resume", 3, true, false)}
 
-			<div class="divider-2"></div>
+			<div class="divider-3"></div>
 
 			<div class="d-flex flex-column flex-row-lg gap-2 align-items-center">
 				<div class="d-flex border border-line-1 border-gray-75">
@@ -30,7 +30,7 @@ export default ({ title = "" }) => `
 				</div>
 			</div>
 
-			<div class="divider-2"></div>
+			<div class="divider-3"></div>
 
 			${textTitle("skills", 2)}
 			<div class="divider-1"></div>
@@ -41,7 +41,7 @@ export default ({ title = "" }) => `
 					<div class="text-gray text-uppercase f-bold">
 					frontend
 					</div>
-					<div class="d-flex flex-1 justify-content-start gap-3">
+					<div class="d-flex flex-1 justify-content-start gap-3 flex-wrap">
 						${SkillIcon("javascript")}
 						${SkillIcon("typescript")}
 						${SkillIcon("sass")}
@@ -55,7 +55,7 @@ export default ({ title = "" }) => `
 					<div class="text-gray text-uppercase f-bold">
 						backend
 					</div>
-					<div class="d-flex flex-1 justify-content-start gap-3">
+					<div class="d-flex flex-1 justify-content-start gap-3 flex-wrap">
 						${SkillIcon("mariadb")}
 						${SkillIcon("docker")}
 						${SkillIcon("nginx")}
@@ -72,7 +72,7 @@ export default ({ title = "" }) => `
 					<div class="text-gray text-uppercase f-bold">
 						testing
 					</div>
-					<div class="d-flex flex-1 justify-content-start gap-3">
+					<div class="d-flex flex-1 justify-content-start gap-3 flex-wrap">
 						${SkillIcon("jest")}
 					</div>
 				</div>
@@ -81,7 +81,7 @@ export default ({ title = "" }) => `
 					<div class="text-gray text-uppercase f-bold">
 						network
 					</div>
-					<div class="d-flex flex-1 justify-content-start gap-3">
+					<div class="d-flex flex-1 justify-content-start gap-3 flex-wrap">
 						${SkillIcon("xterm")}
 						${SkillIcon("postman")}
 					</div>
@@ -89,16 +89,18 @@ export default ({ title = "" }) => `
 
 			</div>
 
-			<div class="divider-2"></div>
+			<div class="divider-3"></div>
 			
 			${textTitle("Project", 2)}
 			${renderDataList(ProjectExprience)}
 			
-			<div class="divider-2"></div>
-
+			<div class="divider-3"></div>
+			
 			${textTitle("work exprience", 2)}
 			${renderDataList(WorkExprience, "work")}
-	
+			
+			<div class="divider-3"></div>
+			<div class="divider-3"></div>
 		</div>
 
 	</div>

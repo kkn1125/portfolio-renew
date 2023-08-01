@@ -52,6 +52,14 @@ export default class UI {
           menuPanel().classList.add("close");
         }
       }
+
+      if (e.ctrlKey && e.altKey && key === "p") {
+        document.body.style.overflow = "revert";
+        document.getElementById("main").classList.remove("overflow-auto");
+        print();
+        document.body.style.overflow = "";
+        document.getElementById("main").classList.add("overflow-auto");
+      }
     };
 
     window.addEventListener("keydown", handleKyedown);
