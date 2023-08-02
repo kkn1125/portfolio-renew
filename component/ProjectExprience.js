@@ -10,7 +10,7 @@ export default [
     listOpen: true,
     list: [
       {
-        header: "AWS 서버 빌드 배포, 쉘 스크립트를 활용한 빌드, 배포 자동화화",
+        header: "AWS 서버 빌드 배포, 쉘 스크립트를 활용한 빌드, 배포 자동화",
         body: `backend`,
       },
       {
@@ -32,7 +32,7 @@ export default [
       },
       {
         header:
-          "관리자 로그인 및 토큰 처리, refresh token 처리, 자동 로그아웃 및 타 계정 중복로그인 방지",
+          "관리자 로그인 및 토큰 처리, refresh token 처리, 자동 로그아웃 및 타 계정 중복 로그인 방지",
         body: `backend`,
       },
     ],
@@ -56,7 +56,7 @@ export default [
         body: `backend`,
       },
       {
-        header: "사용자 API 호출에 필요한 HMAC토큰 제작 및 적용",
+        header: "사용자 API 호출에 필요한 HMAC 토큰 제작 및 적용",
         body: `backend`,
       },
       {
@@ -97,7 +97,7 @@ export default [
         body: `frontend, backend`,
       },
       {
-        header: "스케쥴링을 활용한 라이브 방송 시간 설정",
+        header: "스케줄링을 활용한 라이브 방송 시간 설정",
         body: `frontend, backend`,
       },
       {
@@ -126,7 +126,7 @@ export default [
     listOpen: true,
     list: [
       {
-        header: "미디어 서버 제작 및 화상 회의용 소켓서버 제작",
+        header: "미디어 서버 제작 및 화상 회의용 소켓 서버 제작",
         body: `frontend, backend`,
       },
       {
@@ -154,7 +154,7 @@ export default [
     listOpen: true,
     list: [
       {
-        header: "소켓서버 스레드 단위 분산 처리",
+        header: "소켓 서버 스레드 단위 분산 처리",
         body: `backend`,
       },
       {
@@ -163,18 +163,18 @@ export default [
       },
       {
         header:
-          "멀티플레이 데이터 소켓서버간 전송 위해 TCP 통신 메세지 브로커 제작",
+          "멀티플레이 데이터 소켓 서버 간 전송 위해 TCP 통신 메시지 브로커 제작",
         body: `backend`,
       },
       {
-        header: "소켓서버 병목 현상 절감 위한 데이터 큐 처리",
+        header: "소켓 서버 병목 현상 절감 위한 데이터 큐 처리",
         body: `backend`,
       },
     ],
   },
   {
     title: "NFTMarketplace",
-    desc: "자체 디자인 제작한 카드를 판매하는 블록체인을 연동한 마켓과 메인페이지 제작",
+    desc: "자체 디자인 제작한 카드를 판매하는 블록체인을 연동한 마켓과 메인 페이지 제작",
     team: "(주)리본소프트",
     role: "backend",
     start: new Date(2022, 5),
@@ -183,7 +183,7 @@ export default [
     listOpen: true,
     list: [
       {
-        header: "메인 페이지 및 주문, 결제, 파일업로드 제작",
+        header: "메인 페이지 및 주문, 결제, 파일 업로드 제작",
         body: `frontend`,
       },
       {
