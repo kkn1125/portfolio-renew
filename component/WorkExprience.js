@@ -1,10 +1,12 @@
+import { MONTH } from "../src/util/global";
+
 export default [
   {
     title: "(주)프로젝트그룹 앤더",
     desc: "",
     team: "제작팀",
     role: "backend",
-    start: new Date(2022, 9),
+    start: new Date(2022, MONTH(9)),
     end: new Date(),
     inProgress: true,
     listOpen: true,
@@ -36,8 +38,8 @@ export default [
     desc: "",
     team: "백엔드팀",
     role: "backend",
-    start: new Date(2022, 5),
-    end: new Date(2022, 7),
+    start: new Date(2022, MONTH(5)),
+    end: new Date(2022, MONTH(7)),
     inProgress: false,
     listOpen: true,
     list: [

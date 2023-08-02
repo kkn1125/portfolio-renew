@@ -19,7 +19,7 @@ export const convertOriginPathname = (pathname) =>
 export const revertOriginPathname = (pathname) =>
   basePath + pathname.replace("/", "");
 export const extractTime = (time) =>
-  `${time.getFullYear()}. ${time.getMonth()}`;
+  `${time.getFullYear()}. ${time.getMonth() + 1}`;
 
 export const renderProjectList = (
   item
