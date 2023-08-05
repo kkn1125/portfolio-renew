@@ -4,8 +4,7 @@ import { MONTH } from "../util/global";
 const NFTMarketplace = new ProjectModel();
 
 NFTMarketplace.title = "NFTMarketplace";
-NFTMarketplace.desc =
-  "자체 디자인 제작한 카드를 판매하는 블록체인을 연동한 마켓과 NFTMarketplace.메인=페이지 제작";
+NFTMarketplace.desc = "블록체인 연동한 마켓과 메인 페이지 제작";
 NFTMarketplace.team = "(주)리본소프트";
 NFTMarketplace.role = ["backend"];
 NFTMarketplace.start = new Date(2022, MONTH(5));

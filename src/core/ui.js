@@ -172,6 +172,7 @@ export default class UI {
    */
   renderDataList(list, type = "project") {
     return list
+      .filter((data) => data.visible)
       .map(this.renderProjectList.bind(this))
       .join(`<div class="divider-2"></div>`);
   }
