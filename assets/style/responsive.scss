@@ -18,31 +18,43 @@
 @include responsive("flex-column") {
   @include flex-direction-column;
 }
+@include responsive("justify-content-start") {
+  @include justify-content-start;
+}
+@include responsive("justify-content-end") {
+  @include justify-content-end;
+}
 @include responsive("justify-content-#{$center}") {
   @include justify-content-center;
 }
 @include responsive("justify-content-between") {
   @include justify-content-between;
 }
-@include responsive("align-items-#{$center}") {
-  @include align-items-center;
-}
 @include responsive("align-items-start") {
   @include align-items-start;
 }
+@include responsive("align-items-end") {
+  @include align-items-end;
+}
+@include responsive("align-items-#{$center}") {
+  @include align-items-center;
+}
 
 @include responsive("d-block") {
-  @include d-block;
+  display: block !important;
 }
 @include responsive("d-inline") {
-  @include d-inline;
+  display: inline !important;
 }
 @include responsive("d-inline-block") {
-  @include d-inline-block;
+  display: inline-block !important;
+}
+@include responsive("d-inline-flex") {
+  display: inline-flex !important;
 }
 @include responsive("d-flex") {
-  @include d-flex;
+  display: flex !important;
 }
 @include responsive("d-none") {
-  @include d-none;
+  display: none !important;
 }

@@ -155,6 +155,7 @@ export default class Router {
       }
     } catch (err) {
       console.debug(`안내: ${err.message}`);
+      console.trace(err);
     }
   }
 

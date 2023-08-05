@@ -6,6 +6,30 @@
 @import "./mixin.scss";
 @import "./common.scss";
 
+/* display options */
+.d-inline {
+  display: inline;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.d-block {
+  display: block;
+}
+.d-inline-flex {
+  display: inline-flex;
+}
+.d-flex {
+  display: flex;
+}
+.d-none {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
 .overflow-none {
   @include overflow-none;
 }
@@ -17,26 +41,6 @@
 }
 .overflow-x-auto {
   @include overflow-x-auto;
-}
-
-/* display options */
-.d-inline {
-  @include d-inline;
-}
-.d-inline-block {
-  @include d-inline-block;
-}
-.d-block {
-  @include d-block;
-}
-.d-inline-flex {
-  @include d-inline-flex;
-}
-.d-flex {
-  @include d-flex;
-}
-.d-none {
-  @include d-none;
 }
 
 .flex-1 {
@@ -83,17 +87,26 @@
 .flex-column {
   @include flex-direction-column;
 }
+.justify-content-start {
+  @include justify-content-start;
+}
+.justify-content-end {
+  @include justify-content-end;
+}
 .justify-content-#{$center} {
   @include justify-content-center;
 }
 .justify-content-between {
   @include justify-content-between;
 }
-.align-items-#{$center} {
-  @include align-items-center;
-}
 .align-items-start {
   @include align-items-start;
+}
+.align-items-end {
+  @include align-items-end;
+}
+.align-items-#{$center} {
+  @include align-items-center;
 }
 
 @for $step from $start to $limit {
@@ -103,12 +116,84 @@
   }
 }
 
-@for $num from $start to $limit {
+.list {
+  position: relative;
+  // --lits-gap: 0.5rem;
+  flex: 1;
+  // gap: var(--lits-gap, 0px);
+  @include transition(500ms, ease-in-out);
+
+  &.list-open {
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 1000px;
+  }
+  &.list-close {
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 0px;
+  }
+
+  & .list-item {
+    font-weight: 200;
+    font-size: calc(0.4rem + 0.5vw);
+    text-decoration: none;
+    display: flex;
+    gap: 5rem;
+
+    &.dense {
+      font-size: calc(0.3rem + 0.5vw);
+      --list-gap: 0.4rem;
+    }
+
+    & .header {
+      text-transform: capitalize;
+      font-weight: 500;
+      min-width: 5%;
+    }
+    & .body {
+      flex: 1;
+      white-space: pre-wrap;
+      word-break: break-all;
+      text-align: right;
+      & * {
+        text-decoration: none;
+      }
+      & [href] {
+        font-weight: 500;
+        color: rgba($info-color, 1);
+      }
+    }
+    &.list-item-noline {
+      border-bottom-style: none !important;
+    }
+
+    &:not(:last-of-type) /* :is(& .body) */ {
+      padding-bottom: var(--list-gap, 0.5rem);
+      margin-bottom: var(--list-gap, 0.5rem);
+      border-bottom: 1px solid rgba($gray-color, 0.25);
+    }
+  }
+}
+
+.gap-inherit {
+  gap: inherit !important;
+}
+.list-gap-inherit {
+  --list-gap: inherit !important;
+}
+@for $num from 0 to $limit {
   .gap-#{$num} {
     gap: #{$num}rem;
   }
+  @include responsive("gap-#{$num}") {
+    gap: #{$num}rem !important;
+  }
   .list-gap-#{$num} {
     --list-gap: #{$num}rem;
+  }
+  @include responsive("list-gap-#{$num}") {
+    --list-gap: #{$num}rem !important;
   }
 }
 
@@ -155,12 +240,26 @@
   }
 }
 
+.fs-inherit {
+  font-size: inherit;
+}
 @for $step from 0 to 21 {
   .responsive-fs-width-#{$step} {
     --responsive-fs: #{$step}vw;
   }
+  @include responsive("responsive-fs-width-#{$step}") {
+    --responsive-fs: #{$step}vw !important;
+  }
   .fs-#{$step} {
     font-size: calc(var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem);
+  }
+  @include responsive("fs-inherit") {
+    font-size: inherit !important;
+  }
+  @include responsive("fs-#{$step}") {
+    font-size: calc(
+      var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem
+    ) !important;
   }
 }
 
@@ -820,64 +919,6 @@
 }
 .aspect-ratio-9-16 {
   aspect-ratio: 9/16;
-}
-
-.list {
-  position: relative;
-  // --lits-gap: 0.5rem;
-  flex: 1;
-  // gap: var(--lits-gap, 0px);
-  @include transition(500ms, ease-in-out);
-  height: 100%;
-
-  &.list-open {
-    padding-top: 1rem;
-    overflow: hidden;
-    max-height: 1000px;
-  }
-  &.list-close {
-    padding-top: 1rem;
-    overflow: hidden;
-    max-height: 0px;
-  }
-
-  & .list-item {
-    font-weight: 200;
-    font-size: calc(0.4rem + 0.5vw);
-    text-decoration: none;
-    display: flex;
-    gap: 5rem;
-
-    &.dense {
-      font-size: calc(0.3rem + 0.5vw);
-      --list-gap: 0.4rem;
-    }
-
-    & .header {
-      text-transform: capitalize;
-      font-weight: 500;
-      min-width: 5%;
-    }
-    & .body {
-      flex: 1;
-      white-space: pre-wrap;
-      word-break: break-all;
-      text-align: right;
-      & * {
-        text-decoration: none;
-      }
-      & [href] {
-        font-weight: 500;
-        color: rgba($info-color, 1);
-      }
-    }
-
-    &:not(:last-of-type) /* :is(& .body) */ {
-      padding-bottom: var(--list-gap, 0.5rem);
-      margin-bottom: var(--list-gap, 0.5rem);
-      border-bottom: 1px solid rgba($gray-color, 0.25);
-    }
-  }
 }
 
 /* text options */

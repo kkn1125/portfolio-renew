@@ -64,3 +64,4 @@ export const MENU_LIST = [
 
 export const PROFILE_IMG = import.meta.env.VITE_PROFILE_IMAGE;
 export const MONTH = (month) => month - 1;
+export const RESPONSIVE = "lg";

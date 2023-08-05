@@ -1,3 +1,7 @@
+@mixin user-select-none {
+  user-select: none;
+}
+
 @mixin ps($num) {
   padding-left: $num;
 }
@@ -47,9 +51,6 @@
   @include py($num);
 }
 
-@mixin d-none {
-  display: none;
-}
 @mixin d-inline {
   display: inline;
 }
@@ -65,11 +66,20 @@
 @mixin d-flex {
   display: flex;
 }
+@mixin d-none {
+  display: none !important;
+}
 @mixin flex-direction-row {
   flex-direction: row;
 }
 @mixin flex-direction-column {
   flex-direction: column;
+}
+@mixin justify-content-start {
+  justify-content: flex-start;
+}
+@mixin justify-content-end {
+  justify-content: flex-end;
 }
 @mixin justify-content-center {
   justify-content: center;
@@ -77,11 +87,14 @@
 @mixin justify-content-between {
   justify-content: space-between;
 }
-@mixin align-items-center {
-  align-items: center;
-}
 @mixin align-items-start {
   align-items: flex-start;
+}
+@mixin align-items-end {
+  align-items: flex-end;
+}
+@mixin align-items-center {
+  align-items: center;
 }
 @mixin flex-1 {
   flex: 1;
@@ -169,22 +182,22 @@
 }
 
 @mixin mobile {
-  @media (min-width: 0px) {
-    @content;
-  }
-}
-@mixin tablet {
   @media (min-width: $mobile) {
     @content;
   }
 }
-@mixin desktop {
+@mixin tablet {
   @media (min-width: $tablet) {
     @content;
   }
 }
-@mixin wide {
+@mixin desktop {
   @media (min-width: $desktop) {
+    @content;
+  }
+}
+@mixin wide {
+  @media (min-width: $wide) {
     @content;
   }
 }
