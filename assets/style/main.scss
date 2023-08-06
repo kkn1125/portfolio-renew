@@ -958,6 +958,13 @@
   text-decoration: none;
 }
 
+.m-auto {
+  @include my(auto);
+  @include my(auto);
+  @include my(auto);
+  @include mx(auto);
+}
+
 @for $num from 0 to $limit {
   $temp: #{if($num == 0, 0, 1) + $num * 0.1 * $ratio} + "rem";
   .p-#{$num} {

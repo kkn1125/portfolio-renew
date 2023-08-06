@@ -39,16 +39,16 @@
   margin-bottom: $num;
 }
 @mixin mx($num) {
-  @include ps($num);
-  @include pe($num);
+  @include ms($num);
+  @include me($num);
 }
 @mixin my($num) {
-  @include pt($num);
-  @include pb($num);
+  @include mt($num);
+  @include mb($num);
 }
 @mixin m($num) {
-  @include px($num);
-  @include py($num);
+  @include mx($num);
+  @include my($num);
 }
 
 @mixin d-inline {

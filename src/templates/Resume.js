@@ -16,7 +16,7 @@ export default ({ title = "" }) => `
 
 			<div ${mode} class="divider-3"></div>
 
-			<div ${mode} class="d-flex flex-column flex-row-${RESPONSIVE} gap-2 align-items-center">
+			<div ${mode} class="d-flex flex-column flex-row-${RESPONSIVE} gap-2 align-items-center w-75 m-auto">
 				<div class="d-flex border border-line-1 border-gray-75">
 					<img src="${PROFILE_IMG}" class="profile-responsive" />
 				</div>
@@ -35,7 +35,9 @@ export default ({ title = "" }) => `
 			<div ${mode} class="divider-3"></div>
 
 			<div ${mode} class="blockquote blockquote-3 blockquote-primary">
-			Node.js와 TypeScript를 사용하며, API 서버 개발과 소켓서버, 서버간 메세지 처리 및 DB 이중화에 대한 경험이 있으며, Docker와 Nginx를 사용하여 로드밸런싱을 통해 트래픽 분산 서버 구조를 구현한 경험이 있습니다.<br /><br />새로운 문제에 직면할 때마다 원인을 찾고 이해하며, 테스트 코드를 작성하여 풀어나가는 것을 지향합니다.<br /><br />네트워킹과 보안에 관심을 가지고, 더 많은 트래픽을 소화하는 효율적인 서버 아키텍처를 학습하기 위해 발전하고 있습니다.
+			리눅스 환경과 윈도우 환경 모두 사용하며, 보안 부분에서 암호화 및 OTP, 인증/인가에 관심이 있습니다.
+			<br><br>
+			대규모 트래픽에 효율적인 서버 아키텍처에 관심이 있습니다.
 			</div>
 
 			<div ${mode} class="divider-3"></div>
