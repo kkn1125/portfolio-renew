@@ -8,6 +8,18 @@ MedienceAPIServer.desc =
   "엄마와 자녀 또는 예비 엄마들이 3D 웹 메타버스 내에서 교육을 시청하고, 육아에 대한 정보를 공유하는 서비스";
 MedienceAPIServer.team = "(주)프로젝트그룹 앤더";
 MedienceAPIServer.role = ["backend"];
+MedienceAPIServer.mainSkills = ["Fastify", "TypeScript", "TypeORM"];
+MedienceAPIServer.skills = [
+  "Node.js",
+  "Formik",
+  "yup",
+  "JWT",
+  "FTP",
+  "Linux",
+  "Jenkins",
+  "Docker",
+  "Nginx",
+];
 MedienceAPIServer.start = new Date(2023, MONTH(3));
 MedienceAPIServer.end = new Date(2023, MONTH(5));
 MedienceAPIServer.inProgress = false;
@@ -39,5 +51,7 @@ MedienceAPIServer.list = [
     body: `backend`,
   },
 ];
+MedienceAPIServer.name = "m-api-server";
+MedienceAPIServer.path = "/m-api-server";
 
 export default MedienceAPIServer;

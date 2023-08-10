@@ -7,6 +7,8 @@ NFTMarketplace.title = "NFTMarketplace";
 NFTMarketplace.desc = "블록체인 연동한 마켓과 메인 페이지 제작";
 NFTMarketplace.team = "(주)리본소프트";
 NFTMarketplace.role = ["backend"];
+NFTMarketplace.mainSkills = ["Truffle", "Ganache", "Next.js"];
+NFTMarketplace.skills = ["React", "TypeScript"];
 NFTMarketplace.start = new Date(2022, MONTH(5));
 NFTMarketplace.end = new Date(2022, MONTH(6));
 NFTMarketplace.inProgress = false;
@@ -25,5 +27,7 @@ NFTMarketplace.list = [
     body: `blockchain`,
   },
 ];
+NFTMarketplace.name = "nftmarket";
+NFTMarketplace.path = "/nftmarket";
 
 export default NFTMarketplace;

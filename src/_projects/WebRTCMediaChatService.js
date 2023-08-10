@@ -7,7 +7,9 @@ WebRTCMediaChatService.title = "WebRTC 화상회의 서비스";
 WebRTCMediaChatService.desc = "N:M 화상회의, 채팅 가능한 RTC 서비스 제작";
 WebRTCMediaChatService.team = "(주)프로젝트그룹 앤더";
 WebRTCMediaChatService.role = ["frontend", "backend"];
-WebRTCMediaChatService.start = new Date(2022, MONTH(10));
+WebRTCMediaChatService.mainSkills = ["WebRTC", "React", "OpenVidu"];
+WebRTCMediaChatService.skills = ["TypeScript", "Docker", "Nginx", "Express.js"];
+WebRTCMediaChatService.start = new Date(2022, MONTH(11));
 WebRTCMediaChatService.end = new Date(2022, MONTH(12));
 WebRTCMediaChatService.inProgress = false;
 WebRTCMediaChatService.listOpen = true;
@@ -29,5 +31,7 @@ WebRTCMediaChatService.list = [
     body: `frontend, backend`,
   },
 ];
+WebRTCMediaChatService.name = "webrtc";
+WebRTCMediaChatService.path = "/webrtc";
 
 export default WebRTCMediaChatService;

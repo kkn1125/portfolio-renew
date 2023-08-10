@@ -8,6 +8,8 @@ LiveCommerceService.desc =
   "실시간으로 라이브 방송을 송출하고 시청자에게 팝업 태그를 올려 구매 링크를 노출시키며, 영상 녹화 및 스트리밍 기술을 이용한 부분 재생 제작";
 LiveCommerceService.team = "(주)프로젝트그룹 앤더";
 LiveCommerceService.role = ["frontend", "backend"];
+LiveCommerceService.mainSkills = ["React", "TypeScript"];
+LiveCommerceService.skills = ["uWebSockets.js", "Node.js"];
 LiveCommerceService.start = new Date(2023, MONTH(1));
 LiveCommerceService.end = new Date(2023, MONTH(3));
 LiveCommerceService.inProgress = false;
@@ -43,5 +45,7 @@ LiveCommerceService.list = [
     body: `frontend, backend`,
   },
 ];
+LiveCommerceService.name = "live-commerce";
+LiveCommerceService.path = "/live-commerce";
 
 export default LiveCommerceService;

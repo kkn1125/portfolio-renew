@@ -96,23 +96,32 @@
 @mixin align-items-center {
   align-items: center;
 }
+@mixin flex-0 {
+  flex: 0;
+}
 @mixin flex-1 {
   flex: 1;
 }
-@mixin flex-0-1-100 {
-  flex: 0 1 100%;
+@mixin flex-0-1($value) {
+  flex: 0 1 $value;
 }
-@mixin flex-1-1-100 {
-  flex: 1 1 100%;
+@mixin flex-1-1($value) {
+  flex: 1 1 $value;
 }
-@mixin flex-1-0-100 {
-  flex: 1 0 100%;
+@mixin flex-1-0($value) {
+  flex: 1 0 $value;
 }
-@mixin flex-0-0-100 {
-  flex: 1 0 100%;
+@mixin flex-0-0($value) {
+  flex: 1 0 $value;
+}
+@mixin flex-val($a, $b, $val) {
+  flex: $a $b $val;
 }
 @mixin flex-auto {
   flex: auto;
+}
+@mixin flex-inherit {
+  flex: inherit;
 }
 @mixin t-center {
   text-align: center;

@@ -1,5 +1,11 @@
 import SkillIcon from "../component/SkillIcon";
-import { dataList, isClosed, menuPanel, RESPONSIVE } from "../util/global";
+import {
+  dataList,
+  isClosed,
+  menuPanel,
+  MODE,
+  RESPONSIVE,
+} from "../util/global";
 import { extractTime } from "../util/tool";
 
 export default class UI {
@@ -92,20 +98,69 @@ export default class UI {
     list.classList.remove("list-open");
   }
 
+  card(projects) {
+    const cardList = projects
+      .map(
+        (project) => `
+    <div class="card" data-title="${project.title}" style="--cover-path: url(${
+          project.cover
+        });" onclick="manager.navigator.to('${"/portfolio" + project.path}')">
+        <div class="d-flex">
+          <div class="tag">Project</div>
+          <div class="f-bold">
+            ${project.title}
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="tag">Period</div>
+          <div class="tag">
+            ${extractTime(project.start)} ~ ${extractTime(project.end)}
+          </div>
+        </div>
+        <!--
+        <div>${project.desc.slice(0, 20) + "..."}</div>
+        -->
+        <div class="d-flex">
+          <div class="tag">Skills</div>
+          <div class="d-flex flex-wrap" style="gap: 0.2rem;">
+            ${project.skills
+              .map((skill) => `<div class="tag tag-warn">${skill}</div>`)
+              .join("")}
+          </div>
+        </div>
+    </div>
+    `
+      )
+      .join("");
+    return `<div class="card-list">${cardList}</div>`;
+  }
+
   renderProjectList({
     type,
     title,
     desc,
     team,
     role,
+    mainSkills,
+    skills,
     start,
     end,
     inProgress,
     listOpen,
     list,
   }) {
+    const teamTags = `<span class="tag tag-gray">${team.trim()}</span>`;
     const roleTags = role
-      .map((role) => `<span class="tag tag-secondary">${role.trim()}</span>`)
+      .map((role) => `<span class="tag tag-info">${role.trim()}</span>`)
+      .join(" ");
+    const mainSkillsTags = mainSkills
+      .map(
+        (mainSkills) =>
+          `<span class="tag tag-secondary">${mainSkills.trim()}</span>`
+      )
+      .join(" ");
+    const skillsTags = skills
+      .map((skills) => `<span class="tag tag-warn">${skills.trim()}</span>`)
       .join(" ");
     const isInProgressEnd = inProgress
       ? type === "project"
@@ -129,19 +184,25 @@ export default class UI {
   <div class="section-item">
     <div class="d-flex flex-row-${RESPONSIVE} flex-column gap-2 justify-content-between">
   
-      <div class="d-flex flex-column align-items-start align-items-end-${RESPONSIVE} f-bold">
+      <div class="d-flex flex-column f-bold">
         <span>
           ${extractTime(start)} ~ ${isInProgressEnd}
         </span>
         <span>
-          <span class="tag tag-gray">${team}</span>
+          ${teamTags}
         </span>
         <span>
           ${roleTags}
         </span>
+        <span>
+          ${mainSkillsTags}
+        </span>
+        <span>
+          ${skillsTags}
+        </span>
       </div>
       
-      <div class="flex-1">
+      <div class="flex-0-0-80">
         <span class="d-inline-flex gap-0 gap-1-${RESPONSIVE} align-items-center">
           <span class="text-title-1">${title}</span>
         </span>

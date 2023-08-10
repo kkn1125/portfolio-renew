@@ -1,7 +1,7 @@
 import { BRAND, MENU_LIST, RESPONSIVE, YEAR } from "../util/global";
 
 const navMenu = (isMobile) => `<nav class="${
-  isMobile ? `d-none d-flex-${RESPONSIVE}` : `d-none-${RESPONSIVE} d-flex`
+  isMobile ? `d-none d-flex-${RESPONSIVE}` : `d-flex`
 } justify-content-between align-items-center px-5 py-1">
 <div id="brand" class="text-uppercase fs-2 f-bold user-select-none">
 <a class="text-decoration-none" onclick="manager.navigator.to('/')">
@@ -20,7 +20,7 @@ ${MENU_LIST.filter((item) => item.name !== "home")
 </div>`
     : ""
 }
-<div id="menu" class="d-block d-none-${RESPONSIVE}">
+<div id="menu" class="d-block">
 	<span class="menu-line"></span>
 	<span class="menu-line"></span>
 	<span class="menu-line"></span>
@@ -30,8 +30,8 @@ ${MENU_LIST.filter((item) => item.name !== "home")
 export default (element, gProps) => (props) =>
   `
 	<header id="gnb" class="">
-		${navMenu(true)}
 		${navMenu(false)}
+		${/* navMenu(false) */""}
 	</header>
 	<main id="main" class="flex-1 overflow-auto">
 		<!--

@@ -7,6 +7,7 @@ RebornSoft.title = "(주)리본소프트";
 RebornSoft.desc = "";
 RebornSoft.team = "백엔드팀";
 RebornSoft.role = ["backend"];
+RebornSoft.skills = ["Node.js", "Next.js", "React", "MUI", "TypeScript"];
 RebornSoft.start = new Date(2022, MONTH(5));
 RebornSoft.end = new Date(2022, MONTH(7));
 RebornSoft.inProgress = false;

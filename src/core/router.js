@@ -8,6 +8,8 @@ import {
   pages,
 } from "../util/global";
 import { convertOriginPathname, objectValueConvert } from "../util/tool";
+import _personalProjects from "../_personalProjects";
+import _projects from "../_projects";
 
 export default class Router {
   firstPage = false;
@@ -25,7 +27,7 @@ export default class Router {
           new CustomEvent("pagechange", {
             detail: {
               path: convertOriginPathname(location.pathname),
-              props: history.state,
+              props: history.state || {},
             },
           })
         );
@@ -38,7 +40,7 @@ export default class Router {
           new CustomEvent("pagechange", {
             detail: {
               path: convertOriginPathname(location.pathname),
-              props: history.state,
+              props: history.state || {},
             },
           })
         );
@@ -49,7 +51,7 @@ export default class Router {
           new CustomEvent("pagechange", {
             detail: {
               path: convertOriginPathname(location.pathname),
-              props: history.state,
+              props: history.state || {},
             },
           })
         );
@@ -76,7 +78,7 @@ export default class Router {
       // console.log("page change", detail);
       const { path, props } = detail;
       // console.trace(props.stopPropagation);
-      if (!props.stopPropagation) {
+      if (!props?.stopPropagation) {
         histories.push(convertOriginPathname(location.pathname));
       }
       this.#changeCurrentPage(path, props);
@@ -88,7 +90,11 @@ export default class Router {
     const changePage = pages.findIndex((page) => page.path === path);
     currentPage.index = changePage;
     currentPage.page = pages[changePage];
-    this.render(props);
+    const projects = [..._projects, ..._personalProjects];
+    const project = projects.find(
+      (project) => project.name === currentPage.page.name
+    );
+    this.render(Object.assign(props, { page: currentPage.page, project }));
   }
 
   #pageForm({ name, path, page, props, preLoad, afterLoad }) {
@@ -125,6 +131,8 @@ export default class Router {
   }
 
   render(props = {}) {
+    console.log(pages.map((page) => page.path));
+
     try {
       setTimeout(() => {
         try {

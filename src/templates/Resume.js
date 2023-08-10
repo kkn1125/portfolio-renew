@@ -1,5 +1,6 @@
 import ProfileList from "../component/ProfileList";
 import ProjectExprience from "../component/ProjectExprience";
+import PersonalProjectExprience from "../component/PersonalProjectExprience";
 import SkillIcon from "../component/SkillIcon";
 import WorkExprience from "../component/WorkExprience";
 import { ui } from "../core/manager";
@@ -47,18 +48,8 @@ export default ({ title = "" }) => `
 			<div ${mode} class="d-flex flex-column list-gap-2 list">
 
 				<div class="divider-1"></div>
-				${ui.renderSkillSet("frontend", [
-          "javascript",
-          "typescript",
-          "sass",
-          "styled component",
-          "mui",
-        ])}
-				<div class="divider-1"></div>
 				${ui.renderSkillSet("backend", [
           "mariadb",
-          "docker",
-          "nginx",
           "express",
           "fastify",
           "socketio",
@@ -66,10 +57,19 @@ export default ({ title = "" }) => `
           "jwt",
         ])}
 				<div class="divider-1"></div>
-				${ui.renderSkillSet("testing", ["jest"])}
+				${ui.renderSkillSet("devops", ["jenkins", "docker", "nginx"])}
+				<div class="divider-1"></div>
+				${ui.renderSkillSet("testing", ["jest", "artillery"])}
 				<div class="divider-1"></div>
 				${ui.renderSkillSet("network", ["xterm", "postman"])}
-				
+				<div class="divider-1"></div>
+				${ui.renderSkillSet("frontend", [
+          "javascript",
+          "typescript",
+          "sass",
+          "styled component",
+          "mui",
+        ])}
 
 			</div>
 
@@ -77,6 +77,11 @@ export default ({ title = "" }) => `
 			
 			${textTitle("Project", 2)}
 			${ui.renderDataList(ProjectExprience)}
+
+			<div class="divider-3"></div>
+			
+			${textTitle("Toy Project", 2)}
+			${ui.renderDataList(PersonalProjectExprience)}
 			
 			<div class="divider-3"></div>
 			

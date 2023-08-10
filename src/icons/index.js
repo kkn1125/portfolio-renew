@@ -1,9 +1,12 @@
+import artillery from "./artillery";
 import docker from "./docker";
 import express from "./express";
 import fastify from "./fastify";
 import javascript from "./javascript";
+import jenkins from "./jenkins";
 import jest from "./jest";
 import jwt from "./jwt";
+import linux from "./linux";
 import mariadb from "./mariadb";
 import mui from "./mui";
 import nginx from "./nginx";
@@ -19,12 +22,15 @@ import uwebsockets from "./uwebsockets";
 import xterm from "./xterm";
 
 export default {
+  artillery,
   docker,
   express,
   fastify,
   javascript,
+  jenkins,
   jest,
   jwt,
+  linux,
   mariadb,
   mui,
   nginx,

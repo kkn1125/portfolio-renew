@@ -7,7 +7,9 @@ MedienceBackOfficeServer.title = "육아 교육 메타버스 백오피스";
 MedienceBackOfficeServer.desc = "육아 정보를 공유 서비스 백오피스 제작";
 MedienceBackOfficeServer.team = "(주)프로젝트그룹 앤더";
 MedienceBackOfficeServer.role = ["frontend", "backend"];
-MedienceBackOfficeServer.start = new Date(2023, MONTH(5));
+MedienceBackOfficeServer.mainSkills = ["React", "TypeScript"];
+MedienceBackOfficeServer.skills = ["Jenkins", "Nginx", "Docker", "Gulp"];
+MedienceBackOfficeServer.start = new Date(2023, MONTH(6));
 MedienceBackOfficeServer.end = new Date(2023, MONTH(7));
 MedienceBackOfficeServer.inProgress = false;
 MedienceBackOfficeServer.listOpen = true;
@@ -39,5 +41,7 @@ MedienceBackOfficeServer.list = [
     body: `backend`,
   },
 ];
+MedienceBackOfficeServer.name = "m-backoffce";
+MedienceBackOfficeServer.path = "/m-backoffce";
 
 export default MedienceBackOfficeServer;

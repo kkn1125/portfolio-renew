@@ -8,6 +8,15 @@ MetaverseSocketServer.desc =
   "멀티플레이 가능한 웹 메타버스 소켓 서버를 제작하고, 동접자 200명 처리";
 MetaverseSocketServer.team = "(주)프로젝트그룹 앤더";
 MetaverseSocketServer.role = ["backend"];
+MetaverseSocketServer.mainSkills = ["uWebSockets.js", "TypeScript"];
+MetaverseSocketServer.skills = [
+  "Node.js",
+  "Artillery",
+  "Docker",
+  "PM2",
+  "Nginx",
+  "Ubuntu",
+];
 MetaverseSocketServer.start = new Date(2022, MONTH(9));
 MetaverseSocketServer.end = new Date(2022, MONTH(10));
 MetaverseSocketServer.inProgress = false;
@@ -31,5 +40,7 @@ MetaverseSocketServer.list = [
     body: `backend`,
   },
 ];
+MetaverseSocketServer.name = "metaverse-socket";
+MetaverseSocketServer.path = "/metaverse-socket";
 
 export default MetaverseSocketServer;

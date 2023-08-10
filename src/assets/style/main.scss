@@ -43,6 +43,9 @@
   @include overflow-x-auto;
 }
 
+.flex-0 {
+  @include flex-0;
+}
 .flex-1 {
   @include flex-1;
 }
@@ -50,16 +53,42 @@
   @include flex-auto;
 }
 .flex-0-1-100 {
-  @include flex-0-1-100;
+  @include flex-0-1(100%);
 }
 .flex-1-1-100 {
-  @include flex-1-1-100;
+  @include flex-1-1(100%);
 }
 .flex-1-0-100 {
-  @include flex-1-0-100;
+  @include flex-1-0(100%);
 }
 .flex-0-0-100 {
-  @include flex-0-0-100;
+  @include flex-0-0(100%);
+}
+@for $step from $start to 101 {
+  .flex-0-1-#{$step} {
+    @include flex-val(0, 1, #{$step}+ "%");
+  }
+  .flex-1-0-#{$step} {
+    @include flex-val(1, 0, #{$step}+ "%");
+  }
+  .flex-1-1-#{$step} {
+    @include flex-val(1, 1, #{$step}+ "%");
+  }
+  .flex-0-0-#{$step} {
+    @include flex-val(0, 0, #{$step}+ "%");
+  }
+}
+.flex-0-1-inherit {
+  flex: 0 1 inherit;
+}
+.flex-0-0-inherit {
+  flex: 0 0 inherit;
+}
+.flex-1-0-inherit {
+  flex: 1 0 inherit;
+}
+.flex-1-1-inherit {
+  flex: 1 1 inherit;
 }
 .flex-0-1-auto {
   flex: 0 1 auto;
@@ -721,6 +750,75 @@
 }
 .emoji-color-white {
   @include emoji-color($white-color);
+}
+
+.card-list {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card {
+  cursor: pointer;
+  --card-opacity: 0.2;
+  width: 12rem;
+  @include p(1rem);
+  @include border-radius(0.3rem);
+  box-shadow: 0 0 0.5rem 0 rgba($black-color, var(--card-opacity, 1));
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+
+  &::before {
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white-color;
+    content: attr(data-title);
+    @include transition(150ms, ease-in-out);
+  }
+
+  &:active {
+    @keyframes active {
+      0% {
+        @include transform(scale(1));
+      }
+      100% {
+        @include transform(scale(0.95));
+      }
+    }
+    animation: active 50ms ease-in-out both;
+    -webkit-animation: active 50ms ease-in-out both;
+  }
+
+  &::after {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    background-image: var(--cover-path);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    filter: brightness(0.55);
+    -webkit-filter: brightness(0.55);
+
+    @include transition(150ms, ease-in-out);
+  }
+
+  &:hover::after,
+  &:hover::before {
+    opacity: 0;
+  }
 }
 
 // ###############################################################

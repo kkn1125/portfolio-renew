@@ -7,6 +7,28 @@ ProjectgroupAnder.title = "(주)프로젝트그룹 앤더";
 ProjectgroupAnder.desc = "";
 ProjectgroupAnder.team = "제작팀";
 ProjectgroupAnder.role = ["backend"];
+ProjectgroupAnder.skills = [
+  "Jenkins",
+  "Node.js",
+  "Express.js",
+  "Fastify",
+  "TypeORM",
+  "Docker",
+  "Nginx",
+  "React",
+  "MUI",
+  "TypeScript",
+  "Artillery",
+  "uWebSockets.js",
+  "Linux",
+  "xterm",
+  "postman",
+  "PM2",
+  "NebulaGraph",
+  "Ubuntu",
+  "RDP",
+  "AWS EC2",
+];
 ProjectgroupAnder.start = new Date(2022, MONTH(9));
 ProjectgroupAnder.end = new Date();
 ProjectgroupAnder.inProgress = true;
