@@ -1,6 +1,8 @@
 node_modules/
 # .env*
-server/
-generate_pages.js
+
+# server/
+# generate_pages.js
+
 # views/
 dist/
