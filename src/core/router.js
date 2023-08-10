@@ -131,7 +131,7 @@ export default class Router {
   }
 
   render(props = {}) {
-    console.log(pages.map((page) => page.path));
+    // console.log(pages.map((page) => page.path));
 
     try {
       setTimeout(() => {
