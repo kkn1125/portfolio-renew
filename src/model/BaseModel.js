@@ -33,9 +33,13 @@ export default class BaseModel {
   /** @type {string} - portfolio page route path */
   path = "";
   /** @type {string} - portfolio cover image path */
-  cover = basicCovers[Math.floor(Math.random() * basicCovers.length)];
+  cover = basicCovers[4];
+  images = [];
+  movie = "";
   /** @type {string} */
   author = "kimson";
+  /** @type {string} */
+  content = "";
 
   /** @type {string[]} */
   links = [];
@@ -45,12 +49,8 @@ export default class BaseModel {
   set links(values) {
     if (values instanceof Array) {
       this.links = values;
-      for (const val of values) {
-        MySkillSet.add(val);
-      }
     } else if (typeof values === "object") {
       this.links.push(values);
-      MySkillSet.add(values);
     }
   }
 

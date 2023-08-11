@@ -59,6 +59,12 @@ const routes = [
   "portfolio/metaverse-socket",
   "portfolio/nftmarket",
   "portfolio/gantt-chart",
+  "portfolio/documentify",
+  "portfolio/projectnarang",
+  "portfolio/solitaire",
+  "portfolio/typer",
+  "portfolio/mentees",
+  "portfolio/treeparser",
 ];
 
 for (let route of routes) {

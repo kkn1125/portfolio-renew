@@ -6,6 +6,8 @@ export default class Navigator {
   to(path, props = {}) {
     if (convertOriginPathname(location.pathname) === path) return;
     history.pushState(props, "", revertOriginPathname(path));
+
+    document.getElementById("main").scrollTo(0, 0);
   }
 
   back(num = 1) {

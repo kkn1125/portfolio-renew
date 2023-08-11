@@ -10,7 +10,7 @@ import { PROFILE_IMG, RESPONSIVE, textTitle } from "../util/global";
 const mode = 0 ? "hidden" : "";
 
 export default ({ title = "" }) => `
-	<div class="container-70 d-flex flex-column gap-5">
+	<div class="container-50 d-flex flex-column gap-5">
 		<div>
 			
 			${textTitle("resume", 3, true, false)}

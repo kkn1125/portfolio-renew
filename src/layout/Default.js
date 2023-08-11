@@ -29,9 +29,9 @@ ${MENU_LIST.filter((item) => item.name !== "home")
 
 export default (element, gProps) => (props) =>
   `
-	<header id="gnb" class="">
+	<header id="gnb" class="" style="z-index: 1000;">
 		${navMenu(false)}
-		${/* navMenu(false) */""}
+		${/* navMenu(false) */ ""}
 	</header>
 	<main id="main" class="flex-1 overflow-auto">
 		<!--

@@ -269,29 +269,6 @@
   }
 }
 
-.fs-inherit {
-  font-size: inherit;
-}
-@for $step from 0 to 21 {
-  .responsive-fs-width-#{$step} {
-    --responsive-fs: #{$step}vw;
-  }
-  @include responsive("responsive-fs-width-#{$step}") {
-    --responsive-fs: #{$step}vw !important;
-  }
-  .fs-#{$step} {
-    font-size: calc(var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem);
-  }
-  @include responsive("fs-inherit") {
-    font-size: inherit !important;
-  }
-  @include responsive("fs-#{$step}") {
-    font-size: calc(
-      var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem
-    ) !important;
-  }
-}
-
 /* background color options */
 @for $step from $start to $limit {
   $temp: ($step - 1) * 25;
@@ -754,13 +731,19 @@
 
 .card-list {
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .card {
   cursor: pointer;
   --card-opacity: 0.2;
-  width: 12rem;
+  $height: 20rem;
+  height: $height;
+  min-height: $height;
+  max-height: $height;
+  flex: 1 1 auto;
+
   @include p(1rem);
   @include border-radius(0.3rem);
   box-shadow: 0 0 0.5rem 0 rgba($black-color, var(--card-opacity, 1));
@@ -770,6 +753,7 @@
   position: relative;
 
   &::before {
+    pointer-events: none;
     z-index: 101;
     position: absolute;
     top: 0;
@@ -780,7 +764,9 @@
     justify-content: center;
     align-items: center;
     color: $white-color;
+    text-align: center;
     content: attr(data-title);
+    @include p(1rem);
     @include transition(150ms, ease-in-out);
   }
 
@@ -798,6 +784,7 @@
   }
 
   &::after {
+    pointer-events: none;
     z-index: 100;
     position: absolute;
     top: 0;
@@ -1184,3 +1171,26 @@
 
 /* responsive 하단 배치 (우선 적용) */
 @import "./responsive.scss";
+
+.fs-inherit {
+  font-size: inherit;
+}
+@for $step from 0 to 21 {
+  .responsive-fs-width-#{$step} {
+    --responsive-fs: #{$step}vw;
+  }
+  @include responsive("responsive-fs-width-#{$step}") {
+    --responsive-fs: #{$step}vw !important;
+  }
+  .fs-#{$step} {
+    font-size: calc(var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem);
+  }
+  @include responsive("fs-inherit") {
+    font-size: inherit !important;
+  }
+  @include responsive("fs-#{$step}") {
+    font-size: calc(
+      var(--responsive-fs, 0px) + #{1 + $step * 0.1}rem
+    ) !important;
+  }
+}

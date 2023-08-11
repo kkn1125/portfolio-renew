@@ -1,5 +1,6 @@
 import SkillIcon from "../component/SkillIcon";
 import {
+  changeSign,
   dataList,
   isClosed,
   menuPanel,
@@ -103,7 +104,9 @@ export default class UI {
       .map(
         (project) => `
     <div class="card" data-title="${project.title}" style="--cover-path: url(${
-          project.cover
+          project.cover.startsWith("http")
+            ? project.cover
+            : "/images/" + project.name + project.cover
         });" onclick="manager.navigator.to('${"/portfolio" + project.path}')">
         <div class="d-flex">
           <div class="tag">Project</div>
@@ -120,7 +123,15 @@ export default class UI {
         <!--
         <div>${project.desc.slice(0, 20) + "..."}</div>
         -->
-        <div class="d-flex">
+        <div class="d-flex overflow-auto">
+          <div class="tag">Main Skills</div>
+          <div class="d-flex flex-wrap" style="gap: 0.2rem;">
+            ${project.mainSkills
+              .map((skill) => `<div class="tag tag-success">${skill}</div>`)
+              .join("")}
+          </div>
+        </div>
+        <div class="d-flex overflow-auto">
           <div class="tag">Skills</div>
           <div class="d-flex flex-wrap" style="gap: 0.2rem;">
             ${project.skills
@@ -209,13 +220,13 @@ export default class UI {
         <span>
           <button class="btn btn-${btnColor} list-toggle btn-small" data-title="${title}">${btnText}</button>
         </span>
-        ${desc ? `<div class="blockquote">${desc}</div>` : ``}
+        ${desc ? `<div class="blockquote">${changeSign(desc)}</div>` : ``}
       
         <div class="divider-1"></div>
         <div class="d-flex flex-column list-gap-2 list ${
           listOpen ? "list-open" : "list-close"
         }">
-        ${listItems}
+        ${changeSign(listItems)}
         </div>
       </div>
   
