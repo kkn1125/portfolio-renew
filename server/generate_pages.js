@@ -2,9 +2,13 @@ import fs from "fs";
 import path from "path";
 // import routes from "../src/routes/index.js";
 
-const baseIndex = fs.readFileSync(
-  path.join(path.resolve(), "dist", "index.html")
-);
+const baseIndex = fs
+  .readFileSync(path.join(path.resolve(), "dist", "index.html"))
+  .toString("utf-8")
+  .replace(
+    /<base href="http:\/\/localhost:3000\/" \/>/g,
+    '<base href="https://kkn1125.github.io/portfolio-renew/" />'
+  );
 
 // const file = fs.readFileSync(
 //   path.join(path.resolve(), "src/routes/index.js"),

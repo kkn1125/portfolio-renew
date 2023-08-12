@@ -1,4 +1,4 @@
-import { basePath } from "./global";
+import { basePath, MODE } from "./global";
 
 export const format = (time, form) =>
   form.replace(/YYYY|MM|dd|HH|mm|ss|SSS|AP/g, ($1) => {
@@ -55,4 +55,7 @@ export const extractTime = (time) => format(time, "YYYY. MM.");
 export const responsiveImagePath = (base, path) =>
   path.startsWith("http")
     ? path
-    : "/images/" + base + (path.startsWith("/") ? path : "/" + path);
+    : (MODE ? "" : "/portfolio-renew") +
+      "/images/" +
+      base +
+      (path.startsWith("/") ? path : "/" + path);

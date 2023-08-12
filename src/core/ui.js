@@ -7,7 +7,7 @@ import {
   MODE,
   RESPONSIVE,
 } from "../util/global";
-import { extractTime } from "../util/tool";
+import { extractTime, responsiveImagePath } from "../util/tool";
 
 export default class UI {
   constructor() {
@@ -103,11 +103,12 @@ export default class UI {
     const cardList = projects
       .map(
         (project) => `
-    <div class="card" data-title="${project.title}" style="--cover-path: url(${
-          project.cover.startsWith("http")
-            ? project.cover
-            : "/images/" + project.name + project.cover
-        });" onclick="manager.navigator.to('${"/portfolio" + project.path}')">
+    <div class="card" data-title="${
+      project.title
+    }" style="--cover-path: url(${responsiveImagePath(
+          project.name,
+          project.cover
+        )});" onclick="manager.navigator.to('${"/portfolio" + project.path}')">
         <div class="d-flex">
           <div class="tag">Project</div>
           <div class="f-bold">
