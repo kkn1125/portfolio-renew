@@ -52,3 +52,7 @@ export const convertOriginPathname = (pathname) =>
 export const revertOriginPathname = (pathname) =>
   basePath + pathname.replace("/", "");
 export const extractTime = (time) => format(time, "YYYY. MM.");
+export const responsiveImagePath = (base, path) =>
+  path.startsWith("http")
+    ? path
+    : "/images/" + base + (path.startsWith("/") ? path : "/" + path);

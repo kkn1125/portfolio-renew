@@ -1194,3 +1194,13 @@
     ) !important;
   }
 }
+
+.table {
+  border-collapse: collapse;
+  tr:not(:last-of-type) {
+    border-bottom: 1px solid rgba($gray-color, 0.25);
+  }
+  td {
+    padding: 0.5rem;
+  }
+}

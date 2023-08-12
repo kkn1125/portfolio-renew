@@ -41,7 +41,7 @@ MedienceBackOfficeServer.list = [
     body: `backend`,
   },
 ];
-MedienceBackOfficeServer.name = "m-backoffce";
-MedienceBackOfficeServer.path = "/m-backoffce";
+MedienceBackOfficeServer.name = "m-backoffice";
+MedienceBackOfficeServer.path = "/m-backoffice";
 
 export default MedienceBackOfficeServer;

@@ -76,7 +76,8 @@ export const basicCovers = [
   "https://cdn.pixabay.com/photo/2022/06/25/07/21/seagull-7282992_1280.png",
   "https://cdn.pixabay.com/photo/2022/10/21/21/11/art-7537962_1280.jpg",
 ];
-export const URL = (name, url) => ({ name, url });
+export const FORM_URL = (name, url) => ({ name, url });
+export const FORM_IMAGE = (name, url) => [name, url];
 export const changeSign = (text) =>
   text.replace(/@:->/, ($1) => {
     switch ($1) {
