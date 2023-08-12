@@ -1,11 +1,13 @@
-import { BRAND, MENU_LIST, RESPONSIVE, YEAR } from "../util/global";
+import { BRAND, MENU_LIST, MODE, RESPONSIVE, YEAR } from "../util/global";
 
 const navMenu = (isMobile) => `<nav class="${
   isMobile ? `d-none d-flex-${RESPONSIVE}` : `d-flex`
-} justify-content-between align-items-center px-5 py-1">
+} justify-content-between align-items-center px-5" style="padding-top: 0.8rem; padding-bottom: 0.8rem;">
 <div id="brand" class="text-uppercase fs-2 f-bold user-select-none">
-<a class="text-decoration-none" onclick="manager.navigator.to('/')">
-portfolio
+<a class="text-decoration-none" onclick="manager.navigator.to('/')" style="height: 40px;">
+<img src="${
+  (MODE ? "" : "/portfolio-renew") + "/brand_logo/logo_color.png"
+}" alt="logo" title="devkimson portfolio" style="height: inherit" />
 </a>
 </div>
 ${

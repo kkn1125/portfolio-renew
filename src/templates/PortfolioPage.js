@@ -103,6 +103,7 @@ export default ({ page, project }) => `
           .join("")}
 			</div>
 
+			<!--
 			<div class="divider-1"></div>
 			<div class="text-title-1">
 				미리보기
@@ -112,6 +113,7 @@ export default ({ page, project }) => `
         project.cover
       )}); background-size: contain; background-position: center center; background-repeat: no-repeat;min-height: 500px; filter: brightness(0.9)">
 			</div>
+			-->
 
 			${
         project.images.length > 0
