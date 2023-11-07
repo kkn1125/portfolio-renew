@@ -31,7 +31,7 @@ export default ({ page, project }) => `
 						<td width="80">Github</td>
 						<td>
 							<div class="d-flex" style="gap: 0.2rem;">
-								<a href="${project.github}">${project.github}</a>
+								<a target="_blank" href="${project.github}">${project.github}</a>
 							</div>
 						</td>
 					</tr>

@@ -1,3 +1,3 @@
-import _personalProjects from "../_personalProjects";
+import _personalProjects from "@/_personalProjects";
 
 export default _personalProjects;

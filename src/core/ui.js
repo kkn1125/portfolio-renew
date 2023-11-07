@@ -1,4 +1,4 @@
-import SkillIcon from "../component/SkillIcon";
+import SkillIcon from "@/component/SkillIcon";
 import {
   changeSign,
   dataList,
@@ -6,8 +6,11 @@ import {
   menuPanel,
   MODE,
   RESPONSIVE,
-} from "../util/global";
-import { extractTime, responsiveImagePath } from "../util/tool";
+} from "@/util/global";
+import { extractTime, responsiveImagePath } from "@/util/tool";
+
+const CLOSE_TEXT_KO = "접기";
+const OPEN_TEXT_KO = "펼치기";
 
 export default class UI {
   constructor() {
@@ -84,7 +87,7 @@ export default class UI {
   }
   openList(list, target, divider) {
     divider.classList.remove("py-0");
-    target.innerText = "닫기";
+    target.innerText = CLOSE_TEXT_KO;
     target.classList.remove("btn-info");
     target.classList.add("btn-gray");
     list.classList.add("list-open");
@@ -92,7 +95,7 @@ export default class UI {
   }
   closeList(list, target, divider) {
     divider.classList.add("py-0");
-    target.innerText = "펼치기";
+    target.innerText = OPEN_TEXT_KO;
     target.classList.add("btn-info");
     target.classList.remove("btn-gray");
     list.classList.add("list-close");
@@ -149,6 +152,7 @@ export default class UI {
 
   renderProjectList({
     type,
+    path,
     title,
     desc,
     team,
@@ -160,19 +164,26 @@ export default class UI {
     inProgress,
     listOpen,
     list,
+    important,
   }) {
-    const teamTags = `<span class="tag tag-gray">${team.trim()}</span>`;
+    const teamTags = `<span class="tag tag-gray" title="${team.trim()}">${team.trim()}</span>`;
     const roleTags = role
-      .map((role) => `<span class="tag tag-info">${role.trim()}</span>`)
+      .map(
+        (role) =>
+          `<span class="tag tag-info" title="${role.trim()}">${role.trim()}</span>`
+      )
       .join(" ");
     const mainSkillsTags = mainSkills
       .map(
         (mainSkills) =>
-          `<span class="tag tag-secondary">${mainSkills.trim()}</span>`
+          `<span class="tag tag-secondary" title="${mainSkills.trim()}">${mainSkills.trim()}</span>`
       )
       .join(" ");
     const skillsTags = skills
-      .map((skills) => `<span class="tag tag-warn">${skills.trim()}</span>`)
+      .map(
+        (skills) =>
+          `<span class="tag tag-warn" title="${skills.trim()}">${skills.trim()}</span>`
+      )
       .join(" ");
     const isInProgressEnd = inProgress
       ? type === "project"
@@ -184,46 +195,47 @@ export default class UI {
         (
           line
         ) => `<div class="list-item dense gap-0 gap-inherit-${RESPONSIVE} list-item-noline flex-row-${RESPONSIVE} flex-column">
-    <span class="header">${line.header}</span>
+    <span class="header">📌 ${line.header}</span>
     <span class="body">${line.body}</span>
     </div>`
       )
       .join("");
     const btnColor = listOpen ? "gray" : "info";
-    const btnText = listOpen ? "닫기" : "펼치기";
+    const btnText = listOpen ? CLOSE_TEXT_KO : OPEN_TEXT_KO;
 
     return `
   <div class="section-item">
-    <div class="d-flex flex-row-${RESPONSIVE} flex-column gap-2 justify-content-between">
-  
-      <div class="d-flex flex-column f-bold">
-        <span>
-          ${extractTime(start)} ~ ${isInProgressEnd}
-        </span>
-        <span>
-          ${teamTags}
-        </span>
-        <span>
-          ${roleTags}
-        </span>
-        <span>
-          ${mainSkillsTags}
-        </span>
-        <span>
-          ${skillsTags}
-        </span>
-      </div>
-      
+    <div class="d-flex flex-column gap-2 justify-content-between">
+
       <div class="flex-0-0-80">
-        <span class="d-inline-flex gap-0 gap-1-${RESPONSIVE} align-items-center">
-          <span class="text-title-1">${title}</span>
+        <span class="d-inline-flex gap-0 gap-1-${RESPONSIVE} align-items-center"${
+      important ? `title="important"` : ""
+    }>
+          <span class="text-title-1">${title}${important ? " 🌟" : ""}</span>
+          <button title="상세 페이지" class="btn btn-info btn-outline btn-small" onclick="manager.navigator.to('/portfolio${path}')">📄 자세히</button>
         </span>
-        <span>
-          <button class="btn btn-${btnColor} list-toggle btn-small" data-title="${title}">${btnText}</button>
-        </span>
+
+        <div class="d-flex flex-column f-bold mb-1">
+          <span style="font-size: 0.85rem; line-height: 1.8;">
+            프로젝트 기간 ${extractTime(start)} ~ ${isInProgressEnd}
+          </span>
+          <span style="font-size: 0.85rem; line-height: 1.8;">
+            소속 ${teamTags}
+          </span>
+          <span style="font-size: 0.85rem; line-height: 1.8;">
+            역할 ${roleTags}
+          </span>
+          <span style="font-size: 0.85rem; line-height: 1.8;">
+            사용 스택 ${mainSkillsTags} ${skillsTags}
+          </span>
+        </div>
+
         ${desc ? `<div class="blockquote">${changeSign(desc)}</div>` : ``}
+        <span>
+          <button class="my-1 btn btn-${btnColor} list-toggle btn-small" data-title="${title}">${btnText}</button>
+        </span>
       
-        <div class="divider-1"></div>
+        <div class="divider-0"></div>
         <div class="d-flex flex-column list-gap-2 list ${
           listOpen ? "list-open" : "list-close"
         }">
@@ -247,7 +259,7 @@ export default class UI {
     return list
       .filter((data) => data.visible)
       .map(this.renderProjectList.bind(this))
-      .join(`<div class="divider-2"></div>`);
+      .join(`<div class="divider-5"></div>`);
   }
 
   renderSkillSet(title, skills) {

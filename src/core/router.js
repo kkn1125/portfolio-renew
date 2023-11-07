@@ -1,4 +1,4 @@
-import Default from "../layout/Default";
+import Default from "@/layout/Default";
 import {
   APP,
   currentPage,
@@ -6,10 +6,10 @@ import {
   histories,
   MAIN,
   pages,
-} from "../util/global";
-import { convertOriginPathname, objectValueConvert } from "../util/tool";
-import _personalProjects from "../_personalProjects";
-import _projects from "../_projects";
+} from "@/util/global";
+import { convertOriginPathname, objectValueConvert } from "@/util/tool";
+import _personalProjects from "@/_personalProjects";
+import _projects from "@/_projects";
 
 export default class Router {
   firstPage = false;

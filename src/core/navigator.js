@@ -1,5 +1,5 @@
-import { histories } from "../util/global";
-import { convertOriginPathname, revertOriginPathname } from "../util/tool";
+import { histories } from "@/util/global";
+import { convertOriginPathname, revertOriginPathname } from "@/util/tool";
 
 export default class Navigator {
   index = 0;

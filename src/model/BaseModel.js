@@ -46,6 +46,9 @@ export default class BaseModel {
   /** @type {string} */
   github = "";
 
+  /** @type {boolean} */
+  important = false;
+
   set links(values) {
     if (values instanceof Array) {
       this.links = values;

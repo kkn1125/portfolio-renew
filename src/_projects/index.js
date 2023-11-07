@@ -1,13 +1,13 @@
-import MetaverseSocketServer from "./3DMetaverseSocketServer";
-import LiveCommerceService from "./LiveCommerceService";
-import MedienceAPIServer from "./MedienceAPIServer";
-import MedienceBackOfficeServer from "./MedienceBackOfficeServer";
-import NFTMarketplace from "./NFTMarketplace";
-import WebRTCMediaChatService from "./WebRTCMediaChatService";
+import MetaverseSocketServer from "@/_projects/3DMetaverseSocketServer";
+import LiveCommerceService from "@/_projects/LiveCommerceService";
+import MediAPIServer from "@/_projects/MediAPIServer";
+import MediBackOfficeServer from "@/_projects/MediBackOfficeServer";
+import NFTMarketplace from "@/_projects/NFTMarketplace";
+import WebRTCMediaChatService from "@/_projects/WebRTCMediaChatService";
 
 export default [
-  MedienceBackOfficeServer,
-  MedienceAPIServer,
+  MediBackOfficeServer,
+  MediAPIServer,
   LiveCommerceService,
   WebRTCMediaChatService,
   MetaverseSocketServer,

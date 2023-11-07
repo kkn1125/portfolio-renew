@@ -1,5 +1,5 @@
-import WorkExperienceModel from "../model/WorkExperienceModel";
-import { MONTH } from "../util/global";
+import WorkExperienceModel from "@/model/WorkExperienceModel";
+import { MONTH } from "@/util/global";
 
 const ProjectgroupAnder = new WorkExperienceModel();
 
@@ -30,8 +30,8 @@ ProjectgroupAnder.skills = [
   "AWS EC2",
 ];
 ProjectgroupAnder.start = new Date(2022, MONTH(9));
-ProjectgroupAnder.end = new Date();
-ProjectgroupAnder.inProgress = true;
+ProjectgroupAnder.end = new Date(2023, MONTH(8));
+ProjectgroupAnder.inProgress = false;
 ProjectgroupAnder.listOpen = true;
 ProjectgroupAnder.list = [
   {

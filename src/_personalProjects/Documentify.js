@@ -11,7 +11,7 @@ Documentify.skills = [];
 Documentify.start = new Date(2021, MONTH(10));
 Documentify.end = new Date(2021, MONTH(11));
 Documentify.inProgress = false;
-Documentify.listOpen = true;
+Documentify.listOpen = false;
 Documentify.list = [
   {
     header: "로컬 디렉토리의 자바스크립트 파일의 주석 분석",

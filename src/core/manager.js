@@ -1,6 +1,6 @@
-import Navigator from "./navigator";
-import Router from "./router";
-import UI from "./ui";
+import Navigator from "@/core/navigator";
+import Router from "@/core/router";
+import UI from "@/core/ui";
 
 const router = new Router();
 const navigator = new Navigator();

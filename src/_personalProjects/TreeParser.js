@@ -11,7 +11,7 @@ TreeParser.skills = [];
 TreeParser.start = new Date(2022, MONTH(4));
 TreeParser.end = new Date(2022, MONTH(4));
 TreeParser.inProgress = false;
-TreeParser.listOpen = true;
+TreeParser.listOpen = false;
 TreeParser.list = [
   {
     header: "들여쓰기 단위로 텍스트 파싱",

@@ -1,5 +1,5 @@
-import WorkExperienceModel from "../model/WorkExperienceModel";
-import { MONTH } from "../util/global";
+import WorkExperienceModel from "@/model/WorkExperienceModel";
+import { MONTH } from "@/util/global";
 
 const DaeKyeng = new WorkExperienceModel();
 
@@ -11,7 +11,7 @@ DaeKyeng.start = new Date(2018, MONTH(1));
 DaeKyeng.end = new Date(2020, MONTH(9));
 DaeKyeng.inProgress = false;
 DaeKyeng.listOpen = false;
-DaeKyeng.visible = false;
+DaeKyeng.visible = true;
 DaeKyeng.list = [
   {
     header: "종로창신, 안양석수 현상설계",

@@ -1,25 +1,26 @@
-import artillery from "./artillery";
-import docker from "./docker";
-import express from "./express";
-import fastify from "./fastify";
-import javascript from "./javascript";
-import jenkins from "./jenkins";
-import jest from "./jest";
-import jwt from "./jwt";
-import linux from "./linux";
-import mariadb from "./mariadb";
-import mui from "./mui";
-import nginx from "./nginx";
-import nodejs from "./nodejs";
-import postman from "./postman";
-import react from "./react";
-import sass from "./sass";
-import socketio from "./socketio";
-import springboot from "./springboot";
-import styledcomponent from "./styledcomponent";
-import typescript from "./typescript";
-import uwebsockets from "./uwebsockets";
-import xterm from "./xterm";
+import artillery from "@/icons/artillery";
+import docker from "@/icons/docker";
+import express from "@/icons/express";
+import fastify from "@/icons/fastify";
+import javascript from "@/icons/javascript";
+import jenkins from "@/icons/jenkins";
+import jest from "@/icons/jest";
+import jwt from "@/icons/jwt";
+import linux from "@/icons/linux";
+import mariadb from "@/icons/mariadb";
+import mui from "@/icons/mui";
+import nest from "@/icons/nest";
+import nginx from "@/icons/nginx";
+import nodejs from "@/icons/nodejs";
+import postman from "@/icons/postman";
+import react from "@/icons/react";
+import sass from "@/icons/sass";
+import socketio from "@/icons/socketio";
+import springboot from "@/icons/springboot";
+import styledcomponent from "@/icons/styledcomponent";
+import typescript from "@/icons/typescript";
+import uwebsockets from "@/icons/uwebsockets";
+import xterm from "@/icons/xterm";
 
 export default {
   artillery,
@@ -33,6 +34,7 @@ export default {
   linux,
   mariadb,
   mui,
+  nest,
   nginx,
   nodejs,
   postman,

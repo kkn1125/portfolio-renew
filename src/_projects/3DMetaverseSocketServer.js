@@ -1,11 +1,11 @@
-import ProjectModel from "../model/ProjectModel";
-import { MONTH } from "../util/global";
+import ProjectModel from "@/model/ProjectModel";
+import { MONTH } from "@/util/global";
 
 const MetaverseSocketServer = new ProjectModel();
 
 MetaverseSocketServer.title = "3D 메타버스 소켓 서버";
 MetaverseSocketServer.desc =
-  "멀티플레이 가능한 웹 메타버스 소켓 서버를 제작하고, 동접자 200명 처리";
+  "멀티플레이 가능한 웹 메타버스 소켓 서버 제작";
 MetaverseSocketServer.team = "(주)프로젝트그룹 앤더";
 MetaverseSocketServer.role = ["backend"];
 MetaverseSocketServer.mainSkills = ["uWebSockets.js", "TypeScript"];

@@ -1,15 +1,15 @@
-import ProjectModel from "../model/ProjectModel";
-import { MONTH } from "../util/global";
+import ProjectModel from "@/model/ProjectModel";
+import { MONTH } from "@/util/global";
 
-const MedienceAPIServer = new ProjectModel();
+const MediAPIServer = new ProjectModel();
 
-MedienceAPIServer.title = "육아 교육 메타버스 API 서버";
-MedienceAPIServer.desc =
+MediAPIServer.title = "육아 교육 메타버스 API 서버";
+MediAPIServer.desc =
   "엄마와 자녀 또는 예비 엄마들이 3D 웹 메타버스 내에서 교육을 시청하고, 육아에 대한 정보를 공유하는 서비스";
-MedienceAPIServer.team = "(주)프로젝트그룹 앤더";
-MedienceAPIServer.role = ["backend"];
-MedienceAPIServer.mainSkills = ["Fastify", "TypeScript", "TypeORM"];
-MedienceAPIServer.skills = [
+MediAPIServer.team = "(주)프로젝트그룹 앤더";
+MediAPIServer.role = ["backend"];
+MediAPIServer.mainSkills = ["Fastify", "TypeScript", "TypeORM"];
+MediAPIServer.skills = [
   "Node.js",
   "Formik",
   "yup",
@@ -20,11 +20,11 @@ MedienceAPIServer.skills = [
   "Docker",
   "Nginx",
 ];
-MedienceAPIServer.start = new Date(2023, MONTH(3));
-MedienceAPIServer.end = new Date(2023, MONTH(5));
-MedienceAPIServer.inProgress = false;
-MedienceAPIServer.listOpen = true;
-MedienceAPIServer.list = [
+MediAPIServer.start = new Date(2023, MONTH(3));
+MediAPIServer.end = new Date(2023, MONTH(5));
+MediAPIServer.inProgress = false;
+MediAPIServer.listOpen = true;
+MediAPIServer.list = [
   {
     header: "AWS 서버 빌드 배포",
     body: `backend`,
@@ -51,7 +51,7 @@ MedienceAPIServer.list = [
     body: `backend`,
   },
 ];
-MedienceAPIServer.name = "m-api-server";
-MedienceAPIServer.path = "/m-api-server";
+MediAPIServer.name = "m-api-server";
+MediAPIServer.path = "/m-api-server";
 
-export default MedienceAPIServer;
+export default MediAPIServer;

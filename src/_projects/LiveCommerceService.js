@@ -1,5 +1,5 @@
-import ProjectModel from "../model/ProjectModel";
-import { MONTH } from "../util/global";
+import ProjectModel from "@/model/ProjectModel";
+import { MONTH } from "@/util/global";
 
 const LiveCommerceService = new ProjectModel();
 

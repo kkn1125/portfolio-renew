@@ -1,5 +1,5 @@
-import WorkExperienceModel from "../model/WorkExperienceModel";
-import { MONTH } from "../util/global";
+import WorkExperienceModel from "@/model/WorkExperienceModel";
+import { MONTH } from "@/util/global";
 
 const RebornSoft = new WorkExperienceModel();
 

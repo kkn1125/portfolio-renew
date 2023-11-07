@@ -1,3 +1,4 @@
+import GamePang from "./GamePang";
 import Documentify from "./Documentify";
 import GanttChart from "./GanttChart";
 import Mentees from "./Mentees";
@@ -7,6 +8,7 @@ import TreeParser from "./TreeParser";
 import Typer from "./Typer";
 
 export default [
+  GamePang,
   Documentify,
   Solitaire,
   TreeParser,
