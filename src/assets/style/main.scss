@@ -404,8 +404,8 @@
   color: $white-color;
   font-weight: 700;
   font-size: 1rem;
-  @include py(0.5rem);
-  @include px(1rem);
+  @include py(2rem);
+  @include px(2.8rem);
   @include border-radius(0.3rem);
 
   &:hover {
@@ -421,8 +421,8 @@
 .tag {
   font-weight: 500;
   font-size: 0.65rem;
-  @include py(0.2rem);
-  @include px(0.5rem);
+  @include py(0.75rem);
+  @include px(1.5rem);
   @include border-radius(0.3rem);
 }
 

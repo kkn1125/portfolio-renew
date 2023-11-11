@@ -52,7 +52,7 @@ export default (element, gProps) => (props) =>
     ).join("")}
 		
 	</div>
-	<footer class="text-center f-bold bg-gray text-white py-2">
+	<footer class="text-center f-bold bg-gray text-white py-10">
 		Copyright ${YEAR}. ${BRAND} All rights reserved.
 	</footer>
 	`;

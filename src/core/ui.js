@@ -64,12 +64,22 @@ export default class UI {
         }
       }
 
+      let temp = [];
       if (e.ctrlKey && e.altKey && key === "p") {
         document.body.style.overflow = "revert";
         document.getElementById("main").classList.remove("overflow-auto");
+        document.querySelectorAll(".list-toggle").forEach((el) => {
+          if (!el.classList.contains("list-open")) {
+            temp.push(el);
+          }
+        });
+        temp.forEach((el) => {
+          el.click();
+        });
         print();
         document.body.style.overflow = "";
         document.getElementById("main").classList.add("overflow-auto");
+        temp = [];
       }
     };
 
@@ -259,7 +269,7 @@ export default class UI {
     return list
       .filter((data) => data.visible)
       .map(this.renderProjectList.bind(this))
-      .join(`<div class="divider-5"></div>`);
+      .join(``);
   }
 
   renderSkillSet(title, skills) {

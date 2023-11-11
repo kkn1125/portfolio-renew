@@ -3,16 +3,16 @@
 }
 
 @mixin ps($num) {
-  padding-left: $num;
+  padding-left: calc($num * 0.25);
 }
 @mixin pe($num) {
-  padding-right: $num;
+  padding-right: calc($num * 0.25);
 }
 @mixin pt($num) {
-  padding-top: $num;
+  padding-top: calc($num * 0.25);
 }
 @mixin pb($num) {
-  padding-bottom: $num;
+  padding-bottom: calc($num * 0.25);
 }
 @mixin px($num) {
   @include ps($num);
@@ -27,16 +27,16 @@
   @include py($num);
 }
 @mixin ms($num) {
-  margin-left: $num;
+  margin-left: calc($num * 0.25);
 }
 @mixin me($num) {
-  margin-right: $num;
+  margin-right: calc($num * 0.25);
 }
 @mixin mt($num) {
-  margin-top: $num;
+  margin-top: calc($num * 0.25);
 }
 @mixin mb($num) {
-  margin-bottom: $num;
+  margin-bottom: calc($num * 0.25);
 }
 @mixin mx($num) {
   @include ms($num);
