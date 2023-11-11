@@ -3,6 +3,7 @@ import { MONTH } from "@/util/global";
 
 const LiveCommerceService = new ProjectModel();
 
+LiveCommerceService.important = true;
 LiveCommerceService.title = "라이브커머스 스트리밍 서비스";
 LiveCommerceService.desc =
   "실시간으로 라이브 방송을 송출하고 시청자에게 팝업 태그를 올려 구매 링크를 노출시키며, 영상 녹화 및 스트리밍 기술을 이용한 부분 재생 제작";

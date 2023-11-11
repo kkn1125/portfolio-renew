@@ -5,6 +5,8 @@ const U = `<span class="tag tag-info">U</span>`;
 const A = `<span class="tag tag-success">A</span>`;
 
 const ProjectNarang = new ProjectModel();
+
+ProjectNarang.important = true;
 ProjectNarang.title = "ProjectNarang";
 ProjectNarang.desc = "감정 케어 웹 서비스";
 ProjectNarang.team = "2인 팀";

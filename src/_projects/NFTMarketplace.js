@@ -12,7 +12,7 @@ NFTMarketplace.skills = ["React", "TypeScript"];
 NFTMarketplace.start = new Date(2022, MONTH(5));
 NFTMarketplace.end = new Date(2022, MONTH(6));
 NFTMarketplace.inProgress = false;
-NFTMarketplace.listOpen = true;
+NFTMarketplace.listOpen = false;
 NFTMarketplace.list = [
   {
     header: "메인 페이지 및 주문, 결제, 파일 업로드 제작",

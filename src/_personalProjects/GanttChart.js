@@ -2,6 +2,8 @@ import ProjectModel from "../model/ProjectModel";
 import { MONTH, FORM_URL, FORM_IMAGE } from "../util/global";
 
 const GanttChart = new ProjectModel();
+
+GanttChart.important = true;
 GanttChart.title = "Gantt Chart";
 GanttChart.desc =
   "개인 블로그를 작성하며 느낀 불편함을 해소하기 위해 제작 된 테이블 생성 웹 툴입니다. 목적은 블로그에 첨부할 예시 자료를 생성하기 위해 만들어졌으며, html에 넣을 수 있는 형태여야 했고, 커스터마이징이 편리하면서 저장이 가능한 형태여야 했습니다. 다중 선택 및 색상 변경, 스타일 복사, 행,열 이동이 있는 툴이며, html로 내보내거나 시트를 추가하여 여러 시트를 관리할 수 있습니다. 예시로는 간트차트 또는 스케쥴 시트, 타임라인 등을 작성하여 활용할 수 있습니다.";

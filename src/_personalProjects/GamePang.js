@@ -2,6 +2,8 @@ import ProjectModel from "../model/ProjectModel";
 import { MONTH, FORM_URL, FORM_IMAGE } from "../util/global";
 
 const GamePang = new ProjectModel();
+
+GamePang.important = true;
 GamePang.title = "GamePang";
 GamePang.desc = "같은 동물을 매치하여 점수를 얻는 2D 게임 모방";
 GamePang.team = "개인";

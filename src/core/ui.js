@@ -68,9 +68,10 @@ export default class UI {
       if (e.ctrlKey && e.altKey && key === "p") {
         document.body.style.overflow = "revert";
         document.getElementById("main").classList.remove("overflow-auto");
-        document.querySelectorAll(".list-toggle").forEach((el) => {
+        document.querySelectorAll(".section-item .list").forEach((el) => {
           if (!el.classList.contains("list-open")) {
-            temp.push(el);
+            // console.log(el);
+            temp.push(el.parentElement.querySelector("button.list-toggle"));
           }
         });
         temp.forEach((el) => {
@@ -79,6 +80,9 @@ export default class UI {
         print();
         document.body.style.overflow = "";
         document.getElementById("main").classList.add("overflow-auto");
+        temp.forEach((el) => {
+          el.click();
+        });
         temp = [];
       }
     };
@@ -202,9 +206,7 @@ export default class UI {
       : extractTime(end);
     const listItems = list
       .map(
-        (
-          line
-        ) => `<div class="list-item dense gap-0 gap-inherit-${RESPONSIVE} list-item-noline flex-row-${RESPONSIVE} flex-column">
+        (line) => `<div class="list-item dense justify-content-between">
     <span class="header">📌 ${line.header}</span>
     <span class="body">${line.body}</span>
     </div>`
@@ -219,10 +221,11 @@ export default class UI {
 
       <div class="flex-0-0-80">
         <span class="d-inline-flex gap-0 gap-1-${RESPONSIVE} align-items-center"${
-      important ? `title="important"` : ""
+      important ? `title="(중요) 상세 보기"` : "title='상세 보기'"
     }>
-          <span class="text-title-1">${title}${important ? " 🌟" : ""}</span>
-          <button title="상세 페이지" class="btn btn-info btn-outline btn-small" onclick="manager.navigator.to('/portfolio${path}')">📄 자세히</button>
+          <span class="text-title-1" onclick="manager.navigator.to('/portfolio${path}')" style="cursor: pointer;">${title}${
+      important ? " 🌟" : ""
+    }</span>
         </span>
 
         <div class="d-flex flex-column f-bold mb-1">

@@ -1,3 +1,4 @@
+import ProjectModel from "@/model/ProjectModel";
 import { basePath, MODE } from "./global";
 
 export const format = (time, form) =>
@@ -59,3 +60,29 @@ export const responsiveImagePath = (base, path) =>
       "/images/" +
       base +
       (path.startsWith("/") ? path : "/" + path);
+/**
+ *
+ * @param {ProjectModel} a
+ * @param {ProjectModel} b
+ * @returns
+ */
+export const sortImportantList = (a, b) => {
+  // If 'start' values are equal, sort by 'listOpen' in descending order
+  if (a.important < b.important) return 1;
+  if (a.important > b.important) return -1;
+
+  return 0;
+};
+export const sortShowList = (a, b) => {
+  // If 'start' values are equal, sort by 'listOpen' in descending order
+  if (a.listOpen < b.listOpen) return 1;
+  if (a.listOpen > b.listOpen) return -1;
+
+  return 0;
+};
+export const sortList = (a, b) => {
+  // Sort by 'start' in descending order
+  if (a.start < b.start) return 1;
+  if (a.start > b.start) return -1;
+  return 0;
+};

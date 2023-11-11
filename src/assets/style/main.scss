@@ -168,7 +168,8 @@
     font-size: calc(0.4rem + 0.5vw);
     text-decoration: none;
     display: flex;
-    gap: 5rem;
+    flex-wrap: wrap;
+    // gap: 1rem;
 
     &.dense {
       font-size: calc(0.3rem + 0.5vw);
@@ -176,12 +177,13 @@
     }
 
     & .header {
+      // flex:1;
       text-transform: capitalize;
       font-weight: 500;
       min-width: 5%;
     }
     & .body {
-      flex: 1;
+      // flex: 1;
       white-space: pre-wrap;
       word-break: break-all;
       text-align: right;
