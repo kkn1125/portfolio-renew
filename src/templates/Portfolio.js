@@ -4,7 +4,10 @@ import manager from "../core";
 import PersonalProjects from "../_personalProjects";
 
 export default ({ title = "" }) => `
-	<div id="sub-app" class="d-flex justify-content-center"></div>
+	<!--
+	<div id="sub-app" class="d-flex justify-content-center">
+	<canvas id="layer-sub-app"></canvas></div>
+	-->
 	<div class="container-50 d-flex flex-column gap-5">
 		<div>
 			<div class="text-title-1">

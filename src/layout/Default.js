@@ -35,7 +35,7 @@ export default (element, gProps) => (props) =>
 		${navMenu(false)}
 		${/* navMenu(false) */ ""}
 	</header>
-	<main id="main" class="flex-1 overflow-auto">
+	<main id="main" class="flex-1 overflow-y-auto ovreflow-x-none">
 		<!--
 		<div class="flex-1 w-max-25">
 			side

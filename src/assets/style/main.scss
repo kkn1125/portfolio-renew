@@ -33,6 +33,12 @@
 .overflow-none {
   @include overflow-none;
 }
+.overflow-x-none {
+  @include overflow-x-none;
+}
+.overflow-y-none {
+  @include overflow-y-none;
+}
 .overflow-auto {
   @include overflow-auto;
 }

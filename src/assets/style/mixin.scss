@@ -144,6 +144,12 @@
 @mixin overflow-none {
   overflow: none;
 }
+@mixin overflow-x-none {
+  overflow-x: none;
+}
+@mixin overflow-y-none {
+  overflow-y: none;
+}
 @mixin overflow-auto {
   overflow: auto;
 }

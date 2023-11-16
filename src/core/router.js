@@ -11,6 +11,7 @@ import { convertOriginPathname, objectValueConvert } from "@/util/tool";
 import _personalProjects from "@/_personalProjects";
 import _projects from "@/_projects";
 import { subApp } from "@/lib/SubApp";
+import Portfolio from "@/lib/Portfolio";
 
 export default class Router {
   firstPage = false;
@@ -98,8 +99,9 @@ export default class Router {
     this.render(Object.assign(props, { page: currentPage.page, project }));
   }
 
-  #pageForm({ name, path, page, props, preLoad, afterLoad }) {
+  #pageForm({ prj, name, path, page, props, preLoad, afterLoad }) {
     const _page = objectValueConvert({
+      prj,
       name,
       path,
       page,
@@ -159,6 +161,15 @@ export default class Router {
         /* 2023-11-16 15:36:40 여기 */
         // if (currentPage.page.name === "portfolio") {
         //   subApp.render(document.querySelector("#sub-app"));
+        // }
+
+        // if (currentPage.page.name === "portfolio") {
+        //   const projects = new Portfolio(innerWidth / 2, 500);
+        //   projects.setTarget(document.querySelector("#sub-app"));
+        //   if (pages.length > 0) {
+        //     projects.addProject(...pages.map((p) => p.prj));
+        //   }
+        //   projects.render();
         // }
       } else {
         this.#clearMain();

@@ -11,11 +11,13 @@ export default [
   { name: "resume", path: "/", page: Resume },
   { name: "portfolio", path: "/portfolio", page: Portfolio },
   ..._projects.map((prj) => ({
+    prj,
     name: prj.name,
     path: "/portfolio" + prj.path,
     page: PortfolioPage,
   })),
   ..._personalProjects.map((prj) => ({
+    prj,
     name: prj.name,
     path: "/portfolio" + prj.path,
     page: PortfolioPage,
