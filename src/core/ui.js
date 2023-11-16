@@ -67,7 +67,7 @@ export default class UI {
       let temp = [];
       if (e.ctrlKey && e.altKey && key === "p") {
         document.body.style.overflow = "revert";
-        document.getElementById("main").classList.remove("overflow-auto");
+        document.getElementById("main").classList.remove("overflow-y-auto");
         document.querySelectorAll(".section-item .list").forEach((el) => {
           if (!el.classList.contains("list-open")) {
             // console.log(el);
