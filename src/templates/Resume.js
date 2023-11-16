@@ -9,7 +9,38 @@ import { PROFILE_IMG, RESPONSIVE, textTitle } from "@/util/global";
 // mode 설정
 const mode = 0 ? "hidden" : "";
 
-export default ({ title = "" }) => `
+export default ({ title = "" }) => {
+  const skills = []
+    .concat(ProjectExprience, PersonalProjectExprience, WorkExprience)
+    .map((el) => el.skills)
+    .flat(1)
+    .reduce(
+      (acc, cur) => {
+        if (!acc[0].includes(cur.toLowerCase())) {
+          acc[0].push(cur.toLowerCase());
+          acc[1].push(cur);
+        }
+        return acc;
+      },
+      [[], []]
+    )[1];
+  const backend = [
+    "nest",
+    "fastify",
+    "express",
+    "mariadb",
+    "socketio",
+    "uwebsockets",
+    "jwt",
+  ];
+  const frontend = [
+    "javascript",
+    "typescript",
+    "sass",
+    "styled component",
+    "mui",
+  ];
+  return `
   <div class="container-70 d-flex flex-column gap-5">
       
     <section class="d-flex flex-column gap-2">
@@ -45,17 +76,8 @@ export default ({ title = "" }) => `
       ${textTitle("skills", 2)}
       <div ${mode} class="divider-1"></div>
       <div ${mode} class="d-flex flex-column list-gap-2 list">
-
         <div class="divider-1"></div>
-        ${ui.renderSkillSet("backend", [
-          "nest",
-          "fastify",
-          "express",
-          "mariadb",
-          "socketio",
-          "uwebsockets",
-          "jwt",
-        ])}
+        ${ui.renderSkillSet("backend", backend)}
         <div class="divider-1"></div>
         ${ui.renderSkillSet("devops", ["jenkins", "docker", "nginx"])}
         <div class="divider-1"></div>
@@ -63,16 +85,16 @@ export default ({ title = "" }) => `
         <div class="divider-1"></div>
         ${ui.renderSkillSet("network", ["xterm", "postman"])}
         <div class="divider-1"></div>
-        ${ui.renderSkillSet("frontend", [
-          "javascript",
-          "typescript",
-          "sass",
-          "styled component",
-          "mui",
-        ])}
-
+        ${ui.renderSkillSet("frontend", frontend)}
       </div>
     </section>
+
+    <!--
+    <section class="d-flex align-items-center flex-wrap" style="gap: 0.5rem;">
+      ${skills.map(ui.mapSkillsBadge("info")).join("")}
+    </section>
+    -->
+
 
     <section class="d-flex flex-column gap-3">
       ${textTitle("Project", 2)}
@@ -97,3 +119,4 @@ export default ({ title = "" }) => `
 
   </div>
 `;
+};

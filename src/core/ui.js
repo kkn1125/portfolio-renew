@@ -195,8 +195,8 @@ export default class UI {
       .join(" ");
     const skillsTags = skills
       .map(
-        (skills) =>
-          `<span class="tag tag-warn" title="${skills.trim()}">${skills.trim()}</span>`
+        (skill) =>
+          `<span class="tag tag-warn" title="${skill.trim()}">${skill.trim()}</span>`
       )
       .join(" ");
     const isInProgressEnd = inProgress
@@ -284,5 +284,11 @@ export default class UI {
       ${skills.map(SkillIcon).join("")}
     </div>
   </div>`;
+  }
+
+  mapSkillsBadge(color = "warn") {
+    return (skill) => {
+      return `<span class="tag tag-${color}" title="${skill.trim()}" style="font-size: 0.75em;">${skill.trim()}</span>`;
+    };
   }
 }

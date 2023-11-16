@@ -431,8 +431,9 @@
 .blockquote {
   font-weight: 300;
   border-left: 3px solid $gray-color;
-  @include py(1rem);
-  @include px(2rem);
+  @include py(5rem);
+  @include px(5rem);
+  @include my(3rem);
 }
 
 @for $step from $start to $limit {

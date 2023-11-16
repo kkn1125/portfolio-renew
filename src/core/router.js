@@ -10,6 +10,7 @@ import {
 import { convertOriginPathname, objectValueConvert } from "@/util/tool";
 import _personalProjects from "@/_personalProjects";
 import _projects from "@/_projects";
+import { subApp } from "@/lib/SubApp";
 
 export default class Router {
   firstPage = false;
@@ -154,6 +155,11 @@ export default class Router {
       if (currentPage.page) {
         this.#clearMain();
         this.#insertMain(currentPage.page.page(props));
+
+        /* 2023-11-16 15:36:40 여기 */
+        // if (currentPage.page.name === "portfolio") {
+        //   subApp.render(document.querySelector("#sub-app"));
+        // }
       } else {
         this.#clearMain();
         this.#insertMain(
