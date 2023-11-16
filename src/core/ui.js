@@ -161,7 +161,7 @@ export default class UI {
     `
       )
       .join("");
-    return `<div class="card-list">${cardList}</div>`;
+    return `<div class="d-flex flex-column gap-1">${cardList}</div>`;
   }
 
   renderProjectList({

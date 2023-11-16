@@ -56,6 +56,8 @@ export const extractTime = (time) => format(time, "YYYY. MM.");
 export const responsiveImagePath = (base, path) =>
   path.startsWith("http")
     ? path
+    : path.startsWith("data:")
+    ? path
     : (MODE ? "" : "/portfolio-renew") +
       "/images/" +
       base +

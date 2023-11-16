@@ -159,9 +159,9 @@ export default class Router {
         this.#insertMain(currentPage.page.page(props));
 
         /* 2023-11-16 15:36:40 여기 */
-        // if (currentPage.page.name === "portfolio") {
-        //   subApp.render(document.querySelector("#sub-app"));
-        // }
+        if (currentPage.page.name === "portfolio") {
+          subApp.render(document.querySelector("#sub-app"));
+        }
 
         // if (currentPage.page.name === "portfolio") {
         //   const projects = new Portfolio(innerWidth / 2, 500);

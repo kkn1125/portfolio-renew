@@ -65,8 +65,7 @@ Solitaire.links = [
 Solitaire.github = "https://github.com/kkn1125/new-solitaire";
 Solitaire.name = "solitaire";
 Solitaire.path = "/solitaire";
-Solitaire.cover =
-  "https://github.com/kkn1125/new-solitaire/assets/71887242/d49cf751-3b1c-4607-9c2d-09670005691e";
+Solitaire.cover = "/solitaire01.png";
 Solitaire.images = [
   FORM_IMAGE(
     "메인 페이지",

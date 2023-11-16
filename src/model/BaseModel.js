@@ -33,7 +33,7 @@ export default class BaseModel {
   /** @type {string} - portfolio page route path */
   path = "";
   /** @type {string} - portfolio cover image path */
-  cover = basicCovers[4];
+  cover = basicCovers[5];
   images = [];
   movie = "";
   /** @type {string} */

@@ -43,8 +43,7 @@ ProjectNarang.links = [];
 ProjectNarang.github = "https://github.com/kkn1125/narang";
 ProjectNarang.name = "projectnarang";
 ProjectNarang.path = "/projectnarang";
-ProjectNarang.cover =
-  "https://user-images.githubusercontent.com/71887242/188372976-f2f77d3a-2d17-4bea-8be7-e787b7edb30c.png";
+ProjectNarang.cover = "/narang01.png";
 ProjectNarang.images = [
   FORM_IMAGE(
     "메인",

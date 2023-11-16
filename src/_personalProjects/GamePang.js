@@ -61,11 +61,11 @@ GamePang.github = "https://github.com/kkn1125/game-pang";
 GamePang.name = "game-pang";
 GamePang.path = "/game-pang";
 GamePang.cover =
-  "https://github.com/kkn1125/kkn1125.github.io/assets/71887242/af2aa4c1-c4b6-4763-8f40-772a47f6a70c";
+  "/gamepang01.png";
 GamePang.images = [
   FORM_IMAGE(
     "실제 게임 이미지",
-    "https://github.com/kkn1125/kkn1125.github.io/assets/71887242/af2aa4c1-c4b6-4763-8f40-772a47f6a70c"
+    "/gamepang02.png"
   ),
 ];
 
