@@ -10,15 +10,15 @@ export default ({ title = "" }) => `
 	-->
 	</div>
 	<div class="container-50 d-flex flex-column gap-5">
-		<div>
-			<div class="text-title-1">
+		<div class="my-10">
+			<div class="text-title-3 my-10">
 				Project [${Projects.length}]
 			</div>
 			${manager.ui.card(Projects)}
 
 			<div class="divider-3"></div>
 
-			<div class="text-title-1">
+			<div class="text-title-3 my-10">
 				Toy Project [${PersonalProjects.length}]
 			</div>
 			${manager.ui.card(PersonalProjects)}

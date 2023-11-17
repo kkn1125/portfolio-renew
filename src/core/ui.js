@@ -126,35 +126,37 @@ export default class UI {
           project.name,
           project.cover
         )});" onclick="manager.navigator.to('${"/portfolio" + project.path}')">
-        <div class="d-flex">
-          <div class="tag">Project</div>
-          <div class="f-bold">
-            ${project.title}
+        <div class="wrap-word">
+          <div class="d-flex">
+            <div class="tag">Project</div>
+            <div class="f-bold">
+              ${project.title}
+            </div>
           </div>
-        </div>
-        <div class="d-flex">
-          <div class="tag">Period</div>
-          <div class="tag">
-            ${extractTime(project.start)} ~ ${extractTime(project.end)}
+          <div class="d-flex">
+            <div class="tag">Period</div>
+            <div class="tag">
+              ${extractTime(project.start)} ~ ${extractTime(project.end)}
+            </div>
           </div>
-        </div>
-        <!--
-        <div>${project.desc.slice(0, 20) + "..."}</div>
-        -->
-        <div class="d-flex overflow-auto">
-          <div class="tag">Main Skills</div>
-          <div class="d-flex flex-wrap" style="gap: 0.2rem;">
-            ${project.mainSkills
-              .map((skill) => `<div class="tag tag-success">${skill}</div>`)
-              .join("")}
+          <!--
+          <div>${project.desc.slice(0, 20) + "..."}</div>
+          -->
+          <div class="d-flex overflow-auto">
+            <div class="tag">Main Skills</div>
+            <div class="d-flex flex-wrap" style="gap: 0.2rem;">
+              ${project.mainSkills
+                .map((skill) => `<div class="tag tag-success">${skill}</div>`)
+                .join("")}
+            </div>
           </div>
-        </div>
-        <div class="d-flex overflow-auto">
-          <div class="tag">Skills</div>
-          <div class="d-flex flex-wrap" style="gap: 0.2rem;">
-            ${project.skills
-              .map((skill) => `<div class="tag tag-warn">${skill}</div>`)
-              .join("")}
+          <div class="d-flex overflow-auto">
+            <div class="tag">Skills</div>
+            <div class="d-flex flex-wrap" style="gap: 0.2rem; max-width: 50%">
+              ${project.skills
+                .map((skill) => `<div class="tag tag-warn">${skill}</div>`)
+                .join("")}
+            </div>
           </div>
         </div>
     </div>

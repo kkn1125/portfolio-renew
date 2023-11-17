@@ -7,6 +7,8 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader";
 
+const animationStack: Function[] = [];
+
 class SubApp {
   projects: {
     prj: ProjectModel;
@@ -240,6 +242,24 @@ class SubApp {
       if (intersect[0] && intersect[0].object.name !== "floor") {
         //@ts-ignore
         const project = intersect[0].object.project as ProjectModel;
+        const inter = intersect[0];
+
+        const createAnimate = (increment: number = 0.5) => {
+          let num = 10;
+          const limit = 1;
+          const loop = setInterval(() => {
+            // console.log(Number((num / 10).toFixed(2)));
+            inter.object.scale.setY(Number((num / 10).toFixed(2)));
+            num -= increment * 1.5;
+            if (num <= limit) {
+              clearInterval(loop);
+              inter.object.scale.setY(1);
+              // console.log(1);
+            }
+          }, 16);
+        };
+
+        animationStack.push(createAnimate);
 
         // const ktLoader = new KTX2Loader().detectSupport(this.renderer);
         const loader = new THREE.TextureLoader();
@@ -573,7 +593,9 @@ class SubApp {
     //   //@ts-ignore
     //   item.object.material.color.set(0xff0000);
     // });
-
+    if (animationStack.length > 0) {
+      animationStack.shift()();
+    }
     requestAnimationFrame(this.animate.bind(this));
     this.renderer.render(this.scene, this.camera);
   }

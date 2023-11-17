@@ -36,21 +36,29 @@ export default ({ page, project }) => `
 						</td>
 					</tr>
 					<tr class="">
-						<td width="80">Main Skill</td>
+						<td width="80">역할</td>
+						<td>
+							<div class="d-flex" style="gap: 0.2rem;">
+								${project.role.map((tag) => `<div class="tag tag-warn">${tag}</div>`).join("")}
+							</div>
+						</td>
+					</tr>
+					<tr class="">
+						<td width="80">주요 스택</td>
 						<td>
 							<div class="d-flex" style="gap: 0.2rem;">
 								${project.mainSkills
-                  .map((tag) => `<div class="tag tag-info">${tag}</div>`)
+                  .map((tag) => `<div class="tag tag-error">${tag}</div>`)
                   .join("")}
 							</div>
 						</td>
 					</tr>
 					<tr class="">
-						<td width="80">Sub Skill</td>
+						<td width="80">사용 스택</td>
 						<td>
 							<div class="d-flex" style="gap: 0.2rem;">
 								${project.skills
-                  .map((tag) => `<div class="tag tag-success">${tag}</div>`)
+                  .map((tag) => `<div class="tag tag-gray">${tag}</div>`)
                   .join("")}
 							</div>
 						</td>
@@ -95,7 +103,7 @@ export default ({ page, project }) => `
 			
 			<div class="divider-1"></div>
 			<div class="text-title-1">
-				개발 항목
+				담당 업무
 			</div>
 			<div class="list" style="gap: 0.3rem;">
 				${project.list
