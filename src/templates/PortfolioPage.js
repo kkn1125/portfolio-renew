@@ -15,8 +15,8 @@ export default ({ page, project }) => `
 		</div>
 		
 		-->
-		<div class="container-50 d-flex flex-column" style="gap: 0.3rem; position: relative;">
-			<div class="text-title-2 d-flex align-items-center gap-1">
+		<div class="container-90-sm container-50-md d-flex flex-column" style="gap: 0.3rem; position: relative;">
+			<div class="text-title-2 d-flex flex-column-xs flex-row-md align-items-start-xs align-items-center-md gap-1">
 			${project.title}
 			${
         !project.links.find((link) => link.name === "demo")

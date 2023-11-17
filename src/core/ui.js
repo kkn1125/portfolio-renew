@@ -278,11 +278,11 @@ export default class UI {
   }
 
   renderSkillSet(title, skills) {
-    return `<div class="list-item justify-content-center align-items-center flex-wrap flex-column flex-row-${RESPONSIVE} gap-1-sm gap-5-${RESPONSIVE}">
+    return `<div class="list-item justify-content-center align-items-center flex-wrap flex-column flex-row-${RESPONSIVE} gap-1 gap-5-${RESPONSIVE}">
     <div class="text-gray text-uppercase f-bold fs-2 fs-inherit-${RESPONSIVE}">
       ${title}
     </div>
-    <div class="d-flex flex-1 justify-content-center justify-content-start-${RESPONSIVE} gap-3 flex-wrap">
+    <div class="d-flex flex-1 justify-content-center justify-content-start-${RESPONSIVE} gap-x-3-xs gap-y-2-xs gap-3-md flex-wrap">
       ${skills.map(SkillIcon).join("")}
     </div>
   </div>`;

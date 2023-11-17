@@ -9,6 +9,7 @@ body,
   margin: 0;
   @include user-select-none;
   @include height(100%);
+  word-break: break-all;
 }
 
 #app {

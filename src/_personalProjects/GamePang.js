@@ -76,7 +76,7 @@ GamePang.images = [
     "게임 플레이",
     "https://github.com/kkn1125/portfolio-renew/assets/71887242/2f1eca26-9dfb-4e49-9ef0-9241b059b085"
   ),
-  FORM_IMAGE("실제 게임 이미지", "/gamepang02.png"),
+  FORM_IMAGE("데스크탑 게임 이미지", "/gamepang02.png"),
   FORM_IMAGE(
     "모바일 반응형",
     "https://github.com/kkn1125/portfolio-renew/assets/71887242/51135e41-9052-4433-9b0f-39e4bb3d829d"

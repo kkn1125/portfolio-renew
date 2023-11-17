@@ -9,7 +9,7 @@ export default ({ title = "" }) => `
 	<canvas id="layer-sub-app"></canvas>
 	-->
 	</div>
-	<div class="container-50 d-flex flex-column gap-5">
+	<div class="container-90-sm container-50-md d-flex flex-column gap-5">
 		<div class="my-10">
 			<div class="text-title-3 my-10">
 				Project [${Projects.length}]

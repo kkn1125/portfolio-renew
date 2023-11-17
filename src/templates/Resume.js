@@ -41,7 +41,7 @@ export default ({ title = "" }) => {
     "mui",
   ];
   return `
-  <div class="container-70 d-flex flex-column gap-5">
+  <div class="container-90-sm container-50-md d-flex flex-column gap-5">
       
     <section class="d-flex flex-column gap-2">
       ${textTitle("resume", 3, true, false)}
@@ -54,7 +54,7 @@ export default ({ title = "" }) => {
         <div class="d-flex flex-column list">
           ${ProfileList.map(
             (data) =>
-              `<div class="list-item">
+              `<div class="list-item gap-1">
                 <span class="header">${data.header}</span>
                 <span class="body">${data.body}</span>
               </div>`

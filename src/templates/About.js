@@ -1,7 +1,7 @@
 import { BLOG, GITHUB } from "../util/global";
 
 export default ({ title = "" }) => `
-	<div class="container-50 d-flex flex-column gap-5">
+	<div class="container-90-sm container-50-md d-flex flex-column gap-5">
 		<div>
 			<div class="text-title-2">
 				About
