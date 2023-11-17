@@ -1,10 +1,11 @@
 import { changeSign, PROFILE_IMG, RESPONSIVE, textTitle } from "../util/global";
 import Projects from "../_projects";
 import manager from "../core";
-import { responsiveImagePath } from "../util/tool";
+import { ditConvert, responsiveImagePath } from "../util/tool";
 
 export default ({ page, project }) => `
 	<div class="d-flex flex-column gap-2">
+		<div class="divider-3"></div>
 		<!--
 		<div style="background-color: #565656; background-image: url(${
       project.cover.startsWith("http")
@@ -12,15 +13,19 @@ export default ({ page, project }) => `
         : "/images/" + project.name + project.cover
     }); background-size: cover; background-position: center center; background-repeat: no-repeat;min-height: 500px; filter: brightness(0.9)">
 		</div>
+		
 		-->
-		<div class="container-50 d-flex flex-column" style="gap: 0.3rem;">
-			<div class="text-title-2">
-			${project.title}${
-  !project.links.find((link) => link.name === "demo")
-    ? `<div>&nbsp;<span class='tag tag-gray'>등록된 데모 사이트가 없습니다.</span></div>`
-    : ""
-}
+		<div class="container-50 d-flex flex-column" style="gap: 0.3rem; position: relative;">
+			<div class="text-title-2 d-flex align-items-center gap-1">
+			${project.title}
+			${
+        !project.links.find((link) => link.name === "demo")
+          ? `<span class='tag tag-gray'>등록된 데모 사이트가 없습니다.</span>`
+          : ""
+      }
 			</div>
+
+			<div class="divider-3"></div>
 			
 			<div class="text-title-1">
 				📄 프로젝트 정보
@@ -97,7 +102,7 @@ export default ({ page, project }) => `
 			
 			${
         project.movie
-          ? `<div class="divider-1"></div><span align="center"><video src="${project.movie}" autoplay muted height="350" frameborder="0"></video></span>`
+          ? `<div class="divider-1"></div><span align="center"><video src="${project.movie}" autoplay muted height="350" frameborder="0" style="max-width:100%;"></video></span>`
           : ""
       }
 			
@@ -107,9 +112,50 @@ export default ({ page, project }) => `
 			</div>
 			<div class="list" style="gap: 0.3rem;">
 				${project.list
-          .map((item) => `<div class="list-item">${item.header}</div>`)
+          .map(
+            (item) => `<div class="list-item">${ditConvert(item.header)}</div>`
+          )
           .join("")}
 			</div>
+
+			${project.content ? `<div class="divider-1"></div>${project.content}` : ""}
+
+			<div class="divider-1"></div>
+
+			${
+        project.troubleshooting.length > 0
+          ? `<div class="text-title-1">
+					문제 상황
+				</div>
+				
+				<div class="d-flex flex-column" style="gap: 2rem;">
+				${project.troubleshooting
+          .map(
+            ({ problem, resolve, process, result }) =>
+              `<div class="d-flex flex-column list" style="gap: 0.5rem;">
+								<div class="list-item">
+									<span class="fw-bold me-3">Issue</span>
+									<span>${problem}</span>
+								</div>
+								<div class="d-flex flex-column list" style="gap: 0.1rem;">
+									<div class="list-item fw-bold">해결방안</div>
+									${resolve.map((resolve) => `<div class="list-item">${resolve}</div>`).join("")}
+								</div>
+								<div class="d-flex flex-column list" style="gap: 0.1rem;">
+									<div class="list-item fw-bold">과정</div>
+									${process.map((process) => `<div class="list-item">${process}</div>`).join("")}
+								</div>
+								<div class="d-flex flex-column list" style="gap: 0.1rem;">
+									<div class="list-item fw-bold">결과</div>
+									${result.map((result) => `<div class="list-item">${result}</div>`).join("")}
+								</div>
+							</div>`
+          )
+          .join("")}
+				</div>`
+          : ""
+      }
+			
 
 			<!--
 			<div class="divider-1"></div>
@@ -137,7 +183,7 @@ export default ({ page, project }) => `
           : ""
       }
 
-			${project.content ? `<div class="divider-1"></div>${project.content}` : ""}
 		</div>
+		<div class="divider-3"></div>
 	</div>
 `;

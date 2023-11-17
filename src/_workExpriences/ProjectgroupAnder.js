@@ -35,24 +35,28 @@ ProjectgroupAnder.inProgress = false;
 ProjectgroupAnder.listOpen = true;
 ProjectgroupAnder.list = [
   {
-    header: "육아 교육 메타버스 서비스 백오피스 제작",
-    body: `백오피스 제작`,
+    header: "서버 환경 구축",
+    body: `인프라`,
   },
   {
-    header: "육아 교육 메타버스 서비스 DB/API 서버 설계 및 제작",
-    body: `서버 설계 제작`,
+    header: "API 서버 제작",
+    body: `백앤드 담당`,
   },
   {
-    header: "라이브 커머스 스트리밍 서비스 제작",
-    body: `스트리밍 서비스 제작`,
+    header: "DB 설계 관리",
+    body: `데이터베이스 담당`,
   },
   {
-    header: "회의형 화상 채팅 플랫폼 제작",
-    body: `미디어 서버 구현, 소켓 서버 제작`,
+    header: "개발 서버 관리",
+    body: `인프라`,
   },
   {
-    header: "3D 메타버스 멀티플레이 가능한 소켓 서버 구축 및 DB 이중화",
-    body: `DB 이중화, 소켓 서버 분산 아키텍처 설계 및 구축`,
+    header: "서버 부하 테스트",
+    body: `QA`,
+  },
+  {
+    header: "미디어 공유 플랫폼 구축",
+    body: `백앤드 제작 및 인프라`,
   },
 ];
 

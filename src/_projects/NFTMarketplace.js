@@ -15,16 +15,16 @@ NFTMarketplace.inProgress = false;
 NFTMarketplace.listOpen = false;
 NFTMarketplace.list = [
   {
+    header: "truffle 및 ganache를 활용한 블록체인 기술 마켓에 결합",
+    body: `blockchain`,
+  },
+  {
     header: "메인 페이지 및 주문, 결제, 파일 업로드 제작",
     body: `frontend`,
   },
   {
     header: "반응형 페이지 제작 및 폼 검증",
     body: `frontend`,
-  },
-  {
-    header: "truffle 및 ganache를 활용한 블록체인 기술 마켓에 결합",
-    body: `blockchain`,
   },
 ];
 NFTMarketplace.name = "nftmarket";

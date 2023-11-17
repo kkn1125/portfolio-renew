@@ -88,3 +88,4 @@ export const sortList = (a, b) => {
   if (a.start > b.start) return -1;
   return 0;
 };
+export const ditConvert = (text) => text.replace(/\@\:\-\>/g, "→");

@@ -34,6 +34,7 @@ export default class BaseModel {
   path = "";
   /** @type {string} - portfolio cover image path */
   cover = basicCovers[5];
+  /** @type {[title:string, image: string][]} */
   images = [];
   movie = "";
   /** @type {string} */
@@ -48,6 +49,9 @@ export default class BaseModel {
 
   /** @type {boolean} */
   important = false;
+
+  /** @type {{problem: string; process: string[]; resolve:string[]; result: string[] }[]} */
+  troubleshooting = [];
 
   set links(values) {
     if (values instanceof Array) {

@@ -69,123 +69,201 @@ ProjectNarang.images = [
 ProjectNarang.movie =
   "https://user-images.githubusercontent.com/71887242/187068070-8f8233ca-15d9-4e28-a62f-65799c1b1d0e.mp4";
 ProjectNarang.content = `<div>
-        <div class="divider-2"></div>
-        <div class="text-title-2">dependencies</div>
-        <ol>
-            <li>MongoDB</li>
-            <li>Lombok</li>
-            <li>Spring boot starter</li>
-            <li>Spring security</li>
-            <li>Json Web Token</li>
-            <li>Jackson data-bind</li>
-        </ol>
+  <div class="divider-2"></div>
+  <div class="text-title-2">dependencies</div>
+  <ol>
+    <li>MongoDB</li>
+    <li>Lombok</li>
+    <li>Spring boot starter</li>
+    <li>Spring security</li>
+    <li>Json Web Token</li>
+    <li>Jackson data-bind</li>
+  </ol>
 
-        <div class="divider-2"></div>
-        <div class="text-title-2">lib, api</div>
-        <ol>
-            <li>Suneditor.js</li>
-            <li>face-api.js</li>
-            <li>Naver papago api</li>
-            <li>Axios</li>
-            <li>Formik</li>
-            <li>Material-UI</li>
-            <li>Emotion</li>
-            <li>AOS</li>
-            <li>Chart.js</li>
-            <li>htmle-react-parser</li>
-            <li>jose</li>
-            <li>Sentiment.js</li>
-            <li>Yup</li>
-            <li>js-sha</li>
-            <li>prettier</li>
-            <li>babel</li>
-            <li>typscript</li>
-        </ol>
+  <div class="divider-2"></div>
+  <div class="text-title-2">lib, api</div>
+  <ol>
+    <li>Suneditor.js</li>
+    <li>face-api.js</li>
+    <li>Naver papago api</li>
+    <li>Axios</li>
+    <li>Formik</li>
+    <li>Material-UI</li>
+    <li>Emotion</li>
+    <li>AOS</li>
+    <li>Chart.js</li>
+    <li>htmle-react-parser</li>
+    <li>jose</li>
+    <li>Sentiment.js</li>
+    <li>Yup</li>
+    <li>js-sha</li>
+    <li>prettier</li>
+    <li>babel</li>
+    <li>typscript</li>
+  </ol>
 
-        <div class="divider-2"></div>
-        <div class="text-title-2">구분</div>
-            ${U} 회원 전용
-            ${A} 공용
-            <ol>
-                <li>메인페이지</li>
-                <li>일기</li>
-                <ol>
-                    <li>CRUD ${A}</li>
-                </ol>
-                <li>댓글</li>
-                <ol>
-                    <li>CRUD ${U}</li>
-                </ol>
-                <li>좋아요</li>
-                <ol>
-                    <li>CRUD ${U}</li>
-                </ol>
-                <li>회원정보페이지</li>
-                <ol>
-                    <li>CRUD ${U}</li>
-                </ol>
-                <li>회원로그인, 가입</li>
-                <ol>
-                    <li>CRUD ${U}</li>
-                </ol>
-                <li>감정 그래프 조회 ${U}</li>
-                <li>About 페이지 ${A}</li>
-            </ol>
-        </div>
+  <div class="divider-2"></div>
+  <div class="text-title-2">구분</div>
+  ${U} 회원 전용 ${A} 공용
+  <ol>
+    <li>메인페이지</li>
+    <li>일기</li>
+    <ol>
+      <li>CRUD ${A}</li>
+    </ol>
+    <li>댓글</li>
+    <ol>
+      <li>CRUD ${U}</li>
+    </ol>
+    <li>좋아요</li>
+    <ol>
+      <li>CRUD ${U}</li>
+    </ol>
+    <li>회원정보페이지</li>
+    <ol>
+      <li>CRUD ${U}</li>
+    </ol>
+    <li>회원로그인, 가입</li>
+    <ol>
+      <li>CRUD ${U}</li>
+    </ol>
+    <li>감정 그래프 조회 ${U}</li>
+    <li>About 페이지 ${A}</li>
+  </ol>
 
-        <div class="divider-2"></div>
-        <div class="text-title-2">ERD</div>
-        <div>
-          <img src="https://user-images.githubusercontent.com/71887242/186116219-1740e0eb-f0cd-47a4-805d-44d7d258e721.png" alt="erd" style="width: 100%;" />
-          <a href="https://nova-darkness-84c.notion.site/DB-3b192585505d4940bcb214fda45ce07e" title="DB 명세서 바로가기">DB 명세서</a>
-        </div>
+  <div class="divider-2"></div>
+  <div class="text-title-2">ERD</div>
+  <div>
+    <img
+      src="https://user-images.githubusercontent.com/71887242/186116219-1740e0eb-f0cd-47a4-805d-44d7d258e721.png"
+      alt="erd"
+      style="width: 100%"
+    />
+    <a
+      href="https://nova-darkness-84c.notion.site/DB-3b192585505d4940bcb214fda45ce07e"
+      title="DB 명세서 바로가기"
+      >DB 명세서</a
+    >
+  </div>
 
-        <div class="divider-2"></div>
-        <div class="text-title-2">API</div>
-        <div>
-          <img src="https://user-images.githubusercontent.com/71887242/186116219-1740e0eb-f0cd-47a4-805d-44d7d258e721.png" alt="erd" style="width: 100%;" />
-          <a href="https://nova-darkness-84c.notion.site/DB-3b192585505d4940bcb214fda45ce07e" title="DB 명세서 바로가기">DB 명세서</a>
-        </div>
+  <div class="divider-2"></div>
+  <div class="text-title-2">API</div>
+  <div>
+    <img
+      src="https://user-images.githubusercontent.com/71887242/186116219-1740e0eb-f0cd-47a4-805d-44d7d258e721.png"
+      alt="erd"
+      style="width: 100%"
+    />
+    <a
+      href="https://nova-darkness-84c.notion.site/DB-3b192585505d4940bcb214fda45ce07e"
+      title="DB 명세서 바로가기"
+      >DB 명세서</a
+    >
+  </div>
 
-        <div class="divider-2"></div>
-        <div class="text-title-2">LOGO</div>
+  <div class="divider-2"></div>
+  <div class="text-title-2">LOGO</div>
 
-        <div class="text-title-1">Cover Image</div>
-        <div align="center">
-          <img src="https://user-images.githubusercontent.com/71887242/187703475-d9c52cbd-747b-40d9-a730-a15adef3eafc.png" alt="main" />
-        </div>
+  <div class="text-title-1">Cover Image</div>
+  <div align="center">
+    <img
+      src="https://user-images.githubusercontent.com/71887242/187703475-d9c52cbd-747b-40d9-a730-a15adef3eafc.png"
+      alt="main"
+    />
+  </div>
 
-        <div class="divider-2"></div>
-        <div class="text-title-1">favicon</div>
-        <div >
-          <img src="https://user-images.githubusercontent.com/71887242/187655635-1305cec5-bdeb-432a-a640-e78ff717cbb4.png" alt="main" />
-        </div>
+  <div class="divider-2"></div>
+  <div class="text-title-1">favicon</div>
+  <div>
+    <img
+      src="https://user-images.githubusercontent.com/71887242/187655635-1305cec5-bdeb-432a-a640-e78ff717cbb4.png"
+      alt="main"
+    />
+  </div>
 
-        <div class="divider-2"></div>
-        <div class="text-title-1">Full name logo</div>
-        <div style="background-color: #00000015; border-radius: 5px; margin-top: 20px; margin-bottom: 20px; padding: 1rem;">
-          <img src="https://user-images.githubusercontent.com/71887242/187655823-35144d2f-aa9a-4d54-8911-35d740415478.png" alt="main" />
-        </div>
+  <div class="divider-2"></div>
+  <div class="text-title-1">Full name logo</div>
+  <div
+    style="
+      background-color: #00000015;
+      border-radius: 5px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 1rem;
+    "
+  >
+    <img
+      src="https://user-images.githubusercontent.com/71887242/187655823-35144d2f-aa9a-4d54-8911-35d740415478.png"
+      alt="main"
+    />
+  </div>
 
+  <div class="divider-2"></div>
+  <div class="text-title-1">Short name logo (color)</div>
+  <div
+    style="
+      background-color: #00000015;
+      border-radius: 5px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 1rem;
+    "
+  >
+    <img
+      src="https://user-images.githubusercontent.com/71887242/187655882-5a5df268-3d4f-4f21-ad8d-6a455c130774.png"
+      alt="main"
+    />
+  </div>
 
-        <div class="divider-2"></div>
-        <div class="text-title-1">Short name logo (color)</div>
-        <div style="background-color: #00000015; border-radius: 5px; margin-top: 20px; margin-bottom: 20px; padding: 1rem;">
-          <img src="https://user-images.githubusercontent.com/71887242/187655882-5a5df268-3d4f-4f21-ad8d-6a455c130774.png" alt="main" />
-        </div>
+  <div class="divider-2"></div>
+  <div class="text-title-1">Short name logo (grayscale)</div>
+  <div
+    style="
+      background-color: #00000015;
+      border-radius: 5px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 1rem;
+    "
+  >
+    <img
+      src="https://user-images.githubusercontent.com/71887242/187656021-998215e6-d0e6-4b78-86d2-b0dcd2637fa6.png"
+      alt="main"
+    />
+  </div>
 
-        <div class="divider-2"></div>
-        <div class="text-title-1">Short name logo (grayscale)</div>
-        <div style="background-color: #00000015; border-radius: 5px; margin-top: 20px; margin-bottom: 20px; padding: 1rem;">
-          <img src="https://user-images.githubusercontent.com/71887242/187656021-998215e6-d0e6-4b78-86d2-b0dcd2637fa6.png" alt="main" />
-        </div>
+  <!-- <div class="text-title-1">Database 명세서</div>
 
-        <!-- <div class="text-title-1">Database 명세서</div>
-
-        <div class="text-title-1">User</div>
-        ${/* dbUser */ ""}
-        ... 작성 중 
-        -->
-    </div>`;
+  <div class="text-title-1">User</div>
+  ${/* dbUser */ ""}
+  ... 작성 중 
+  -->
+</div>
+`;
+ProjectNarang.troubleshooting = [
+  {
+    problem: "안면인식 로그인",
+    resolve: [
+      "안면인식 시 등록된 사용자, 본인의 사진을 업로드한 사용자에 한하여 로그인 처리",
+    ],
+    process: [
+      "WebRTC API를 사용하여 사용자 안면 인식",
+      "다른 사용자의 사진을 남용해도 해당 사용자가 업로드한 것이 아니면 모두 로그인 거부",
+    ],
+    result: ["로그인 간소화"],
+  },
+  {
+    problem: "감정 그래프 표시 및 관련 상품 추천",
+    resolve: ["일기 작성 후 긍, 부정어 도출과 도출된 텍스트의 감정 점수 책정"],
+    process: [
+      "긍, 부정어 도출과 텍스트 감정 분석을 통해 얻은 데이터를 수치화하여 chart.js를 사용하여 그래프 표시",
+      "긍, 부정 점수를 기반하여 관련 상품 추천 알고리즘 개발",
+    ],
+    result: [
+      "감정 점수에 따른 그래프 표시로 기간별 감정 변동사항 확인 용이",
+      "감정점수를 기반으로 한 상품 추천으로 자가 케어 도움",
+    ],
+  },
+];
 
 export default ProjectNarang;

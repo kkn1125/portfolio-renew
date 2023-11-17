@@ -52,6 +52,19 @@ GanttChart.list = [
     body: ``,
   },
 ];
+GanttChart.troubleshooting = [
+  {
+    problem: "다중 셀 단위 조정",
+    resolve: [
+      "다중 선택을 위해 각 셀 요소에 dataset 값을 통해 셀 위치 값 저장",
+    ],
+    process: [
+      "셀 요소 초기화 시 dataset 값으로 위치 값 표기",
+      "다중 선택 시 선택된 셀 요소의 dataset 값으로 스타일 및 텍스트 일괄 조정",
+    ],
+    result: ["단일, 다중 셀 일괄 처리 기능 추가하여 테이블 작성 시간 단축"],
+  },
+];
 GanttChart.links = [FORM_URL("demo", "https://kkn1125.github.io/ganttChart/")];
 GanttChart.github = "https://github.com/kkn1125/ganttChart";
 GanttChart.name = "gantt-chart";

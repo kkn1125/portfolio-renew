@@ -284,13 +284,13 @@ class SubApp {
               block: "start",
               inline: "nearest",
             });
-            target.style.transition = "150ms ease-in-out";
+            // target.style.transition = "150ms ease-in-out";
             setTimeout(() => {
-              target.style.boxShadow = "0 0 1rem 0.5rem #ca15638f";
+              // target.style.boxShadow = "0 0 1rem 0.5rem #ca15638f";
               target.style.scrollMarginBlockStart = "";
-              setTimeout(() => {
-                target.style.boxShadow = "";
-              }, 3000);
+              // setTimeout(() => {
+              //   target.style.boxShadow = "";
+              // }, 3000);
             }, 1000);
           }, 500);
         }

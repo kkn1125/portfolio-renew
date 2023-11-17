@@ -10,7 +10,6 @@ MediAPIServer.team = "(주)프로젝트그룹 앤더";
 MediAPIServer.role = ["backend"];
 MediAPIServer.mainSkills = ["Fastify", "TypeScript", "TypeORM"];
 MediAPIServer.skills = [
-  "Node.js",
   "Formik",
   "yup",
   "JWT",
@@ -27,28 +26,51 @@ MediAPIServer.listOpen = true;
 MediAPIServer.list = [
   {
     header: "AWS 서버 빌드 배포",
-    body: `backend`,
+    body: `infra`,
+  },
+  {
+    header: "쉘 스크립트를 이용한 Docker 빌드, 배포 자동화",
+    body: `devops`,
+  },
+  {
+    header: "docker-compose를 이용한 컨테이너 관리",
+    body: `devops`,
   },
   {
     header: "DB, API, 서버 아키텍처 설계 및 제작",
     body: `backend`,
   },
   {
-    header: "사용자 API 호출에 필요한 HMAC 토큰 제작 및 적용",
-    body: `backend`,
-  },
-  {
-    header: "메타버스 내 금지어 등록 및 필터링",
-    body: `backend`,
-  },
-  {
     header:
-      "API 응답 속도 최적화 위해 cache 기능 개발 및 적용 (res time: 17ms -> 3ms)",
+      "데이터베이스 관리 및 유지보수성을 고려한 TypeORM 사용 제안 및 도입",
     body: `backend`,
   },
   {
-    header: "DB, API 명세서 및 사용설명서 등 문서화",
+    header: "이미지 호스팅 서버 연동",
     body: `backend`,
+  },
+  {
+    header: "DB명세서 작성",
+    body: `document`,
+  },
+  {
+    header: "OpenAPI 기반으로 API 명세서 및 사용설명서 제작",
+    body: `document`,
+  },
+];
+MediAPIServer.troubleshooting = [
+  {
+    problem: "사용자 증가에 따른 데이터베이스 부하증가",
+    process: [
+      "DB 이중화로 읽기 기능과 수정 기능 분리",
+      "마스터 DB에서 읽기 기능 수행",
+      "슬레이브 DB에서 생성,수정,삭제 기능 수행",
+    ],
+    resolve: [
+      "마스터 DB와 슬레이브 DB를 분리",
+      "AWS EC2 인스턴스 추가 후 개별로 DB 설치 및 연결",
+    ],
+    result: ["DB에서 주로 일어나는 읽기 기능을 분리하여 부하 분산"],
   },
 ];
 MediAPIServer.name = "m-api-server";

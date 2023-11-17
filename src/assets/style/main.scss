@@ -169,6 +169,10 @@
     max-height: 0px;
   }
 
+  .list:not(:first-of-type) {
+    @include ps(5rem);
+  }
+
   & .list-item {
     font-weight: 200;
     font-size: calc(0.4rem + 0.5vw);
@@ -176,6 +180,9 @@
     display: flex;
     flex-wrap: wrap;
     // gap: 1rem;
+    &:not(:last-of-type) {
+      margin-bottom: 2rem;
+    }
 
     &.dense {
       font-size: calc(0.3rem + 0.5vw);
