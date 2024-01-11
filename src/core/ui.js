@@ -66,7 +66,8 @@ export default class UI {
 
       let temp = [];
       if (e.ctrlKey && e.altKey && key === "p") {
-        document.body.style.overflow = "revert";
+        document.body.style.overflow = "unset";
+        document.body.querySelector("#main").style.paddingBottom = "5em";
         document.getElementById("main").classList.remove("overflow-y-auto");
         document.querySelectorAll(".section-item .list").forEach((el) => {
           if (!el.classList.contains("list-open")) {
@@ -79,7 +80,8 @@ export default class UI {
         });
         print();
         document.body.style.overflow = "";
-        document.getElementById("main").classList.add("overflow-auto");
+        document.body.main.style.paddingBottom = "";
+        document.getElementById("main").classList.add("overflow-y-auto");
         temp.forEach((el) => {
           el.click();
         });
@@ -218,7 +220,7 @@ export default class UI {
     const btnText = listOpen ? CLOSE_TEXT_KO : OPEN_TEXT_KO;
 
     return `
-  <div class="section-item">
+  <div class="section-item mb-5">
     <div class="d-flex flex-column gap-2 justify-content-between">
 
       <div class="flex-0-0-80">

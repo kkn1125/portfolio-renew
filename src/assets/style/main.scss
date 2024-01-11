@@ -1280,6 +1280,7 @@
   background-color: rgba($gray-color, 0.95);
   width: var(--deco-size, 15px);
   height: var(--deco-size, 15px);
+  z-index: 5;
   @include border-radius(var(--deco-radius, 0px));
   @include transform(translateY(-50%));
 }
@@ -1290,6 +1291,9 @@
 .text-title-dash-start {
   &::before {
     content: "";
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
     flex: 1;
     vertical-align: middle;
     display: inline-block;
@@ -1303,6 +1307,9 @@
   &::before,
   &::after {
     content: "";
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
     flex: 1;
     vertical-align: middle;
     display: inline-block;
@@ -1318,6 +1325,9 @@
 .text-title-dash-end {
   &::after {
     content: "";
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
     flex: 1;
     vertical-align: middle;
     display: inline-block;
@@ -1345,7 +1355,10 @@
     @include mb(#{$size * 0.5} + "rem");
 
     & span:first-child {
+      z-index: 5;
       flex: 0 0 auto;
+      background-color: white;
+      padding-right: 0.3em;
     }
 
     // align-items: center;
