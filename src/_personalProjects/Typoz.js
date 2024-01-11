@@ -59,6 +59,6 @@ Typoz.github = "https://github.com/AnyRequest/typoz";
 Typoz.name = "typoz";
 Typoz.path = "/typoz";
 Typoz.cover = "/typoz.png";
-// Typoz.images = [FORM_IMAGE("업데이트 내역 markdown → html", "typoz.png")];
+Typoz.images = [FORM_IMAGE("랜딩 페이지", "anyrequest.github.io_typoz_.png")];
 
 export default Typoz;

@@ -45,7 +45,7 @@ MenteeUnion.links = [FORM_URL("demo", "https://menteeunion.kro.kr")];
 MenteeUnion.github = "https://github.com/kkn1125/project-mentee-union";
 MenteeUnion.name = "project-mentee-union";
 MenteeUnion.path = "/project-mentee-union";
-MenteeUnion.cover = "/mentees_main.png";
-MenteeUnion.images = [];
+MenteeUnion.cover = "/mentee-union.png";
+MenteeUnion.images = [FORM_IMAGE("랜딩 페이지", "menteeunion.kro.kr_.png")];
 
 export default MenteeUnion;

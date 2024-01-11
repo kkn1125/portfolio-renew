@@ -40,7 +40,7 @@ class SubApp {
   >[] = [];
   box: THREE.Mesh<
     THREE.BoxGeometry,
-    THREE.MeshBasicMaterial,
+    THREE.MeshPhongMaterial,
     THREE.Object3DEventMap
   >[] = [];
 
@@ -50,11 +50,11 @@ class SubApp {
     wallGeometry?: THREE.PlaneGeometry;
     geometry?: THREE.PlaneGeometry;
     material?: THREE.MeshPhongMaterial;
-    wallMaterial?: THREE.MeshBasicMaterial;
+    wallMaterial?: THREE.MeshPhongMaterial;
   } = {};
   private boxGeometry: {
     geometry?: THREE.BoxGeometry;
-    material?: THREE.MeshBasicMaterial;
+    material?: THREE.MeshPhongMaterial;
   } = {};
 
   constructor() {
