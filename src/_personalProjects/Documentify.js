@@ -3,7 +3,7 @@ import { MONTH, FORM_URL, FORM_IMAGE } from "../util/global";
 
 const Documentify = new ProjectModel();
 Documentify.title = "Documentify";
-Documentify.desc = "한글과 특수문자 타자 효과";
+Documentify.desc = "js 파일 주석을 분석하고 자동 문서화 하는 서비스";
 Documentify.team = "개인";
 Documentify.role = ["frontend"];
 Documentify.mainSkills = ["javascript"];

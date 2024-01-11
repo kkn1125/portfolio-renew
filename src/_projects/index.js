@@ -5,8 +5,10 @@ import MediBackOfficeServer from "@/_projects/MediBackOfficeServer";
 import NFTMarketplace from "@/_projects/NFTMarketplace";
 import WebRTCMediaChatService from "@/_projects/WebRTCMediaChatService";
 import { sortImportantList, sortList, sortShowList } from "@/util/tool";
+import CharacterIP from "./CharacterIP";
 
 export default [
+  CharacterIP,
   MediBackOfficeServer,
   MediAPIServer,
   LiveCommerceService,
