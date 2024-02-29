@@ -7,7 +7,7 @@ Mentees.desc =
   "멘티들이 모여 만드는 성장 커뮤니티가 주제 입니다. 수많은 멘토링 서비스를 보면 멘토와 멘티라는 두 가지의 유형으로 분류 됩니다. 멘티의 입장에서 멘토와 곧바로 접하는 경험이 좋을 수 있지만 반면에 부담스럽게 다가올 수도 있다는 생각을 바탕으로 시작하게 된 프로젝트입니다. 같은 상황에 놓인 멘티들이 모여 세미나 및 유용한 정보, 지식을 공유하며 의지가 되는 것을 목표로하고, 멘티들이 서로 추천하여 레벨 시스템을 적용하여 추전 점수가 많으면 레벨 업하며, 특정 레벨이 되면 멘토로 승격되어 멘티와 직접 멘토링할 수 있는 기회를 얻는 커뮤니티 입니다.";
 Mentees.team = "개인";
 Mentees.role = ["frontend"];
-Mentees.mainSkills = ["spring boot"];
+Mentees.mainSkills = ["Spring boot"];
 Mentees.skills = ["JavaScript", "MyBatis", "Bootstrap", "Apache Tiles"];
 Mentees.start = new Date(2021, MONTH(9));
 Mentees.end = new Date(2021, MONTH(9));

@@ -3,6 +3,7 @@ import {
   changeSign,
   dataList,
   isClosed,
+  langTo,
   menuPanel,
   MODE,
   RESPONSIVE,
@@ -193,14 +194,27 @@ export default class UI {
       .join(" ");
     const mainSkillsTags = mainSkills
       .map(
-        (mainSkills) =>
-          `<span class="tag tag-secondary" title="${mainSkills.trim()}">${mainSkills.trim()}</span>`
+        (skill) =>
+          `<span class="tag tag-secondary" title="${skill.trim()}">${
+            langTo[skill.toLowerCase().trim()]
+          }</span>`
       )
       .join(" ");
-    const skillsTags = skills
+    function rightJoin(a, b) {
+      const lowerCase = (s) => s.toLowerCase();
+      const tempB = b.map(lowerCase);
+      for (const o of a) {
+        tempB.includes(lowerCase(o)) && b.splice(b.indexOf(o), 1);
+      }
+      return b;
+    }
+    rightJoin(mainSkills, skills);
+    const skillsTags = [...new Set(skills)]
       .map(
         (skill) =>
-          `<span class="tag tag-warn" title="${skill.trim()}">${skill.trim()}</span>`
+          `<span class="tag tag-warn" title="${skill.trim()}">${
+            langTo[skill.toLowerCase().trim()]
+          }</span>`
       )
       .join(" ");
     const isInProgressEnd = inProgress
@@ -282,7 +296,7 @@ export default class UI {
   renderSkillSet(title, skills) {
     return `<div class="list-item justify-content-center align-items-center flex-wrap flex-column flex-row-${RESPONSIVE} gap-1 gap-5-${RESPONSIVE}">
     <div class="text-gray text-uppercase f-bold fs-2 fs-inherit-${RESPONSIVE}">
-      ${title}
+      ${typeof title !== "number" ? title : "".padStart(title, "　")}
     </div>
     <div class="d-flex flex-1 justify-content-center justify-content-start-${RESPONSIVE} gap-x-3-xs gap-y-2-xs gap-3-md flex-wrap">
       ${skills.map(SkillIcon).join("")}

@@ -12,7 +12,7 @@ export default class Navigator {
 
   back(num = 1) {
     if (this.index - 1 < 0) {
-      console.log("페이지 없음");
+      // console.log("페이지 없음");
       /* 더 이상 페이지 없음 */
       return;
     }
@@ -23,7 +23,7 @@ export default class Navigator {
 
   forward(num = 1) {
     if (this.index + 1 > histories.length - 1) {
-      console.log("페이지 없음");
+      // console.log("페이지 없음");
       /* 더 이상 페이지 없음 */
       return;
     }

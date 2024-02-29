@@ -211,7 +211,7 @@ body,
   .title-to-content {
     &::before {
       content: attr(title);
-      text-transform: capitalize;
+      // text-transform: capitalize;
     }
   }
 
