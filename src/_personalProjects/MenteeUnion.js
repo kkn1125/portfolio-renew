@@ -21,6 +21,25 @@ MenteeUnion.skills = [
 ];
 MenteeUnion.start = new Date(2023, MONTH(12));
 MenteeUnion.end = new Date(2024, MONTH(1));
+MenteeUnion.content = `
+<div>
+  <h1>테스트 계정</h1>
+  <table class="table">
+    <thead class="fw-bold bg-gray text-white text-uppercase">
+      <tr>
+        <td>id</td>
+        <td>pw</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>testuser1@gmail.com</td>
+        <td>qweQ!123</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
 MenteeUnion.inProgress = false;
 MenteeUnion.listOpen = true;
 MenteeUnion.list = [
@@ -36,7 +55,7 @@ MenteeUnion.list = [
   { header: "oracle cloud ReactJS 프로젝트 배포", body: "" },
   { header: "cloudtype 프리티어 NestJS API 배포", body: "" },
   { header: "nginx를 이용한 스태틱 리소스 라우팅, proxy 설정", body: "" },
-  { header: "TLS 적용", body: "" },
+  { header: "SSL 적용", body: "" },
   { header: "DB설계 및 API url 스키마 설계", body: `` },
   { header: "NestJS를 사용하여 API 서버 구축", body: `` },
   { header: "배치 프로그램 제작 및 API 서버 연결 체크 및 재배포", body: `` },

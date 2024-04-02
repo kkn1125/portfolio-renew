@@ -295,7 +295,7 @@ export default class UI {
 
   renderSkillSet(title, skills) {
     return `<div class="list-item justify-content-center align-items-center flex-wrap flex-column flex-row-${RESPONSIVE} gap-1 gap-5-${RESPONSIVE}">
-    <div class="text-gray text-uppercase f-bold fs-2 fs-inherit-${RESPONSIVE}">
+    <div class="text-gray text-uppercase f-bold fs-2 fs-inherit-${RESPONSIVE}" style="min-width: 80px;">
       ${typeof title !== "number" ? title : "".padStart(title, "　")}
     </div>
     <div class="d-flex flex-1 justify-content-center justify-content-start-${RESPONSIVE} gap-x-3-xs gap-y-2-xs gap-3-md flex-wrap">

@@ -1,5 +1,5 @@
 import ProjectModel from "../model/ProjectModel";
-import { MONTH, FORM_URL } from "../util/global";
+import { MONTH, FORM_URL, FORM_IMAGE } from "../util/global";
 
 const TreeParser = new ProjectModel();
 TreeParser.title = "TreeParser";
@@ -44,5 +44,11 @@ TreeParser.github = "https://github.com/kkn1125/treeparser";
 TreeParser.name = "treeparser";
 TreeParser.path = "/treeparser";
 TreeParser.cover = "/tree01.png";
+TreeParser.images = [
+  FORM_IMAGE(
+    "전체 페이지",
+    "https://github.com/kkn1125/portfolio-renew/assets/71887242/fe2526d1-4d0b-49da-a2bc-340f08e90925"
+  ),
+];
 
 export default TreeParser;

@@ -59,24 +59,27 @@ CharacterIP.list = [
     header: "사내 개발 서버 및 실서버 관리",
     body: `backend`,
   },
+  { header: "SSL 적용", body: "" },
 ];
-// CharacterIP.troubleshooting = [
-//   {
-//     problem: "미디어 분할 시 원하는 구간 재생",
-//     resolve: [
-//       "1초 단위로 저장되는 미디어를 파일로 저장하지 않고 버퍼상태로 소켓서버에서 배열 변수로 관리",
-//     ],
-//     process: [
-//       "사용자가 원하는 구간을 배열 인덱싱으로 가져와 미디어 버퍼 데이터를 비디오 트랙에 추가하여 재생",
-//     ],
-//     result: [
-//       "원하는 재생 구간의 미디어를 비교적 자유롭게 가공 가능",
-//       "미디어 파일을 저장하고 가져오는 IO 시간을 절약",
-//     ],
-//   },
-// ];
-// CharacterIP.links = [FORM_URL("demo", "")];
-CharacterIP.name = "live-commerce";
-CharacterIP.path = "/live-commerce";
+CharacterIP.addTroubleshooting({
+  problem: "CI/CD 자동화",
+  process: [
+    "github webhook을 jenkins에 등록한다.",
+    "쉘스크립트에 실서버에서 애플리케이션을 자동 실행할 스크립트를 작성한다.",
+    "빌드할 도커 이미지에 실서버에서 동작할 쉘스크립트 파일을 포함한다.",
+    "프로젝트 빌드 및 github push 성공 시 webhook을 통해 jenkins로 신호를 보내고 pipeline을 실행한다.",
+  ],
+  resolve: [
+    "jenkins가 pipeline에 작성한 스크립트를 실행하고, github의 main 브랜치를 clone하고 build 디렉토리를 도커 이미지로 빌드한다.",
+    "실서버에 도커 이미지를 가져와 설치하고 실행한다.",
+    "실서버에 github에 배포한 프로젝트가 정상 작동하는지 확인한다.",
+  ],
+  result: [
+    "수정된 버전으로 프로젝트가 자동 배포되는 것을 확인한 후에 배포 시간이 절감",
+  ],
+});
+
+CharacterIP.name = "character-ip";
+CharacterIP.path = "/character-ip";
 
 export default CharacterIP;

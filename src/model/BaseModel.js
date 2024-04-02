@@ -1,6 +1,9 @@
 import { basicCovers, MySkillSet } from "../util/global";
 import { format } from "../util/tool";
 
+/**
+ * @property {Array<{problem: string; process: string[]; resolve:string[]; result: string[]}>} troubleshooting
+ */
 export default class BaseModel {
   /** @type {string} */
   title = "";
@@ -20,7 +23,7 @@ export default class BaseModel {
   listOpen = false;
   /** @type {boolean} */
   visible = true;
-  /** @type {string[]} */
+  /** @type {Array<{header:string;body:string}>} */
   list = [];
   /** @type {string[]} */
   skills = [];
@@ -49,8 +52,8 @@ export default class BaseModel {
 
   /** @type {boolean} */
   important = false;
-
-  /** @type {{problem: string; process: string[]; resolve:string[]; result: string[] }[]} */
+  /** @typedef {{problem: string, process: string[], resolve: string[], result: string[]}} Troubleshooting */
+  /** @type {Array<Troubleshooting>} */
   troubleshooting = [];
 
   set links(values) {
@@ -94,6 +97,14 @@ export default class BaseModel {
     } else if (typeof value === "object") {
       this.list.push(value);
     }
+  }
+
+  /**
+   * 
+   * @param {Troubleshooting} troubleshooting 
+   */
+  addTroubleshooting(troubleshooting) {
+    this.troubleshooting.push(troubleshooting);
   }
 }
 new BaseModel().role;

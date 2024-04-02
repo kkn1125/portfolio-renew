@@ -38,6 +38,7 @@ ProjectNarang.list = [
     header: "chart.js를 이용하여 주 단위 감정 데이터를 그래프로 출력",
     body: ``,
   },
+  { header: "SSL 적용", body: "" },
 ];
 ProjectNarang.links = [];
 ProjectNarang.github = "https://github.com/kkn1125/narang";

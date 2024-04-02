@@ -1,10 +1,15 @@
-import { changeSign, PROFILE_IMG, RESPONSIVE, textTitle } from "../util/global";
-import Projects from "../_projects";
-import manager from "../core";
 import { ditConvert, responsiveImagePath } from "../util/tool";
 
 export default ({ page, project }) => `
 	<div class="d-flex flex-column gap-2">
+		<div class="divider-3"></div>
+		
+		<div class="container-90-sm container-50-md d-flex flex-column" style="gap: 0.3rem;">
+			<button class="btn btn-info" onclick="window.manager.navigator.to('/portfolio')">
+				목록으로
+			</button>
+		</div>
+		
 		<div class="divider-3"></div>
 		<!--
 		<div style="background-color: #565656; background-image: url(${
@@ -113,7 +118,10 @@ export default ({ page, project }) => `
 			<div class="list" style="gap: 0.3rem;">
 				${project.list
           .map(
-            (item) => `<div class="list-item">${ditConvert(item.header)}</div>`
+            (item) =>
+              `<div class="list-item" style="font-weight: 400;">${ditConvert(
+                item.header
+              )}</div>`
           )
           .join("")}
 			</div>
@@ -135,19 +143,34 @@ export default ({ page, project }) => `
               `<div class="d-flex flex-column list" style="gap: 0.5rem;">
 								<div class="list-item">
 									<span class="fw-bold me-3">Issue</span>
-									<span>${problem}</span>
+									<span style="font-weight: 400;">${problem}</span>
 								</div>
 								<div class="d-flex flex-column list" style="gap: 0.1rem;">
 									<div class="list-item fw-bold">해결방안</div>
-									${resolve.map((resolve) => `<div class="list-item">${resolve}</div>`).join("")}
+									${resolve
+                    .map(
+                      (resolve) =>
+                        `<div class="list-item" style="font-weight: 400;">${resolve}</div>`
+                    )
+                    .join("")}
 								</div>
 								<div class="d-flex flex-column list" style="gap: 0.1rem;">
 									<div class="list-item fw-bold">과정</div>
-									${process.map((process) => `<div class="list-item">${process}</div>`).join("")}
+									${process
+                    .map(
+                      (process) =>
+                        `<div class="list-item" style="font-weight: 400;">${process}</div>`
+                    )
+                    .join("")}
 								</div>
 								<div class="d-flex flex-column list" style="gap: 0.1rem;">
 									<div class="list-item fw-bold">결과</div>
-									${result.map((result) => `<div class="list-item">${result}</div>`).join("")}
+									${result
+                    .map(
+                      (result) =>
+                        `<div class="list-item" style="font-weight: 400;">${result}</div>`
+                    )
+                    .join("")}
 								</div>
 							</div>`
           )

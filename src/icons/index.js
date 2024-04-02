@@ -21,6 +21,7 @@ import styledcomponent from "@/icons/styledcomponent";
 import typescript from "@/icons/typescript";
 import uwebsockets from "@/icons/uwebsockets";
 import xterm from "@/icons/xterm";
+import mysql from "@/icons/mysql";
 
 export default {
   artillery,
@@ -46,4 +47,5 @@ export default {
   typescript,
   uwebsockets,
   xterm,
+  mysql,
 };

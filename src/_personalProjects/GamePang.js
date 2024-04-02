@@ -13,7 +13,7 @@ GamePang.skills = ["cordova"];
 GamePang.start = new Date(2023, MONTH(9));
 GamePang.end = new Date(2023, MONTH(9));
 GamePang.inProgress = false;
-GamePang.listOpen = true;
+GamePang.listOpen = false;
 GamePang.list = [
   {
     header: "애니메이션 동작 비동기 처리",

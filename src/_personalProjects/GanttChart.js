@@ -17,25 +17,28 @@ GanttChart.inProgress = false;
 GanttChart.listOpen = true;
 GanttChart.list = [
   {
-    header: "셀 단위 행열 추가 기능 개발",
+    header: "상단 메뉴 트리 제작",
     body: ``,
   },
   {
-    header: "드래그 셀렉팅 알고리즘 개발",
+    header: "셀 단위 행, 열 추가 기능 구현",
     body: ``,
   },
   {
-    header:
-      "선택 또는 전체 셀에 대한 배경, 글자, 테두리 색상, 두께, 스타일 지정 기능 개발",
-    body: ``,
-  },
-  {
-    header: "작성된 시트 데이터 직렬화하여 로컬스토리지 저장 기능 개발",
+    header: "드래그 셀렉팅 구현",
     body: ``,
   },
   {
     header:
-      "시트 단위 작성을 위해 시트 생성, 시트 이름 변경, 시트 삭제 기능 구현",
+      "선택 또는 전체 셀에 대한 배경, 글자, 테두리 색상, 두께, 스타일 지정 패널 제작",
+    body: ``,
+  },
+  {
+    header: "작성된 시트 데이터 직렬화하여 로컬스토리지 저장 기능 구현",
+    body: ``,
+  },
+  {
+    header: "시트 단위 관리",
     body: ``,
   },
   {
@@ -43,12 +46,7 @@ GanttChart.list = [
     body: ``,
   },
   {
-    header: "행, 열 위치 이동 알고리즘 개발",
-    body: ``,
-  },
-  {
-    header:
-      "영역 선택 알고리즘 개발 및 선택된 영역 텍스트, 혹은 스타일만 복사 붙여넣기 기능 개발",
+    header: "행, 열 합치기, 나누기 기능 구현",
     body: ``,
   },
 ];
@@ -65,12 +63,23 @@ GanttChart.troubleshooting = [
     result: ["단일, 다중 셀 일괄 처리 기능 추가하여 테이블 작성 시간 단축"],
   },
 ];
-GanttChart.links = [FORM_URL("demo", "https://kkn1125.github.io/ganttChart/")];
-GanttChart.github = "https://github.com/kkn1125/ganttChart";
+GanttChart.links = [
+  FORM_URL("new demo", "https://kkn1125.github.io/gantt-chart/"),
+  FORM_URL("old demo", "https://kkn1125.github.io/ganttChart/"),
+];
+GanttChart.github = "https://github.com/kkn1125/gantt-chart";
 GanttChart.name = "gantt-chart";
 GanttChart.path = "/gantt-chart";
 GanttChart.cover = "/gantt01.png";
 GanttChart.images = [
+  FORM_IMAGE(
+    "리뉴얼 간트 차트",
+    "https://github.com/kkn1125/portfolio-renew/assets/71887242/2d8a4639-3ac0-476a-a538-cd695205e4b5"
+  ),
+  FORM_IMAGE(
+    "간트 차트 예시",
+    "https://github.com/kkn1125/portfolio-renew/assets/71887242/a695593d-3554-4dbe-8935-9932e49ab5aa"
+  ),
   FORM_IMAGE("첫 페이지", "gantt02.png"),
   FORM_IMAGE("상단 툴바 및 스케줄 테이블 예시", "gantt01.png"),
   FORM_IMAGE("셀 선택 후 우클릭 시 조절 패널", "gantt03.png"),

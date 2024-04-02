@@ -1,4 +1,7 @@
+import _personalProjects from "@/_personalProjects";
+import _projects from "@/_projects";
 import Default from "@/layout/Default";
+import SubApp from "@/lib/SubApp";
 import {
   APP,
   currentPage,
@@ -8,10 +11,6 @@ import {
   pages,
 } from "@/util/global";
 import { convertOriginPathname, objectValueConvert } from "@/util/tool";
-import _personalProjects from "@/_personalProjects";
-import _projects from "@/_projects";
-import { subApp } from "@/lib/SubApp";
-import Portfolio from "@/lib/Portfolio";
 
 export default class Router {
   firstPage = false;
@@ -160,7 +159,9 @@ export default class Router {
 
         /* 2023-11-16 15:36:40 여기 */
         if (currentPage.page.name === "portfolio") {
-          subApp.render(document.querySelector("#sub-app"));
+          queueMicrotask(() => {
+            new SubApp().render(document.querySelector("#sub-app"));
+          });
         }
 
         // if (currentPage.page.name === "portfolio") {

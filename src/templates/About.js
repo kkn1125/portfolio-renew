@@ -19,6 +19,10 @@ export default ({ title = "" }) => `
 				<span class="tag tag-info">Blog</span>
 				<a class="text-black text-decoration-none" href="${BLOG}" target="_blank">${BLOG}</a>
 			</div>
+			<div>
+				<span class="tag tag-info">Blog</span>
+				<a class="text-black text-decoration-none" href="https://menteeunion.kro.kr" target="_blank">Menee Union - demo site</a>
+			</div>
 		</div>
 	</div>
 `;

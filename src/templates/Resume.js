@@ -29,6 +29,7 @@ export default ({ title = "" }) => {
     "fastify",
     "express",
     "mariadb",
+    "mysql",
     "socketio",
     "uwebsockets",
     "jwt",

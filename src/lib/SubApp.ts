@@ -3,13 +3,11 @@ import { pages } from "@/util/global";
 import { responsiveImagePath } from "@/util/tool";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
-import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader";
 
 const animationStack: Function[] = [];
 
 class SubApp {
+  activate: number = 0;
   projects: {
     prj: ProjectModel;
   }[];
@@ -56,6 +54,9 @@ class SubApp {
     geometry?: THREE.BoxGeometry;
     material?: THREE.MeshPhongMaterial;
   } = {};
+
+  // rotate: boolean = false;
+  // rotateAmount: number = 0;
 
   constructor() {
     // const canvas1 = document.createElement("canvas");
@@ -150,6 +151,8 @@ class SubApp {
     pointer.x = -1;
     pointer.y = -1;
     function onPointerMove(this: SubApp, e) {
+      // this.rotate = true;
+
       const target = e.target as HTMLCanvasElement;
       let gapX = e.clientX - e.offsetX;
       let gapY = e.clientY - e.offsetY;
@@ -301,6 +304,13 @@ class SubApp {
     this.raycaster = raycaster;
     this.pointer = pointer;
 
+    // target.addEventListener("mouseleave", () => {
+    //   this.rotate = false;
+    //   if (this.rotateAmount > 0) {
+    //     this.scene.rotateY(-this.rotateAmount);
+    //     this.rotateAmount = 0;
+    //   }
+    // });
     target.addEventListener("pointermove", onPointerMove.bind(this), false);
     target.addEventListener("click", onPointerClick.bind(this), false);
   }
@@ -501,8 +511,8 @@ class SubApp {
           const texture = new THREE.TextureLoader().load(
             responsiveImagePath(project.prj.name, project.prj.cover)
           );
-          texture.magFilter = THREE.LinearFilter; // 이미지의 원래 크기보다 화면에 더 크게 확대되어 랜더링
-          texture.minFilter = THREE.NearestMipMapLinearFilter; // 이미지의 원래 크기보다 화면에 더 작게 확대되어 랜더링
+          texture.magFilter = THREE.LinearFilter; // 이미지의 원래 크기보다 화면에 더 크게 확대되어 렌더링
+          texture.minFilter = THREE.NearestMipMapLinearFilter; // 이미지의 원래 크기보다 화면에 더 작게 확대되어 렌더링
           this.addCustomBox(
             {
               x: 1.5,
@@ -556,7 +566,7 @@ class SubApp {
     // this.camera.position.y = 0 + 30;
     // this.camera.position.z = 0 + 30;
     // this.camera
-    // this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+    // this.camera.lookAt(new THREE.Vector3(20, 30, 40));
 
     const delta = this.clock.getDelta();
 
@@ -574,6 +584,25 @@ class SubApp {
     //   //@ts-ignore
     //   intersects[0]?.object.material.color.set("#ffaa00");
     // }
+
+    // const angleValue = Math.PI * (0.3 / 180);
+
+    // if (!this.rotate) {
+    //   this.scene.rotateY(angleValue);
+    //   this.rotateAmount += angleValue;
+    //   const angle = Math.floor((this.rotateAmount / Math.PI) * 180);
+    //   if (angle > 360) {
+    //     this.rotateAmount = 0;
+    //   }
+    // } else {
+    //   const angle = Math.floor((this.rotateAmount / Math.PI) * 180) % 360;
+    //   if (angle >= 0) {
+    //     const fixedSecond = parseFloat(this.rotateAmount.toFixed(1));
+    //     this.rotateAmount -= Math.PI * (fixedSecond / 180);
+    //     this.scene.rotateY(-Math.PI * (fixedSecond / 180));
+    //   }
+    // }
+
     this.scene.children.find(
       (
         child: THREE.Mesh<
@@ -596,8 +625,13 @@ class SubApp {
     if (animationStack.length > 0) {
       animationStack.shift()();
     }
-    requestAnimationFrame(this.animate.bind(this));
+    this.activate = requestAnimationFrame(this.animate.bind(this));
     this.renderer.render(this.scene, this.camera);
+  }
+
+  destroy() {
+    cancelAnimationFrame(this.activate);
+    this.activate = 0;
   }
 
   render(target: HTMLElement) {
@@ -608,4 +642,5 @@ class SubApp {
   }
 }
 
-export const subApp = new SubApp();
+// export const subApp = new SubApp();
+export default SubApp;
