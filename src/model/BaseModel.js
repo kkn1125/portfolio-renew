@@ -1,5 +1,4 @@
 import { basicCovers, MySkillSet } from "../util/global";
-import { format } from "../util/tool";
 
 /**
  * @property {Array<{problem: string; process: string[]; resolve:string[]; result: string[]}>} troubleshooting
@@ -100,8 +99,8 @@ export default class BaseModel {
   }
 
   /**
-   * 
-   * @param {Troubleshooting} troubleshooting 
+   *
+   * @param {Troubleshooting} troubleshooting
    */
   addTroubleshooting(troubleshooting) {
     this.troubleshooting.push(troubleshooting);

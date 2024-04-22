@@ -16,6 +16,7 @@ export default [
   MetaverseSocketServer,
   NFTMarketplace,
 ]
+  .filter((item) => item.visible)
   .sort(sortShowList)
   .reduce(
     (acc, item) => {

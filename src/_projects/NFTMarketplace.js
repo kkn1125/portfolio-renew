@@ -13,6 +13,7 @@ NFTMarketplace.start = new Date(2022, MONTH(5));
 NFTMarketplace.end = new Date(2022, MONTH(6));
 NFTMarketplace.inProgress = false;
 NFTMarketplace.listOpen = false;
+NFTMarketplace.visible = false;
 NFTMarketplace.list = [
   {
     header: "truffle 및 ganache를 활용한 블록체인 기술 마켓에 결합",

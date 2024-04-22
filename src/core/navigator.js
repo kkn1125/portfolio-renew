@@ -10,7 +10,7 @@ export default class Navigator {
     document.getElementById("main").scrollTo(0, 0);
   }
 
-  back(num = 1) {
+  back(/* num = 1 */) {
     if (this.index - 1 < 0) {
       // console.log("페이지 없음");
       /* 더 이상 페이지 없음 */
@@ -21,7 +21,7 @@ export default class Navigator {
     this.index = this.index - 1;
   }
 
-  forward(num = 1) {
+  forward(/* num = 1 */) {
     if (this.index + 1 > histories.length - 1) {
       // console.log("페이지 없음");
       /* 더 이상 페이지 없음 */

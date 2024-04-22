@@ -22,6 +22,7 @@ export default [
   ProjectNarang,
   GanttChart,
 ]
+  .filter((item) => item.visible)
   .sort(sortShowList)
   .reduce(
     (acc, item) => {

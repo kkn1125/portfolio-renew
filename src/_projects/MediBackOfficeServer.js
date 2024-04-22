@@ -1,11 +1,12 @@
 import ProjectModel from "@/model/ProjectModel";
-import { FORM_IMAGE, MONTH } from "@/util/global";
+import { MONTH } from "@/util/global";
 
 const MediBackOfficeServer = new ProjectModel();
 
 MediBackOfficeServer.important = true;
 MediBackOfficeServer.title = "육아 교육 메타버스 백오피스";
-MediBackOfficeServer.desc = "육아 정보를 공유 서비스 유지보수 기간 내 백오피스 제작 요청";
+MediBackOfficeServer.desc =
+  "육아 정보를 공유 서비스 유지보수 기간 내 백오피스 제작 요청";
 MediBackOfficeServer.team = "(주)프로젝트그룹 앤더";
 MediBackOfficeServer.role = ["frontend", "backend"];
 MediBackOfficeServer.mainSkills = ["React", "TypeScript"];

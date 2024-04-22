@@ -1,5 +1,5 @@
 import ProjectModel from "../model/ProjectModel";
-import { MONTH, FORM_URL, FORM_IMAGE } from "../util/global";
+import { FORM_IMAGE, MONTH } from "../util/global";
 
 const Mentees = new ProjectModel();
 Mentees.title = "Mentees";

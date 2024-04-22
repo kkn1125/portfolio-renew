@@ -1,7 +1,6 @@
-import { PROFILE_IMG, RESPONSIVE, textTitle } from "../util/global";
+import PersonalProjects from "../_personalProjects";
 import Projects from "../_projects";
 import manager from "../core";
-import PersonalProjects from "../_personalProjects";
 
 export default ({ title = "" }) => `
 	<div id="sub-app" class="d-flex justify-content-center overflow-x-auto">

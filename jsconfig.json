@@ -2,6 +2,10 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "allowUnusedLabels": false,
+    "strictNullChecks": false
   }
 }

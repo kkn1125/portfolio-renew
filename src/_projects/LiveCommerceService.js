@@ -1,5 +1,5 @@
 import ProjectModel from "@/model/ProjectModel";
-import { FORM_URL, MONTH } from "@/util/global";
+import { MONTH } from "@/util/global";
 
 const LiveCommerceService = new ProjectModel();
 
@@ -40,11 +40,6 @@ LiveCommerceService.list = [
     header: "실시간 라이브 상태 체크 및 팝업 태그 제어 기능 구현",
     body: `frontend, backend`,
   },
-  {
-    header:
-      "사내 프로젝트 내 임베딩 및 postMessage를 이용한 임베딩 페이지와 통신 처리",
-    body: `frontend`,
-  },
 ];
 LiveCommerceService.troubleshooting = [
   {
@@ -56,8 +51,7 @@ LiveCommerceService.troubleshooting = [
       "사용자가 원하는 구간을 배열 인덱싱으로 가져와 미디어 버퍼 데이터를 비디오 트랙에 추가하여 재생",
     ],
     result: [
-      "원하는 재생 구간의 미디어를 비교적 자유롭게 가공 가능",
-      "미디어 파일을 저장하고 가져오는 IO 시간을 절약",
+      "원하는 재생 구간의 미디어를 비교적 자유롭게 가공 가능한 특징을 이해",
     ],
   },
 ];

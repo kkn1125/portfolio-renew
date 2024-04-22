@@ -61,9 +61,9 @@ MetaverseSocketServer.troubleshooting = [
     resolve: ["데이터베이스 부하 증가로 이중화 고려"],
     process: [
       "마스터-슬레이브 DB를 나누어 각 서버에 설치 및 연동",
-      "마스터에서 읽기 기능을 담당하고 슬레이브에서 생성, 수정, 삭제 수행",
+      "마스터에서 변경 기능을 담당하고 슬레이브에서 읽기 기능 수행",
     ],
-    result: ["DB 트랜젝션 충돌 감소"],
+    result: ["DB 부하 감소"],
   },
 ];
 MetaverseSocketServer.name = "metaverse-socket";

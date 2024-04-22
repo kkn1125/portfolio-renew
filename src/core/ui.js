@@ -1,11 +1,9 @@
 import SkillIcon from "@/component/SkillIcon";
 import {
   changeSign,
-  dataList,
   isClosed,
   langTo,
   menuPanel,
-  MODE,
   RESPONSIVE,
 } from "@/util/global";
 import { extractTime, responsiveImagePath } from "@/util/tool";

@@ -24,7 +24,7 @@ CharacterIP.inProgress = false;
 CharacterIP.listOpen = true;
 CharacterIP.list = [
   {
-    header: "jenkins를 이용한 빌드, 배포 자동화",
+    header: "Jenkins를 이용한 빌드, 배포 자동화",
     body: `backend`,
   },
   {
@@ -52,7 +52,7 @@ CharacterIP.list = [
     body: `backend`,
   },
   {
-    header: "ejs를 이용하여 결제 결과 페이지 서버사이드 렌더링 구현",
+    header: "EJS를 이용하여 결제 결과 페이지 서버사이드 렌더링 구현",
     body: `backend`,
   },
   {
@@ -70,7 +70,7 @@ CharacterIP.addTroubleshooting({
     "프로젝트 빌드 및 github push 성공 시 webhook을 통해 jenkins로 신호를 보내고 pipeline을 실행한다.",
   ],
   resolve: [
-    "jenkins가 pipeline에 작성한 스크립트를 실행하고, github의 main 브랜치를 clone하고 build 디렉토리를 도커 이미지로 빌드한다.",
+    "Jenkins가 pipeline에 작성한 스크립트를 실행하고, github의 main 브랜치를 clone하고 build 디렉토리를 도커 이미지로 빌드한다.",
     "실서버에 도커 이미지를 가져와 설치하고 실행한다.",
     "실서버에 github에 배포한 프로젝트가 정상 작동하는지 확인한다.",
   ],

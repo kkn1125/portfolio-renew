@@ -2,6 +2,7 @@ import ProjectModel from "../model/ProjectModel";
 import { MONTH, FORM_URL, FORM_IMAGE } from "../util/global";
 
 const Typer = new ProjectModel();
+
 Typer.title = "Typer";
 Typer.desc = "한글과 특수문자 타자 효과";
 Typer.team = "개인";
@@ -12,6 +13,7 @@ Typer.start = new Date(2021, MONTH(10));
 Typer.end = new Date(2021, MONTH(11));
 Typer.inProgress = false;
 Typer.listOpen = false;
+Typer.visible = false;
 Typer.list = [
   {
     header: "한글을 자음, 모음, 받침을 분해하는 알고리즘 개발",

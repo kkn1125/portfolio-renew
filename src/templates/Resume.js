@@ -1,7 +1,6 @@
+import PersonalProjectExprience from "@/component/PersonalProjectExprience";
 import ProfileList from "@/component/ProfileList";
 import ProjectExprience from "@/component/ProjectExprience";
-import PersonalProjectExprience from "@/component/PersonalProjectExprience";
-import SkillIcon from "@/component/SkillIcon";
 import WorkExprience from "@/component/WorkExprience";
 import { ui } from "@/core/manager";
 import { PROFILE_IMG, RESPONSIVE, textTitle } from "@/util/global";
