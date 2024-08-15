@@ -22,6 +22,7 @@
     "vite": "^4.4.7"
   },
   "dependencies": {
+    "new_portfolio": "file:",
     "three": "^0.158.0"
   }
 }
