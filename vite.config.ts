@@ -21,6 +21,7 @@ export default defineConfig(({ command, mode }) => {
   const host = process.env.HOST;
   const port = +(process.env.PORT || 3000);
 
+  const DEPLOY_PATH = process.env.VITE_DEPLOY_PATH;
   const BRAND = process.env.VITE_BRAND;
   const BLOG = process.env.VITE_BLOG;
   const GITHUB = process.env.VITE_GITHUB;
@@ -32,6 +33,7 @@ export default defineConfig(({ command, mode }) => {
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
       "process.env": {
+        DEPLOY_PATH,
         BRAND,
         BLOG,
         GITHUB,
@@ -39,6 +41,7 @@ export default defineConfig(({ command, mode }) => {
         PROFILE_IMAGE,
       },
     },
+    base: DEPLOY_PATH,
     server: {
       host,
       port,

@@ -1,15 +1,13 @@
 export declare global {}
 
 declare module "@mui/material/styles/createPalette" {
-  // interface Palette {
-  // background: {
-  //   highlight: PaletteColor;
-  // };
-  // }
+  interface Palette {
+    impact: PaletteColor;
+  }
 
-  // interface PaletteOptions {
-  // highlight: PaletteOptions["primary"];
-  // }
+  interface PaletteOptions {
+    impact: PaletteOptions["primary"];
+  }
 
   interface TypeBackground {
     highlight: string;
@@ -18,7 +16,7 @@ declare module "@mui/material/styles/createPalette" {
 
 // Extend color prop on components
 declare module "@mui/material/Button" {
-  // export interface ButtonPropsColorOverrides {
-  //   highlight: true;
-  // }
+  export interface ButtonPropsColorOverrides {
+    imapact: true;
+  }
 }

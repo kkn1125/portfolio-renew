@@ -1,18 +1,18 @@
+import { FOOTER_TEXT } from "@common/variables";
 import { Paper, Stack, Toolbar, Typography } from "@mui/material";
 
 function Footer() {
   return (
     <Stack
-      component={Paper}
       p={3}
       sx={{
-        borderRadius: 0,
+        boxShadow:
+          "0px -1px 10px 0 rgba(0,0,0,0.2), 0px -1px 7px 0 rgba(0,0,0,0.12), 0px -1px 2px 0 rgba(0,0,0,0.12)",
         backgroundColor: (theme) => theme.palette.background.default,
-        backgroundImage: "none",
       }}
     >
       <Typography component="div" align="center" fontWeight={700}>
-        test footer
+        {FOOTER_TEXT}
       </Typography>
     </Stack>
   );
