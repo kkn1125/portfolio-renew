@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @use "sass:math";
 
 @import "./palette.scss";
@@ -1587,4 +1588,16 @@
   td {
     padding: 0.5rem;
   }
+=======
+@import "./fontface.scss";
+@import "./common.scss";
+
+html,
+body,
+#app {
+  margin: 0;
+  user-select: none;
+  height: 100%;
+  word-break: break-all;
+>>>>>>> origin/renew
 }
