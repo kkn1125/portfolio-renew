@@ -1,11 +1,11 @@
 import Footer from "@components/organisms/Footer";
 import Header from "@components/organisms/Header";
-import { Stack, Toolbar } from "@mui/material";
+import { Paper, Stack, Toolbar } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
-    <Stack height="inherit">
+    <Stack component={Paper} height="inherit" sx={{ borderRadius: 'none'}}>
       {/* 상단 메뉴 */}
       <Header />
 

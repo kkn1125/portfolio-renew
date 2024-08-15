@@ -9,11 +9,10 @@ const theme = createTheme({
     mode: "dark",
     primary: { main: "#a77ce4" },
     secondary: { main: "#815a72" },
-    success: { main: "#294d46" },
-    info: { main: "#56889a" },
-    warning: { main: "#ffc069" },
-    error: { main: "#bd717d" },
-    background: { default: "#4b4453", paper: "#b0a8b9" },
+    success: { main: "#53813c" },
+    info: { main: "#0081b8" },
+    warning: { main: "#ee9176" },
+    error: { main: "#c44f6b" },
   },
 });
 

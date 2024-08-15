@@ -57,7 +57,10 @@ export default function Header() {
       <AppBar
         position="static"
         color="inherit"
-        sx={{ backgroundColor: (theme) => theme.palette.background.default }}
+        sx={{
+          backgroundColor: (theme) => theme.palette.background.default,
+          backgroundImage: "none",
+        }}
       >
         <Toolbar>
           <IconButton

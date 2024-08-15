@@ -8,6 +8,7 @@ function Footer() {
       sx={{
         borderRadius: 0,
         backgroundColor: (theme) => theme.palette.background.default,
+        backgroundImage: "none",
       }}
     >
       <Typography component="div" align="center" fontWeight={700}>
