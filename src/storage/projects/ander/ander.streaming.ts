@@ -2,6 +2,7 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
+import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const anderStreaming = new ProjectModel({
@@ -30,5 +31,18 @@ export const anderStreaming = new ProjectModel({
     "채팅 채널 분산 및 시청자 입,퇴장 제어 구현",
     "실시간 라이브 상태 체크",
     "팝업 태그 제어",
+  ],
+  issues: [
+    new Issue({
+      problem: "미디어 분할 저장 및 구간 재생",
+      processes: [
+        "미디어 파일 초단위 저장 및 소켓서버 전송",
+        "사용자 원하는 구간 인덱싱 참조하여 미디어 버퍼 데이터 가져와 비디오 트랙에 추가 및 재생",
+      ],
+      solves: [
+        "미디어 분할 저장 및 사용자가 원하는 비디오 구간 재생 완료",
+        "미디어를 버퍼 상태로 가공하는 특징을 이해하는데 도움이 됨",
+      ],
+    }),
   ],
 });

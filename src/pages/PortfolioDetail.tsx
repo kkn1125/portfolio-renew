@@ -15,10 +15,12 @@ import {
   Typography,
 } from "@mui/material";
 import { projects } from "@storage/projects";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
 import translate from "@common/translate";
 import { DEFAULT_COVER } from "@common/variables";
+import { Fragment } from "react/jsx-runtime";
+import LaunchIcon from "@mui/icons-material/Launch";
 
 function PortfolioDetail() {
   const { company, project } = useParams();
@@ -62,20 +64,22 @@ function PortfolioDetail() {
         />
         <Typography
           component="h1"
-          fontSize={64}
+          fontSize={50}
           fontWeight={700}
           color="white"
           sx={{ zIndex: 500 }}
         >
           {projectModel.title}
         </Typography>
-        <Stack gap={1} alignItems="center">
+        <Stack gap={1} alignItems="center" width="70%">
           {projectModel.description.map((desc) => (
             <Typography
               key={desc}
               component="h6"
+              whiteSpace="balance"
               fontSize={24}
               fontWeight={700}
+              align="center"
               color="#ffffff96"
               sx={{ zIndex: 500 }}
             >
@@ -134,6 +138,53 @@ function PortfolioDetail() {
                   </Stack>
                 </TableCell>
               </TableRow>
+              {projectModel.github && (
+                <TableRow>
+                  <TableCell component="th" scope="row" width={75}>
+                    깃허브
+                  </TableCell>
+                  <TableCell>
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      gap={1}
+                      component={Link}
+                      to={projectModel.github}
+                      target="_blank"
+                      color="inherit"
+                      sx={{ textDecoration: "none" }}
+                    >
+                      <Typography>{projectModel.github}</Typography>
+                      <LaunchIcon fontSize="small" />
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              )}
+              {projectModel.demoSites && (
+                <TableRow>
+                  <TableCell component="th" scope="row" width={75}>
+                    데모 사이트
+                  </TableCell>
+                  <TableCell>
+                    {projectModel.demoSites.map((demo) => (
+                      <Stack
+                        key={demo}
+                        direction="row"
+                        alignItems="center"
+                        gap={1}
+                        component={Link}
+                        to={demo}
+                        target="_blank"
+                        color="inherit"
+                        sx={{ textDecoration: "none" }}
+                      >
+                        <Typography color="inherit">{demo}</Typography>
+                        <LaunchIcon fontSize="small" />
+                      </Stack>
+                    ))}
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </Stack>
@@ -152,6 +203,40 @@ function PortfolioDetail() {
           </Stack>
         </Stack>
       </Container>
+
+      {/* Section 3 */}
+      {projectModel.issues && (
+        <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
+          <Stack gap={2}>
+            <Typography fontSize={32} fontWeight={700} gutterBottom>
+              Solve Issues
+            </Typography>
+            <Stack gap={3}>
+              {projectModel.issues.map((issue) => (
+                <Stack key={issue.problem} gap={1}>
+                  <Typography fontSize={18} fontWeight={700}>
+                    🤔 {issue.problem}
+                  </Typography>
+                  <Stack ml={2}>
+                    {issue.processes.map((process) => (
+                      <Typography key={process} fontSize={14}>
+                        💡 {process}
+                      </Typography>
+                    ))}
+                  </Stack>
+                  <Stack>
+                    {issue.solves.map((solve) => (
+                      <Typography key={solve} fontWeight={700}>
+                        🛠️ {solve}
+                      </Typography>
+                    ))}
+                  </Stack>
+                </Stack>
+              ))}
+            </Stack>
+          </Stack>
+        </Container>
+      )}
     </Stack>
   );
 }

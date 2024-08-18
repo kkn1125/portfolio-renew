@@ -1,7 +1,8 @@
-import { DEPLOY_PATH, HEADER_TEXT } from "@common/variables";
+import { DEPLOY_PATH, HEADER_TEXT, VERSION } from "@common/variables";
+import { getImages } from "@libs/getResource";
 import { Page } from "@libs/page";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Button, Container, Menu, MenuItem } from "@mui/material";
+import { Button, Chip, Container, Menu, MenuItem } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -14,6 +15,8 @@ const pages = [
   Page({ name: "portfolio", path: "/portfolio" }),
   Page({ name: "about", path: "/about" }),
 ];
+
+const LOGO_SIZE = 40;
 
 export default function Header() {
   const navigate = useNavigate();
@@ -49,7 +52,13 @@ export default function Header() {
                 textDecoration: "none",
               }}
             >
-              {HEADER_TEXT}
+              <Box
+                component="img"
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                src={getImages("brand_logo", "logo_color.png")}
+                alt="logo"
+              />
             </Typography>
 
             {/* mobile */}
@@ -95,6 +104,9 @@ export default function Header() {
                     </Typography>
                   </MenuItem>
                 ))}
+                <MenuItem>
+                  <Chip color="secondary" size="small" label={VERSION} />
+                </MenuItem>
               </Menu>
             </Box>
             {/* mobile */}
@@ -114,11 +126,22 @@ export default function Header() {
                 textDecoration: "none",
               }}
             >
-              {HEADER_TEXT}
+              <Box
+                component="img"
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                src={getImages("brand_logo", "logo_color.png")}
+                alt="logo"
+              />
             </Typography>
 
             {/* pc */}
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex", alignItems: "center" },
+              }}
+            >
               {pages.map(({ name, path }) => (
                 <Button
                   key={name}
@@ -131,8 +154,14 @@ export default function Header() {
                   {name}
                 </Button>
               ))}
+              <Chip
+                color="secondary"
+                size="small"
+                label={VERSION}
+                sx={{ ml: 1 }}
+              />
             </Box>
-            <Box sx={{ flexGrow: 0 }} />
+            <Box sx={{ flexGrow: 0 }} width={LOGO_SIZE / 2} />
           </Toolbar>
         </Container>
       </AppBar>

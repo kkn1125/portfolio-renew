@@ -3,6 +3,7 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
+import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const sideGamepang = new ProjectModel({
@@ -32,4 +33,15 @@ export const sideGamepang = new ProjectModel({
     "cordova를 이용한 안드로이드 APK 빌드 및 배포",
   ],
   isSideProject: true,
+  issues: [
+    new Issue({
+      problem: "애니메이션 비동기 처리",
+      processes: [
+        "애니메이션 비동기 수행 시 클릭 방지",
+        "Promise를 변수에 할당하면서 resolve함수를 반환 전 시점에 변수로 저장",
+        "Promise를 반환시킬때 Pending하는 특성을 활용해서 애니메이션 및 데이터 처리 완료되는 시점에 resolve함수 호출",
+      ],
+      solves: ["애니메이션 병렬처리 및 후순위 단계 처리에 대한 이해도 향상"],
+    }),
+  ],
 });

@@ -2,6 +2,7 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
+import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const anderImomBackoffice = new ProjectModel({
@@ -30,5 +31,15 @@ export const anderImomBackoffice = new ProjectModel({
     "파일 업로드 기능 구현",
     "이미지 파일 우선순위 정렬 기능 제작",
     "관리자 페이지 제작",
+  ],
+  issues: [
+    new Issue({
+      problem: "배포 자동화 작업 시 로컬과 실서버 운영체제 차이 극복",
+      processes: [
+        "로컬과 실서버 운영체제에 따라 쉘 스크립트를 별도 작성",
+        "Github Webhook과 Jenkins의 pipeline 활용",
+      ],
+      solves: ["배포 자동화로 개발 시간 절약", "프로젝트 관리 용이성 향상"],
+    }),
   ],
 });

@@ -17,7 +17,7 @@ import { companyReborn } from "@src/storage/companies/company.reborn";
 import { Information } from "@src/storage/introduce/information";
 import { sideProject } from "@storage/companies/side.project";
 
-const SLIDE_TIME = 30;
+const SLIDE_TIME = 50;
 const SLIDE_ITEM_GAP = 5;
 
 function Home() {
@@ -31,10 +31,10 @@ function Home() {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-1 * (${SVG_ICON_SIZE}px + ${
+        transform: translateX(calc(-1 * (${SVG_ICON_SIZE}px + ${
     8 * SLIDE_ITEM_GAP
   }px) * ${skillItems.length}));
-    }
+      }
   `;
 
   return (
@@ -50,15 +50,33 @@ function Home() {
             p={3}
           >
             <Stack flex={1} gap={1}>
-              <Typography fontSize={40} fontWeight={700}>
-                {Information.name}
+              <Typography component="div">
+                <Typography component="span" fontSize={40} fontWeight={700}>
+                  {Information.name}
+                </Typography>
+                <Typography
+                  component="span"
+                  fontSize={32}
+                  fontWeight={700}
+                  ml={2}
+                  color="GrayText"
+                  textTransform="uppercase"
+                >
+                  {Information.position}
+                </Typography>
               </Typography>
-              <Typography fontSize={32} fontWeight={700} color="GrayText">
-                {Information.position}
-              </Typography>
-              <Typography fontSize={20} color="grey">
-                {Information.description}
-              </Typography>
+              {Information.description.map((desc) => (
+                <Typography
+                  key={desc}
+                  fontSize={20}
+                  color="grey"
+                  sx={{
+                    wordBreak: "keep-all",
+                  }}
+                >
+                  {desc}
+                </Typography>
+              ))}
             </Stack>
 
             <Stack
@@ -148,16 +166,21 @@ function Home() {
 
       {/* Section3 */}
       <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
-        <Container maxWidth="md">
-          <Stack alignItems="center">
-            <Typography fontSize={30} fontWeight={700} gutterBottom>
+        <Container maxWidth="lg">
+          <Stack>
+            <Typography
+              fontSize={30}
+              fontWeight={700}
+              align="center"
+              gutterBottom
+            >
               Work Experiences
             </Typography>
 
             <Box
               px={1.5}
               py={5}
-              width="100%"
+              width="inherit"
               sx={{
                 maskImage: `linear-gradient(to bottom, 
                 transparent 5%,
@@ -173,17 +196,21 @@ function Home() {
       </Box>
 
       {/* Section4 */}
-      <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
-        <Container maxWidth="md">
-          <Stack alignItems="center">
-            <Typography fontSize={30} fontWeight={700} gutterBottom>
+      <Box py={5}>
+        <Container maxWidth="lg">
+          <Stack>
+            <Typography
+              fontSize={30}
+              fontWeight={700}
+              align="center"
+              gutterBottom
+            >
               Side-Project
             </Typography>
 
             <Box
               px={1.5}
               py={5}
-              width="100%"
               sx={{
                 maskImage: `linear-gradient(to bottom,
                 transparent 60px,

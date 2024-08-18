@@ -3,6 +3,7 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { pathJoin } from "@libs/pathJoin";
 import { Skill } from "@libs/skill";
+import { Issue } from "./issue";
 
 export class ProjectModel {
   cover?: string;
@@ -20,6 +21,7 @@ export class ProjectModel {
   path: string;
   relations?: ProjectModel[];
   isSideProject?: boolean = false;
+  issues?: Issue[];
   constructor({
     cover,
     github,
@@ -36,6 +38,7 @@ export class ProjectModel {
     path,
     relations,
     isSideProject = false,
+    issues,
   }: {
     cover?: string;
     github?: string;
@@ -52,6 +55,7 @@ export class ProjectModel {
     path: string;
     relations?: ProjectModel[];
     isSideProject?: boolean;
+    issues?: Issue[];
   }) {
     cover && (this.cover = cover);
     github && (this.github = github);
@@ -68,5 +72,6 @@ export class ProjectModel {
     this.path = pathJoin("portfolio", path);
     relations && (this.relations = relations);
     isSideProject && (this.isSideProject = isSideProject);
+    issues && (this.issues = issues);
   }
 }

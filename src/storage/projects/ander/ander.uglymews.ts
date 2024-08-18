@@ -2,6 +2,7 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
+import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const anderUglymews = new ProjectModel({
@@ -22,5 +23,17 @@ export const anderUglymews = new ProjectModel({
     "상품 카트 기능 제작, 결제 및 취소 기능 구현 및 검증",
     "데이터베이스 설계, 구현",
     "SSL 적용",
+  ],
+  issues: [
+    new Issue({
+      problem: "CI/CD 자동화",
+      processes: [
+        "Github Webhook을 Jenkins에 등록",
+        "쉘 스크립트에 실서버 애플리케이션 자동 실행 명령 작성",
+        "빌드할 도커 이미지에 실서버 동작 쉘 스트립트 포함하여 배포",
+        "프로젝트 빌드 및 Github push 성공 시 Webhook 호출하여 Jenkins pipeline 실행",
+      ],
+      solves: ["배포 자동화로 개발 시간 절약", "프로젝트 관리 용이성 향상"],
+    }),
   ],
 });

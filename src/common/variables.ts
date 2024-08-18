@@ -14,3 +14,5 @@ export const IMPACT_COLOR = "#2f4858";
 /* Text Resources */
 export const HEADER_TEXT = "portfolio";
 export const FOOTER_TEXT = `Copyright ${PUBLISHED_YEAR}. devkimson All rights reserved.`;
+
+export const VERSION = process.env.VERSION;

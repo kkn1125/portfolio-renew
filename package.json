@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development vite --mode=development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate:pages": "node server/index.ts",
+    "generate:pages": "cd server && npm run build",
     "build": "tsc -b && cross-env NODE_ENV=production vite build --mode=production",
     "postbuild": "npm run generate:pages",
     "deploy": "cd dist/ && git init && git add -A && git commit -m \"gh-pages auto deploy\" && git push https://github.com/kkn1125/portfolio-renew.git master:gh-pages -f"
@@ -37,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "sass": "^1.77.8",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",

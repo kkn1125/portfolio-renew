@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { defineConfig, loadEnv } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import pkg from "./package.json";
 
 export default defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
@@ -21,6 +22,7 @@ export default defineConfig(({ command, mode }) => {
   const host = process.env.HOST;
   const port = +(process.env.PORT || 3000);
 
+  const VERSION = pkg.version;
   const DEPLOY_PATH = process.env.VITE_DEPLOY_PATH;
   const BRAND = process.env.VITE_BRAND;
   const BLOG = process.env.VITE_BLOG;
@@ -34,6 +36,7 @@ export default defineConfig(({ command, mode }) => {
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
       "process.env": {
+        VERSION,
         DEPLOY_PATH,
         BRAND,
         BLOG,
