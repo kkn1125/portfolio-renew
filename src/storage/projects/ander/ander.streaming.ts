@@ -2,9 +2,10 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const anderStreaming = new Project({
+export const anderStreaming = new ProjectModel({
+  path: "/ander/live-streaming",
   title: "라이브커머스 스트리밍 서비스",
   description: [
     "실시간 라이브 방송 송출과 시청자에게 팝업 태그를 통해 구매 링크를 노출시키는 서비스",
@@ -12,7 +13,7 @@ export const anderStreaming = new Project({
   ],
   team: Team.Produce,
   company: Company.Ander,
-  role: [Role.Backend],
+  roles: [Role.Backend],
   skills: [
     Skill("react"),
     Skill("typescript"),

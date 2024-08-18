@@ -52,6 +52,7 @@ export default function Header() {
               {HEADER_TEXT}
             </Typography>
 
+            {/* mobile */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -89,7 +90,9 @@ export default function Header() {
                       handleCloseNavMenu();
                     }}
                   >
-                    <Typography textAlign="center">{name}</Typography>
+                    <Typography textAlign="center" textTransform="uppercase">
+                      {name}
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -113,6 +116,8 @@ export default function Header() {
             >
               {HEADER_TEXT}
             </Typography>
+
+            {/* pc */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map(({ name, path }) => (
                 <Button

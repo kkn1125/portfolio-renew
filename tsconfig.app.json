@@ -26,6 +26,7 @@
       "@models/*": ["src/models/*"],
       "@routes/*": ["src/routes/*"],
       "@libs/*": ["src/libs/*"],
+      "@storage/*": ["src/storage/*"],
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
       "@recoils/*": ["src/recoils/*"],

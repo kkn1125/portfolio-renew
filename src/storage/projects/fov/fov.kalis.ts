@@ -2,14 +2,15 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const fovKalis = new Project({
+export const fovKalis = new ProjectModel({
+  path: "/fov/kalis",
   title: "국토안전관리원 CMS 백오피스",
   description: ["국토안전관리원 CMS 백오피스와 API 서버 제작"],
   team: Team.Development,
   company: Company.Fov,
-  role: [Role.Server],
+  roles: [Role.Server],
   skills: [Skill("typescript"), Skill("react"), Skill("nest")],
   start: new Date(2024, 6),
   works: [

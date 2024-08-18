@@ -1,28 +1,21 @@
-import { Company } from "@common/enums/compony";
-import { Role } from "@common/enums/role";
-import { Team } from "@common/enums/team";
+import translate from "@common/translate";
 import { PROFILE_IMAGE, SVG_ICON_SIZE } from "@common/variables";
 import Flow from "@components/atoms/Flow";
+import SideFlow from "@components/atoms/SideFlow";
 import {
   Box,
   Container,
   keyframes,
   Paper,
   Stack,
-  Toolbar,
   Tooltip,
   Typography,
 } from "@mui/material";
+import { companyAnder } from "@src/storage/companies/company.ander";
+import { companyFov } from "@src/storage/companies/company.fov";
+import { companyReborn } from "@src/storage/companies/company.reborn";
 import { Information } from "@src/storage/introduce/information";
-import { anderImomApi } from "@src/storage/projects/ander/ander.imom.api";
-import { anderImomBackoffice } from "@src/storage/projects/ander/ander.imom.backoffice";
-import { anderMetaverseSocket } from "@src/storage/projects/ander/ander.metaverse.socket";
-import { anderStreaming } from "@src/storage/projects/ander/ander.streaming";
-import { anderUglymews } from "@src/storage/projects/ander/ander.uglymews";
-import { anderWebRtc } from "@src/storage/projects/ander/ander.webrtc";
-import { fovDbupdater } from "@src/storage/projects/fov/fov.dbupdater";
-import { fovKalis } from "@src/storage/projects/fov/fov.kalis";
-import { rebornBlockChain } from "@src/storage/projects/reborn/reborn.blockchain";
+import { sideProject } from "@storage/companies/side.project";
 
 const SLIDE_TIME = 30;
 const SLIDE_ITEM_GAP = 5;
@@ -45,15 +38,15 @@ function Home() {
   `;
 
   return (
-    <Stack flex={1}>
+    <Stack flex={1} overflow="auto" height="inherit">
       {/* Section1 */}
       <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
         <Container maxWidth="lg">
           <Stack
-            direction="row"
+            direction={{ xs: "column-reverse", md: "row" }}
             justifyContent="space-between"
-            alignItems="flex-start"
-            gap={20}
+            alignItems={{ xs: "center", md: "flex-start" }}
+            gap={{ xs: 1, md: 20 }}
             p={3}
           >
             <Stack flex={1} gap={1}>
@@ -108,9 +101,9 @@ function Home() {
               width="100%"
               sx={{
                 overflow: "hidden",
-                maskImage: `linear-gradient(to left, 
-                transparent 5%, 
-                #000000 ${10}%, #000000 ${100 - 10}%, transparent 95%)`,
+                maskImage: `linear-gradient(to left,
+                transparent 5%,
+                #000000 calc(5% + ${20}px), #000000 calc(95% - ${20}px), transparent 95%)`,
               }}
             >
               <Stack
@@ -126,20 +119,24 @@ function Home() {
                 }}
               >
                 {skillItems.map(({ name, icon }) => (
-                  <Tooltip key={name} title={name} placement="top">
-                    <Box
+                  <Tooltip key={name} title={translate[name]} placement="top">
+                    <Stack
                       dangerouslySetInnerHTML={{ __html: icon }}
                       width={SVG_ICON_SIZE}
                       height={SVG_ICON_SIZE}
+                      direction="row"
+                      alignItems="center"
                     />
                   </Tooltip>
                 ))}
                 {skillItems.map(({ name, icon }) => (
-                  <Tooltip key={name} title={name} placement="top">
-                    <Box
+                  <Tooltip key={name} title={translate[name]} placement="top">
+                    <Stack
                       dangerouslySetInnerHTML={{ __html: icon }}
                       width={SVG_ICON_SIZE}
                       height={SVG_ICON_SIZE}
+                      direction="row"
+                      alignItems="center"
                     />
                   </Tooltip>
                 ))}
@@ -151,7 +148,7 @@ function Home() {
 
       {/* Section3 */}
       <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           <Stack alignItems="center">
             <Typography fontSize={30} fontWeight={700} gutterBottom>
               Work Experiences
@@ -160,50 +157,46 @@ function Home() {
             <Box
               px={1.5}
               py={5}
+              width="100%"
               sx={{
                 maskImage: `linear-gradient(to bottom, 
-                transparent 5%, 
-                #000000 ${8}%, #000000 ${100 - 8}%, transparent 95%)`,
+                transparent 5%,
+                #000000 calc(5% + ${20}px), #000000 calc(95% - ${20}px), transparent 95%)`,
               }}
             >
-              <Flow
-                title={Company.Fov}
-                team={Team.Development}
-                role={Role.Server}
-                description="서버 관리 및 API, DB 개발 담당"
-                projects={[fovKalis, fovDbupdater]}
-                start={new Date(2024, 4)}
-              />
-              <Flow
-                title={Company.Ander}
-                team={Team.Produce}
-                role={Role.Backend}
-                description="개발서버 관리 및 API, DB 설계 제작과 백오피스 개발 담당"
-                projects={[
-                  anderUglymews,
-                  anderImomBackoffice,
-                  anderStreaming,
-                  anderImomApi,
-                  anderWebRtc,
-                  anderMetaverseSocket,
-                ]}
-                start={new Date(2022, 8)}
-                end={new Date(2023, 8)}
-              />
-              <Flow
-                title={Company.Reborn}
-                team={Team.Backend}
-                role={Role.Backend}
-                description="블록체인 웹 페이지 제작 담당"
-                projects={[rebornBlockChain]}
-                start={new Date(2022, 4)}
-                end={new Date(2022, 6)}
-              />
+              <Flow company={companyFov} />
+              <Flow company={companyAnder} />
+              <Flow company={companyReborn} />
             </Box>
           </Stack>
         </Container>
       </Box>
-      <Toolbar />
+
+      {/* Section4 */}
+      <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
+        <Container maxWidth="md">
+          <Stack alignItems="center">
+            <Typography fontSize={30} fontWeight={700} gutterBottom>
+              Side-Project
+            </Typography>
+
+            <Box
+              px={1.5}
+              py={5}
+              width="100%"
+              sx={{
+                maskImage: `linear-gradient(to bottom,
+                transparent 60px,
+                #000000 calc(60px + ${25}px), #000000 calc(100% - ${80}px), transparent calc(100% - ${50}px), transparent 100%)`,
+              }}
+            >
+              {sideProject.projects.map((project) => (
+                <SideFlow key={project.title} project={project} />
+              ))}
+            </Box>
+          </Stack>
+        </Container>
+      </Box>
     </Stack>
   );
 }

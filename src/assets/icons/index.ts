@@ -24,13 +24,24 @@ import styledcomponent from "@assets/icons/styledcomponent";
 import typescript from "@assets/icons/typescript";
 import uwebsockets from "@assets/icons/uwebsockets";
 import xterm from "@assets/icons/xterm";
+import awsEc2 from "./aws.ec2";
+import bootstrap from "./bootstrap";
+import formik from "./formik";
+import gulp from "./gulp";
+import mybatis from "./mybatis";
+import swagger from "./swagger";
+import typeorm from "./typeorm";
+import vite from "./vite";
+import vitest from "./vitest";
+import webpack from "./webpack";
+import webrtc from "./webrtc";
 
 export const Icons = {
-  python,
   artillery,
   docker,
   express,
   fastify,
+  java,
   javascript,
   jenkins,
   jest,
@@ -38,10 +49,12 @@ export const Icons = {
   linux,
   mariadb,
   mui,
+  mysql,
   nest,
   nginx,
   nodejs,
   postman,
+  python,
   react,
   sass,
   socketio,
@@ -50,8 +63,17 @@ export const Icons = {
   typescript,
   uwebsockets,
   xterm,
-  mysql,
-  java,
+  awsEc2,
+  bootstrap,
+  formik,
+  gulp,
+  mybatis,
+  swagger,
+  typeorm,
+  vite,
+  vitest,
+  webpack,
+  webrtc,
 } as const;
 export type Icons = (typeof Icons)[keyof typeof Icons];
 export type IconList = keyof typeof Icons;

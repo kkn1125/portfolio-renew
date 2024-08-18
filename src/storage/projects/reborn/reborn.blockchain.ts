@@ -2,14 +2,15 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const rebornBlockChain = new Project({
+export const rebornBlockChain = new ProjectModel({
+  path: "/reborn/blockchain",
   title: "NFTMarketplace Blockchain 웹 페이지 제작",
   description: ["BlockChain + NFTMarketplace 웹 페이지 제작"],
   team: Team.Backend,
   company: Company.Reborn,
-  role: [Role.Backend],
+  roles: [Role.Backend],
   skills: [Skill("nodejs"), Skill("react"), Skill("typescript"), Skill("mui")],
   start: new Date(2022, 4),
   end: new Date(2022, 6),

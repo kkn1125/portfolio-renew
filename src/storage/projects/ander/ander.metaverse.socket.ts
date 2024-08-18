@@ -2,14 +2,15 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const anderMetaverseSocket = new Project({
+export const anderMetaverseSocket = new ProjectModel({
+  path: "/ander/metaverse-socket",
   title: "3D 메타버스 멀티플레이 소켓 서버",
   description: ["멀티플레이를 위한 웹 메타버스 소켓서버 제작"],
   team: Team.Produce,
   company: Company.Ander,
-  role: [Role.Backend],
+  roles: [Role.Backend],
   skills: [
     Skill("typescript"),
     Skill("uwebsockets"),

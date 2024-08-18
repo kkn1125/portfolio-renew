@@ -1,33 +1,19 @@
 import { format } from "@libs/format";
-import { Project } from "@models/project";
-import { Box, Chip, Stack, Typography } from "@mui/material";
+import { CompanyModel } from "@models/company.model";
+import LaunchIcon from "@mui/icons-material/Launch";
+import { Box, Chip, IconButton, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { useMemo } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-type FlowProps = {
-  title: string;
-  team: string;
-  role: string;
-  description: string;
-  // works: string[];
-  projects: Project[];
-  start: Date;
-  end?: Date;
-};
+type FlowProps = { company: CompanyModel };
 
-function Flow({
-  title,
-  team,
-  role,
-  description,
-  // works,
-  projects,
-  start,
-  end,
-}: FlowProps) {
+function Flow({ company }: FlowProps) {
+  const { name, team, roles, description, projects, start, end } = company;
+  const navigate = useNavigate();
   const calcDate = useMemo(() => {
     const diff = dayjs(end).diff(dayjs(start), "month");
-    return diff;
+    return diff + 1;
   }, [end, start]);
 
   return (
@@ -57,7 +43,7 @@ function Flow({
       />
       <Stack pl={5}>
         <Typography gutterBottom fontSize={24} fontWeight={700}>
-          {title}
+          {name}
         </Typography>
         <Typography
           gutterBottom
@@ -68,7 +54,7 @@ function Flow({
           {description}
         </Typography>
         <Typography gutterBottom fontSize={16} fontWeight={700} color="grey">
-          {team} / {role}
+          {team} / {roles[0].toUpperCase()}
         </Typography>
         <Stack direction="row" gap={1} alignItems="center">
           <Typography fontSize={14}>
@@ -83,7 +69,7 @@ function Flow({
           />
         </Stack>
         <Stack gap={1} my={2}>
-          {projects.map(({ title }, i) => (
+          {projects.map(({ title, path }, i) => (
             <Stack key={title + i} direction="row" alignItems="center">
               <Box
                 position="absolute"
@@ -100,7 +86,16 @@ function Flow({
                   },
                 }}
               />
-              <Typography>{title}</Typography>
+              <Typography
+                component={Link}
+                to={path}
+                sx={{ textDecoration: "none", color: "inherit" }}
+              >
+                {title}
+              </Typography>
+              <IconButton size="small" onClick={() => navigate(path)}>
+                <LaunchIcon fontSize="small" />
+              </IconButton>
             </Stack>
           ))}
         </Stack>

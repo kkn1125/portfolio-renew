@@ -10,7 +10,7 @@ function Layout() {
       <Header />
 
       {/* 본문 */}
-      <Stack flex={1} sx={{ overflow: "auto", height: "100%" }}>
+      <Stack flex={1} overflow="hidden" height="inherit">
         <Outlet />
       </Stack>
 

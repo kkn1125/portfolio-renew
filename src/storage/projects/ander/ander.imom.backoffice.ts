@@ -2,9 +2,10 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const anderImomBackoffice = new Project({
+export const anderImomBackoffice = new ProjectModel({
+  path: "/ander/i-mom-backoffice",
   title: "메디앙스 아이맘 메타빌리지 백오피스 제작",
   description: [
     "아이와 부모, 또는 예비 부모가 함께 메타버스 내에서 교육 영상을 시청하고 정보를 공유하는 서비스",
@@ -12,7 +13,7 @@ export const anderImomBackoffice = new Project({
   ],
   team: Team.Produce,
   company: Company.Ander,
-  role: [Role.Backend],
+  roles: [Role.Backend],
   skills: [
     Skill("typescript"),
     Skill("react"),

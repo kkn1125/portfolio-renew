@@ -8,7 +8,8 @@ function Footer() {
       sx={{
         boxShadow:
           "0px -1px 10px 0 rgba(0,0,0,0.2), 0px -1px 7px 0 rgba(0,0,0,0.12), 0px -1px 2px 0 rgba(0,0,0,0.12)",
-        backgroundColor: (theme) => theme.palette.background.default,
+        color: (theme) => theme.palette.primary.contrastText,
+        backgroundColor: (theme) => theme.palette.primary.main,
       }}
     >
       <Typography component="div" align="center" fontWeight={700}>

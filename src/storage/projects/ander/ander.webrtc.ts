@@ -2,9 +2,10 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const anderWebRtc = new Project({
+export const anderWebRtc = new ProjectModel({
+  path: "/ander/webrtc",
   title: "WEBRTC 화상회의 서비스",
   description: [
     "다대다 화상 연결, 화면 공유 및 채팅 기능을 이용할 수 있는 서비스",
@@ -12,7 +13,7 @@ export const anderWebRtc = new Project({
   ],
   team: Team.Produce,
   company: Company.Ander,
-  role: [Role.Backend],
+  roles: [Role.Backend],
   skills: [
     Skill("typescript"),
     Skill("react"),

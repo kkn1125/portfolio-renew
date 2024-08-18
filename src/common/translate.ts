@@ -54,6 +54,26 @@ export default new Proxy(translate, {
         return "StyledComponent";
       case "xterm":
         return "xTerm";
+      case "gulp":
+        return "Gulp";
+      case "mybatis":
+        return "MyBatis";
+      case "python":
+        return "Python";
+      case "typeorm":
+        return "TypeORM";
+      case "vitest":
+        return "Vitest";
+      case "webpack":
+        return "Webpack";
+      case "vite":
+        return "Vite";
+      case "webrtc":
+        return "WebRTC";
+      case "awsEc2":
+        return "Amazon EC2";
+      case "swagger":
+        return "Swagger";
       default:
         return p;
     }

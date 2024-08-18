@@ -2,16 +2,17 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Project } from "@models/project";
+import { ProjectModel } from "@models/project.model";
 
-export const fovDbupdater = new Project({
+export const fovDbupdater = new ProjectModel({
+  path: "/fov/rnd-db-updater",
   title: "데이터베이스 자동 업데이터 R&D",
   description: [
     "사내에서 데이터베이스 사용이 어려운 기획자 및 유니티 클라이언트 개발자를 위해 구글 시트 데이터를 로컬 데이터베이스 업데이트 하는 서비스",
   ],
   team: Team.Development,
   company: Company.Fov,
-  role: [Role.Server],
+  roles: [Role.Server],
   skills: [Skill("typescript"), Skill("react"), Skill("nest"), Skill("nginx")],
   start: new Date(2024, 4),
   end: new Date(2024, 5),

@@ -26,6 +26,7 @@ export default defineConfig(({ command, mode }) => {
   const BLOG = process.env.VITE_BLOG;
   const GITHUB = process.env.VITE_GITHUB;
   const PUBLISHED_YEAR = process.env.VITE_PUBLISHED_YEAR;
+  const DEFAULT_COVER = process.env.VITE_DEFAULT_COVER;
   const PROFILE_IMAGE = process.env.VITE_PROFILE_IMAGE;
 
   return {
@@ -38,6 +39,7 @@ export default defineConfig(({ command, mode }) => {
         BLOG,
         GITHUB,
         PUBLISHED_YEAR,
+        DEFAULT_COVER,
         PROFILE_IMAGE,
       },
     },
