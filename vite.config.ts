@@ -2,8 +2,8 @@ import react from "@vitejs/plugin-react";
 import dotenv from "dotenv";
 import path from "path";
 import { defineConfig, loadEnv } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
+import tsconfig from "./tsconfig.app.json";
 
 export default defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
@@ -15,6 +15,7 @@ export default defineConfig(({ command, mode }) => {
   dotenv.config({
     path: path.join(path.resolve(), ".env"),
   });
+
   dotenv.config({
     path: path.join(path.resolve(), `.env.${MODE}`),
   });
@@ -51,6 +52,14 @@ export default defineConfig(({ command, mode }) => {
       host,
       port,
     },
-    plugins: [react(), tsconfigPaths()],
+    resolve: {
+      alias: Object.entries(tsconfig.compilerOptions.paths).map(
+        ([key, value]) => ({
+          find: key.slice(0, -2),
+          replacement: path.join(path.resolve(), value[0].slice(0, -2)),
+        })
+      ),
+    },
+    plugins: [react()],
   };
 });

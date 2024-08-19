@@ -1,15 +1,15 @@
 {
   "name": "portfolio_react",
   "private": true,
-  "version": "2.0.0",
-  "type": "module",
+  "version": "2.0.1",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite --mode=development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate:pages": "cd server && npm run build",
+    "prebuild": "rm -rf dist",
     "build": "tsc -b && cross-env NODE_ENV=production vite build --mode=production",
     "postbuild": "npm run generate:pages",
+    "generate:pages": "cd server && npm run build",
     "deploy": "cd dist/ && git init && git add -A && git commit -m \"gh-pages auto deploy\" && git push https://github.com/kkn1125/portfolio-renew.git master:gh-pages -f"
   },
   "dependencies": {
