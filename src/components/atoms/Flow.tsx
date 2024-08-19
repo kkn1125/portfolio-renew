@@ -58,8 +58,9 @@ function Flow({ company }: FlowProps) {
         </Typography>
         <Stack direction="row" gap={1} alignItems="center">
           <Typography fontSize={14}>
-            {format(start, "YYYY. MM.")} ~{" "}
-            {end ? format(end, "YYYY. MM.") : "재직 중"}
+            {format(start, "YYYY. MM.") +
+              " ~ " +
+              (end ? format(end, "YYYY. MM.") : "재직 중")}
           </Typography>
           <Chip
             color="primary"

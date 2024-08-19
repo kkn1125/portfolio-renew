@@ -1,15 +1,15 @@
+import translate from "@common/translate";
+import { DEFAULT_COVER, DEPLOY_PATH } from "@common/variables";
 import { pathJoin } from "@libs/pathJoin";
+import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
   Container,
-  Divider,
   IconButton,
   Stack,
-  SvgIcon,
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableRow,
   Tooltip,
   Typography,
@@ -17,15 +17,14 @@ import {
 import { projects } from "@storage/projects";
 import { Link, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
-import translate from "@common/translate";
-import { DEFAULT_COVER } from "@common/variables";
-import { Fragment } from "react/jsx-runtime";
-import LaunchIcon from "@mui/icons-material/Launch";
 
 function PortfolioDetail() {
   const { company, project } = useParams();
+
   const projectModel = projects.find(
-    (prj) => prj.path === pathJoin("portfolio", company || "", project || "")
+    (prj) =>
+      prj.path ===
+      pathJoin(DEPLOY_PATH, "portfolio", company || "", project || "")
   );
 
   if (!projectModel) {

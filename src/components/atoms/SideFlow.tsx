@@ -1,10 +1,10 @@
 import { format } from "@libs/format";
 import { ProjectModel } from "@models/project.model";
+import LaunchIcon from "@mui/icons-material/Launch";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import LaunchIcon from "@mui/icons-material/Launch";
 
 type SideFlowProps = { project: ProjectModel };
 

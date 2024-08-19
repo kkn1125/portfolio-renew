@@ -4,6 +4,7 @@ import { Team } from "@common/enums/team";
 import { pathJoin } from "@libs/pathJoin";
 import { Skill } from "@libs/skill";
 import { Issue } from "./issue";
+import { DEPLOY_PATH } from "@common/variables";
 
 export class ProjectModel {
   cover?: string;
@@ -69,7 +70,7 @@ export class ProjectModel {
     end && (this.end = end);
     this.skills = skills;
     this.works = works;
-    this.path = pathJoin("portfolio", path);
+    this.path = pathJoin(DEPLOY_PATH, "portfolio", path);
     relations && (this.relations = relations);
     isSideProject && (this.isSideProject = isSideProject);
     issues && (this.issues = issues);
