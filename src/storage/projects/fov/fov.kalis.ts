@@ -5,14 +5,19 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const fovKalis = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/fov/kalis",
-  title: "국토안전관리원 CMS 백오피스",
-  description: ["국토안전관리원 CMS 백오피스와 API 서버 제작"],
+  title: "국토안전관리원 CMS",
+  description: ["국토안전관리원 CMS 백오피스, API 서버 제작"],
   team: Team.Development,
   company: Company.Fov,
   roles: [Role.Server],
   skills: [Skill("typescript"), Skill("react"), Skill("nest")],
   start: new Date(2024, 6),
+  end: null,
   works: [
     "기존 관리자 페이지 Svelte에서 React로 마이그레이션",
     "기존 API 서버 Python에서 NestJS로 마이그레이션",
@@ -23,4 +28,7 @@ export const fovKalis = new ProjectModel({
     "프론트엔드 CPU 집약적 연산처리 서버사이드로 마이그레이션",
     "서버 요청 줄이고, 서버 연산 최적화",
   ],
+  isSideProject: false,
+  issues: null,
+  images: null,
 });

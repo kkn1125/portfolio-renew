@@ -10,18 +10,19 @@ type ProjectCardProps = {
 };
 
 function ProjectCard({ project }: ProjectCardProps) {
-  if (!project) return <Stack flex={1} p={5}></Stack>;
+  if (!project) return <Box flex={1} width={270} height={170} />;
 
   return (
     <Paper
       component={Link}
       to={project.path}
       sx={{
+        display: "block",
         overflow: "hidden",
         position: "relative",
-        flex: 1,
         textDecoration: "none",
-        width: "fit-content",
+        width: 270,
+        height: 170,
         transformStyle: "preserve-3d",
         transition: "300ms ease-in-out",
         ["&::after"]: {
@@ -71,11 +72,7 @@ function ProjectCard({ project }: ProjectCardProps) {
         },
       }}
     >
-      <Box
-        sx={{
-          m: 3,
-        }}
-      >
+      <Box m={3}>
         <Typography component="div" fontSize={16} fontWeight={700} gutterBottom>
           {project.title}
         </Typography>

@@ -6,16 +6,17 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideNarang = new ProjectModel({
-  path: "/side/narang",
   cover: getResource("projectnarang", "narang01.png"),
   github: "https://github.com/kkn1125/narang",
-  demoSites: ["https://kkn1125.github.io/narang"],
+  demoSites: [],
+  relations: null,
+  path: "/side/narang",
   title: "Project Narang",
   description: [
     "웹에서 일기를 작성하고 오늘의 감정을 공유하는 감정 케어 커뮤니티",
   ],
   company: Company.Side,
-  team: Team.Personal,
+  team: Team.Team,
   roles: [Role.Frontend],
   skills: [
     Skill("springboot"),
@@ -35,4 +36,6 @@ export const sideNarang = new ProjectModel({
     "테스트 코드 작성으로 예시 제공 및 다양한 에러에 대응과 확장성 고려",
   ],
   isSideProject: true,
+  issues: null,
+  images: null,
 });

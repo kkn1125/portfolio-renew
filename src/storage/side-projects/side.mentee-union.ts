@@ -7,10 +7,11 @@ import { sideMentees } from "./side.mentees";
 import { getResource } from "@libs/getResource";
 
 export const sideMenteeUnion = new ProjectModel({
-  path: "/side/mentee-union",
   cover: getResource("project-mentee-union", "mentee-union.png"),
   github: "https://github.com/kkn1125/project-mentee-union",
-  demoSites: ["https://kkn1125.github.io/project-mentee-union"],
+  demoSites: ["https://menteeunion.kro.kr"],
+  relations: [sideMentees],
+  path: "/side/mentee-union",
   title: "Mentee Union",
   description: ["멘티들이 모여 함께 지식을 공유하고 이야기하는 성장 커뮤니티"],
   company: Company.Side,
@@ -41,6 +42,7 @@ export const sideMenteeUnion = new ProjectModel({
     "nginx를 이용한 스태틱 리소스 라우팅 및 proxy 설정",
     "SSL 적용",
   ],
-  relations: [sideMentees],
   isSideProject: true,
+  issues: null,
+  images: null,
 });

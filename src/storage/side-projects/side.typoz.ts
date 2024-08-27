@@ -1,15 +1,16 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { getResource } from "@libs/getResource";
+import { getImage, getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideTypoz = new ProjectModel({
-  path: "/side/typoz",
   cover: getResource("typoz", "typoz.png"),
   github: "https://github.com/AnyRequest/typoz",
   demoSites: ["https://AnyRequest.github.io/typoz"],
+  relations: null,
+  path: "/side/typoz",
   title: "Library Typoz",
   description: ["한글 분해, 재조합 기능이 포함된 타이핑 효과 라이브러리"],
   company: Company.Side,
@@ -28,4 +29,6 @@ export const sideTypoz = new ProjectModel({
     "테스트 코드 작성으로 예시 제공 및 다양한 에러에 대응과 확장성 고려",
   ],
   isSideProject: true,
+  issues: null,
+  images: [getImage("typoz", "anyrequest.github.io_typoz_.png", "main")],
 });

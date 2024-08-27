@@ -5,6 +5,10 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const anderMetaverseSocket = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/ander/metaverse-socket",
   title: "3D 메타버스 멀티플레이 소켓 서버",
   description: ["멀티플레이를 위한 웹 메타버스 소켓서버 제작"],
@@ -27,4 +31,7 @@ export const anderMetaverseSocket = new ProjectModel({
     "소켓서버 간 데이터 공유 위한 TCP 릴레이 서버 제작",
     "DB 이중화 및 백업 서버 제작",
   ],
+  isSideProject: false,
+  issues: null,
+  images: null,
 });

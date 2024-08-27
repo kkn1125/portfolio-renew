@@ -6,10 +6,11 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideTreeParser = new ProjectModel({
-  path: "/side/tree-parser",
   cover: getResource("treeparser", "tree01.png"),
   github: "https://github.com/kkn1125/treeparser",
   demoSites: ["https://kkn1125.github.io/treeparser"],
+  relations: null,
+  path: "/side/tree-parser",
   title: "Tree Parser",
   description: ["파일 디렉토리 시각화 도구"],
   company: Company.Side,
@@ -26,4 +27,6 @@ export const sideTreeParser = new ProjectModel({
     "출력된 결과물 텍스트 또는 HTML 유형 복사 기능 추가",
   ],
   isSideProject: true,
+  issues: null,
+  images: null,
 });

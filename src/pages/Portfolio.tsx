@@ -42,7 +42,9 @@ function Portfolio() {
                 key={i}
                 direction="row"
                 gap={3}
-                sx={{ perspective: "1500px" }}
+                position="relative"
+                alignItems="flex-start"
+                sx={{ perspective: "1500px", boxSizing: "border-box" }}
               >
                 {projects.map((project, q) => (
                   <ProjectCard key={project?.title || q} project={project} />

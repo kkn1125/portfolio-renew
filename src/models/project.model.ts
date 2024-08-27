@@ -5,24 +5,27 @@ import { pathJoin } from "@libs/pathJoin";
 import { Skill } from "@libs/skill";
 import { Issue } from "./issue";
 import { DEPLOY_PATH } from "@common/variables";
+import { ImageObject } from "@libs/getResource";
 
 export class ProjectModel {
-  cover?: string;
-  github?: string;
-  demoSites?: string[];
+  cover: string | null = null;
+  github: string | null = null;
+  demoSites: string[] | null = null;
   title: string;
   description: string[];
   roles: Role[];
   team: Team;
   company: Company;
   start: Date;
-  end?: Date;
+  end: Date | null = null;
   skills: Skill[];
   works: string[];
   path: string;
-  relations?: ProjectModel[];
-  isSideProject?: boolean = false;
-  issues?: Issue[];
+  relations: ProjectModel[] | null = null;
+  isSideProject: boolean | null = null;
+  issues: Issue[] | null = null;
+  images: ImageObject[] | null = null;
+
   constructor({
     cover,
     github,
@@ -40,23 +43,25 @@ export class ProjectModel {
     relations,
     isSideProject = false,
     issues,
+    images,
   }: {
-    cover?: string;
-    github?: string;
-    demoSites?: string[];
+    cover: string | null;
+    github: string | null;
+    demoSites: string[] | null;
     title: string;
     description: string[];
     roles: Role[];
     team: Team;
     company: Company;
     start: Date;
-    end?: Date;
+    end: Date | null;
     skills: Skill[];
     works: string[];
     path: string;
-    relations?: ProjectModel[];
-    isSideProject?: boolean;
-    issues?: Issue[];
+    relations: ProjectModel[] | null;
+    isSideProject: boolean | null;
+    issues: Issue[] | null;
+    images: ImageObject[] | null;
   }) {
     cover && (this.cover = cover);
     github && (this.github = github);
@@ -74,5 +79,6 @@ export class ProjectModel {
     relations && (this.relations = relations);
     isSideProject && (this.isSideProject = isSideProject);
     issues && (this.issues = issues);
+    images && (this.images = images);
   }
 }

@@ -6,10 +6,11 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideDocumentify = new ProjectModel({
-  path: "/side/documentify",
   cover: getResource("documentify", "docu01.png"),
   github: "https://github.com/kkn1125/mkDocumentifyJS",
   demoSites: ["https://kkn1125.github.io/mkDocumentifyJS"],
+  relations: null,
+  path: "/side/documentify",
   title: "Documentify",
   description: [
     "JSDoc 방식의 주석을 분석하고 자동으로 문서화 페이지를 제작해주는 기능",
@@ -32,4 +33,6 @@ export const sideDocumentify = new ProjectModel({
     "zip 저장 지원",
   ],
   isSideProject: true,
+  issues: null,
+  images: null,
 });

@@ -5,10 +5,14 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const fovDbupdater = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/fov/rnd-db-updater",
   title: "데이터베이스 자동 업데이터 R&D",
   description: [
-    "사내에서 데이터베이스 사용이 어려운 기획자 및 유니티 클라이언트 개발자를 위해 구글 시트 데이터를 로컬 데이터베이스 업데이트 하는 서비스",
+    "사내 데이터베이스 사용이 어려운 기획자 및 유니티 클라이언트 개발자를 위해 구글 시트 데이터를 로컬 데이터베이스 업데이트 하는 서비스",
   ],
   team: Team.Development,
   company: Company.Fov,
@@ -26,4 +30,7 @@ export const fovDbupdater = new ProjectModel({
     "팀원 사용 후 피드백 반영하여 유지보수",
     "배포 자동화",
   ],
+  isSideProject: false,
+  issues: null,
+  images: null,
 });

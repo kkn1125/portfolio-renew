@@ -7,10 +7,11 @@ import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const sideGamepang = new ProjectModel({
-  path: "/side/gamepang",
   cover: getResource("game-pang", "gamepang01.png"),
   github: "https://github.com/kkn1125/game-pang",
   demoSites: ["https://kkn1125.github.io/game-pang"],
+  relations: null,
+  path: "/side/gamepang",
   title: "GamePang",
   description: ["같은 동물 이미지를 매치시켜 점수를 얻는 2D 게임 모방"],
   company: Company.Side,
@@ -44,4 +45,5 @@ export const sideGamepang = new ProjectModel({
       solves: ["애니메이션 병렬처리 및 후순위 단계 처리에 대한 이해도 향상"],
     }),
   ],
+  images: null,
 });

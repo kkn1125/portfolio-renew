@@ -1,6 +1,8 @@
 import { Skill } from "@libs/skill";
 
 export const Information = {
+  title:
+    "문제 분석과 기록을 통해 효율성, 확장성을 고민하는 서버/백엔드 개발자",
   name: "김경남",
   position: "back-end developer",
   description: [

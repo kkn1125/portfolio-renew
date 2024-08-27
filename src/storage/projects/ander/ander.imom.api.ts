@@ -5,11 +5,15 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const anderImomApi = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/ander/i-mom-api",
-  title: "메디앙스 아이맘 메타빌리지 API",
+  title: "아이맘 메타빌리지 API",
   description: [
     "아이와 부모, 또는 예비 부모가 함께 메타버스 내에서 교육 영상을 시청하고 정보를 공유하는 서비스",
-    "메디앙스 아이맘 메타빌리지 API 제작, 아마존 클라우드 인스턴스에 배포 및 유지관리 담당",
+    "아이맘 메타빌리지 API 제작, 아마존 클라우드 인스턴스에 배포 및 유지관리 담당",
   ],
   team: Team.Produce,
   company: Company.Ander,
@@ -36,4 +40,7 @@ export const anderImomApi = new ProjectModel({
     "API 서버 제작",
     "문서화 작업",
   ],
+  isSideProject: false,
+  issues: null,
+  images: null,
 });

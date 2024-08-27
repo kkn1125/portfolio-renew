@@ -5,6 +5,10 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const anderWebRtc = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/ander/webrtc",
   title: "WEBRTC 화상회의 서비스",
   description: [
@@ -29,4 +33,7 @@ export const anderWebRtc = new ProjectModel({
     "자막 텍스트 자연어 처리 및 긍, 부정어 도출",
     "빌드 자동화",
   ],
+  isSideProject: false,
+  issues: null,
+  images: null,
 });

@@ -6,13 +6,14 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideGanttChart = new ProjectModel({
-  path: "/side/gantt-chart",
   cover: getResource("gantt-chart", "gantt01.png"),
   github: "https://github.com/kkn1125/gantt-chart",
   demoSites: [
     "https://kkn1125.github.io/gantt-chart",
     "https://kkn1125.github.io/ganttChart",
   ],
+  relations: null,
+  path: "/side/gantt-chart",
   title: "Gantt Chart",
   description: [
     "개인 블로그 작성 중 느낀 불편함을 해소하기 위해 제작된 테이블 생성 웹 툴",
@@ -34,4 +35,6 @@ export const sideGanttChart = new ProjectModel({
     "행, 열 합치기, 나누기 기능 구현",
   ],
   isSideProject: true,
+  issues: null,
+  images: null,
 });

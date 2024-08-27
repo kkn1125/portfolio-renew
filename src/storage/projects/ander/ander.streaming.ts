@@ -6,6 +6,10 @@ import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const anderStreaming = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/ander/live-streaming",
   title: "라이브커머스 스트리밍 서비스",
   description: [
@@ -32,6 +36,7 @@ export const anderStreaming = new ProjectModel({
     "실시간 라이브 상태 체크",
     "팝업 태그 제어",
   ],
+  isSideProject: false,
   issues: [
     new Issue({
       problem: "미디어 분할 저장 및 구간 재생",
@@ -45,4 +50,5 @@ export const anderStreaming = new ProjectModel({
       ],
     }),
   ],
+  images: null,
 });

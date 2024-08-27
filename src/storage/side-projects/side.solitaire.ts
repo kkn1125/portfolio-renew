@@ -6,11 +6,12 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideSolitaire = new ProjectModel({
-  path: "/side/solitaire",
   cover:
     "https://github.com/kkn1125/new-solitaire/assets/71887242/d49cf751-3b1c-4607-9c2d-09670005691e",
   github: "https://github.com/kkn1125/new-solitaire",
   demoSites: ["https://kkn1125.github.io/new-solitaire"],
+  relations: null,
+  path: "/side/solitaire",
   title: "Solitaire",
   description: [
     "보유한 기술 테스트 및 게임 원리 파악하고자 개발한 솔리테어 카드 게임",
@@ -33,4 +34,6 @@ export const sideSolitaire = new ProjectModel({
     "선택 카드 하이라이팅",
   ],
   isSideProject: true,
+  issues: null,
+  images: null,
 });

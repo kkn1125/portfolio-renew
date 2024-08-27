@@ -5,6 +5,7 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
   Container,
+  Divider,
   IconButton,
   Stack,
   Table,
@@ -137,35 +138,38 @@ function PortfolioDetail() {
                   </Stack>
                 </TableCell>
               </TableRow>
-              {projectModel.github && (
-                <TableRow>
-                  <TableCell component="th" scope="row" width={75}>
-                    깃허브
-                  </TableCell>
-                  <TableCell>
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      gap={1}
-                      component={Link}
-                      to={projectModel.github}
-                      target="_blank"
-                      color="inherit"
-                      sx={{ textDecoration: "none" }}
-                    >
-                      <Typography>{projectModel.github}</Typography>
-                      <LaunchIcon fontSize="small" />
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              )}
-              {projectModel.demoSites && (
-                <TableRow>
-                  <TableCell component="th" scope="row" width={75}>
-                    데모 사이트
-                  </TableCell>
-                  <TableCell>
-                    {projectModel.demoSites.map((demo) => (
+              <TableRow>
+                <TableCell component="th" scope="row" width={75}>
+                  깃허브
+                </TableCell>
+                <TableCell>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    gap={1}
+                    {...(projectModel.github && {
+                      component: Link,
+                      to: projectModel.github,
+                      target: "_blank",
+                    })}
+                    color="inherit"
+                    sx={{ textDecoration: "none" }}
+                  >
+                    <Typography>
+                      {projectModel.github ?? "지원되지 않는 프로젝트입니다."}
+                    </Typography>
+                    {projectModel.github && <LaunchIcon fontSize="small" />}
+                  </Stack>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell component="th" scope="row" width={75}>
+                  데모 사이트
+                </TableCell>
+                <TableCell>
+                  {projectModel.demoSites &&
+                  projectModel.demoSites.length > 0 ? (
+                    projectModel.demoSites.map((demo) => (
                       <Stack
                         key={demo}
                         direction="row"
@@ -180,10 +184,14 @@ function PortfolioDetail() {
                         <Typography color="inherit">{demo}</Typography>
                         <LaunchIcon fontSize="small" />
                       </Stack>
-                    ))}
-                  </TableCell>
-                </TableRow>
-              )}
+                    ))
+                  ) : (
+                    <Typography color="inherit">
+                      등록된 데모 사이트가 없습니다.
+                    </Typography>
+                  )}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </Stack>
@@ -230,6 +238,45 @@ function PortfolioDetail() {
                       </Typography>
                     ))}
                   </Stack>
+                </Stack>
+              ))}
+            </Stack>
+          </Stack>
+        </Container>
+      )}
+
+      {/* Section 5 */}
+      {projectModel.images && (
+        <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
+          <Stack gap={2}>
+            <Divider />
+            {/* <Typography fontSize={32} fontWeight={700} gutterBottom>
+              Solve Issues
+            </Typography> */}
+            <Stack gap={3}>
+              {projectModel.images.map(({ src, alt }) => (
+                <Stack
+                  key={src}
+                  component="figure"
+                  width="70%"
+                  mx="auto"
+                  overflow="hidden"
+                  boxShadow="5px 5px 1rem 0 #56565656"
+                  sx={{ borderRadius: 3 }}
+                >
+                  <Box component="img" width="100%" src={src} alt={alt} />
+                  <Typography
+                    component="figcaption"
+                    p={1}
+                    align="center"
+                    fontWeight={700}
+                    color="white"
+                    sx={{
+                      background: (theme) => theme.palette.text.disabled,
+                    }}
+                  >
+                    {alt}
+                  </Typography>
                 </Stack>
               ))}
             </Stack>

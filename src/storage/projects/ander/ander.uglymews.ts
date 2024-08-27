@@ -6,6 +6,10 @@ import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const anderUglymews = new ProjectModel({
+  cover: null,
+  github: null,
+  demoSites: null,
+  relations: null,
   path: "/ander/uglymews",
   title: "어글리뮤즈 캐릭터 IP 사업 스토어 API 서버",
   description: ["캐릭터 IP 사업 스토어 API 서버 및 데이터베이스 제작"],
@@ -24,6 +28,7 @@ export const anderUglymews = new ProjectModel({
     "데이터베이스 설계, 구현",
     "SSL 적용",
   ],
+  isSideProject: false,
   issues: [
     new Issue({
       problem: "CI/CD 자동화",
@@ -36,4 +41,5 @@ export const anderUglymews = new ProjectModel({
       solves: ["배포 자동화로 개발 시간 절약", "프로젝트 관리 용이성 향상"],
     }),
   ],
+  images: null,
 });
