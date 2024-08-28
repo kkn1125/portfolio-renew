@@ -4,7 +4,7 @@ import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 import { sideMentees } from "./side.mentees";
-import { getResource } from "@libs/getResource";
+import { getImage, getResource } from "@libs/getResource";
 
 export const sideMenteeUnion = new ProjectModel({
   cover: getResource("project-mentee-union", "mentee-union.png"),
@@ -44,5 +44,7 @@ export const sideMenteeUnion = new ProjectModel({
   ],
   isSideProject: true,
   issues: null,
-  images: null,
+  images: [
+    getImage("project-mentee-union", "menteeunion.kro.kr_.png", "landing"),
+  ],
 });

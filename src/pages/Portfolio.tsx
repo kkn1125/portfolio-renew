@@ -35,7 +35,7 @@ function Portfolio() {
         <Typography fontSize={30} fontWeight={700} gutterBottom>
           🗂️ Projects
         </Typography>
-        <Stack gap={2}>
+        <Stack gap={2} alignItems="center">
           {groupList
             .map((projects, i) => (
               <Stack
@@ -44,7 +44,11 @@ function Portfolio() {
                 gap={3}
                 position="relative"
                 alignItems="flex-start"
-                sx={{ perspective: "1500px", boxSizing: "border-box" }}
+                sx={{
+                  perspective: "1500px",
+                  boxSizing: "border-box",
+                  width: "100%",
+                }}
               >
                 {projects.map((project, q) => (
                   <ProjectCard key={project?.title || q} project={project} />

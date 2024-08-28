@@ -17,11 +17,12 @@ function ProjectCard({ project }: ProjectCardProps) {
       component={Link}
       to={project.path}
       sx={{
+        flex: 1,
         display: "block",
         overflow: "hidden",
         position: "relative",
         textDecoration: "none",
-        width: 270,
+        width: { xs: "auto", lg: 270 },
         height: 170,
         transformStyle: "preserve-3d",
         transition: "300ms ease-in-out",

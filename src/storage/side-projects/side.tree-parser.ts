@@ -1,7 +1,7 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { getResource } from "@libs/getResource";
+import { getImage, getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
@@ -28,5 +28,5 @@ export const sideTreeParser = new ProjectModel({
   ],
   isSideProject: true,
   issues: null,
-  images: null,
+  images: [getImage("treeparser", "tree01.png", "랜딩 페이지")],
 });

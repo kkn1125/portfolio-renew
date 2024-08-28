@@ -1,7 +1,7 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { getResource } from "@libs/getResource";
+import { getImage, getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
@@ -35,5 +35,16 @@ export const sideMentees = new ProjectModel({
   ],
   isSideProject: true,
   issues: null,
-  images: null,
+  images: [
+    getImage("mentees", "mentees_main.png", "랜딩 페이지"),
+    getImage("mentees", "mentees_main_clipboard.png", "피드백 복사"),
+    getImage("mentees", "mentees_signin.png", "로그인 페이지"),
+    getImage("mentees", "mentees_main_mentee.png", "멘티 랭크 목록"),
+    getImage("mentees", "mentees_mentees_setting.png", "회원정보 수정"),
+    getImage(
+      "mentees",
+      "mentees_mentees_program_feedback.png",
+      "멘티활동 기록"
+    ),
+  ],
 });

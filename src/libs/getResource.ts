@@ -6,6 +6,13 @@ export type ImageObject = {
   alt: string;
 };
 
+export function getExternalImage(url: string, alias: string) {
+  return {
+    src: url,
+    alt: alias,
+  };
+}
+
 export function getImage(
   projectName: string,
   filename: string,

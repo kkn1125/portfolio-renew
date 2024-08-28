@@ -250,9 +250,6 @@ function PortfolioDetail() {
         <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
           <Stack gap={2}>
             <Divider />
-            {/* <Typography fontSize={32} fontWeight={700} gutterBottom>
-              Solve Issues
-            </Typography> */}
             <Stack gap={3}>
               {projectModel.images.map(({ src, alt }) => (
                 <Stack
@@ -262,7 +259,13 @@ function PortfolioDetail() {
                   mx="auto"
                   overflow="hidden"
                   boxShadow="5px 5px 1rem 0 #56565656"
-                  sx={{ borderRadius: 3 }}
+                  sx={{
+                    borderRadius: 3,
+                    transition: "box-shadow 150ms ease-in-out",
+                    ["&:hover"]: {
+                      boxShadow: "1px 1px 1rem 0 #56565656",
+                    },
+                  }}
                 >
                   <Box component="img" width="100%" src={src} alt={alt} />
                   <Typography
