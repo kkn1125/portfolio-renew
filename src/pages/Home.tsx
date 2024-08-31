@@ -106,6 +106,19 @@ function Home() {
                   {desc}
                 </Typography>
               ))}
+
+              <Stack mt={3} flex={1}>
+                <Typography component="div" fontSize={20} fontWeight={700}>
+                  핵심 역량
+                </Typography>
+                <Stack component="ul">
+                  {Information.coreCompetencies.map((line) => (
+                    <Typography component="li" key={line} color="GrayText">
+                      {line}
+                    </Typography>
+                  ))}
+                </Stack>
+              </Stack>
             </Stack>
 
             <Stack
