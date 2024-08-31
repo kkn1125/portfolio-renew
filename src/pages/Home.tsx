@@ -2,6 +2,8 @@ import translate from "@common/translate";
 import { PROFILE_IMAGE, SVG_ICON_SIZE } from "@common/variables";
 import Flow from "@components/atoms/Flow";
 import SideFlow from "@components/atoms/SideFlow";
+import { sortByEnd } from "@libs/sortBy";
+import { CopyTemplate } from "@models/CopyTemplate";
 import {
   Box,
   Container,
@@ -15,7 +17,11 @@ import { companyAnder } from "@src/storage/companies/company.ander";
 import { companyFov } from "@src/storage/companies/company.fov";
 import { companyReborn } from "@src/storage/companies/company.reborn";
 import { Information } from "@src/storage/introduce/information";
+import { companies } from "@storage/companies";
 import { sideProject } from "@storage/companies/side.project";
+import { projects } from "@storage/projects";
+import sideProjects from "@storage/side-projects";
+import { useEffect } from "react";
 
 const SLIDE_TIME = 50;
 const SLIDE_ITEM_GAP = 5;
@@ -36,6 +42,29 @@ function Home() {
   }px) * ${skillItems.length}));
       }
   `;
+
+  useEffect(() => {
+    function handleHiddenCopyData(e: KeyboardEvent) {
+      if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "O") {
+        const projectGap = "\n\n";
+        const result1 = sortByEnd(
+          Object.values(companies).flatMap((item) => item.projects)
+        )
+          .map(CopyTemplate)
+          .join(projectGap);
+        const result2 = sortByEnd(sideProjects)
+          .map(CopyTemplate)
+          .join(projectGap);
+        navigator.clipboard.writeText(
+          `# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+        );
+      }
+    }
+    window.addEventListener("keydown", handleHiddenCopyData);
+    return () => {
+      window.removeEventListener("keydown", handleHiddenCopyData);
+    };
+  }, []);
 
   return (
     <Stack flex={1} overflow="auto" height="inherit">

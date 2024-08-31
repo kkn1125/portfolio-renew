@@ -1,8 +1,8 @@
-import { format } from "@libs/format";
+import { calcDiffDate } from "@libs/calcDiffDate";
+import { during } from "@libs/during";
 import { CompanyModel } from "@models/company.model";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Box, Chip, IconButton, Stack, Typography } from "@mui/material";
-import dayjs from "dayjs";
 import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,8 +12,7 @@ function Flow({ company }: FlowProps) {
   const { name, team, roles, description, projects, start, end } = company;
   const navigate = useNavigate();
   const calcDate = useMemo(() => {
-    const diff = dayjs(end).diff(dayjs(start), "month");
-    return diff + 1;
+    return calcDiffDate(end, start);
   }, [end, start]);
 
   return (
@@ -57,11 +56,7 @@ function Flow({ company }: FlowProps) {
           {team} / {roles[0].toUpperCase()}
         </Typography>
         <Stack direction="row" gap={1} alignItems="center">
-          <Typography fontSize={14}>
-            {format(start, "YYYY. MM.") +
-              " ~ " +
-              (end ? format(end, "YYYY. MM.") : "재직 중")}
-          </Typography>
+          <Typography fontSize={14}>{during(start, end)}</Typography>
           <Chip
             color="primary"
             size="small"

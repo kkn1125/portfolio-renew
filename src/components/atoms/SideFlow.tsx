@@ -1,8 +1,8 @@
-import { format } from "@libs/format";
+import { calcDiffDate } from "@libs/calcDiffDate";
+import { during } from "@libs/during";
 import { ProjectModel } from "@models/project.model";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Box, Chip, Stack, Typography } from "@mui/material";
-import dayjs from "dayjs";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,7 @@ type SideFlowProps = { project: ProjectModel };
 
 function SideFlow({ project }: SideFlowProps) {
   const calcDate = useMemo(() => {
-    const diff = dayjs(project.end).diff(dayjs(project.start), "month");
-    return diff + 1;
+    return calcDiffDate(project.end, project.start);
   }, [project.end, project.start]);
 
   return (
@@ -80,8 +79,7 @@ function SideFlow({ project }: SideFlowProps) {
         </Box>
         <Stack direction="row" gap={1} alignItems="center">
           <Typography fontSize={14}>
-            {format(project.start, "YYYY. MM.")} ~{" "}
-            {project.end ? format(project.end, "YYYY. MM.") : "재직 중"}
+            {during(project.start, project.end, "진행 중")}
           </Typography>
           <Chip
             color="primary"

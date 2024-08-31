@@ -17,7 +17,15 @@ export const fovDbupdater = new ProjectModel({
   team: Team.Development,
   company: Company.Fov,
   roles: [Role.Server],
-  skills: [Skill("typescript"), Skill("react"), Skill("nest"), Skill("nginx")],
+  skills: [
+    Skill("typescript"),
+    Skill("react"),
+    Skill("nest"),
+    Skill("nginx"),
+    Skill("typeorm"),
+    Skill("docker"),
+    Skill("socketio"),
+  ],
   start: new Date(2024, 4),
   end: new Date(2024, 5),
   works: [
