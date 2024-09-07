@@ -60,7 +60,9 @@ function Home() {
         );
       }
     }
+
     window.addEventListener("keydown", handleHiddenCopyData);
+
     return () => {
       window.removeEventListener("keydown", handleHiddenCopyData);
     };
