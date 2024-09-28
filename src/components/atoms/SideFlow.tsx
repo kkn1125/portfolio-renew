@@ -50,7 +50,7 @@ function SideFlow({ project }: SideFlowProps) {
               alignItems="center"
               gap={1}
             >
-              <Typography component="span">related</Typography>
+              <Typography component="span">Related</Typography>
               <Chip
                 component={Link}
                 to={project.relations[0].path}

@@ -1,20 +1,20 @@
 import { Skill } from "@libs/skill";
 
 export const Information = {
-  title: "문제 해결에 집중하고 효율성, 확장성을 고민하는 서버/백엔드 개발자",
+  title: "문제 해결에 집중하고 효율성을 고민하는 서버/백엔드 개발자",
   name: "김경남",
   position: "back-end developer",
   coreCompetencies: [
-    "AWS EC2 및 인프라 관리",
+    "AWS EC2 및 개발서버 관리",
     "NestJS, TypeScript를 활용한 백엔드 개발",
     "CI/CD 파이프라인 구축 및 자동화 경험",
-    "문서화와 정보 공유를 통한 팀 내 소통 도모",
+    "문서화와 정보 공유를 통한 팀과의 소통",
     "개발 경험과 기술 지식을 기록, 공유하는 개인 블로그 운영",
   ],
   description: [
     "서버 개발자로서, 신규 서비스 개발과 유지보수를 통해 다양한 경험을 쌓았습니다.",
     "API 서버와 백오피스 프론트엔드, 미디어 스트리밍 서비스 개발을 포함해, 사내 업무를 지원하는 기능 연구개발을 수행했습니다.",
-    "AWS 기반의 서비스 배포와 운영도 직접 관리한 경험이 있습니다.",
+    "AWS 기반의 서비스 배포와 운영, 관리한 경험이 있습니다.",
   ],
   email: "chaplet01@gmail.com",
   github: "https://github.com/kkn1125",
