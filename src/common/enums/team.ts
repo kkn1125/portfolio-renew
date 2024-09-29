@@ -1,5 +1,5 @@
 export const Team = {
-  Development: "개발팀",
+  Development: "개발실",
   Produce: "제작팀",
   Backend: "백엔드팀",
   Personal: "개인",

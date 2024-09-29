@@ -13,13 +13,12 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { companyAnder } from "@src/storage/companies/company.ander";
-import { companyFov } from "@src/storage/companies/company.fov";
-import { companyReborn } from "@src/storage/companies/company.reborn";
-import { Information } from "@src/storage/introduce/information";
 import { companies } from "@storage/companies";
+import { companyAnder } from "@storage/companies/company.ander";
+import { companyFov } from "@storage/companies/company.fov";
+import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
-import { projects } from "@storage/projects";
+import { Information } from "@storage/introduce/information";
 import sideProjects from "@storage/side-projects";
 import { useEffect } from "react";
 
@@ -40,8 +39,8 @@ function Home() {
         transform: translateX(calc(-1 * (${SVG_ICON_SIZE}px + ${
     8 * SLIDE_ITEM_GAP
   }px) * ${skillItems.length}));
-      }
-  `;
+        }
+    `;
 
   useEffect(() => {
     function handleHiddenCopyData(e: KeyboardEvent) {
