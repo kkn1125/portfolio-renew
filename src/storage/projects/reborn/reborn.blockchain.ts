@@ -2,6 +2,7 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
+import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const rebornBlockChain = new ProjectModel({
@@ -14,15 +15,20 @@ export const rebornBlockChain = new ProjectModel({
   description: ["BlockChain + NFTMarketplace 웹 페이지 제작"],
   team: Team.Backend,
   company: Company.Reborn,
-  roles: [Role.Backend],
-  skills: [Skill("nodejs"), Skill("react"), Skill("typescript"), Skill("mui")],
+  roles: [Role.Frontend],
+  skills: [
+    Skill("nodejs"),
+    Skill("nextjs"),
+    Skill("react"),
+    Skill("typescript"),
+    Skill("mui"),
+  ],
   start: new Date(2022, 4),
   end: new Date(2022, 6),
   works: [
-    "미디어 서버 및 화상 회의 위한 소켓 서버 제작",
-    "STT 활용한 화자 별 자막 생성",
-    "자막 텍스트 자연어 처리 및 긍, 부정어 도출",
-    "빌드 자동화",
+    "metamask wallet 연동",
+    "NFTMarketplace 스토어 페이지 연동",
+    "프론트엔드 전체 페이지 제작",
   ],
   isSideProject: false,
   issues: null,

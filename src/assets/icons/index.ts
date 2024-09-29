@@ -29,6 +29,7 @@ import bootstrap from "./bootstrap";
 import formik from "./formik";
 import gulp from "./gulp";
 import mybatis from "./mybatis";
+import nextjs from "./nextjs";
 import swagger from "./swagger";
 import typeorm from "./typeorm";
 import vite from "./vite";
@@ -68,6 +69,7 @@ export const Icons = {
   formik,
   gulp,
   mybatis,
+  nextjs,
   swagger,
   typeorm,
   vite,

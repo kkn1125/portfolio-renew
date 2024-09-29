@@ -2,6 +2,7 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
+import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const fovDbupdater = new ProjectModel({
@@ -39,6 +40,23 @@ export const fovDbupdater = new ProjectModel({
     "배포 자동화",
   ],
   isSideProject: false,
-  issues: null,
+  issues: [
+    new Issue({
+      problem: "구글 시트 및 로컬 데이터베이스 컬럼 및 타입 검증 문제",
+      processes: [
+        "구글 시트 API 연동",
+        "구글 시트 문서 ID와 데이터베이스별 매칭",
+        "선택한 스키마, 테이블 키를 사용하여 로컬 DB의 테이블 컬럼 정보 읽기",
+        "구글 시트 데이터 가져와 컬럼과 비교 및 컬럼명 커스텀 설정 가능하도록 기능 정의",
+        "구글 시트에서 로컬 DB 테이블 컬럼과 비교하여 배열 인덱스 매핑",
+        "매핑된 인덱스 값으로 구글 시트에서 해당하는 데이터만 추출",
+        "컬럼별 타입 검증 및 응답 데이터로 가공 생성",
+      ],
+      solves: [
+        "프론트에서 제어가 쉽도록 추가 또는 수정된 데이터로 분류하여 응답",
+        "데이터베이스 업데이트 과정 대폭 감소",
+      ],
+    }),
+  ],
   images: null,
 });

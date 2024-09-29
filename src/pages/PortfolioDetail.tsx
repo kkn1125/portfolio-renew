@@ -214,13 +214,21 @@ function PortfolioDetail() {
       {/* Section 3 */}
       {projectModel.issues && (
         <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-          <Stack gap={2}>
+          <Stack gap={1}>
             <Typography fontSize={32} fontWeight={700} gutterBottom>
               Solve Issues
             </Typography>
-            <Stack gap={3}>
+            <Stack gap={2}>
               {projectModel.issues.map((issue) => (
-                <Stack key={issue.problem} gap={1}>
+                <Stack
+                  key={issue.problem}
+                  gap={2}
+                  p={3}
+                  sx={{
+                    border: "1px solid #56565626",
+                    borderRadius: (theme) => theme.typography.pxToRem(5),
+                  }}
+                >
                   <Typography fontSize={18} fontWeight={700}>
                     🤔 {issue.problem}
                   </Typography>

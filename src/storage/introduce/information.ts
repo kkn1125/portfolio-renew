@@ -38,6 +38,7 @@ export const Information = {
     Skill("mysql"),
     Skill("typeorm"),
     Skill("mybatis"),
+    Skill("nextjs"),
     Skill("jenkins"),
     Skill("docker"),
     Skill("artillery"),

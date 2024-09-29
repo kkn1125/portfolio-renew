@@ -28,7 +28,7 @@ export const anderStreaming = new ProjectModel({
   start: new Date(2023, 0),
   end: new Date(2023, 2),
   works: [
-    "미디어 파일 스트리밍 위해 파일 분할 재샐 기능 구현",
+    "미디어 파일 스트리밍 위해 파일 분할 재생 기능 구현",
     "사용자 지정 구간 재생 및 녹화 완료 시 자동 인코딩 후 저장 기능 제작",
     "방송 송출자 관리 패널 구축",
     "스케줄링을 통한 라이브 방송 시간 예약 구현",
