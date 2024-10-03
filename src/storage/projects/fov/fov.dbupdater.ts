@@ -38,7 +38,6 @@ export const fovDbupdater = new ProjectModel({
     "실시간 알림을 위해 웹소켓을 추가하여 다른 개발자가 업데이트 시 동기화 내역 및 해당 내역 일괄 적용 기능 제작",
     "팀원 사용 후 피드백 반영하여 유지보수",
     "기존 개발자 데이터베이스 동기화 작업을 간소화하여 개발시간 30% 단축",
-    "배포 자동화",
   ],
   isSideProject: false,
   issues: [

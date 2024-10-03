@@ -10,7 +10,8 @@
     "build": "tsc -b && cross-env NODE_ENV=production vite build --mode=production",
     "postbuild": "npm run generate:pages",
     "generate:pages": "cd server && npm run build",
-    "deploy": "cd dist/ && touch .nojekyll && git init && git add -A && git commit -m \"gh-pages auto deploy\" && git push https://github.com/kkn1125/portfolio-renew.git master:gh-pages -f"
+    "deploy": "cd dist/ && touch .nojekyll && git init && git add -A && git commit -m \"gh-pages auto deploy\" && git push https://github.com/kkn1125/portfolio-renew.git master:gh-pages -f",
+    "push": "npm run build && npm run deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
