@@ -2,7 +2,7 @@ import { DEPLOY_PATH, HEADER_TEXT, VERSION } from "@common/variables";
 import { getImages } from "@libs/getResource";
 import { Page } from "@libs/page";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Button, Chip, Container, Menu, MenuItem } from "@mui/material";
+import { Button, Chip, Container, Menu, MenuItem, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -47,7 +47,7 @@ export default function Header() {
                 mr: 2,
                 display: { xs: "none", md: "flex" },
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: "0.3rem",
                 color: "inherit",
                 textDecoration: "none",
               }}
@@ -137,23 +137,24 @@ export default function Header() {
 
             {/* pc */}
             <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex", alignItems: "center" },
-              }}
+              flexGrow={1}
+              display={{ xs: "none", md: "flex", alignItems: "center" }}
+              justifyContent="space-between"
             >
-              {pages.map(({ name, path }) => (
-                <Button
-                  key={name}
-                  onClick={() => {
-                    navigate(path);
-                    handleCloseNavMenu();
-                  }}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {name}
-                </Button>
-              ))}
+              <Stack direction="row" gap={1}>
+                {pages.map(({ name, path }) => (
+                  <Button
+                    key={name}
+                    onClick={() => {
+                      navigate(path);
+                      handleCloseNavMenu();
+                    }}
+                    sx={{ my: 1, color: "white", display: "block" }}
+                  >
+                    {name}
+                  </Button>
+                ))}
+              </Stack>
               <Chip
                 color="secondary"
                 size="small"
@@ -161,6 +162,8 @@ export default function Header() {
                 sx={{ ml: 1 }}
               />
             </Box>
+
+            {/* mobile */}
             <Box sx={{ flexGrow: 0 }} width={LOGO_SIZE / 2} />
           </Toolbar>
         </Container>

@@ -7,15 +7,17 @@ const skillLimit = 2;
 
 type ProjectCardProps = {
   project: ProjectModel | null;
+  page: number;
 };
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, page }: ProjectCardProps) {
   if (!project) return <Box flex={1} width={270} height={170} />;
-
+  console.log("page: %d", page);
   return (
     <Paper
       component={Link}
       to={project.path}
+      state={{ page }}
       sx={{
         flex: 1,
         display: "block",
@@ -80,6 +82,7 @@ function ProjectCard({ project }: ProjectCardProps) {
       }}
     >
       <Typography
+        component="div"
         position="absolute"
         top={0}
         bottom={0}

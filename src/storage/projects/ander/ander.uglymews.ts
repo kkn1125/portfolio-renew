@@ -20,8 +20,8 @@ export const anderUglymews = new ProjectModel({
   start: new Date(2023, 6),
   end: new Date(2023, 7),
   works: [
-    "Jenkins 활용한 빌드, 배포 자동화",
     "API 스키마 설계, 제작",
+    "Jenkins 활용한 빌드, 배포 자동화를 통해 개발시간 절감",
     "사내 개발 서버 및 실서버 관리",
     "NHN KCP 결제 시스템 연동",
     "상품 카트 기능 제작, 결제 및 취소 기능 구현 및 검증",

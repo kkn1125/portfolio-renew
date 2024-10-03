@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   IconButton,
+  Portal,
   Stack,
   Table,
   TableBody,
@@ -16,17 +17,26 @@ import {
   Typography,
 } from "@mui/material";
 import { projects } from "@storage/projects";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
 function PortfolioDetail() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const page = +(location.state?.page || 1);
   const { company, project } = useParams();
+  const headerHeight = 64;
 
   const projectModel = projects.find(
     (prj) =>
       prj.path ===
       pathJoin(DEPLOY_PATH, "portfolio", company || "", project || "")
   );
+
+  function goToList() {
+    navigate(pathJoin(DEPLOY_PATH, "/portfolio/"), { state: { page } });
+  }
 
   if (!projectModel) {
     return <Notfound />;
@@ -40,13 +50,29 @@ function PortfolioDetail() {
       overflow="auto"
       height="inherit"
     >
+      <Portal container={document.body}>
+        <IconButton
+          color="default"
+          onClick={goToList}
+          sx={{
+            position: "fixed",
+            color: "white",
+            background: (theme) => theme.palette.info.main,
+            right: (theme) => theme.typography.pxToRem(50),
+            bottom: (theme) => theme.typography.pxToRem(100),
+            zIndex: 999,
+          }}
+        >
+          <KeyboardReturnIcon />
+        </IconButton>
+      </Portal>
       <Stack
         position="relative"
         width="100%"
         justifyContent="center"
         alignItems="center"
-        minHeight="calc(100vh - 68.5px - 72px)"
-        height="calc(100vh - 68.5px - 72px)"
+        minHeight={`calc(100vh - ${headerHeight}px - 72px)`}
+        height={`calc(100vh - ${headerHeight}px - 72px)`}
         overflow="hidden"
       >
         <Box

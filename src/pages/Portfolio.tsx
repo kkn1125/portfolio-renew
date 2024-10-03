@@ -10,11 +10,13 @@ import {
 } from "@mui/material";
 import { projects } from "@storage/projects";
 import { useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const perPage = 8;
 
 function Portfolio() {
-  const [page, setPage] = useState(1);
+  const location = useLocation();
+  const [page, setPage] = useState(+(location.state?.page || 1));
   const theme = useTheme();
   const total = projects.length;
   const isLgUp = useMediaQuery(theme.breakpoints.up("lg"));
@@ -51,7 +53,11 @@ function Portfolio() {
                 }}
               >
                 {projects.map((project, q) => (
-                  <ProjectCard key={project?.title || q} project={project} />
+                  <ProjectCard
+                    key={project?.title || q}
+                    project={project}
+                    page={page}
+                  />
                 ))}
               </Stack>
             ))

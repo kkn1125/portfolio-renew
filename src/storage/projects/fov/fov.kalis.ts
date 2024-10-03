@@ -4,7 +4,7 @@ import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
 import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
-
+// 문제-해결-이유-성과
 export const fovKalis = new ProjectModel({
   cover: null,
   github: null,
@@ -20,15 +20,12 @@ export const fovKalis = new ProjectModel({
   start: new Date(2024, 6),
   end: new Date(2024, 8),
   works: [
-    "기존 관리자 페이지를 Svelte에서 React로 마이그레이션",
-    "기존 API 서버를 Python에서 NestJS로 마이그레이션",
-    "유니티 클라이언트와의 데이터 연동 검증 및 API 기능 개선",
-    "비효율적인 데이터 요청으로 인한 성능 저하 이슈 해결을 위해 쿼리 튜닝 및 성능 개선",
-    "통계 그래프 데이터 요청 성능 저하 이슈 해결을 위한 쿼리 튜닝 및 성능 개선",
-    "수만 개의 데이터 요청 처리를 서버 사이드 처리로 성능 개선",
-    "프론트엔드 CPU 집약적 연산을 서버 사이드로 마이그레이션하여 성능 최적화",
-    "서버 요청 수 줄이기 및 서버 연산 최적화 작업 수행",
-    "빌드, 배포, zip 패키징 자동화 쉘 스크립트 작성 및 운용",
+    "기존 Svelte의 비효율적인 유지보수성, 빌드 후 복잡한 실행 단계 문제 해결을 위해 React로 마이그레이션을 통해 유지보수성 30% 향상, 실행 단계 간소화",
+    "기존 Python 기반 API를 NestJS로 마이그레이션을 통해 유지보수성을 개선, 하드코딩 및 비효율적인 쿼리를 튜닝하여 응답 속도 80% 개선",
+    "프론트 최적화 진행 중 성능이 현저히 떨어지는 현상 발견하여 불필요한 for문 제거 및 서버측 쿼리 튜닝을 통해 문제 해결",
+    "통계 그래프 데이터 요청 성능 저하 현상 발견하여 쿼리 튜닝을 통해 성능 개선",
+    "기존 대용량 데이터를 프론트에서 처리하는 비효율적인 부분을 발견하고 서버 사이드 페이지네이션으로 필요한 데이터만 응답하여 성능 개선",
+    "잦은 빌드 및 배포 과정을 자동화하기 위해 Jenkins, Github Webhook 및 ShellScript를 활용하여 배포에 사용되는 개발 시간을 60% 절감",
   ],
   isSideProject: false,
   issues: [
