@@ -2,7 +2,8 @@ import { Role } from "@common/enums/role";
 import { Skill } from "@libs/skill";
 
 export const Information = {
-  title: "문제 해결에 집중하고 효율성을 고민하는 서버/백엔드 개발자",
+  title: "문제 해결과 유지보수성을 고민하며 팀과 소통하는 백엔드 개발자",
+  // title: "문제 해결에 집중하고 효율성을 고민하는 서버/백엔드 개발자",
   name: "김경남",
   position: Role.Backend,
   coreCompetencies: [

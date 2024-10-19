@@ -20,14 +20,23 @@ export const anderUglymews = new ProjectModel({
   start: new Date(2023, 6),
   end: new Date(2023, 7),
   works: [
-    "API 스키마 설계, 제작",
-    "Jenkins 활용한 빌드, 배포 자동화를 통해 개발시간 절감",
-    "사내 개발 서버 및 실서버 관리",
-    "NHN KCP 결제 시스템 연동",
-    "상품 카트 기능 제작, 결제 및 취소 기능 구현 및 검증",
-    "데이터베이스 설계, 구현",
-    "SSL 적용",
+    "RESTful API 설계 및 구현",
+    "Jenkins를 활용한 CI/CD 파이프라인 구축",
+    "개발 서버 및 실서버 관리",
+    "NHN KCP 결제 시스템 연동 및 구현",
+    "상품 카트, 결제, 취소 기능 개발",
+    "데이터베이스 설계 및 구현",
+    "SSL 인증서 적용"
   ],
+  // works: [
+  //   "API 스키마 설계, 제작",
+  //   "Jenkins 활용한 빌드, 배포 자동화를 통해 개발시간 절감",
+  //   "사내 개발 서버 및 실서버 관리",
+  //   "NHN KCP 결제 시스템 연동",
+  //   "상품 카트 기능 제작, 결제 및 취소 기능 구현 및 검증",
+  //   "데이터베이스 설계, 구현",
+  //   "SSL 적용",
+  // ],
   isSideProject: false,
   issues: [
     new Issue({
