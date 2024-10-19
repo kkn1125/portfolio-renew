@@ -7,11 +7,11 @@ export const Information = {
   name: "김경남",
   position: Role.Backend,
   coreCompetencies: [
-    "문제 해결과 효율성 향상에 집중하는 서버/백엔드 개발자",
     "AWS 기반 서비스 배포 및 운영 경험 보유",
-    "NestJS, TypeScript를 활용한 백엔드 개발 전문",
+    "NestJS, TypeScript를 활용한 백엔드 개발",
     "CI/CD 파이프라인 구축 및 자동화 경험",
-    "팀 내 효과적인 소통과 지식 공유 중시"
+    "팀 내 효과적인 소통과 지식 공유 중시",
+    "문제 해결 및 개발 과정을 기록하는 개인 블로그 운영",
   ],
   // coreCompetencies: [
   //   "AWS EC2 및 개발서버 관리",
