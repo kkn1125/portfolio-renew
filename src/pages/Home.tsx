@@ -6,12 +6,12 @@ import { sortByEnd } from "@libs/sortBy";
 import { CopyTemplate } from "@models/CopyTemplate";
 import {
   Box,
+  Chip,
   Container,
   keyframes,
-  Paper,
   Stack,
   Tooltip,
-  Typography,
+  Typography
 } from "@mui/material";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
@@ -72,132 +72,203 @@ function Home() {
       {/* Section1 */}
       <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
         <Container maxWidth="lg">
-          <Stack
-            direction={{ xs: "column-reverse", md: "row" }}
-            justifyContent="space-between"
-            alignItems={{ xs: "center", md: "flex-start" }}
-            gap={{ xs: 1, md: 20 }}
-            p={3}
+          <Box
+            sx={{
+              position: "relative",
+              overflow: "hidden",
+              borderRadius: "20px",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+              background: "linear-gradient(135deg, #6B46C1 0%, #3B82F6 100%)",
+              p: 5,
+            }}
           >
-            <Stack flex={1} gap={1}>
-              <Typography component="div">
-                <Typography component="span" fontSize={40} fontWeight={700}>
-                  {Information.name}
-                </Typography>
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              justifyContent="space-between"
+              alignItems="center"
+              spacing={4}
+            >
+              <Stack spacing={3} maxWidth="600px">
                 <Typography
-                  component="span"
-                  fontSize={32}
-                  fontWeight={700}
-                  ml={2}
-                  color="GrayText"
-                  textTransform="uppercase"
-                >
-                  {Information.position}
-                </Typography>
-              </Typography>
-              {Information.description.map((desc) => (
-                <Typography
-                  key={desc}
-                  fontSize={20}
-                  color="grey"
+                  variant="h1"
                   sx={{
-                    wordBreak: "keep-all",
+                    fontSize: { xs: "2.5rem", md: "3.5rem" },
+                    fontWeight: 800,
+                    color: "#FFFFFF",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
                   }}
                 >
-                  {desc}
+                  {Information.name}
+                  <Typography
+                    component="span"
+                    sx={{
+                      display: "block",
+                      fontSize: { xs: "1.5rem", md: "2rem" },
+                      fontWeight: 600,
+                      color: "#E2E8F0",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {Information.position}
+                  </Typography>
                 </Typography>
-              ))}
 
-              <Stack mt={3} flex={1}>
-                <Typography component="div" fontSize={20} fontWeight={700}>
-                  핵심 역량
-                </Typography>
-                <Stack component="ul">
-                  {Information.coreCompetencies.map((line) => (
-                    <Typography component="li" key={line} color="GrayText">
-                      {line}
+                <Box sx={{ position: "relative", zIndex: 1 }}>
+                  {Information.description.map((desc, index) => (
+                    <Typography
+                      key={index}
+                      sx={{
+                        fontSize: "1.1rem",
+                        color: "#E2E8F0",
+                        mb: 2,
+                        position: "relative",
+                        pl: 3,
+                        "&::before": {
+                          content: '""',
+                          position: "absolute",
+                          left: 0,
+                          top: "50%",
+                          width: "10px",
+                          height: "2px",
+                          backgroundColor: "#F7FAFC",
+                        },
+                      }}
+                    >
+                      {desc}
                     </Typography>
                   ))}
-                </Stack>
+                </Box>
+
+                <Box>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 700,
+                      color: "#F7FAFC",
+                      mb: 2,
+                    }}
+                  >
+                    핵심 역량
+                  </Typography>
+                  <Stack direction="row" flexWrap="wrap" gap={1}>
+                    {Information.coreCompetencies.map((competency, index) => (
+                      <Chip
+                        key={index}
+                        label={competency}
+                        sx={{
+                          backgroundColor: "rgba(255,255,255,0.2)",
+                          color: "#FFFFFF",
+                          fontWeight: 600,
+                        }}
+                      />
+                    ))}
+                  </Stack>
+                </Box>
               </Stack>
+
+              <Box
+                sx={{
+                  position: "relative",
+                  width: { xs: "200px", md: "300px" },
+                  height: { xs: "200px", md: "300px" },
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  boxShadow: "0 0 0 10px rgba(255,255,255,0.2)",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={PROFILE_IMAGE}
+                  alt="profile"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: "brightness(1.1) contrast(1.1)",
+                    objectPosition: "-200px center",
+                  }}
+                />
+              </Box>
             </Stack>
 
-            <Stack
-              component={Paper}
-              direction="row"
-              justifyContent="flex-end"
-              maxWidth={270}
-              height={280}
+            <Box
               sx={{
-                overflow: "hidden",
+                position: "absolute",
+                top: -100,
+                right: -100,
+                width: "300px",
+                height: "300px",
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)",
               }}
-            >
-              <Box
-                component="img"
-                height="100%"
-                src={PROFILE_IMAGE}
-                alt="profile"
-                sx={{
-                  filter: "brightness(1.2)",
-                }}
-              />
-            </Stack>
-          </Stack>
+            />
+          </Box>
         </Container>
       </Box>
 
       {/* Section2 */}
       <Box py={5}>
         <Container maxWidth="lg">
-          <Stack alignItems="center">
-            <Typography fontSize={30} fontWeight={700} gutterBottom>
-              Tech Stacks
+          <Stack alignItems="center" spacing={3}>
+            <Typography variant="h4" fontWeight={600}>
+              Tech Stack
             </Typography>
-            <Typography fontSize={24} color="GrayText" gutterBottom>
-              현재까지 프로젝트에서 사용한 기술입니다.
+            <Typography variant="subtitle1" color="text.secondary">
+              프로젝트에서 사용한 기술들
             </Typography>
             <Box
-              position="relative"
-              mt={3}
               width="100%"
               sx={{
                 overflow: "hidden",
-                maskImage: `linear-gradient(to left,
-                transparent 5%,
-                #000000 calc(5% + ${20}px), #000000 calc(95% - ${20}px), transparent 95%)`,
+                position: "relative",
+                "&::before, &::after": {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  width: "100px",
+                  height: "100%",
+                  zIndex: 2,
+                },
+                "&::before": {
+                  left: 0,
+                  background: "linear-gradient(to right, #fff, transparent)",
+                },
+                "&::after": {
+                  right: 0,
+                  background: "linear-gradient(to left, #fff, transparent)",
+                },
               }}
             >
               <Stack
                 direction="row"
                 flexWrap="nowrap"
                 width="max-content"
-                gap={SLIDE_ITEM_GAP}
+                gap={3}
                 sx={{
-                  ["&:hover"]: {
+                  animation: `${infinitySlide} ${SLIDE_TIME}s linear infinite`,
+                  "&:hover": {
                     animationPlayState: "paused",
                   },
-                  animation: `${infinitySlide} ${SLIDE_TIME}s linear both infinite`,
                 }}
               >
-                {skillItems.map(({ name, icon }) => (
-                  <Tooltip key={name} title={translate[name]} placement="top">
-                    <Stack
+                {[...skillItems, ...skillItems].map(({ name, icon }, index) => (
+                  <Tooltip
+                    key={`${name}-${index}`}
+                    title={translate[name]}
+                    placement="top"
+                  >
+                    <Box
                       dangerouslySetInnerHTML={{ __html: icon }}
                       width={SVG_ICON_SIZE}
                       height={SVG_ICON_SIZE}
-                      direction="row"
-                      alignItems="center"
-                    />
-                  </Tooltip>
-                ))}
-                {skillItems.map(({ name, icon }) => (
-                  <Tooltip key={name} title={translate[name]} placement="top">
-                    <Stack
-                      dangerouslySetInnerHTML={{ __html: icon }}
-                      width={SVG_ICON_SIZE}
-                      height={SVG_ICON_SIZE}
-                      direction="row"
-                      alignItems="center"
+                      sx={{
+                        opacity: 0.7,
+                        transition: "opacity 0.3s",
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
                     />
                   </Tooltip>
                 ))}
@@ -248,7 +319,7 @@ function Home() {
               align="center"
               gutterBottom
             >
-              Side-Project
+              Side Projects
             </Typography>
 
             <Box

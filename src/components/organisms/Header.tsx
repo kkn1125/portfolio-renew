@@ -1,8 +1,15 @@
-import { DEPLOY_PATH, HEADER_TEXT, VERSION } from "@common/variables";
+import { DEPLOY_PATH, VERSION } from "@common/variables";
 import { getImages } from "@libs/getResource";
 import { Page } from "@libs/page";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Button, Chip, Container, Menu, MenuItem, Stack } from "@mui/material";
+import {
+  Button,
+  Chip,
+  Container,
+  Menu,
+  MenuItem,
+  useTheme,
+} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -20,6 +27,7 @@ const LOGO_SIZE = 40;
 
 export default function Header() {
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -33,36 +41,17 @@ export default function Header() {
 
   return (
     <Box sx={{ zIndex: 999 }}>
-      <AppBar position="static">
+      <AppBar
+        position="fixed"
+        sx={{
+          background: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            {/* pc */}
-            <Typography
-              component={Link}
-              variant="h6"
-              textTransform="uppercase"
-              noWrap
-              to={DEPLOY_PATH}
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontWeight: 700,
-                letterSpacing: "0.3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              <Box
-                component="img"
-                width={LOGO_SIZE}
-                height={LOGO_SIZE}
-                src={getImages("brand_logo", "logo_color.png")}
-                alt="logo"
-              />
-            </Typography>
-
-            {/* mobile */}
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Toolbar disableGutters sx={{ minHeight: 64, alignItems: "center" }}>
+            {/* 모바일 메뉴 */}
+            <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -70,6 +59,7 @@ export default function Header() {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
+                sx={{ color: theme.palette.text.primary }}
               >
                 <MenuIcon />
               </IconButton>
@@ -104,26 +94,25 @@ export default function Header() {
                     </Typography>
                   </MenuItem>
                 ))}
-                <MenuItem>
-                  <Chip color="secondary" size="small" label={VERSION} />
-                </MenuItem>
               </Menu>
             </Box>
-            {/* mobile */}
+
+            {/* PC 로고 */}
             <Typography
-              variant="h5"
               component={Link}
-              textTransform="uppercase"
+              variant="h6"
               noWrap
               to={DEPLOY_PATH}
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
                 fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
+                letterSpacing: "0.3rem",
+                color: "text.primary",
                 textDecoration: "none",
+                flexGrow: 1,
+                justifyContent: { xs: "center", md: "flex-start" },
+                alignItems: "center",
               }}
             >
               <Box
@@ -135,39 +124,82 @@ export default function Header() {
               />
             </Typography>
 
-            {/* pc */}
+            {/* 모바일 로고 */}
             <Box
-              flexGrow={1}
-              display={{ xs: "none", md: "flex", alignItems: "center" }}
-              justifyContent="space-between"
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                justifyContent: "center",
+              }}
             >
-              <Stack direction="row" gap={1}>
-                {pages.map(({ name, path }) => (
-                  <Button
-                    key={name}
-                    onClick={() => {
-                      navigate(path);
-                      handleCloseNavMenu();
-                    }}
-                    sx={{ my: 1, color: "white", display: "block" }}
-                  >
-                    {name}
-                  </Button>
-                ))}
-              </Stack>
-              <Chip
-                color="secondary"
-                size="small"
-                label={VERSION}
-                sx={{ ml: 1 }}
-              />
+              <Typography
+                component={Link}
+                variant="h6"
+                noWrap
+                to={DEPLOY_PATH}
+                sx={{
+                  fontWeight: 700,
+                  letterSpacing: "0.3rem",
+                  color: "text.primary",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  component="img"
+                  width={LOGO_SIZE}
+                  height={LOGO_SIZE}
+                  src={getImages("brand_logo", "logo_color.png")}
+                  alt="logo"
+                />
+              </Typography>
             </Box>
 
-            {/* mobile */}
-            <Box sx={{ flexGrow: 0 }} width={LOGO_SIZE / 2} />
+            {/* 모바일 빈 컴포넌트 */}
+            <Box sx={{ width: 48, display: { xs: "flex", md: "none" } }} />
+
+            {/* PC 메뉴 */}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
+              {pages.map(({ name, path }) => (
+                <Button
+                  key={name}
+                  onClick={() => {
+                    navigate(path);
+                    handleCloseNavMenu();
+                  }}
+                  sx={{
+                    color: "text.primary",
+                    display: "block",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    textTransform: "uppercase",
+                    "&:hover": {
+                      backgroundColor: "rgba(0, 0, 0, 0.04)",
+                    },
+                  }}
+                >
+                  {name}
+                </Button>
+              ))}
+              <Chip
+                color="primary"
+                size="small"
+                label={VERSION}
+                sx={{ ml: 2, fontWeight: 600 }}
+              />
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
+      <Toolbar /> {/* 고정 헤더를 위한 여백 */}
     </Box>
   );
 }

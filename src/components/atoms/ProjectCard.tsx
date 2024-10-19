@@ -1,9 +1,9 @@
 import { DEFAULT_COVER } from "@common/variables";
 import { ProjectModel } from "@models/project.model";
-import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
+import { Box, Chip, Grow, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const skillLimit = 2;
+const skillLimit = 3;
 
 type ProjectCardProps = {
   project: ProjectModel | null;
@@ -11,138 +11,84 @@ type ProjectCardProps = {
 };
 
 function ProjectCard({ project, page }: ProjectCardProps) {
-  if (!project) return <Box flex={1} width={270} height={170} />;
-  console.log("page: %d", page);
-  return (
-    <Paper
-      component={Link}
-      to={project.path}
-      state={{ page }}
-      sx={{
-        flex: 1,
-        display: "block",
-        overflow: "hidden",
-        position: "relative",
-        textDecoration: "none",
-        width: { xs: "auto", lg: 270 },
-        height: 170,
-        transformStyle: "preserve-3d",
-        transition: "300ms ease-in-out",
-        ["&::after"]: {
-          transition: "300ms ease-in-out",
-          content: '""',
-          position: "absolute",
-          display: "flex",
-          flexDirection: "column",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: "100%",
-          filter: "brightness(0.5)",
-          backgroundImage: "var(--cover-img)",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          clipPath: "polygon(0 0, 50.5% 0, 50.5% 100%, 50% 100%, 0 100%)",
-          "--cover-img": `url(${project.cover ?? `${DEFAULT_COVER}`})`,
-        },
-        ["&::before"]: {
-          content: `""`,
-          transition: "300ms ease-in-out",
-          position: "absolute",
-          display: "flex",
-          flexDirection: "column",
-          top: 0,
-          left: 0,
-          bottom: 0,
-          width: "100%",
-          filter: "brightness(0.5)",
-          backgroundImage: "var(--cover-img)",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          clipPath: "polygon(49.5% 0, 100% 0, 100% 100%, 50% 100%, 49.5% 100%)",
-          "--cover-img": `url(${project.cover ?? `${DEFAULT_COVER}`})`,
-        },
-        ["&>.MuiTypography-root"]: {
-          transition: "300ms ease-in-out",
-        },
-        ["&:hover"]: {
-          ["&::before"]: {
-            transform: "translateX(100%)",
-          },
-          ["&::after"]: {
-            transform: "translateX(-100%)",
-          },
-          ["&>.MuiTypography-root"]: {
-            transform: "translateY(-100%)",
-            opacity: 0,
-          },
-        },
-      }}
-    >
-      <Typography
-        component="div"
-        position="absolute"
-        top={0}
-        bottom={0}
-        left={0}
-        right={0}
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        color={(theme) => theme.palette.secondary.contrastText}
-        whiteSpace="balance"
-        textAlign="center"
-        zIndex={2}
-        fontSize={16}
-        fontWeight={700}
-        sx={{ wordBreak: "keep-all", opacity: 1 }}
-      >
-        <Box p={2}>{project.title}</Box>
-      </Typography>
-      <Box m={3}>
-        <Typography component="div" fontSize={16} fontWeight={700} gutterBottom>
-          {project.title}
-        </Typography>
+  if (!project) return null;
 
-        <Typography
-          component="div"
-          fontSize={14}
-          gutterBottom
-          title={project.description.join("\n")}
-        >
-          {project.description.join("\n").slice(0, 25)}
-          {project.description.join("\n").length >= 25 && "..."}
-        </Typography>
-        <Typography component="div" fontSize={16} fontWeight={700}>
+  return (
+    <Grow in={true} timeout={500}>
+      <Paper
+        component={Link}
+        to={project.path}
+        state={{ page }}
+        elevation={3}
+        sx={{
+          width: { xs: "100%", lg: "calc((100% - 72px) / 4)" },
+          height: 350,
+          overflow: "hidden",
+          position: "relative",
+          textDecoration: "none",
+          transition: "all 0.3s ease-in-out",
+          "&:hover": {
+            transform: "translateY(-10px)",
+            boxShadow: (theme) => theme.shadows[10],
+          },
+        }}
+      >
+        <Box
+          sx={{
+            height: "60%",
+            backgroundImage: `url(${project.cover ?? DEFAULT_COVER})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <Box sx={{ p: 2, height: "40%" }}>
+          <Typography variant="h6" gutterBottom noWrap>
+            {project.title}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            {project.description.join(" ")}
+          </Typography>
           <Stack
             direction="row"
-            flexWrap="wrap"
-            gap={1}
-            alignItems="center"
-            title={project.skills.map((skill) => skill.name).join(", ")}
+            spacing={1}
+            mt={1}
+            flexWrap="nowrap"
+            overflow="auto"
+            sx={{
+              ["&::-webkit-scrollbar"]: {
+                display: "none",
+              },
+            }}
           >
             {project.skills.slice(0, skillLimit).map((skill) => (
               <Chip
                 key={skill.name}
                 label={skill.name}
                 size="small"
-                color="info"
-                sx={{ fontSize: 10 }}
+                sx={{ fontSize: 10, mt: 0.5 }}
               />
             ))}
-            {project.skills.slice(skillLimit).length > 0 && (
-              <Typography component="div" fontSize={10} fontWeight={700}>
-                {"+" + project.skills.slice(skillLimit).length}
-              </Typography>
+            {project.skills.length > skillLimit && (
+              <Chip
+                label={`+${project.skills.length - skillLimit}`}
+                size="small"
+                sx={{ fontSize: 10, mt: 0.5 }}
+              />
             )}
           </Stack>
-        </Typography>
-      </Box>
-    </Paper>
+        </Box>
+      </Paper>
+    </Grow>
   );
 }
 

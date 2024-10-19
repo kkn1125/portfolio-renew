@@ -4,34 +4,39 @@ import { Link } from "react-router-dom";
 
 function About() {
   return (
-    <Stack py={5} flex={1} alignItems="center" overflow="auto" height="inherit">
+    <Stack py={8} flex={1} alignItems="center" overflow="auto" height="inherit" bgcolor="#f5f5f5">
       <Container maxWidth="lg" sx={{ flex: 1 }}>
-        <Typography component="div" fontSize={32} fontWeight={700}>
-          📚 About
+        <Typography variant="h2" fontWeight={700} mb={4} color="primary">
+          About Me
         </Typography>
-        <Typography>포트폴리오 및 이력을 정리한 페이지입니다.</Typography>
-        <Divider sx={{ my: 2 }} />
-        <Stack>
-          <Typography fontWeight={700}>Github:</Typography>
-          <Typography component={Link} to={Information.github} target="_blank">
-            {Information.github}
-          </Typography>
-        </Stack>
-        <Stack>
-          <Typography fontWeight={700}>Blog:</Typography>
-          <Typography component={Link} to={Information.blog} target="_blank">
-            {Information.blog}
-          </Typography>
-        </Stack>
-        <Stack>
-          <Typography fontWeight={700}>Email:</Typography>
-          <Typography
-            component={Link}
-            to={"mailto:" + Information.email}
-            target="_blank"
-          >
-            {Information.email}
-          </Typography>
+        <Typography variant="body1" mb={4}>
+          포트폴리오 및 이력을 정리한 페이지입니다.
+        </Typography>
+        <Divider sx={{ mb: 4 }} />
+        <Stack spacing={3}>
+          {[
+            { label: "Github", value: Information.github },
+            { label: "Blog", value: Information.blog },
+            { label: "Email", value: Information.email },
+          ].map((item) => (
+            <Stack key={item.label} direction="row" alignItems="center" spacing={2}>
+              <Typography variant="subtitle1" fontWeight={600} minWidth={80}>
+                {item.label}
+              </Typography>
+              <Typography
+                component={Link}
+                to={item.label === "Email" ? `mailto:${item.value}` : item.value}
+                target="_blank"
+                sx={{
+                  color: "text.secondary",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                {item.value}
+              </Typography>
+            </Stack>
+          ))}
         </Stack>
       </Container>
     </Stack>

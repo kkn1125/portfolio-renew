@@ -2,25 +2,34 @@ import { calcDiffDate } from "@libs/calcDiffDate";
 import { during } from "@libs/during";
 import { ProjectModel } from "@models/project.model";
 import LaunchIcon from "@mui/icons-material/Launch";
-import { Box, Chip, Stack, Typography } from "@mui/material";
+import { Box, Chip, Stack, Typography, useTheme } from "@mui/material";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
 type SideFlowProps = { project: ProjectModel };
 
 function SideFlow({ project }: SideFlowProps) {
-  const calcDate = useMemo(() => {
-    return calcDiffDate(project.end, project.start);
-  }, [project.end, project.start]);
+  const theme = useTheme();
+  const calcDate = useMemo(
+    () => calcDiffDate(project.end, project.start),
+    [project.end, project.start]
+  );
 
   return (
-    <Stack
+    <Box
       position="relative"
-      py={5}
-      minHeight={120}
+      py={4}
+      pr={2}
       sx={{
-        borderRight: (theme) =>
-          `3px solid ${theme.palette.secondary.main + "56"}`,
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          right: "20px",
+          top: 0,
+          bottom: 0,
+          width: "2px",
+          background: theme.palette.secondary.main,
+        },
       }}
     >
       <Stack pr={5} alignItems="flex-end" textAlign="right">
@@ -50,13 +59,13 @@ function SideFlow({ project }: SideFlowProps) {
               alignItems="center"
               gap={1}
             >
-              <Typography component="span">Related</Typography>
+              <Typography component="span">관련 프로젝트</Typography>
               <Chip
                 component={Link}
                 to={project.relations[0].path}
                 size="small"
                 label={project.relations[0].title}
-                color="error"
+                color="secondary"
                 sx={{ cursor: "pointer" }}
               />
             </Stack>
@@ -68,12 +77,17 @@ function SideFlow({ project }: SideFlowProps) {
             gutterBottom
             fontSize={20}
             fontWeight={700}
-            color="GrayText"
+            color="text.secondary"
             sx={{ textDecoration: "none" }}
           >
             {project.description}
           </Typography>
-          <Typography gutterBottom fontSize={16} fontWeight={700} color="grey">
+          <Typography
+            gutterBottom
+            fontSize={16}
+            fontWeight={700}
+            color="text.secondary"
+          >
             {project.team} / {project.roles[0].toUpperCase()}
           </Typography>
         </Box>
@@ -82,9 +96,9 @@ function SideFlow({ project }: SideFlowProps) {
             {during(project.start, project.end, "진행 중")}
           </Typography>
           <Chip
-            color="primary"
+            color="secondary"
             size="small"
-            label={calcDate + " month" + (calcDate > 1 ? "s" : "")}
+            label={calcDate + "month" + (calcDate > 1 ? "s" : "")}
             sx={{ fontSize: 12, fontWeight: 700 }}
           />
         </Stack>
@@ -92,21 +106,27 @@ function SideFlow({ project }: SideFlowProps) {
 
       <Box
         position="absolute"
-        top="48px"
+        top="50px"
         right={0}
-        width={20}
-        height={20}
+        width={40}
+        height={40}
         sx={{
+          color: (theme) => theme.palette.secondary.contrastText,
+          fontWeight: "bold",
+          fontSize: "1.2rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           borderRadius: "50%",
-          background: (theme) => theme.palette.secondary.main,
-          transform: "translate(calc(50% + 1.5px), 0%)",
-          transition: "ease-in-out 150ms",
-          ["&:hover"]: {
-            boxShadow: "1px 2px 5px 1px #565656a6",
-          },
+          backgroundColor: (theme) => theme.palette.secondary.main,
+          transform: "translateY(-50%)",
+          transition: "transform 0.3s ease-in-out",
+          zIndex: 2,
         }}
-      />
-    </Stack>
+      >
+        {project.title[0]}
+      </Box>
+    </Box>
   );
 }
 

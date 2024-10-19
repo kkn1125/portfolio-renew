@@ -2,9 +2,9 @@ import ProjectCard from "@components/atoms/ProjectCard";
 import { groupBy } from "@libs/groupBy";
 import {
   Container,
+  Fade,
   Pagination,
   Stack,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -34,21 +34,16 @@ function Portfolio() {
   return (
     <Stack py={5} flex={1} alignItems="center" overflow="auto" height="inherit">
       <Container maxWidth="lg" sx={{ flex: 1, mb: 5 }}>
-        <Typography fontSize={30} fontWeight={700} gutterBottom>
-          🗂️ Projects
-        </Typography>
-        <Stack gap={2} alignItems="center">
-          {groupList
-            .map((projects, i) => (
+        <Stack gap={4} alignItems="center">
+          {groupList.map((projects, i) => (
+            <Fade key={i} in={true} timeout={300 * (i + 1)}>
               <Stack
-                key={i}
                 direction="row"
                 gap={3}
-                position="relative"
-                alignItems="flex-start"
+                flexWrap="wrap"
+                justifyContent="center"
                 sx={{
                   perspective: "1500px",
-                  boxSizing: "border-box",
                   width: "100%",
                 }}
               >
@@ -60,8 +55,8 @@ function Portfolio() {
                   />
                 ))}
               </Stack>
-            ))
-            .concat()}
+            </Fade>
+          ))}
         </Stack>
       </Container>
 
@@ -71,6 +66,18 @@ function Portfolio() {
         onChange={(e, newPage) => setPage(newPage)}
         page={page}
         count={Math.ceil(total / perPage)}
+        sx={{
+          '& .MuiPaginationItem-root': {
+            color: theme.palette.text.primary,
+          },
+          '& .Mui-selected': {
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.primary.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette.primary.dark,
+            },
+          },
+        }}
       />
     </Stack>
   );

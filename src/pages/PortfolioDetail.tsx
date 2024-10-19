@@ -1,12 +1,19 @@
 import translate from "@common/translate";
-import { DEFAULT_COVER, DEPLOY_PATH } from "@common/variables";
+import { DEPLOY_PATH } from "@common/variables";
+import { HomeButton } from "@components/atoms/HomeButton";
+import { ProjectCoverStack } from "@components/atoms/ProjectCoverStack";
+import { IssueCard } from "@components/moleculars/IssueCard";
 import { pathJoin } from "@libs/pathJoin";
 import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
   Container,
-  Divider,
   IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Paper,
   Portal,
   Stack,
   Table,
@@ -19,7 +26,50 @@ import {
 import { projects } from "@storage/projects";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
-import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import { roleTranslate } from "@common/enums/role";
+
+const ExternalLink = ({
+  href,
+  children,
+}: {
+  href?: string;
+  children: React.ReactNode;
+}) => (
+  <Stack
+    direction="row"
+    alignItems="center"
+    gap={1}
+    {...(href && {
+      component: Link,
+      to: href,
+      target: "_blank",
+    })}
+    color="inherit"
+    sx={{ textDecoration: "none" }}
+  >
+    <Typography>{children}</Typography>
+    {href && <LaunchIcon fontSize="small" />}
+  </Stack>
+);
+
+const getEmojiForLabel = (label: string): string => {
+  switch (label) {
+    case "소속":
+      return "🏢";
+    case "팀":
+      return "👥";
+    case "역할":
+      return "🧑‍💼";
+    case "기술 스택":
+      return "💻";
+    case "깃허브":
+      return "🐙";
+    case "데모 사이트":
+      return "🌐";
+    default:
+      return "ℹ️";
+  }
+};
 
 function PortfolioDetail() {
   const navigate = useNavigate();
@@ -42,6 +92,60 @@ function PortfolioDetail() {
     return <Notfound />;
   }
 
+  const tableData = [
+    { label: "소속", value: projectModel.company },
+    { label: "팀", value: projectModel.team },
+    {
+      label: "역할",
+      value: projectModel.roles.map((role) => roleTranslate[role]).join(", "),
+      sx: { textTransform: "uppercase" },
+    },
+    {
+      label: "기술 스택",
+      value: (
+        <Stack direction="row" gap={1}>
+          {projectModel.skills.map((skill) => (
+            <Tooltip key={skill.name} title={translate[skill.name]}>
+              <Stack alignItems="center">
+                <IconButton>
+                  <Box
+                    width={24}
+                    height={24}
+                    dangerouslySetInnerHTML={{ __html: skill.icon }}
+                  />
+                </IconButton>
+                <Typography fontSize={12}>{translate[skill.name]}</Typography>
+              </Stack>
+            </Tooltip>
+          ))}
+        </Stack>
+      ),
+    },
+    {
+      label: "깃허브",
+      value: projectModel.github ? (
+        <ExternalLink href={projectModel.github}>
+          {projectModel.github}
+        </ExternalLink>
+      ) : (
+        <Typography>등록된 깃허브가 없습니다.</Typography>
+      ),
+    },
+    {
+      label: "데모 사이트",
+      value:
+        projectModel.demoSites && projectModel.demoSites.length > 0 ? (
+          projectModel.demoSites.map((demo) => (
+            <ExternalLink key={demo} href={demo}>
+              {demo}
+            </ExternalLink>
+          ))
+        ) : (
+          <Typography>등록된 데모 사이트가 없습니다.</Typography>
+        ),
+    },
+  ];
+
   return (
     <Stack
       flex={1}
@@ -51,272 +155,114 @@ function PortfolioDetail() {
       height="inherit"
     >
       <Portal container={document.body}>
-        <IconButton
-          color="default"
-          onClick={goToList}
-          sx={{
-            position: "fixed",
-            color: "white",
-            background: (theme) => theme.palette.info.main,
-            right: (theme) => theme.typography.pxToRem(50),
-            bottom: (theme) => theme.typography.pxToRem(100),
-            zIndex: 999,
-          }}
-        >
-          <KeyboardReturnIcon />
-        </IconButton>
+        <HomeButton goToList={goToList} />
       </Portal>
-      <Stack
-        position="relative"
-        width="100%"
-        justifyContent="center"
-        alignItems="center"
-        minHeight={`calc(100vh - ${headerHeight}px - 72px)`}
-        height={`calc(100vh - ${headerHeight}px - 72px)`}
-        overflow="hidden"
-      >
-        <Box
-          position="absolute"
-          width="inherit"
-          height="inherit"
-          sx={{
-            filter: "brightness(0.35)",
-            backgroundImage: "var(--cover-img)",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "top center",
-            backgroundSize: "cover",
-            "--cover-img": `url(${projectModel.cover ?? `${DEFAULT_COVER}`})`,
-          }}
-        />
-        <Typography
-          component="h1"
-          fontSize={50}
-          fontWeight={700}
-          color="white"
-          sx={{ zIndex: 500 }}
-        >
-          {projectModel.title}
-        </Typography>
-        <Stack gap={1} alignItems="center" width="70%">
-          {projectModel.description.map((desc) => (
-            <Typography
-              key={desc}
-              component="h6"
-              whiteSpace="balance"
-              fontSize={24}
-              fontWeight={700}
-              align="center"
-              color="#ffffff96"
-              sx={{ zIndex: 500 }}
-            >
-              {desc}
-            </Typography>
-          ))}
-        </Stack>
-      </Stack>
-      {/* Section 1 */}
+      <ProjectCoverStack
+        projectModel={projectModel}
+        headerHeight={headerHeight}
+      />
+
+      {/* 프로젝트 정보 섹션 */}
       <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-        <Stack gap={2}>
+        <Paper elevation={3} sx={{ borderRadius: 2, overflow: "hidden" }}>
           <Table>
             <TableBody>
-              <TableRow>
-                <TableCell component="th" scope="row" width={75}>
-                  소속
-                </TableCell>
-                <TableCell>{projectModel.company}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row" width={75}>
-                  팀
-                </TableCell>
-                <TableCell>{projectModel.team}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row" width={75}>
-                  역할
-                </TableCell>
-                <TableCell sx={{ textTransform: "uppercase" }}>
-                  {projectModel.roles.join(", ")}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row" width={75}>
-                  기술 스택
-                </TableCell>
-                <TableCell>
-                  <Stack direction="row" gap={1}>
-                    {projectModel.skills.map((skill) => (
-                      <Tooltip key={skill.name} title={translate[skill.name]}>
-                        <Stack alignItems="center">
-                          <IconButton>
-                            <Box
-                              width={24}
-                              height={24}
-                              dangerouslySetInnerHTML={{ __html: skill.icon }}
-                            />
-                          </IconButton>
-                          <Typography fontSize={12}>
-                            {translate[skill.name]}
-                          </Typography>
-                        </Stack>
-                      </Tooltip>
-                    ))}
-                  </Stack>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row" width={75}>
-                  깃허브
-                </TableCell>
-                <TableCell>
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    gap={1}
-                    {...(projectModel.github && {
-                      component: Link,
-                      to: projectModel.github,
-                      target: "_blank",
-                    })}
-                    color="inherit"
-                    sx={{ textDecoration: "none" }}
+              {tableData.map(({ label, value, sx }) => (
+                <TableRow
+                  key={label}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    width={100}
+                    sx={{
+                      fontWeight: "bold",
+                      backgroundColor: "rgba(173, 216, 230, 0.2)",
+                      color: "#333",
+                    }}
                   >
-                    <Typography>
-                      {projectModel.github ?? "지원되지 않는 프로젝트입니다."}
-                    </Typography>
-                    {projectModel.github && <LaunchIcon fontSize="small" />}
-                  </Stack>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row" width={75}>
-                  데모 사이트
-                </TableCell>
-                <TableCell>
-                  {projectModel.demoSites &&
-                  projectModel.demoSites.length > 0 ? (
-                    projectModel.demoSites.map((demo) => (
-                      <Stack
-                        key={demo}
-                        direction="row"
-                        alignItems="center"
-                        gap={1}
-                        component={Link}
-                        to={demo}
-                        target="_blank"
-                        color="inherit"
-                        sx={{ textDecoration: "none" }}
-                      >
-                        <Typography color="inherit">{demo}</Typography>
-                        <LaunchIcon fontSize="small" />
-                      </Stack>
-                    ))
-                  ) : (
-                    <Typography color="inherit">
-                      등록된 데모 사이트가 없습니다.
-                    </Typography>
-                  )}
-                </TableCell>
-              </TableRow>
+                    {getEmojiForLabel(label)} {label}
+                  </TableCell>
+                  <TableCell sx={{ ...sx, py: 2 }}>{value}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
-        </Stack>
+        </Paper>
       </Container>
 
-      {/* Section 2 */}
+      {/* Works 섹션 */}
       <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-        <Stack gap={2}>
-          <Typography fontSize={32} fontWeight={700} gutterBottom>
-            Works
-          </Typography>
-          <Stack gap={1}>
-            {projectModel.works.map((work) => (
-              <Typography key={work}>✨ {work}</Typography>
-            ))}
-          </Stack>
-        </Stack>
+        <Typography fontSize={32} fontWeight={700} gutterBottom>
+          Works
+        </Typography>
+        <List>
+          {projectModel.works.map((work) => (
+            <ListItem key={work}>
+              <ListItemIcon>
+                <Box component="span" sx={{ color: "primary.main" }}>
+                  ✨
+                </Box>
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant="body1" fontWeight="bold">
+                    {work}
+                  </Typography>
+                }
+              />
+            </ListItem>
+          ))}
+        </List>
       </Container>
 
-      {/* Section 3 */}
+      {/* 문제 해결 섹션 */}
       {projectModel.issues && (
         <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-          <Stack gap={1}>
-            <Typography fontSize={32} fontWeight={700} gutterBottom>
-              Solve Issues
-            </Typography>
-            <Stack gap={2}>
-              {projectModel.issues.map((issue) => (
-                <Stack
-                  key={issue.problem}
-                  gap={2}
-                  p={3}
-                  sx={{
-                    border: "1px solid #56565626",
-                    borderRadius: (theme) => theme.typography.pxToRem(5),
-                  }}
-                >
-                  <Typography fontSize={18} fontWeight={700}>
-                    🤔 {issue.problem}
-                  </Typography>
-                  <Stack ml={2}>
-                    {issue.processes.map((process) => (
-                      <Typography key={process} fontSize={14}>
-                        💡 {process}
-                      </Typography>
-                    ))}
-                  </Stack>
-                  <Stack>
-                    {issue.solves.map((solve) => (
-                      <Typography key={solve} fontWeight={700}>
-                        🛠️ {solve}
-                      </Typography>
-                    ))}
-                  </Stack>
-                </Stack>
-              ))}
-            </Stack>
+          <Stack gap={2}>
+            {projectModel.issues.map((issue) => (
+              <IssueCard key={issue.problem} issue={issue} />
+            ))}
           </Stack>
         </Container>
       )}
 
-      {/* Section 5 */}
+      {/* 이미지 섹션 */}
       {projectModel.images && (
         <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-          <Stack gap={2}>
-            <Divider />
-            <Stack gap={3}>
-              {projectModel.images.map(({ src, alt }) => (
-                <Stack
-                  key={src}
-                  component="figure"
-                  width="70%"
-                  mx="auto"
-                  overflow="hidden"
-                  boxShadow="5px 5px 1rem 0 #56565656"
+          <Stack gap={3}>
+            {projectModel.images.map(({ src, alt }) => (
+              <Stack
+                key={src}
+                component="figure"
+                width="70%"
+                mx="auto"
+                overflow="hidden"
+                boxShadow="5px 5px 1rem 0 #56565656"
+                sx={{
+                  borderRadius: 3,
+                  transition: "box-shadow 150ms ease-in-out",
+                  ["&:hover"]: {
+                    boxShadow: "1px 1px 1rem 0 #56565656",
+                  },
+                }}
+              >
+                <Box component="img" width="100%" src={src} alt={alt} />
+                <Typography
+                  component="figcaption"
+                  p={1}
+                  align="center"
+                  fontWeight={700}
+                  color="white"
                   sx={{
-                    borderRadius: 3,
-                    transition: "box-shadow 150ms ease-in-out",
-                    ["&:hover"]: {
-                      boxShadow: "1px 1px 1rem 0 #56565656",
-                    },
+                    background: (theme) => theme.palette.text.disabled,
                   }}
                 >
-                  <Box component="img" width="100%" src={src} alt={alt} />
-                  <Typography
-                    component="figcaption"
-                    p={1}
-                    align="center"
-                    fontWeight={700}
-                    color="white"
-                    sx={{
-                      background: (theme) => theme.palette.text.disabled,
-                    }}
-                  >
-                    {alt}
-                  </Typography>
-                </Stack>
-              ))}
-            </Stack>
+                  {alt}
+                </Typography>
+              </Stack>
+            ))}
           </Stack>
         </Container>
       )}

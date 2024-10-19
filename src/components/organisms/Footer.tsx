@@ -1,22 +1,29 @@
-import { FOOTER_TEXT } from "@common/variables";
-import { Paper, Stack, Toolbar, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { BRAND } from "@common/variables";
 
-function Footer() {
+export default function Footer() {
   return (
-    <Stack
-      p={3}
+    <Box
+      component="footer"
+      minHeight={64}
       sx={{
-        boxShadow:
-          "0px -1px 10px 0 rgba(0,0,0,0.2), 0px -1px 7px 0 rgba(0,0,0,0.12), 0px -1px 2px 0 rgba(0,0,0,0.12)",
-        color: (theme) => theme.palette.primary.contrastText,
-        backgroundColor: (theme) => theme.palette.primary.main,
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'light'
+            ? theme.palette.grey[200]
+            : theme.palette.grey[800],
       }}
     >
-      <Typography component="div" align="center" fontWeight={700}>
-        {FOOTER_TEXT}
-      </Typography>
-    </Stack>
+      <Stack
+        component={Container}
+        maxWidth="xl"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ height: "100%" }}
+      >
+        <Typography variant="body2" component="span" color="text.secondary" align="center">
+          © {new Date().getFullYear()} {BRAND?.toUpperCase()}. All rights reserved.
+        </Typography>
+      </Stack>
+    </Box>
   );
 }
-
-export default Footer;
