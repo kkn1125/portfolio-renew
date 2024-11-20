@@ -2,16 +2,20 @@ import translate from "@common/translate";
 import { PROFILE_IMAGE, SVG_ICON_SIZE } from "@common/variables";
 import Flow from "@components/atoms/Flow";
 import SideFlow from "@components/atoms/SideFlow";
+import { getResumeDocuments } from "@libs/getResumeDocuments";
 import { sortByEnd } from "@libs/sortBy";
 import { CopyTemplate } from "@models/CopyTemplate";
+import Resume from "@models/Resume";
 import {
   Box,
   Chip,
   Container,
   keyframes,
+  Portal,
   Stack,
+  TextField,
   Tooltip,
-  Typography
+  Typography,
 } from "@mui/material";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
@@ -20,12 +24,15 @@ import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
 import { Information } from "@storage/introduce/information";
 import sideProjects from "@storage/side-projects";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const SLIDE_TIME = 50;
 const SLIDE_ITEM_GAP = 5;
+const cheet = "copyResume";
 
 function Home() {
+  const [openInput, setOpenInput] = useState(false);
+  const [inputText, setInputText] = useState("");
   const skillItems = Information.skill.main.concat(
     Information.skill.sub,
     Information.stacks
@@ -44,20 +51,33 @@ function Home() {
 
   useEffect(() => {
     function handleHiddenCopyData(e: KeyboardEvent) {
-      if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "O") {
-        const projectGap = "\n\n";
-        const result1 = sortByEnd(
-          Object.values(companies).flatMap((item) => item.projects)
-        )
-          .map(CopyTemplate)
-          .join(projectGap);
-        const result2 = sortByEnd(sideProjects)
-          .map(CopyTemplate)
-          .join(projectGap);
-        navigator.clipboard.writeText(
-          `# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
-        );
+      if (e.key === "/") {
+        setOpenInput(true);
+        e.stopPropagation();
+        e.preventDefault();
       }
+      if (e.key === "Escape") {
+        setOpenInput(false);
+      }
+      // if (openInput) {
+      //   if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "O") {
+      //     const projectGap = "\n\n";
+      //     const result1 = sortByEnd(
+      //       Object.values(companies).flatMap((item) => item.projects)
+      //     )
+      //       .map(CopyTemplate)
+      //       .join(projectGap);
+      //     const result2 = sortByEnd(sideProjects)
+      //       .map(CopyTemplate)
+      //       .join(projectGap);
+      //     const resumeList = getResumeDocuments(
+      //       Information.resume as unknown as Resume[]
+      //     );
+      //     navigator.clipboard.writeText(
+      //       `Resume List\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+      //     );
+      //   }
+      // }
     }
 
     window.addEventListener("keydown", handleHiddenCopyData);
@@ -67,10 +87,61 @@ function Home() {
     };
   }, []);
 
+  function handleChangeInputText(e: React.ChangeEvent<HTMLInputElement>) {
+    const target = e.currentTarget;
+    setInputText(target.value || "");
+  }
+
+  function handleSubmitInputText(e: React.FormEvent) {
+    e.preventDefault();
+    if (openInput) {
+      if (inputText === cheet) {
+        setOpenInput(false);
+        const projectGap = "\n\n";
+        const result1 = sortByEnd(
+          Object.values(companies).flatMap((item) => item.projects)
+        )
+          .map(CopyTemplate)
+          .join(projectGap);
+        const result2 = sortByEnd(sideProjects)
+          .map(CopyTemplate)
+          .join(projectGap);
+        const resumeList = getResumeDocuments(
+          Information.resume as unknown as Resume[]
+        );
+        navigator.clipboard.writeText(
+          `Resume List\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+        );
+      }
+      setInputText("");
+    }
+  }
+
   return (
     <Stack flex={1} overflow="auto" height="inherit">
       {/* Section1 */}
       <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
+        {openInput && (
+          <Portal>
+            <Box component="form" onSubmit={handleSubmitInputText}>
+              <TextField
+                placeholder="?"
+                size="small"
+                autoFocus
+                onChange={handleChangeInputText}
+                sx={{
+                  position: "absolute",
+                  transform: "translateX(-50%)",
+                  left: "50%",
+                  bottom: 100,
+                  ["& fieldset"]: {
+                    backgroundColor: "#ffffff56",
+                  },
+                }}
+              />
+            </Box>
+          </Portal>
+        )}
         <Container maxWidth="lg">
           <Box
             sx={{

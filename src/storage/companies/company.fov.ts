@@ -12,4 +12,5 @@ export const companyFov = new CompanyModel({
   team: Team.Development,
   projects: [fovKalis, fovDbupdater],
   start: new Date(2024, 4),
+  end: new Date(2024, 10),
 });

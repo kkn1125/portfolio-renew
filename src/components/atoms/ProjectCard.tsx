@@ -21,14 +21,15 @@ function ProjectCard({ project, page }: ProjectCardProps) {
         state={{ page }}
         elevation={3}
         sx={{
+          display: "block",
           width: { xs: "100%", lg: "calc((100% - 72px) / 4)" },
           height: 350,
           overflow: "hidden",
           position: "relative",
           textDecoration: "none",
-          transition: "all 0.3s ease-in-out",
+          transition: "all 150ms ease-in-out !important",
           "&:hover": {
-            transform: "translateY(-10px)",
+            transform: "translateY(-10px) !important",
             boxShadow: (theme) => theme.shadows[10],
           },
         }}
@@ -41,7 +42,7 @@ function ProjectCard({ project, page }: ProjectCardProps) {
             backgroundPosition: "center",
           }}
         />
-        <Box sx={{ p: 2, height: "40%" }}>
+        <Box sx={{ p: 2 }}>
           <Typography variant="h6" gutterBottom noWrap>
             {project.title}
           </Typography>
