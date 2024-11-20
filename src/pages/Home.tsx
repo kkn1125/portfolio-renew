@@ -109,8 +109,9 @@ function Home() {
         const resumeList = getResumeDocuments(
           Information.resume as unknown as Resume[]
         );
+        const title = Information.title;
         navigator.clipboard.writeText(
-          `Resume List\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+          `"${title}"\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
         );
       }
       setInputText("");
