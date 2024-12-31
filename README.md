@@ -29,13 +29,14 @@
 
 ### 토이 프로젝트
 
-1. ProjectNarang (일기 공유 커뮤니티)
-2. Typoz (한글 타이핑 효과 라이브러리)
-3. GamePang (미니 게임 구현)
-4. Solitaire (카드 게임 구현)
-5. Gantt Chart (테이블 생성 웹 툴)
-6. Documentify (JSDoc 자동 문서화 도구)
-7. Mentees (멘티 커뮤니티 플랫폼)
+1. SnapPoll (설문, 투표 서비스)
+2. ProjectNarang (일기 공유 커뮤니티)
+3. Typoz (한글 타이핑 효과 라이브러리)
+4. GamePang (미니 게임 구현)
+5. Solitaire (카드 게임 구현)
+6. Gantt Chart (테이블 생성 웹 툴)
+7. Documentify (JSDoc 자동 문서화 도구)
+8. Mentees (멘티 커뮤니티 플랫폼)
 
 ## 블로그
 

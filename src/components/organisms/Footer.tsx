@@ -21,7 +21,7 @@ export default function Footer() {
         sx={{ height: "100%" }}
       >
         <Typography variant="body2" component="span" color="text.secondary" align="center">
-          © {new Date().getFullYear()} {BRAND?.toUpperCase()}. All rights reserved.
+          © 2023 {BRAND?.toUpperCase()}. All rights reserved.
         </Typography>
       </Stack>
     </Box>

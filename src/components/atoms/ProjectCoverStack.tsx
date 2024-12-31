@@ -1,6 +1,6 @@
 import { DEFAULT_COVER } from "@common/variables";
 import { ProjectModel } from "@models/project.model";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Chip, Stack, Typography } from "@mui/material";
 
 interface ProjectCoverStackProps {
   projectModel: ProjectModel;
@@ -59,13 +59,13 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
           </Typography>
         ))} */}
         <Typography
-            component="h6"
-            whiteSpace="balance"
-            fontSize={24}
-            fontWeight={700}
-            align="center"
-            color="#ffffff96"
-          sx={{ zIndex: 500 }}
+          component="h6"
+          // whiteSpace="balance"
+          fontSize={24}
+          fontWeight={700}
+          align="center"
+          color="#ffffff96"
+          sx={{ zIndex: 500, wordBreak: "auto-phrase" }}
         >
           {projectModel.description[0]}
         </Typography>

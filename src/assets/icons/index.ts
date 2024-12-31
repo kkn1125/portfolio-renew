@@ -30,6 +30,10 @@ import formik from "./formik";
 import gulp from "./gulp";
 import mybatis from "./mybatis";
 import nextjs from "./nextjs";
+import postgresql from "./postgresql";
+import prisma from "./prisma";
+import reactQuery from "./react-query";
+import recoil from "./recoil";
 import swagger from "./swagger";
 import typeorm from "./typeorm";
 import vite from "./vite";
@@ -70,6 +74,10 @@ export const Icons = {
   gulp,
   mybatis,
   nextjs,
+  postgresql,
+  prisma,
+  reactQuery,
+  recoil,
   swagger,
   typeorm,
   vite,

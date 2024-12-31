@@ -8,12 +8,14 @@ import { sideNarang } from "./side.narang";
 import { sideSolitaire } from "./side.solitaire";
 import { sideTreeParser } from "./side.tree-parser";
 import { sideTypoz } from "./side.typoz";
+import { sideSnapPoll } from "./side.snappoll";
 
 function compareWith(a: ProjectModel | undefined, b: ProjectModel | undefined) {
   return b && a && b.start.getTime() > a.start.getTime();
 }
 
 export default [
+  sideSnapPoll,
   sideMenteeUnion,
   sideTypoz,
   sideNarang,

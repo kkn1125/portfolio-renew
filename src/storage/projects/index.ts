@@ -1,4 +1,5 @@
 import { CompanyModel } from "@models/company.model";
+import { ProjectModel } from "@models/project.model";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
 import { companyFov } from "@storage/companies/company.fov";
@@ -22,8 +23,13 @@ function compareWith(a: CompanyModel | undefined, b: CompanyModel | undefined) {
   return b && a && b.start.getTime() > a.start.getTime();
 }
 
-export const projects = companyFov.projects
-  .concat(companyAnder.projects, companyReborn.projects, sideProject.projects)
+export const projects = ([sideProject.projects[0]] as ProjectModel[])
+  .concat(companyFov.projects)
+  .concat(
+    companyAnder.projects,
+    companyReborn.projects,
+    sideProject.projects.slice(1)
+  )
   .toSorted((a, b) => {
     if (
       compareWith(

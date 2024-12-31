@@ -34,6 +34,18 @@ function ProjectCard({ project, page }: ProjectCardProps) {
           },
         }}
       >
+        <Chip
+          size="small"
+          color={project.isSideProject ? "secondary" : "primary"}
+          label={
+            project.isSideProject
+              ? project.team === "개인"
+                ? "Personal"
+                : "Team"
+              : "Professional"
+          }
+          sx={{ position: "absolute", right: 5, top: 5 }}
+        />
         <Box
           sx={{
             height: "60%",

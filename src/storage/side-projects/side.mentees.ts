@@ -46,6 +46,5 @@ export const sideMentees = new ProjectModel({
       "mentees_mentees_program_feedback.png",
       "멘티활동 기록"
     ),
-    
   ],
 });

@@ -72,6 +72,14 @@ export default new Proxy(translate, {
         return "WebRTC";
       case "awsEc2":
         return "Amazon EC2";
+      case "postgresql":
+        return "PostgreSQL";
+      case "prisma":
+        return "Prisma";
+      case "reactQuery":
+        return "React Query";
+      case "recoil":
+        return "Recoil";
       case "swagger":
         return "Swagger";
       default:
