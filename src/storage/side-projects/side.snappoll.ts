@@ -55,7 +55,21 @@ export const sideSnapPoll = new ProjectModel({
     "질문 간 비교 분석 그래프 로직 개발",
   ],
   isSideProject: true,
-  issues: null,
+  issues: [
+    {
+      problem: "구독 관리 시스템 구축",
+      processes: [
+        "구독 등급 레퍼런스 조사",
+        "구독 등급을 4개로 나누어 등급 별로 제공할 서비스를 계획",
+        "등급별 생성 개수, 응답자  수 제한 산정",
+        "등급별 추가 기능 부여",
+      ],
+      solves: [
+        "각 등급을 플랜으로 명명하고, Free, Basic, Pro, Enterprise 로 구분",
+        "서버 비용 및 데이터베이스 누적 데이터 비용 산정 후 각 등급별 월별 구독 요금 산정",
+      ],
+    },
+  ],
   images: [
     getImage("snappoll", "guest_main.png", "게스트 메인 페이지"),
     getImage(
