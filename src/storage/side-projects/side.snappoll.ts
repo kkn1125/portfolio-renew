@@ -13,7 +13,8 @@ export const sideSnapPoll = new ProjectModel({
   path: "/side/snappoll",
   title: "SnapPoll",
   description: [
-    "Snappoll은 쉽고 간편한 무료 설문 및 투표 플랫폼입니다. 커뮤니티를 위한 다양한 설문과 실시간 통계 그래프를 제공해 누구나 손쉽게 투표와 설문을 만들고 분석할 수 있습니다.",
+    // "Snappoll은 쉽고 간편한 무료 설문 및 투표 플랫폼입니다. 커뮤니티를 위한 다양한 설문과 실시간 통계 그래프를 제공해 누구나 손쉽게 투표와 설문을 만들고 분석할 수 있습니다.",
+    "누구나 손쉽게 설문과 투표를 만들고 결과를 통계 그래프로 분석 가능한 서비스",
   ],
   company: Company.Side,
   team: Team.Personal,
