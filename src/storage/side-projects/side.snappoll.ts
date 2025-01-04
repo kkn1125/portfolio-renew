@@ -58,6 +58,20 @@ export const sideSnapPoll = new ProjectModel({
   isSideProject: true,
   issues: [
     {
+      problem: "권한 및 회원 유형에 따른 API 접근 제한 문제",
+      processes: [
+        "쿠키 검증 가드 제작 및 글로벌 가드",
+        "쿠키 적용 무시 데코레이터 추가하여 특수한 API만 접근 허용",
+        "회원 역할 제한 데코레이터 추가",
+        "플랜가드 제작 및 등급별 제한사항 선처리",
+      ],
+      solves: [
+        "보안 로직과 컨트롤러 코드 분리",
+        "유지보수성 향상",
+        "API 권한 시스템 구축",
+      ],
+    },
+    {
       problem: "구독 관리 시스템 구축",
       processes: [
         "구독 등급 레퍼런스 조사",
