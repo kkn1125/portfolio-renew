@@ -248,7 +248,18 @@ function PortfolioDetail() {
                   },
                 }}
               >
-                <Box component="img" width="100%" src={src} alt={alt} />
+                {src.endsWith(".mp4") ? (
+                  <Box
+                    component="video"
+                    width="100%"
+                    autoPlay
+                    loop
+                    muted
+                    src={src}
+                  />
+                ) : (
+                  <Box component="img" width="100%" src={src} alt={alt} />
+                )}
                 <Typography
                   component="figcaption"
                   p={1}

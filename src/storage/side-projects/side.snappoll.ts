@@ -6,7 +6,7 @@ import { Skill } from "@libs/skill";
 import { ProjectModel } from "@models/project.model";
 
 export const sideSnapPoll = new ProjectModel({
-  cover: getResource("snappoll", "guest_main.png"),
+  cover: getResource("snappoll", "survey.gif"),
   github: "https://github.com/kkn1125/snappoll",
   demoSites: ["https://snappoll.kro.kr/"],
   relations: null,
@@ -102,5 +102,8 @@ export const sideSnapPoll = new ProjectModel({
     getImage("snappoll", "signup.png", "회원가입"),
     getImage("snappoll", "privacy_policy.png", "개인정보처리방침"),
     getImage("snappoll", "service_terms.png", "서비스이용약관"),
+    getImage("snappoll", "survey.gif", "설문조사"),
+    getImage("snappoll", "poll_graph.gif", "설문 결과 그래프"),
+    getImage("snappoll", "login_graph.mp4", "로그인 후 설문 결과 그래프"),
   ],
 });

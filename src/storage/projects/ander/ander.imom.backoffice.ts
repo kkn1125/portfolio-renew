@@ -6,7 +6,8 @@ import { Issue } from "@models/issue";
 import { ProjectModel } from "@models/project.model";
 
 export const anderImomBackoffice = new ProjectModel({
-  cover: null,
+  cover:
+    "https://github.com/user-attachments/assets/654986ee-263d-42cc-959c-8b2c1cf11cef",
   github: null,
   demoSites: null,
   relations: null,
