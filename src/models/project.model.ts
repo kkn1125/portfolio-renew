@@ -6,11 +6,14 @@ import { Skill } from "@libs/skill";
 import { Issue } from "./issue";
 import { DEPLOY_PATH } from "@common/variables";
 import { ImageObject } from "@libs/getResource";
+import { v4 } from "uuid";
 
 export class ProjectModel {
+  id: string = v4();
   cover: string | null = null;
   github: string | null = null;
   demoSites: string[] | null = null;
+  testAccount: { id: string; password: string }[] | null = null;
   title: string;
   description: string[];
   roles: Role[];
@@ -30,6 +33,7 @@ export class ProjectModel {
     cover,
     github,
     demoSites,
+    testAccount = null,
     title,
     description,
     roles,
@@ -48,6 +52,7 @@ export class ProjectModel {
     cover: string | null;
     github: string | null;
     demoSites: string[] | null;
+    testAccount?: { id: string; password: string }[] | null;
     title: string;
     description: string[];
     roles: Role[];
@@ -66,6 +71,7 @@ export class ProjectModel {
     cover && (this.cover = cover);
     github && (this.github = github);
     demoSites && (this.demoSites = demoSites);
+    testAccount && (this.testAccount = testAccount);
     this.title = title;
     this.description = description;
     this.roles = roles;

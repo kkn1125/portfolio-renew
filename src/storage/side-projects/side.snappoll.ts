@@ -9,6 +9,9 @@ export const sideSnapPoll = new ProjectModel({
   cover: getResource("snappoll", "survey.gif"),
   github: "https://github.com/kkn1125/snappoll",
   demoSites: ["https://snappoll.kro.kr/"],
+  testAccount: [
+    { id: "guest01@example.com", password: "snapGuest!!1" },
+  ],
   relations: null,
   path: "/side/snappoll",
   title: "SnapPoll",

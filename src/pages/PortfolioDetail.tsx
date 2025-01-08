@@ -7,6 +7,7 @@ import { pathJoin } from "@libs/pathJoin";
 import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
+  Button,
   Container,
   IconButton,
   List,
@@ -27,6 +28,8 @@ import { projects } from "@storage/projects";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
 import { roleTranslate } from "@common/enums/role";
+import { useEffect, useState } from "react";
+import { ProjectModel } from "@models/project.model";
 
 const ExternalLink = ({
   href,
@@ -77,6 +80,12 @@ function PortfolioDetail() {
   const page = +(location.state?.page || 1);
   const { company, project } = useParams();
   const headerHeight = 64;
+  const [openPw, setOpenPw] = useState<
+    {
+      id: string;
+      open: boolean;
+    }[]
+  >([]);
 
   const projectModel = projects.find(
     (prj) =>
@@ -84,12 +93,34 @@ function PortfolioDetail() {
       pathJoin(DEPLOY_PATH, "portfolio", company || "", project || "")
   );
 
+  useEffect(() => {
+    if (projectModel && projectModel.testAccount) {
+      setOpenPw(
+        projectModel.testAccount.map((account) => ({
+          id: account.id,
+          open: false,
+        }))
+      );
+    }
+  }, [projectModel]);
+
   function goToList() {
     navigate(pathJoin(DEPLOY_PATH, "/portfolio/"), { state: { page } });
   }
 
   if (!projectModel) {
     return <Notfound />;
+  }
+
+  function handleView(id: string) {
+    setOpenPw((prev) =>
+      prev.map((account) => {
+        if (account.id === id) {
+          account.open = !account.open;
+        }
+        return account;
+      })
+    );
   }
 
   const tableData = [
@@ -144,6 +175,36 @@ function PortfolioDetail() {
           <Typography>등록된 데모 사이트가 없습니다.</Typography>
         ),
     },
+    ...(projectModel.testAccount
+      ? [
+          {
+            label: "테스트 계정",
+            value:
+              projectModel.testAccount.length > 0 ? (
+                projectModel.testAccount.map((account, index) => (
+                  <Stack
+                    key={account.id + index}
+                    direction="row"
+                    alignItems="center"
+                    gap={1}
+                  >
+                    <Typography>ID: {account.id}</Typography>
+                    {" / "}
+                    <Typography>
+                      PW:{" "}
+                      {openPw?.[index]?.open ? account.password : "********"}
+                    </Typography>
+                    <Button onClick={() => handleView(account.id)}>
+                      {openPw?.[index]?.open ? "숨기기" : "보기"}
+                    </Button>
+                  </Stack>
+                ))
+              ) : (
+                <Typography>제공된 테스트 계정이 없습니다.</Typography>
+              ),
+          },
+        ]
+      : []),
   ];
 
   return (

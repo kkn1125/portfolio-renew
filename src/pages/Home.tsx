@@ -28,7 +28,7 @@ import { useEffect, useState } from "react";
 
 const SLIDE_TIME = 50;
 const SLIDE_ITEM_GAP = 5;
-const cheet = "copyResume";
+const cheat = "copyResume";
 
 function Home() {
   const [openInput, setOpenInput] = useState(false);
@@ -95,7 +95,7 @@ function Home() {
   function handleSubmitInputText(e: React.FormEvent) {
     e.preventDefault();
     if (openInput) {
-      if (inputText === cheet) {
+      if (inputText === cheat) {
         setOpenInput(false);
         const projectGap = "\n\n";
         const result1 = sortByEnd(
