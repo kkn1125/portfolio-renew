@@ -9,9 +9,7 @@ export const sideSnapPoll = new ProjectModel({
   cover: getResource("snappoll", "survey.gif"),
   github: "https://github.com/kkn1125/snappoll",
   demoSites: ["https://snappoll.kro.kr/"],
-  testAccount: [
-    { id: "guest01@example.com", password: "snapGuest!!1" },
-  ],
+  testAccount: [{ id: "guest01@example.com", password: "snapGuest!!1" }],
   relations: null,
   path: "/side/snappoll",
   title: "SnapPoll",
@@ -35,7 +33,7 @@ export const sideSnapPoll = new ProjectModel({
     Skill("Oracle Cloud"),
   ],
   start: new Date(2024, 10),
-  end: new Date(2024, 11),
+  end: new Date(2025, 0),
   works: [
     "클라이언트 사이드 URL 설계",
     "데이터베이스 스키마 설계 및 제작",
@@ -61,17 +59,28 @@ export const sideSnapPoll = new ProjectModel({
   isSideProject: true,
   issues: [
     {
-      problem: "권한 및 회원 유형에 따른 API 접근 제한 문제",
+      problem: "역할에 따른 API 접근 제한",
       processes: [
-        "쿠키 검증 가드 제작 및 글로벌 가드",
-        "쿠키 적용 무시 데코레이터 추가하여 특수한 API만 접근 허용",
-        "회원 역할 제한 데코레이터 추가",
-        "플랜가드 제작 및 등급별 제한사항 선처리",
+        "쿠키 데이터 검증 후 유저 데이터 조회",
+        "요청마다 역할 검증 후 허용된 역할만 비즈니스 로직 실행",
       ],
       solves: [
-        "보안 로직과 컨트롤러 코드 분리",
-        "유지보수성 향상",
-        "API 권한 시스템 구축",
+        "Roles 데코레이터를 구현하고 역할 제한이 필요한 API에 데코레이터 적용",
+        "RoleGuard를 구현하고 미들웨어로 추가",
+        "역할에 따른 API 접근 제한 구축",
+      ],
+    },
+    {
+      problem: "구독 등급에 따른 API 기능 제한 문제",
+      processes: [
+        "쿠키 데이터 검증 후 유저 데이터 조회",
+        "유저의 구독 정보를 바탕으로 각 등급에 허용되는 기능과 생성 제한",
+      ],
+      solves: [
+        "등급에 따른 기능과 제한 조건을 상수로 정의",
+        "PlanGuard를 구현하고 미들웨어로 추가",
+        "PlanValidate 데코레이터를 구현하고 기능을 키로 사용하여 구독 등급에 따른 기능 제한 구축",
+        "설문과 투표를 두 개로 나누어 생성과 응답자 수 제한 구현",
       ],
     },
     {
