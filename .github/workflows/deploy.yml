@@ -40,6 +40,8 @@ jobs:
           VITE_GITHUB: ${{ vars.VITE_GITHUB }}
           VITE_DEPLOY_PATH: ${{ vars.VITE_DEPLOY_PATH }}
           VITE_DEFAULT_COVER: ${{ vars.VITE_DEFAULT_COVER }}
+          VITE_PUBLISHED_YEAR: ${{ vars.VITE_PUBLISHED_YEAR }}
+          VITE_PROFILE_IMAGE: ${{ vars.VITE_PROFILE_IMAGE }}
 
       - name: Build Server
         working-directory: ./server
