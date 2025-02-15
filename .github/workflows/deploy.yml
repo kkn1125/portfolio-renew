@@ -34,6 +34,12 @@ jobs:
 
       - name: Build
         run: tsc -b && cross-env NODE_ENV=production vite build --mode=production
+        env:
+          VITE_BRAND: ${{ variables.VITE_BRAND }}
+          VITE_BLOG: ${{ variables.VITE_BLOG }}
+          VITE_GITHUB: ${{ variables.VITE_GITHUB }}
+          VITE_DEPLOY_PATH: ${{ variables.VITE_DEPLOY_PATH }}
+          VITE_DEFAULT_COVER: ${{ variables.VITE_DEFAULT_COVER }}
 
       - name: Build Server
         working-directory: ./server
