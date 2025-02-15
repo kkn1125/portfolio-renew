@@ -27,6 +27,6 @@ dist-ssr
 *.sln
 *.sw?
 
-server/
+# server/
 
 summation/
