@@ -37,7 +37,11 @@ jobs:
 
       - name: Build Server
         working-directory: ./server
-        run: npm run build && touch ./dist/.nojekyll
+        run: npm run build
+
+      - name: Create nojekyll
+        working-directory: ./dist
+        run: touch .nojekyll
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
