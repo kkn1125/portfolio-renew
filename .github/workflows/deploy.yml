@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Initialize global dependencies
+        run: npm install -g cross-env
+
       - name: Install dependencies
         run: npm install
 
