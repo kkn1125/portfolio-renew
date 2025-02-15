@@ -23,13 +23,10 @@ jobs:
           node-version: 20
 
       - name: Initialize global dependencies
-        run: npm install -g cross-env
+        run: npm install -g cross-env vite
 
       - name: Install dependencies
         run: npm install
-
-      - name: Debug - list directory contents
-        run: ls -al
 
       - name: Server dir install dependencies
         working-directory: ./server
@@ -40,7 +37,7 @@ jobs:
 
       - name: Build Server
         working-directory: ./server
-        run: npm run build
+        run: npm run build && touch ./dist/.nojekyll
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
