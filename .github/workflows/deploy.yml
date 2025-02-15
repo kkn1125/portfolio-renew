@@ -25,7 +25,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Server dir install dependencies
+        working-directory: ./server
+        run: npm install
+
       - name: Build
+        run: tsc -b && cross-env NODE_ENV=production vite build --mode=production
+
+      - name: Build Server
+        working-directory: ./server
         run: npm run build
 
       - name: Deploy to gh-pages
