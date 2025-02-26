@@ -10,8 +10,19 @@ import { sideTreeParser } from "./side.tree-parser";
 import { sideTypoz } from "./side.typoz";
 import { sideSnapPoll } from "./side.snappoll";
 
-function compareWith(a: ProjectModel | undefined, b: ProjectModel | undefined) {
-  return b && a && b.start.getTime() > a.start.getTime();
+function compareWith(
+  a: string | ProjectModel | undefined,
+  b: string | ProjectModel | undefined
+) {
+  if (typeof a === "undefined" || typeof b === "undefined") {
+    return true;
+  }
+
+  if (typeof a === "string" || typeof b === "string") {
+    return a < b;
+  }
+
+  return b.start.getTime() > a.start.getTime();
 }
 
 export default [

@@ -11,7 +11,7 @@ import { anderWebRtc } from "@storage/projects/ander/ander.webrtc";
 
 export const companyAnder = new CompanyModel({
   name: Company.Ander,
-  description: "개발서버 관리 및 API, DB 설계 제작, 백오피스 개발 담당",
+  description: "사내 개발 서버 및 AWS EC2 관리, 클라우드 서버 운영 및 배포, API 및 DB 설계, 제작, 백오피스 개발",
   roles: [Role.Backend, Role.Server],
   team: Team.Produce,
   projects: [

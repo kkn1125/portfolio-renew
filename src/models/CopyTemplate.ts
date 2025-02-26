@@ -2,7 +2,10 @@ import { during } from "@libs/during";
 import { ProjectModel } from "./project.model";
 import { calcDiffDate } from "@libs/calcDiffDate";
 
-export function CopyTemplate(project: ProjectModel, index: number) {
+export function CopyTemplate(project: string | ProjectModel, index: number) {
+  if (typeof project === "string") {
+    return `${index + 1}) 프로젝트: ${project}`;
+  }
   return `
 ${index + 1}) 프로젝트 : ${project.title}${
     project.testAccount

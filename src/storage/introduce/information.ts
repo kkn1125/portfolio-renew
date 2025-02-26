@@ -1,12 +1,15 @@
 import { Role } from "@common/enums/role";
 import { Skill } from "@libs/skill";
+import { totalAnnual } from "@libs/totalAnnual";
 import Resume from "@models/Resume";
+import { companies } from "@storage/companies";
 
 export const Information = {
   title: "문제를 해결하며 팀과 성장하는 백엔드 개발자",
   // title: "문제 해결에 집중하고 효율성을 고민하는 서버/백엔드 개발자",
   name: "김경남",
   position: Role.Backend,
+  annual: totalAnnual(Object.values(companies).filter((item) => item.isIt)),
   coreCompetencies: [
     "AWS EC2, S3, RDS, Route53 활용과 계정간 데이터 이전 경험",
     "NestJS, TypeScript를 활용한 백엔드 개발",

@@ -4,14 +4,16 @@ import { Team } from "@common/enums/team";
 import { ProjectModel } from "./project.model";
 
 export class CompanyModel {
+  isIt: boolean = true;
   name: Company;
   description: string;
   team: Team;
   roles: Role[];
-  projects: ProjectModel[];
+  projects: (string | ProjectModel)[];
   start: Date;
   end?: Date;
   constructor({
+    isIt,
     name,
     description,
     team,
@@ -20,14 +22,16 @@ export class CompanyModel {
     start,
     end,
   }: {
+    isIt?: boolean;
     name: Company;
     description: string;
     team: Team;
     roles: Role[];
-    projects: ProjectModel[];
+    projects: (string | ProjectModel)[];
     start: Date;
     end?: Date;
   }) {
+    isIt !== undefined && (this.isIt = isIt);
     this.name = name;
     this.description = description;
     this.team = team;
