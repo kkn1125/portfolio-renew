@@ -1,7 +1,7 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { ProjectModel } from "./project.model";
+import { ProjectModel } from "./ProjectModel";
 
 export class CompanyModel {
   isIt: boolean = true;

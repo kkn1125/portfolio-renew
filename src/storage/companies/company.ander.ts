@@ -1,7 +1,7 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { CompanyModel } from "@models/company.model";
+import { CompanyModel } from "@models/CompanyModel";
 import { anderImomApi } from "@storage/projects/ander/ander.imom.api";
 import { anderImomBackoffice } from "@storage/projects/ander/ander.imom.backoffice";
 import { anderMetaverseSocket } from "@storage/projects/ander/ander.metaverse.socket";

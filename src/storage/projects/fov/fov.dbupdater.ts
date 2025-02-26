@@ -2,8 +2,9 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Issue } from "@models/issue";
-import { ProjectModel } from "@models/project.model";
+import { Issue } from "@models/Issue";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const fovDbupdater = new ProjectModel({
   cover: null,
@@ -34,14 +35,30 @@ export const fovDbupdater = new ProjectModel({
   start: new Date(2024, 4),
   end: new Date(2024, 5),
   works: [
-    "구글 시트와 로컬 데이터베이스 간 스키마 및 데이터 타입 검증 시스템 구축",
-    "구글 시트 엑셀 파일 변환 및 데이터 동기화 및 정합성 검증 프로세스 개발",
-    "로컬 데이터베이스와 구글 시트 간 데이터 비교 분석을 통한 추가, 수정, 삭제 데이터 정량화 구현",
-    "웹 인터페이스를 통한 로컬 데이터베이스 테이블 선택 및 행 데이터 미리보기 기능 개발",
-    "실시간 데이터 동기화 알림 시스템 구축 및 사용자 간 브로드캐스트 기능 구현",
-    "WebSocket 기반 실시간 업데이트 알림 및 일괄 적용 기능 개발로 협업 효율성 향상",
-    "사용자 피드백 기반 지속적인 시스템 개선 및 유지보수 수행",
-    "데이터베이스 동기화 프로세스 최적화를 통한 개발 시간 30% 단축 달성",
+    new Work(
+      "구글 시트와 데이터베이스 간 데이터 정합겅 검증 및 동기화",
+      "구글 시트와 로컬 데이터베이스 간 데이터의 공백, 오타, 타입 불일치를 검사하여 데이터 동기화"
+    ),
+    new Work(
+      "데이터 동기화 문제",
+      "추가, 수정, 삭제 데이터를 라벨링하여 필요한 쿼리 구문 생성 및 적용 "
+    ),
+    new Work(
+      "비개발자를 대상으로 한 웹 개발",
+      "팀 내 비개발 인원을 대상으로 데이터베이스 동기화, 엑셀 다운로드, 미리보기 기능 개발"
+    ),
+    new Work(
+      "동기화 시 누가, 어떤 테이블을 동기화 했는지 모르는 문제",
+      "웹 소켓을 이용해 동기화 테이블을 데이터베이스에 로그를 남기고, IP를 기반으로 동기화 목록 브로드캐스트"
+    ),
+    new Work(
+      "피드백을 통한 시스템 개선 및 유지보수",
+      "팀원의 피드백을 기반으로 지속적인 시스템 개선 및 유지보수 수행"
+    ),
+    new Work(
+      "업무 효율 향상",
+      "데이터베이스 동기화 개발로 업무 시간 30% 절감"
+    ),
   ],
   // works: [
   //   "구글 시트와 로컬 데이터베이스 컬럼 검증",

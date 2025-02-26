@@ -1,4 +1,4 @@
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
 import { sideDocumentify } from "./side.documentify";
 import { sideGamepang } from "./side.gamepang";
 import { sideGanttChart } from "./side.gantt-chart";

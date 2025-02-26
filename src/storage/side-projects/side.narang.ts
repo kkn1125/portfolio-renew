@@ -3,7 +3,8 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { getImage, getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const sideNarang = new ProjectModel({
   cover: getResource("projectnarang", "narang01.png"),
@@ -27,13 +28,13 @@ export const sideNarang = new ProjectModel({
   start: new Date(2022, 6),
   end: new Date(2022, 8),
   works: [
-    "NPM 모듈 개발 및 등록",
-    "ReactJS를 사용한 문서 페이지 제작",
-    "Umd, Esm, Cjs 다중 빌드로 다양한 작업 환경 지원",
-    "한글 자모 분해 및 재조합 기능 구현",
-    "비동기 데이터 처리를 통한 타이핑 애니메이션 구현",
-    "빌더 패턴을 적용한 사용자 친화적 타이핑 설정 인터페이스 개발",
-    "테스트 코드 작성을 통한 예시 제공, 오류 대응 및 확장성 향상",
+    new Work("NPM 모듈 개발 및 등록"),
+    new Work("ReactJS를 사용한 문서 페이지 제작"),
+    new Work("Umd, Esm, Cjs 다중 빌드로 다양한 작업 환경 지원"),
+    new Work("한글 자모 분해 및 재조합 기능 구현"),
+    new Work("비동기 데이터 처리를 통한 타이핑 애니메이션 구현"),
+    new Work("빌더 패턴을 적용한 사용자 친화적 타이핑 설정 인터페이스 개발"),
+    new Work("테스트 코드 작성을 통한 예시 제공, 오류 대응 및 확장성 향상"),
   ],
   // works: [
   //   "Npm 모듈 등록",

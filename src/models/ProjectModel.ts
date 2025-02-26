@@ -3,10 +3,11 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { pathJoin } from "@libs/pathJoin";
 import { Skill } from "@libs/skill";
-import { Issue } from "./issue";
+import { Issue } from "./Issue";
 import { DEPLOY_PATH } from "@common/variables";
 import { ImageObject } from "@libs/getResource";
 import { v4 } from "uuid";
+import Work from "./Work";
 
 export class ProjectModel {
   id: string = v4();
@@ -22,7 +23,7 @@ export class ProjectModel {
   start: Date;
   end: Date | null = null;
   skills: Skill[];
-  works: string[];
+  works: Work[];
   path: string;
   relations: ProjectModel[] | null = null;
   isSideProject: boolean | null = null;
@@ -61,7 +62,7 @@ export class ProjectModel {
     start: Date;
     end: Date | null;
     skills: Skill[];
-    works: string[];
+    works: Work[];
     path: string;
     relations: ProjectModel[] | null;
     isSideProject: boolean | null;

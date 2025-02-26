@@ -1,5 +1,5 @@
 import { during } from "@libs/during";
-import { ProjectModel } from "./project.model";
+import { ProjectModel } from "./ProjectModel";
 import { calcDiffDate } from "@libs/calcDiffDate";
 
 export function CopyTemplate(project: string | ProjectModel, index: number) {
@@ -23,5 +23,16 @@ ${index + 1}) 프로젝트 : ${project.title}${
  - 역할     : ${project.roles.join(", ")}
  - 내용     : ${project.description[0]}
  - 기여도 :
-${project.works.map((work) => `    -${work}`).join("\n")}`.trim();
+${project.works
+  .map(
+    (work) =>
+      `    - ${work.content}${
+        work.hasSubWorks
+          ? `\n${work.subWorks
+              .map((sub) => `      - ${sub.content}`)
+              .join("\n")}`
+          : ""
+      }`
+  )
+  .join("\n")}`.trim();
 }

@@ -1,6 +1,6 @@
 import { calcDiffDate } from "@libs/calcDiffDate";
 import { during } from "@libs/during";
-import { CompanyModel } from "@models/company.model";
+import { CompanyModel } from "@models/CompanyModel";
 import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,

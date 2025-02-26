@@ -2,8 +2,8 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Issue } from "@models/issue";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const rebornBlockChain = new ProjectModel({
   cover: null,
@@ -26,9 +26,9 @@ export const rebornBlockChain = new ProjectModel({
   start: new Date(2022, 4),
   end: new Date(2022, 6),
   works: [
-    "metamask wallet 연동",
-    "NFTMarketplace 스토어 페이지 연동",
-    "프론트엔드 전체 페이지 제작",
+    new Work("metamask wallet 연동"),
+    new Work("NFTMarketplace 스토어 페이지 연동"),
+    new Work("프론트엔드 전체 페이지 제작"),
   ],
   isSideProject: false,
   issues: null,

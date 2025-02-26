@@ -1,4 +1,4 @@
-import { CompanyModel } from "@models/company.model";
+import { CompanyModel } from "@models/CompanyModel";
 import dayjs from "dayjs";
 
 export function totalAnnual(companies: CompanyModel[]) {

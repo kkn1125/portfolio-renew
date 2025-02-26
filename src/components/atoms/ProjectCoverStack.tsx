@@ -1,5 +1,5 @@
 import { DEFAULT_COVER } from "@common/variables";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 
 interface ProjectCoverStackProps {

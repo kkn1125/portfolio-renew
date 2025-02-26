@@ -3,8 +3,9 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
-import { Issue } from "@models/issue";
-import { ProjectModel } from "@models/project.model";
+import { Issue } from "@models/Issue";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const sideGamepang = new ProjectModel({
   cover: getResource("game-pang", "gamepang01.png"),
@@ -21,16 +22,16 @@ export const sideGamepang = new ProjectModel({
   start: new Date(2023, 8),
   end: new Date(2023, 8),
   works: [
-    "비동기 애니메이션 처리 구현",
-    "동물 블록 제거 및 낙하 동작 구현",
-    "자동 매칭 및 제거 알고리즘 개발",
-    "게임 규칙 및 아이템 사용 시스템 설계",
-    "캔버스 레이어 분할을 통한 렌더링 최적화",
-    "아이템 사용 시 규칙 체이닝 연산 구현",
-    "힌트 기능 및 매치 가능 블록 하이라이트 알고리즘 개발",
-    "퀘스트 시스템 구현 및 완료 항목 순차 처리",
-    "게임 완료 및 새 게임 기능 구현",
-    "Cordova를 이용한 안드로이드 APK 빌드 및 배포"
+    new Work("비동기 애니메이션 처리 구현"),
+    new Work("동물 블록 제거 및 낙하 동작 구현"),
+    new Work("자동 매칭 및 제거 알고리즘 개발"),
+    new Work("게임 규칙 및 아이템 사용 시스템 설계"),
+    new Work("캔버스 레이어 분할을 통한 렌더링 최적화"),
+    new Work("아이템 사용 시 규칙 체이닝 연산 구현"),
+    new Work("힌트 기능 및 매치 가능 블록 하이라이트 알고리즘 개발"),
+    new Work("퀘스트 시스템 구현 및 완료 항목 순차 처리"),
+    new Work("게임 완료 및 새 게임 기능 구현"),
+    new Work("Cordova를 이용한 안드로이드 APK 빌드 및 배포"),
   ],
   // works: [
   //   "애니메이션 동작 비동기 처리",
@@ -53,7 +54,7 @@ export const sideGamepang = new ProjectModel({
         "애니메이션 동작 중 사용자 입력 차단",
         "Promise 객체를 변수에 할당하고 resolve 함수를 별도로 저장",
         "애니메이션 및 데이터 처리가 완료되는 시점에 저장된 resolve 함수 호출",
-        "Promise의 pending 상태를 활용하여 비동기 작업 완료 시점 제어"
+        "Promise의 pending 상태를 활용하여 비동기 작업 완료 시점 제어",
       ],
       // processes: [
       //   "애니메이션 비동기 수행 시 클릭 방지",

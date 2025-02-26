@@ -1,4 +1,4 @@
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
 
 export function sortByEnd<T extends string | ProjectModel>(list: T[]) {
   if (list.every((item) => typeof item === "string")) {

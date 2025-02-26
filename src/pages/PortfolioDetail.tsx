@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   IconButton,
   List,
   ListItem,
@@ -29,7 +30,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
 import { roleTranslate } from "@common/enums/role";
 import { useEffect, useState } from "react";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
 
 const ExternalLink = ({
   href,
@@ -260,17 +261,29 @@ function PortfolioDetail() {
         </Typography>
         <List>
           {projectModel.works.map((work) => (
-            <ListItem key={work}>
-              <ListItemIcon>
-                <Box component="span" sx={{ color: "primary.main" }}>
-                  ✨
-                </Box>
-              </ListItemIcon>
+            <ListItem key={work.content}>
               <ListItemText
                 primary={
                   <Typography variant="body1" fontWeight="bold">
-                    {work}
+                    ✨ {work.content}
                   </Typography>
+                }
+                secondary={
+                  work.hasSubWorks && (
+                    <List>
+                      {work.subWorks.map((subWork) => (
+                        <ListItem key={work.content + subWork.content}>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body1" fontWeight="bold">
+                                🛠️ {subWork.content}
+                              </Typography>
+                            }
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+                  )
                 }
               />
             </ListItem>

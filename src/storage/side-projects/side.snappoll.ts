@@ -3,7 +3,8 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { getImage, getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const sideSnapPoll = new ProjectModel({
   cover: getResource("snappoll", "survey.gif"),
@@ -35,26 +36,26 @@ export const sideSnapPoll = new ProjectModel({
   start: new Date(2024, 10),
   end: new Date(2025, 0),
   works: [
-    "클라이언트 사이드 URL 설계",
-    "데이터베이스 스키마 설계 및 제작",
-    "계층형 댓글 테이블 구조 설계",
-    "설문, 투표 서비스 개발",
-    "설문, 투표 생성 구조 설계",
-    "게스트 참여 설문, 투표 공유 URL 생성",
-    "비회원 설문, 투표 참여 가능한 구조 설계",
-    "API 권한 시스템 구축",
-    "페이지 권한 시스템 구축",
-    "마케팅 및 알림 메일 발송 스케줄링",
-    "수동 메일 발송 구현",
-    "백오피스 제작",
-    "SEO 최적화",
-    "클라우드 서버 배포",
-    "로그인 토큰 검증 및 로그인 유지 시스템 구현",
-    "구독 결제 시스템 설계",
-    "구독 등급에 따라 설문, 투표 제작 회수 및 응답자 수 제한",
-    "구독 등급별 추가 기능 계획 및 기능 제한 설계",
-    "회원 대시보드 그래프 유형 및 기본 통계 자료 구현",
-    "질문 간 비교 분석 그래프 로직 개발",
+    new Work("클라이언트 사이드 URL 설계"),
+    new Work("데이터베이스 스키마 설계 및 제작"),
+    new Work("계층형 댓글 테이블 구조 설계"),
+    new Work("설문, 투표 서비스 개발"),
+    new Work("설문, 투표 생성 구조 설계"),
+    new Work("게스트 참여 설문, 투표 공유 URL 생성"),
+    new Work("비회원 설문, 투표 참여 가능한 구조 설계"),
+    new Work("API 권한 시스템 구축"),
+    new Work("페이지 권한 시스템 구축"),
+    new Work("마케팅 및 알림 메일 발송 스케줄링"),
+    new Work("수동 메일 발송 구현"),
+    new Work("백오피스 제작"),
+    new Work("SEO 최적화"),
+    new Work("클라우드 서버 배포"),
+    new Work("로그인 토큰 검증 및 로그인 유지 시스템 구현"),
+    new Work("구독 결제 시스템 설계"),
+    new Work("구독 등급에 따라 설문, 투표 제작 회수 및 응답자 수 제한"),
+    new Work("구독 등급별 추가 기능 계획 및 기능 제한 설계"),
+    new Work("회원 대시보드 그래프 유형 및 기본 통계 자료 구현"),
+    new Work("질문 간 비교 분석 그래프 로직 개발"),
   ],
   isSideProject: true,
   issues: [

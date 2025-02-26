@@ -2,7 +2,7 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { sortByEnd } from "@libs/sortBy";
-import { CompanyModel } from "@models/company.model";
+import { CompanyModel } from "@models/CompanyModel";
 import sideProjects from "@storage/side-projects";
 
 export const sideProject = new CompanyModel({

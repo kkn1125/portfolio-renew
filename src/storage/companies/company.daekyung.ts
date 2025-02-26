@@ -1,7 +1,7 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { CompanyModel } from "@models/company.model";
+import { CompanyModel } from "@models/CompanyModel";
 
 export const companyDaekyung = new CompanyModel({
   isIt: false,
@@ -27,6 +27,6 @@ export const companyDaekyung = new CompanyModel({
     "서귀포성산지구 공동주택 현상설계  보고서 작성",
     "진주옥봉 행복주택 설계공모  보고서 작성",
   ],
-  start: new Date(2018, 1),
-  end: new Date(2020, 9),
+  start: new Date(2018, 0),
+  end: new Date(2020, 10),
 });

@@ -1,7 +1,7 @@
 import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
-import { CompanyModel } from "@models/company.model";
+import { CompanyModel } from "@models/CompanyModel";
 import { rebornBlockChain } from "@storage/projects/reborn/reborn.blockchain";
 
 export const companyReborn = new CompanyModel({

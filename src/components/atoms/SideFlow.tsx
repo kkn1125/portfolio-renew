@@ -1,6 +1,6 @@
 import { calcDiffDate } from "@libs/calcDiffDate";
 import { during } from "@libs/during";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Box, Chip, Stack, Typography, useTheme } from "@mui/material";
 import { useMemo } from "react";

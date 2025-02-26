@@ -1,4 +1,4 @@
-import { Issue } from "@models/issue";
+import { Issue } from "@models/Issue";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";

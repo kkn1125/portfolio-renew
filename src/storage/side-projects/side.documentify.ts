@@ -3,7 +3,8 @@ import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { getResource } from "@libs/getResource";
 import { Skill } from "@libs/skill";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const sideDocumentify = new ProjectModel({
   cover: getResource("documentify", "docu01.png"),
@@ -22,15 +23,15 @@ export const sideDocumentify = new ProjectModel({
   start: new Date(2021, 9),
   end: new Date(2021, 10),
   works: [
-    "로컬 디렉토리 자바스크립트 파일 주석 분석",
-    "단일/분할 방식 저장 기능 구현",
-    "채팅봇 기능 구현",
-    "검색창 구현 및 MDN 검색창 디자인 참조",
-    "자바스크립트 파일 읽기 및 주석 필터링 기능 개발",
-    "분류된 주석 직렬화 및 데이터 추출 알고리즘 제작",
-    "@reference 분석 후 연관 정의로 이동하는 링크 자동 첨부",
-    "변수 및 메서드 파일별 자동 문서화",
-    "zip 저장 지원",
+    new Work("로컬 디렉토리 자바스크립트 파일 주석 분석"),
+    new Work("단일/분할 방식 저장 기능 구현"),
+    new Work("채팅봇 기능 구현"),
+    new Work("검색창 구현 및 MDN 검색창 디자인 참조"),
+    new Work("자바스크립트 파일 읽기 및 주석 필터링 기능 개발"),
+    new Work("분류된 주석 직렬화 및 데이터 추출 알고리즘 제작"),
+    new Work("@reference 분석 후 연관 정의로 이동하는 링크 자동 첨부"),
+    new Work("변수 및 메서드 파일별 자동 문서화"),
+    new Work("zip 저장 지원"),
   ],
   isSideProject: true,
   issues: null,

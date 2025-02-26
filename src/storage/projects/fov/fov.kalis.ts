@@ -2,8 +2,9 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Issue } from "@models/issue";
-import { ProjectModel } from "@models/project.model";
+import { Issue } from "@models/Issue";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 // 문제-해결-이유-성과
 export const fovKalis = new ProjectModel({
   cover: null,
@@ -20,13 +21,33 @@ export const fovKalis = new ProjectModel({
   start: new Date(2024, 6),
   end: new Date(2024, 8),
   works: [
-    "React로의 마이그레이션을 통해 Svelte의 유지보수성 문제 해결 및 빌드 프로세스 간소화로 전반적인 개발 효율성 30% 향상",
-    "Python 기반 API를 NestJS로 재구축하여 코드 구조 개선 및 비효율적인 쿼리 최적화로 API 응답 속도 80% 향상",
-    "프론트엔드 성능 최적화 과정에서 발견된 병목 현상 해결을 위해 불필요한 반복문 제거 및 서버 측 쿼리 튜닝으로 전체 시스템 성능 대폭 개선",
-    "통계 그래프 데이터 요청 시 발생하는 성능 저하 문제 식별 및 데이터베이스 쿼리 최적화를 통한 데이터 로딩 속도 현저히 개선",
-    "대용량 데이터 처리의 비효율성 해결을 위한 서버 사이드 페이지네이션 구현으로 프론트엔드의 부하 크게 감소",
-    "Jenkins, Github Webhook, ShellScript를 활용한 CI/CD 파이프라인 구축으로 빌드 및 배포 과정 자동화, 업무 시간 60% 절감 및 배포 안정성 향상",
-    "고객사 질의 해결 위해 원격 지원 대응하여 문제 해결",
+    new Work(
+      "Svelte → React 마이그레이션",
+      "기존 Svelte를 React로 재구축하여 유지보수성 문제 해결",
+      "빌드 프로세스를 간소화하여 업무 효율성 30% 향상"
+    ),
+    new Work(
+      "Python → NestJS 마이그레이션",
+      "기존 Python API를 NestJS로 재구축하여 코드 구조 개선",
+      "데이터베이스 쿼리 최적화로 API 응답 속도 80% 개선"
+    ),
+    new Work(
+      "데이터 로그가 느려지는 문제 해결",
+      "기존 비효율적인 데이터 반복 요청을 페이지네이션 기능 추가 및 쿼리 튜닝으로 시스템 성능 대폭 개선"
+    ),
+    new Work(
+      "통계 데이터 로드 성능 저하 문제 해결",
+      "통계 그래프 데이터 요청 시 데이터베이스 쿼리 최적화를 통해 필요한 데이터를 가공하여 응답 속도 개선"
+    ),
+    new Work(
+      "테스트, 배포, 빌드, 실행 자동화",
+      "Jenkins, Github Webhook, ShellScript를 활용한 CI/CD 파이프라인 구축으로 빌드 및 배포 과정 자동화, 업무 시간 60% 절감 및 배포 안정성 향상"
+    ),
+    new Work(
+      "실시간 고객사 장애 원격 대응",
+      "서비스 납품 후 발생하는 네트워크 장애 현상 원격 지원으로 계열사 문제 대응",
+      "각 문제에 따라 개별로 약식 문서를 작성, 배포"
+    ),
   ],
   // works: [
   //   "React로의 마이그레이션을 통해 Svelte의 유지보수성 문제를 해결하고 빌드 프로세스를 간소화하여 전반적인 개발 효율성을 30% 향상시켰습니다.",

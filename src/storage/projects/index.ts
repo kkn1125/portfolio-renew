@@ -1,5 +1,5 @@
-import { CompanyModel } from "@models/company.model";
-import { ProjectModel } from "@models/project.model";
+import { CompanyModel } from "@models/CompanyModel";
+import { ProjectModel } from "@models/ProjectModel";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
 import { companyFov } from "@storage/companies/company.fov";

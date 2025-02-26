@@ -2,8 +2,9 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Issue } from "@models/issue";
-import { ProjectModel } from "@models/project.model";
+import { Issue } from "@models/Issue";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const anderUglymews = new ProjectModel({
   cover: null,
@@ -20,13 +21,26 @@ export const anderUglymews = new ProjectModel({
   start: new Date(2023, 6),
   end: new Date(2023, 7),
   works: [
-    "RESTful API 설계 및 구현",
-    "Jenkins를 활용한 CI/CD 파이프라인 구축",
-    "개발 서버 및 실서버 관리",
-    "NHN KCP 결제 시스템 연동 및 구현",
-    "상품 카트, 결제, 취소 기능 개발",
-    "데이터베이스 설계 및 구현",
-    "SSL 인증서 적용"
+    new Work(
+      "스토어에 필요한 API 서버 및 데이터베이스 개발",
+      "사용자 로그인 및 상품 관리 API 개발"
+    ),
+    new Work(
+      "Jenkins를 활용한 CI/CD 파이프라인 구축",
+      "빌드, 배포 시간을 절감하고 안정성 향상"
+    ),
+    new Work(
+      "프로덕션 개발과 유지보수를 위한 개발, 운영 서버 관리",
+      "개발 및 테스트를 위해 서버 환경을 설정, 관리",
+      "운영 서버와 유사한 환경을 조성하여 원활한 개발 프로세스에 기여"
+    ),
+    new Work(
+      "스토어 내 아이템을 구매하기 위한 거래 시스템 연동",
+      "NHN KCP 결제를 구현하고 거래 이력을 저장",
+      "사용자가 어떤 상품을 구매했는지 결과 도출"
+    ),
+    new Work("상품 카트, 결제, 취소 기능 개발"),
+    new Work("SSL 인증서 적용"),
   ],
   // works: [
   //   "API 스키마 설계, 제작",

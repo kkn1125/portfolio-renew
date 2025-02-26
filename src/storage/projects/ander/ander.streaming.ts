@@ -2,8 +2,9 @@ import { Company } from "@common/enums/compony";
 import { Role } from "@common/enums/role";
 import { Team } from "@common/enums/team";
 import { Skill } from "@libs/skill";
-import { Issue } from "@models/issue";
-import { ProjectModel } from "@models/project.model";
+import { Issue } from "@models/Issue";
+import { ProjectModel } from "@models/ProjectModel";
+import Work from "@models/Work";
 
 export const anderStreaming = new ProjectModel({
   cover: null,
@@ -28,13 +29,29 @@ export const anderStreaming = new ProjectModel({
   start: new Date(2023, 0),
   end: new Date(2023, 2),
   works: [
-    "미디어 파일 스트리밍 위해 파일 분할 재생 기능 구현",
-    "사용자 지정 구간 재생 및 녹화 완료 시 자동 인코딩 후 저장 기능 제작",
-    "방송 송출자 관리 패널 구축",
-    "스케줄링을 통한 라이브 방송 시간 예약 구현",
-    "채팅 채널 분산 및 시청자 입,퇴장 제어 구현",
-    "실시간 라이브 상태 체크",
-    "팝업 태그 제어",
+    new Work(
+      "라이브 영상 미디어 송출",
+      "미디어 파일 실시간 재생을 위해 영상을 초단위로 분할",
+      "분할된 파일을 이용해 부분 편집 용이"
+    ),
+    new Work(
+      "스트리밍 종료 후 영상 변환 및 최적화 시스템 개발",
+      "초 단위로 분할된 영상파일을 FFMPEG를 활용해 해상도를 최적화하고, MP4 형식으로 변환 및 저장",
+      "재생 호환성을 높이고, 영상 용량 최적화로 저장 비용 절감"
+    ),
+    new Work(
+      "라이브 방송 시간 예약 시스템 구현",
+      "예약된 시간에 자동으로 방송이 시작되도록 스케줄러 개발 (Cron, Job Queue 활용)",
+      "방송 시작 전 충분한 준비 시간 확보 및 예약 일정 관리 효율성 증가"
+    ),
+    new Work(
+      "방송 송출자 전용 관리 패널 개발",
+      "송출자 패널을 일반 사용자 UI와 분리하고 권한 기반 관리 기능 구현",
+      "권한 기반 접근 제어로 보안 강화 및 유지보수성 향상"
+    ),
+    new Work("채팅 채널 분산 및 시청자 입,퇴장 제어 구현"),
+    new Work("실시간 라이브 상태 체크"),
+    new Work("팝업 태그 제어"),
   ],
   isSideProject: false,
   issues: [

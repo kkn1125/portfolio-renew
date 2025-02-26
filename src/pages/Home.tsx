@@ -5,7 +5,7 @@ import SideFlow from "@components/atoms/SideFlow";
 import { getResumeDocuments } from "@libs/getResumeDocuments";
 import { sortByEnd } from "@libs/sortBy";
 import { CopyTemplate } from "@models/CopyTemplate";
-import { ProjectModel } from "@models/project.model";
+import { ProjectModel } from "@models/ProjectModel";
 import Resume from "@models/Resume";
 import {
   Box,
@@ -113,8 +113,13 @@ function Home() {
           Information.resume as unknown as Resume[]
         );
         const title = Information.title;
+        const description = Information.description.join(" ");
+        const useStacks = Information.skill.main
+          .concat(Information.skill.sub)
+          .map((skill) => skill.name)
+          .join(", ");
         navigator.clipboard.writeText(
-          `"${title}"\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+          `"${title}"\n\n\n${description}\n\n\n${useStacks}\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
         );
       }
       setInputText("");
@@ -201,24 +206,24 @@ function Home() {
                 </Typography>
 
                 <Box sx={{ position: "relative", zIndex: 1 }}>
-                  {Information.coreCompetencies.map((desc, index) => (
+                  {Information.description.map((desc, index) => (
                     <Typography
                       key={index}
                       sx={{
                         fontSize: "1.1rem",
                         color: "#E2E8F0",
-                        mb: 2,
+                        mb: 1,
                         position: "relative",
                         pl: 3,
-                        "&::before": {
-                          content: '""',
-                          position: "absolute",
-                          left: 0,
-                          top: "50%",
-                          width: "10px",
-                          height: "2px",
-                          backgroundColor: "#F7FAFC",
-                        },
+                        // "&::before": {
+                        //   content: '""',
+                        //   position: "absolute",
+                        //   left: 0,
+                        //   top: "50%",
+                        //   width: "10px",
+                        //   height: "2px",
+                        //   backgroundColor: "#F7FAFC",
+                        // },
                       }}
                     >
                       {desc}
