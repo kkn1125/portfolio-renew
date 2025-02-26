@@ -201,7 +201,7 @@ function Home() {
                 </Typography>
 
                 <Box sx={{ position: "relative", zIndex: 1 }}>
-                  {Information.description.map((desc, index) => (
+                  {Information.coreCompetencies.map((desc, index) => (
                     <Typography
                       key={index}
                       sx={{
