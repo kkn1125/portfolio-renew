@@ -23,24 +23,25 @@ function compareWith(a: CompanyModel | undefined, b: CompanyModel | undefined) {
   return b && a && b.start.getTime() > a.start.getTime();
 }
 
-export const projects = ([sideProject.projects[0]] as ProjectModel[])
-  .concat(companyFov.projects)
-  .concat(
-    companyAnder.projects,
-    companyReborn.projects,
-    sideProject.projects.slice(1)
-  )
-  .toSorted((a, b) => {
-    if (
-      compareWith(
-        findCompany(companies, a.company),
-        findCompany(companies, b.company)
-      )
-    ) {
-      return 1;
-    }
-    if (b.start.getTime() > a.start.getTime()) {
-      return 1;
-    }
-    return 0;
-  });
+export const projects = (
+  [sideProject.projects[0]]
+    .concat(companyFov.projects)
+    .concat(
+      companyAnder.projects,
+      companyReborn.projects,
+      sideProject.projects.slice(1)
+    ) as ProjectModel[]
+).toSorted((a, b) => {
+  if (
+    compareWith(
+      findCompany(companies, a.company),
+      findCompany(companies, b.company)
+    )
+  ) {
+    return 1;
+  }
+  if (b.start.getTime() > a.start.getTime()) {
+    return 1;
+  }
+  return 0;
+});
