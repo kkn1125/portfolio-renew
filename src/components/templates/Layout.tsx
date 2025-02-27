@@ -5,12 +5,17 @@ import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
-    <Stack component={Paper} height="inherit" sx={{ borderRadius: "none" }}>
+    <Stack
+      id="wrapper"
+      component={Paper}
+      height="inherit"
+      sx={{ borderRadius: "none" }}
+    >
       {/* 상단 메뉴 */}
       <Header />
 
       {/* 본문 */}
-      <Stack flex={1} overflow="hidden" height="inherit">
+      <Stack id="layout" flex={1} overflow="hidden" height="inherit">
         <Outlet />
       </Stack>
 

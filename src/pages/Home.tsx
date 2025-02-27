@@ -62,6 +62,11 @@ function Home() {
       if (e.key === "Escape") {
         setOpenInput(false);
       }
+
+      if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "P") {
+        window.print();
+      }
+
       // if (openInput) {
       //   if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "O") {
       //     const projectGap = "\n\n";
@@ -127,7 +132,7 @@ function Home() {
   }
 
   return (
-    <Stack flex={1} overflow="auto" height="inherit">
+    <Stack id="main-content" flex={1} overflow="auto" height="inherit">
       {/* Section1 */}
       <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
         {openInput && (
@@ -191,7 +196,7 @@ function Home() {
                   >
                     {Information.position}
                   </Typography>
-                  <Typography
+                  {/* <Typography
                     component="span"
                     sx={{
                       display: "block",
@@ -202,7 +207,7 @@ function Home() {
                     }}
                   >
                     {Information.annual}년차
-                  </Typography>
+                  </Typography> */}
                 </Typography>
 
                 <Box sx={{ position: "relative", zIndex: 1 }}>
@@ -310,6 +315,7 @@ function Home() {
               프로젝트에서 사용한 기술들
             </Typography>
             <Box
+              id="stacks"
               width="100%"
               sx={{
                 overflow: "hidden",
