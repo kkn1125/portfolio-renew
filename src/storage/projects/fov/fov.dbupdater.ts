@@ -57,7 +57,7 @@ export const fovDbupdater = new ProjectModel({
     ),
     new Work(
       "업무 효율 향상",
-      "데이터베이스 동기화 개발로 업무 시간 30% 절감"
+      "데이터베이스 동기화 개발로 업무 시간 절감"
     ),
   ],
   // works: [

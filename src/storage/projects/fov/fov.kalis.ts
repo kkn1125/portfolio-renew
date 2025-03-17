@@ -24,12 +24,12 @@ export const fovKalis = new ProjectModel({
     new Work(
       "Svelte → React 마이그레이션",
       "기존 Svelte를 React로 재구축하여 유지보수성 문제 해결",
-      "빌드 프로세스를 간소화하여 업무 효율성 30% 향상"
+      "빌드 프로세스를 간소화하여 업무 효율성 향상"
     ),
     new Work(
       "Python → NestJS 마이그레이션",
       "기존 Python API를 NestJS로 재구축하여 코드 구조 개선",
-      "데이터베이스 쿼리 최적화로 API 응답 속도 80% 개선"
+      "데이터베이스 쿼리 최적화로 API 응답 속도 개선"
     ),
     new Work(
       "데이터 로그가 느려지는 문제 해결",
@@ -41,7 +41,7 @@ export const fovKalis = new ProjectModel({
     ),
     new Work(
       "테스트, 배포, 빌드, 실행 자동화",
-      "Jenkins, Github Webhook, ShellScript를 활용한 CI/CD 파이프라인 구축으로 빌드 및 배포 과정 자동화, 업무 시간 60% 절감 및 배포 안정성 향상"
+      "Jenkins, Github Webhook, ShellScript를 활용한 CI/CD 파이프라인 구축으로 빌드 및 배포 과정 자동화, 업무 시간 절감 및 배포 안정성 향상"
     ),
     new Work(
       "실시간 고객사 장애 원격 대응",
@@ -72,7 +72,7 @@ export const fovKalis = new ProjectModel({
         "기존 코드에서 소량의 데이터를 반복 요청해서 응답이 지연되는 문제 발생",
       processes: ["데이터 영역별로 가공한 객체를 한 번에 응답"],
       solves: [
-        "유니티 웹뷰 연동 시 기존 응답 시간 대비 80% 빠르게 응답",
+        "유니티 웹뷰 연동 시 기존 응답 시간 대비 빠르게 응답",
         "불필요한 반복문 제거하여 코드 가독성 유지",
       ],
     }),
@@ -101,7 +101,7 @@ export const fovKalis = new ProjectModel({
       //   "페이지에 해당하는 데이터만 내려주고 필요할 때 모든 데이터 조회하는 API 사용하는 방향으로 결정",
       // ],
       solves: [
-        "기존 응답 시간 대비 90% 빠르게 응답",
+        "기존 응답 시간 대비 빠르게 응답",
         "기존 하드 코딩된 프론트 코드 대폭 제거 및 서버 역할로 구분하여 가독성 개선",
       ],
     }),
@@ -110,10 +110,7 @@ export const fovKalis = new ProjectModel({
       processes: [
         "해당하는 페이지에 필요한 데이터만 가져오고, 모든 데이터가 필요할 때만 사용할 수 있는 API 제작",
       ],
-      solves: [
-        "기존 응답 시간 대비 90% 빠르게 응답",
-        "기존 하드 코딩된 프론트 코드 대폭 제거 및 서버 역할로 구분하여 가독성 개선",
-      ],
+      solves: ["응답 속도 개선"],
     }),
     new Issue({
       problem:

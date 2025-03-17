@@ -41,7 +41,7 @@ export const anderImomApi = new ProjectModel({
     new Work(
       "수동으로 진행되던 Docker 이미지 빌드, 배포 프로세스 자동화",
       "Jenkins + GitHub Webhook을 활용하여 자동 빌드 및 배포 파이프라인 구축",
-      "배포 시간 50% 단축, 배포 안정성 향상"
+      "배포 시간 단축, 배포 안정성 향상"
     ),
     new Work(
       "신규 서비스의 DB, API, 서버 아키텍처를 처음부터 설계 및 구축",
