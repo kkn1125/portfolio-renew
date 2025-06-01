@@ -3,6 +3,7 @@ import { ProjectModel } from "@models/ProjectModel";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
 import { companyFov } from "@storage/companies/company.fov";
+import { companyHit } from "@storage/companies/company.hit";
 import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
 
@@ -11,6 +12,7 @@ function findCompany(
     fov: CompanyModel;
     ander: CompanyModel;
     reborn: CompanyModel;
+    hit: CompanyModel;
   },
   companyName: string
 ) {
@@ -25,8 +27,9 @@ function compareWith(a: CompanyModel | undefined, b: CompanyModel | undefined) {
 
 export const projects = (
   [sideProject.projects[0]]
-    .concat(companyFov.projects)
+    .concat(companyHit.projects)
     .concat(
+      companyFov.projects,
       companyAnder.projects,
       companyReborn.projects,
       sideProject.projects.slice(1)

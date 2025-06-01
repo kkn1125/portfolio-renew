@@ -5,7 +5,6 @@ import SideFlow from "@components/atoms/SideFlow";
 import { getResumeDocuments } from "@libs/getResumeDocuments";
 import { sortByEnd } from "@libs/sortBy";
 import { CopyTemplate } from "@models/CopyTemplate";
-import { ProjectModel } from "@models/ProjectModel";
 import Resume from "@models/Resume";
 import {
   Box,
@@ -15,7 +14,6 @@ import {
   Portal,
   Stack,
   TextField,
-  Toolbar,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -23,6 +21,7 @@ import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
 import { companyDaekyung } from "@storage/companies/company.daekyung";
 import { companyFov } from "@storage/companies/company.fov";
+import { companyHit } from "@storage/companies/company.hit";
 import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
 import { Information } from "@storage/introduce/information";
@@ -134,172 +133,134 @@ function Home() {
   return (
     <Stack id="main-content" flex={1} overflow="auto" height="inherit">
       {/* Section1 */}
-      <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
-        {openInput && (
-          <Portal>
-            <Box component="form" onSubmit={handleSubmitInputText}>
-              <TextField
-                placeholder="?"
-                size="small"
-                autoFocus
-                onChange={handleChangeInputText}
-                sx={{
-                  position: "absolute",
-                  transform: "translateX(-50%)",
-                  left: "50%",
-                  bottom: 100,
-                  ["& fieldset"]: {
-                    backgroundColor: "#ffffff56",
-                  },
-                }}
-              />
-            </Box>
-          </Portal>
-        )}
+      <Box py={5} sx={{ backgroundColor: "#f7f8fa" }}>
         <Container maxWidth="lg">
           <Box
             sx={{
               position: "relative",
-              overflow: "hidden",
-              borderRadius: "20px",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-              background: "linear-gradient(135deg, #6B46C1 0%, #3B82F6 100%)",
-              p: 5,
+              backgroundColor: "#fff",
+              borderRadius: 4,
+              p: { xs: 3, md: 5 },
+              boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: 4,
             }}
           >
-            <Stack
-              direction={{ xs: "column", md: "row" }}
-              justifyContent="space-between"
-              alignItems="center"
-              spacing={4}
+            <Box
+              sx={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+              }}
             >
-              <Stack spacing={3} maxWidth="600px">
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: { xs: "2.5rem", md: "3.5rem" },
-                    fontWeight: 800,
-                    color: "#FFFFFF",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-                  }}
+              <Stack
+                direction={{ xs: "column-reverse", md: "row" }}
+                alignItems="center"
+                gap={2}
+              >
+                <Stack
+                  direction="column"
+                  gap={1}
+                  flex={1}
+                  justifyContent={{ xs: "space-between", md: "center" }}
+                  alignItems={{ xs: "center", md: "flex-start" }}
                 >
-                  {Information.name}
                   <Typography
-                    component="span"
-                    sx={{
-                      display: "block",
-                      fontSize: { xs: "1.5rem", md: "2rem" },
-                      fontWeight: 600,
-                      color: "#E2E8F0",
-                      textTransform: "uppercase",
-                    }}
+                    variant="h4"
+                    fontWeight="bold"
+                    color="text.primary"
                   >
-                    {Information.position}
+                    김경남
                   </Typography>
-                  {/* <Typography
-                    component="span"
-                    sx={{
-                      display: "block",
-                      fontSize: { xs: "1.5rem", md: "2rem" },
-                      fontWeight: 600,
-                      color: "#E2E8F0",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {Information.annual}년차
-                  </Typography> */}
-                </Typography>
-
-                <Box sx={{ position: "relative", zIndex: 1 }}>
-                  {Information.description.map((desc, index) => (
-                    <Typography
-                      key={index}
-                      sx={{
-                        fontSize: "1.1rem",
-                        color: "#E2E8F0",
-                        mb: 1,
-                        position: "relative",
-                        pl: 3,
-                        // "&::before": {
-                        //   content: '""',
-                        //   position: "absolute",
-                        //   left: 0,
-                        //   top: "50%",
-                        //   width: "10px",
-                        //   height: "2px",
-                        //   backgroundColor: "#F7FAFC",
-                        // },
-                      }}
-                    >
-                      {desc}
-                    </Typography>
-                  ))}
-                </Box>
-
-                <Box>
                   <Typography
                     variant="h6"
-                    sx={{
-                      fontWeight: 700,
-                      color: "#F7FAFC",
-                      mb: 2,
-                    }}
+                    fontWeight={500}
+                    color="text.secondary"
                   >
-                    핵심 역량
+                    Backend Engineer
                   </Typography>
-                  <Stack direction="row" flexWrap="wrap" gap={1}>
-                    {Information.coreCompetencies.map((competency, index) => (
-                      <Chip
-                        key={index}
-                        label={competency}
-                        sx={{
-                          backgroundColor: "rgba(255,255,255,0.2)",
-                          color: "#FFFFFF",
-                          fontWeight: 600,
-                        }}
-                      />
-                    ))}
-                  </Stack>
+                </Stack>
+
+                <Box
+                  sx={{
+                    position: { xs: "relative", md: "absolute" },
+                    top: { xs: 0, md: 20 },
+                    right: { xs: 0, md: 20 },
+                    width: { xs: 150, md: 210 },
+                    height: { xs: 150, md: 210 },
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    flexShrink: 0,
+                    boxShadow: "0 0 0 6px rgba(255,255,255,0.8)",
+                  }}
+                >
+                  <Box
+                    // component="img"
+                    // src={PROFILE_IMAGE}
+                    // alt="김경남 프로필 이미지"
+                    sx={{
+                      width: "150%",
+                      height: "150%",
+                      // objectFit: "cover",
+                      // objectPosition: "right",
+                      backgroundRepeat: "no-repeat",
+                      backgroundImage: `url(${PROFILE_IMAGE})`,
+                      backgroundSize: "cover",
+                      // backgroundPosition: "right center",
+                      backgroundOrigin: "border-box",
+                      backgroundPosition: "140% -40px",
+                    }}
+                  />
                 </Box>
               </Stack>
 
               <Box
                 sx={{
-                  position: "relative",
-                  width: { xs: "200px", md: "300px" },
-                  height: { xs: "200px", md: "300px" },
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  boxShadow: "0 0 0 10px rgba(255,255,255,0.2)",
+                  backgroundColor: "#f5f5f5",
+                  py: 2,
+                  pl: 2,
+                  pr: { xs: 2, md: "200px" },
+                  borderRadius: 2,
                 }}
               >
-                <Box
-                  component="img"
-                  src={PROFILE_IMAGE}
-                  alt="profile"
+                <Typography
+                  variant="body1"
+                  color="text.primary"
                   sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    filter: "brightness(1.1) contrast(1.1)",
-                    objectPosition: "-200px center",
+                    wordBreak: "auto-phrase",
                   }}
-                />
+                >
+                  {Information.description.join(" ")}
+                </Typography>
               </Box>
-            </Stack>
 
-            <Box
-              sx={{
-                position: "absolute",
-                top: -100,
-                right: -100,
-                width: "300px",
-                height: "300px",
-                borderRadius: "50%",
-                background:
-                  "radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)",
-              }}
-            />
+              <Box>
+                <Typography
+                  variant="subtitle1"
+                  fontWeight={600}
+                  color="text.primary"
+                  mb={1}
+                >
+                  핵심 역량
+                </Typography>
+                <Stack direction="row" flexWrap="wrap" gap={1}>
+                  {Information.coreCompetencies.map((competency, index) => (
+                    <Chip
+                      key={index}
+                      label={competency}
+                      sx={{
+                        backgroundColor: "#f0f0f0",
+                        color: "#333",
+                        fontWeight: 500,
+                      }}
+                    />
+                  ))}
+                </Stack>
+              </Box>
+            </Box>
           </Box>
         </Container>
       </Box>
@@ -391,7 +352,7 @@ function Home() {
 
             <Stack
               px={1.5}
-              pt={10}
+              pt={{ xs: 16, md: 11 }}
               pb={5}
               width="inherit"
               sx={{
@@ -400,6 +361,7 @@ function Home() {
                 #000000 calc(5% + ${20}px), #000000 calc(95% - ${20}px), transparent 95%)`,
               }}
             >
+              <Flow company={companyHit} />
               <Flow company={companyFov} />
               <Flow company={companyAnder} />
               <Flow company={companyReborn} />
