@@ -134,6 +134,27 @@ function Home() {
     <Stack id="main-content" flex={1} overflow="auto" height="inherit">
       {/* Section1 */}
       <Box py={5} sx={{ backgroundColor: "#f7f8fa" }}>
+        {openInput && (
+          <Portal>
+            <Box component="form" onSubmit={handleSubmitInputText}>
+              <TextField
+                placeholder="?"
+                size="small"
+                autoFocus
+                onChange={handleChangeInputText}
+                sx={{
+                  position: "absolute",
+                  transform: "translateX(-50%)",
+                  left: "50%",
+                  bottom: 100,
+                  ["& fieldset"]: {
+                    backgroundColor: "#ffffff56",
+                  },
+                }}
+              />
+            </Box>
+          </Portal>
+        )}{" "}
         <Container maxWidth="lg">
           <Box
             sx={{
