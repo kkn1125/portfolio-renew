@@ -12,4 +12,5 @@ export const companyHit = new CompanyModel({
   projects: [hitWeddingPro],
   isIt: true,
   start: new Date(2025, 2),
+  end: new Date(2025, 7),
 });

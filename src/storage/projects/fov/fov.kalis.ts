@@ -22,12 +22,12 @@ export const fovKalis = new ProjectModel({
   end: new Date(2024, 8),
   works: [
     new Work(
-      "Svelte → React 마이그레이션",
+      "Svelte -> React 마이그레이션",
       "기존 Svelte를 React로 재구축하여 유지보수성 문제 해결",
       "빌드 프로세스를 간소화하여 업무 효율성 향상"
     ),
     new Work(
-      "Python → NestJS 마이그레이션",
+      "Python -> NestJS 마이그레이션",
       "기존 Python API를 NestJS로 재구축하여 코드 구조 개선",
       "데이터베이스 쿼리 최적화로 API 응답 속도 개선"
     ),

@@ -1,14 +1,15 @@
 import { ProjectModel } from "@models/ProjectModel";
 import { sideDocumentify } from "./side.documentify";
+import { sideGameRpg } from "./side.game-rpg";
 import { sideGamepang } from "./side.gamepang";
 import { sideGanttChart } from "./side.gantt-chart";
 import { sideMenteeUnion } from "./side.mentee-union";
 import { sideMentees } from "./side.mentees";
 import { sideNarang } from "./side.narang";
+import { sideSnapPoll } from "./side.snappoll";
 import { sideSolitaire } from "./side.solitaire";
 import { sideTreeParser } from "./side.tree-parser";
 import { sideTypoz } from "./side.typoz";
-import { sideSnapPoll } from "./side.snappoll";
 
 function compareWith(
   a: string | ProjectModel | undefined,
@@ -26,6 +27,7 @@ function compareWith(
 }
 
 export default [
+  sideGameRpg,
   sideSnapPoll,
   sideMenteeUnion,
   sideTypoz,

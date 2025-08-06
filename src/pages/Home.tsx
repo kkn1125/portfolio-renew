@@ -117,7 +117,7 @@ function Home() {
           Information.resume as unknown as Resume[]
         );
         const title = Information.title;
-        const description = Information.description.join(" ");
+        const description = Information.description.join("\n\n");
         const useStacks = Information.skill.main
           .concat(Information.skill.sub)
           .map((skill) => skill.name)
@@ -252,9 +252,10 @@ function Home() {
                   color="text.primary"
                   sx={{
                     wordBreak: "auto-phrase",
+                    whiteSpace: "pre-wrap",
                   }}
                 >
-                  {Information.description.join(" ")}
+                  {Information.description.join("\n\n")}
                 </Typography>
               </Box>
 
@@ -374,7 +375,7 @@ function Home() {
             <Stack
               px={1.5}
               pt={{ xs: 16, md: 11 }}
-              pb={5}
+              pb={7}
               width="inherit"
               sx={{
                 maskImage: `linear-gradient(to bottom, 
