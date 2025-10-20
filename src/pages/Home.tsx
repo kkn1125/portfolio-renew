@@ -28,8 +28,8 @@ import { Information } from "@storage/introduce/information";
 import sideProjects from "@storage/side-projects";
 import { useEffect, useState } from "react";
 
-const SLIDE_TIME = 50;
-const SLIDE_ITEM_GAP = 5;
+const SLIDE_ITEM_GAP = 24; // 실제 사용하는 gap 값 (3 * 8px = 24px)
+const SLIDE_SPEED = 50; // 픽셀당 이동 속도 (px/s)
 const cheat = "copyResume";
 
 function Home() {
@@ -40,16 +40,21 @@ function Home() {
     Information.stacks
   );
 
+  // 동적으로 아이템 너비와 총 너비 계산
+  const itemWidth = SVG_ICON_SIZE + SLIDE_ITEM_GAP;
+  const totalWidth = itemWidth * skillItems.length;
+  
+  // 아이템 개수에 따라 동적으로 애니메이션 시간 계산
+  const slideTime = totalWidth / SLIDE_SPEED;
+
   const infinitySlide = keyframes`
-    0%   {
+    0% {
       transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-1 * (${SVG_ICON_SIZE}px + ${
-    8 * SLIDE_ITEM_GAP
-  }px) * ${skillItems.length}));
-        }
-    `;
+      transform: translateX(-${totalWidth}px);
+    }
+  `;
 
   useEffect(() => {
     function handleHiddenCopyData(e: KeyboardEvent) {
@@ -154,8 +159,8 @@ function Home() {
               />
             </Box>
           </Portal>
-        )}{" "}
-        <Container maxWidth="lg">
+        )}
+        <Container maxWidth="md">
           <Box
             sx={{
               position: "relative",
@@ -192,50 +197,18 @@ function Home() {
                   <Typography
                     variant="h4"
                     fontWeight="bold"
-                    color="text.primary"
+                    color="#514438"
                   >
                     김경남
                   </Typography>
                   <Typography
                     variant="h6"
                     fontWeight={500}
-                    color="text.secondary"
+                    color="#b8a89a"
                   >
                     Backend Engineer
                   </Typography>
                 </Stack>
-
-                <Box
-                  sx={{
-                    position: { xs: "relative", md: "absolute" },
-                    top: { xs: 0, md: 20 },
-                    right: { xs: 0, md: 20 },
-                    width: { xs: 150, md: 210 },
-                    height: { xs: 150, md: 210 },
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    flexShrink: 0,
-                    boxShadow: "0 0 0 6px rgba(255,255,255,0.8)",
-                  }}
-                >
-                  <Box
-                    // component="img"
-                    // src={PROFILE_IMAGE}
-                    // alt="김경남 프로필 이미지"
-                    sx={{
-                      width: "150%",
-                      height: "150%",
-                      // objectFit: "cover",
-                      // objectPosition: "right",
-                      backgroundRepeat: "no-repeat",
-                      backgroundImage: `url(${PROFILE_IMAGE})`,
-                      backgroundSize: "cover",
-                      // backgroundPosition: "right center",
-                      backgroundOrigin: "border-box",
-                      backgroundPosition: "140% -40px",
-                    }}
-                  />
-                </Box>
               </Stack>
 
               <Box
@@ -243,15 +216,42 @@ function Home() {
                   backgroundColor: "#f5f5f5",
                   py: 2,
                   pl: 2,
-                  pr: { xs: 2, md: "200px" },
+                  pr: 2,
                   borderRadius: 2,
+                  wordBreak: "break-all",
                 }}
               >
+                <Box
+                  // component="img"
+                  // src={PROFILE_IMAGE}
+                  // alt="김경남 프로필 이미지"
+                  sx={{
+                    float: "right",
+                    width: { xs: 150, md: 210 },
+                    height: "auto",
+                    aspectRatio: 1,
+                    // objectFit: "cover",
+                    // objectPosition: "right",
+                    backgroundRepeat: "no-repeat",
+                    backgroundImage: `url(${PROFILE_IMAGE})`,
+                    backgroundSize: "contain",
+                    // backgroundPosition: "right center",
+                    backgroundOrigin: "border-box",
+                    // backgroundPosition: "140% -40px",
+                    borderRadius: "50%",
+                    boxShadow: "0 0 0 6px #e69e45",
+                    shapeOutside: `url(${PROFILE_IMAGE})`,
+                    shapeMargin: "5rem",
+                    WebkitShapeMargin: "5rem",
+                    mr: -4,
+                    mt: -10,
+                  }}
+                />
                 <Typography
                   variant="body1"
                   color="text.primary"
                   sx={{
-                    wordBreak: "auto-phrase",
+                    wordBreak: "break-all",
                     whiteSpace: "pre-wrap",
                   }}
                 >
@@ -263,7 +263,7 @@ function Home() {
                 <Typography
                   variant="subtitle1"
                   fontWeight={600}
-                  color="text.primary"
+                  color="#e69e45"
                   mb={1}
                 >
                   핵심 역량
@@ -327,15 +327,37 @@ function Home() {
                 width="max-content"
                 gap={3}
                 sx={{
-                  animation: `${infinitySlide} ${SLIDE_TIME}s linear infinite`,
+                  animation: `${infinitySlide} ${slideTime}s linear infinite`,
                   "&:hover": {
                     animationPlayState: "paused",
                   },
                 }}
               >
-                {[...skillItems, ...skillItems].map(({ name, icon }, index) => (
+                {/* 첫 번째 세트 */}
+                {skillItems.map(({ name, icon }, index) => (
                   <Tooltip
-                    key={`${name}-${index}`}
+                    key={`first-${name}-${index}`}
+                    title={translate[name]}
+                    placement="top"
+                  >
+                    <Box
+                      dangerouslySetInnerHTML={{ __html: icon }}
+                      width={SVG_ICON_SIZE}
+                      height={SVG_ICON_SIZE}
+                      sx={{
+                        opacity: 0.7,
+                        transition: "opacity 0.3s",
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
+                    />
+                  </Tooltip>
+                ))}
+                {/* 두 번째 세트 (무한 반복을 위해) */}
+                {skillItems.map(({ name, icon }, index) => (
+                  <Tooltip
+                    key={`second-${name}-${index}`}
                     title={translate[name]}
                     placement="top"
                   >

@@ -31,6 +31,7 @@ import Notfound from "./Notfound";
 import { roleTranslate } from "@common/enums/role";
 import { useEffect, useState } from "react";
 import { ProjectModel } from "@models/ProjectModel";
+import { during } from "@libs/during";
 
 const ExternalLink = ({
   href,
@@ -70,6 +71,8 @@ const getEmojiForLabel = (label: string): string => {
       return "🐙";
     case "데모 사이트":
       return "🌐";
+    case "개발 기간":
+      return "📅";
     default:
       return "ℹ️";
   }
@@ -126,6 +129,10 @@ function PortfolioDetail() {
 
   const tableData = [
     { label: "소속", value: projectModel.company },
+    {
+      label: "개발 기간",
+      value: during(projectModel.start, projectModel.end, "진행 중"),
+    },
     { label: "팀", value: projectModel.team },
     {
       label: "역할",
@@ -264,7 +271,7 @@ function PortfolioDetail() {
             <ListItem key={work.content}>
               <ListItemText
                 primary={
-                  <Typography variant="body1" fontWeight="bold">
+                  <Typography component="div" variant="body1" fontWeight="bold">
                     ✨ {work.content}
                   </Typography>
                 }
@@ -275,7 +282,11 @@ function PortfolioDetail() {
                         <ListItem key={work.content + subWork.content}>
                           <ListItemText
                             primary={
-                              <Typography variant="body1" fontWeight="bold">
+                              <Typography
+                                component="div"
+                                variant="body1"
+                                fontWeight="bold"
+                              >
                                 🛠️ {subWork.content}
                               </Typography>
                             }
@@ -285,6 +296,9 @@ function PortfolioDetail() {
                     </List>
                   )
                 }
+                secondaryTypographyProps={{
+                  component: "div",
+                }}
               />
             </ListItem>
           ))}

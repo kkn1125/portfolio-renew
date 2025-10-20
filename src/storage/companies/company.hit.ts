@@ -6,7 +6,7 @@ import { hitWeddingPro } from "@storage/projects/hit/hit.wedding.pro";
 
 export const companyHit = new CompanyModel({
   name: Company.Hit,
-  description: "Wedding Pro 프로젝트 백엔드 개발 및 유지보수",
+  description: "Wedding Pro 프로젝트 백엔드 개발, 신규개발, 서버 관리, 유지보수",
   roles: [Role.Backend, Role.Server],
   team: Team.Development,
   projects: [hitWeddingPro],

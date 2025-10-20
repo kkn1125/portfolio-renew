@@ -25,6 +25,7 @@ import typescript from "@assets/icons/typescript";
 import uwebsockets from "@assets/icons/uwebsockets";
 import xterm from "@assets/icons/xterm";
 import awsEc2 from "./aws.ec2";
+import awsRds from "./aws.rds";
 import bootstrap from "./bootstrap";
 import formik from "./formik";
 import gulp from "./gulp";
@@ -40,9 +41,12 @@ import vite from "./vite";
 import vitest from "./vitest";
 import webpack from "./webpack";
 import webrtc from "./webrtc";
+import zustand from "./zustand";
 
 export const Icons = {
   artillery,
+  awsEc2,
+  awsRds,
   docker,
   express,
   fastify,
@@ -68,7 +72,6 @@ export const Icons = {
   typescript,
   uwebsockets,
   xterm,
-  awsEc2,
   bootstrap,
   formik,
   gulp,
@@ -84,6 +87,7 @@ export const Icons = {
   vitest,
   webpack,
   webrtc,
+  zustand,
 } as const;
 export type Icons = (typeof Icons)[keyof typeof Icons];
 export type IconList = keyof typeof Icons;

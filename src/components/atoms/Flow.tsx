@@ -16,8 +16,17 @@ import { Link, useNavigate } from "react-router-dom";
 type FlowProps = { company: CompanyModel };
 
 function Flow({ company }: FlowProps) {
-  const { isIt, name, team, roles, description, projects, start, end } =
-    company;
+  const {
+    isIt,
+    name,
+    team,
+    roles,
+    description,
+    projects,
+    simpleProjects,
+    start,
+    end,
+  } = company;
   const navigate = useNavigate();
   const theme = useTheme();
   const calcDate = useMemo(() => calcDiffDate(end, start), [end, start]);
@@ -80,7 +89,7 @@ function Flow({ company }: FlowProps) {
             {/* <Typography variant="h6" fontWeight="bold">
               Projects
             </Typography> */}
-            {projects.map((project, i) => (
+            {[...projects, ...simpleProjects].map((project, i) => (
               <Stack
                 key={
                   typeof project === "string" ? project + i : project.title + i

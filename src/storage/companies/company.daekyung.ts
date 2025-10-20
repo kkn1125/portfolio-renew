@@ -9,7 +9,7 @@ export const companyDaekyung = new CompanyModel({
   description: "설계 도면 제작 및 도면 보고서 PM, 실시설계 현장 이슈 관리",
   roles: [Role.Server, Role.Backend, Role.Frontend],
   team: Team.Development,
-  projects: [
+  simpleProjects: [
     "종로창신, 안양석수 현상설계  PM 및 도면 작성",
     "성남복정 A-3BL 현상설계  PM 및 도면 작성",
     "의왕월암 A-1BL 현상설계  PM 보조 및 도면 작성",

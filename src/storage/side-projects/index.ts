@@ -10,6 +10,7 @@ import { sideSnapPoll } from "./side.snappoll";
 import { sideSolitaire } from "./side.solitaire";
 import { sideTreeParser } from "./side.tree-parser";
 import { sideTypoz } from "./side.typoz";
+import { sideNuvia } from "./side.nuvia";
 
 function compareWith(
   a: string | ProjectModel | undefined,
@@ -27,6 +28,7 @@ function compareWith(
 }
 
 export default [
+  sideNuvia,
   sideGameRpg,
   sideSnapPoll,
   sideMenteeUnion,

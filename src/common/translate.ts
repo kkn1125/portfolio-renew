@@ -28,6 +28,8 @@ export default new Proxy(translate, {
         return "MySQL";
       case "nodejs":
         return "NodeJS";
+      case "awsRds":
+        return "AWS RDS";
       case "react":
         return "ReactJS";
       case "sass":
@@ -71,7 +73,7 @@ export default new Proxy(translate, {
       case "webrtc":
         return "WebRTC";
       case "awsEc2":
-        return "Amazon EC2";
+        return "AWS EC2";
       case "postgresql":
         return "PostgreSQL";
       case "prisma":
@@ -82,6 +84,8 @@ export default new Proxy(translate, {
         return "Recoil";
       case "swagger":
         return "Swagger";
+      case "zustand":
+        return "Zustand";
       default:
         return p;
     }

@@ -11,6 +11,7 @@ import Work from "./Work";
 
 export class ProjectModel {
   id: string = v4();
+  isMainOrder: number | null = null;
   cover: string | null = null;
   github: string | null = null;
   demoSites: string[] | null = null;
@@ -31,7 +32,8 @@ export class ProjectModel {
   images: ImageObject[] | null = null;
 
   constructor({
-    cover,
+    isMainOrder = null,
+    cover = null,
     github,
     demoSites,
     testAccount = null,
@@ -50,7 +52,8 @@ export class ProjectModel {
     issues,
     images,
   }: {
-    cover: string | null;
+    isMainOrder?: number | null;
+    cover?: string | null;
     github: string | null;
     demoSites: string[] | null;
     testAccount?: { id: string; password: string }[] | null;
@@ -69,6 +72,7 @@ export class ProjectModel {
     issues: Issue[] | null;
     images: ImageObject[] | null;
   }) {
+    isMainOrder !== undefined && (this.isMainOrder = isMainOrder);
     cover && (this.cover = cover);
     github && (this.github = github);
     demoSites && (this.demoSites = demoSites);

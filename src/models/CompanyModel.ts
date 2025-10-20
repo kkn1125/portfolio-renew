@@ -9,7 +9,8 @@ export class CompanyModel {
   description: string;
   team: Team;
   roles: Role[];
-  projects: (string | ProjectModel)[];
+  projects: ProjectModel[] = [];
+  simpleProjects: string[] = [];
   start: Date;
   end?: Date;
   constructor({
@@ -19,6 +20,7 @@ export class CompanyModel {
     team,
     roles,
     projects,
+    simpleProjects,
     start,
     end,
   }: {
@@ -27,7 +29,8 @@ export class CompanyModel {
     description: string;
     team: Team;
     roles: Role[];
-    projects: (string | ProjectModel)[];
+    projects?: ProjectModel[];
+    simpleProjects?: string[];
     start: Date;
     end?: Date;
   }) {
@@ -36,7 +39,8 @@ export class CompanyModel {
     this.description = description;
     this.team = team;
     this.roles = roles;
-    this.projects = projects;
+    projects && (this.projects = projects);
+    simpleProjects && (this.simpleProjects = simpleProjects);
     this.start = start;
     end && (this.end = end);
   }
