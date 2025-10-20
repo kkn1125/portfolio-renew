@@ -12,8 +12,8 @@ export const HomeButton: React.FC<{ goToList: () => void }> = ({
         position: "fixed",
         color: "white",
         background: (theme) => theme.palette.info.main,
-        right: (theme) => theme.typography.pxToRem(50),
-        bottom: (theme) => theme.typography.pxToRem(100),
+        right: (theme) => theme.typography.pxToRem(20),
+        bottom: (theme) => theme.typography.pxToRem(80),
         zIndex: 999,
       }}
     >

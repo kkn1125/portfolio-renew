@@ -142,7 +142,7 @@ function PortfolioDetail() {
     {
       label: "기술 스택",
       value: (
-        <Stack direction="row" gap={1}>
+        <Stack direction="row" gap={1} flexWrap="wrap">
           {projectModel.skills.map((skill) => (
             <Tooltip key={skill.name} title={translate[skill.name]}>
               <Stack alignItems="center">
@@ -324,7 +324,6 @@ function PortfolioDetail() {
               <Stack
                 key={src}
                 component="figure"
-                width="70%"
                 mx="auto"
                 overflow="hidden"
                 boxShadow="5px 5px 1rem 0 #56565656"

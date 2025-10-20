@@ -16,6 +16,8 @@ import {
   TextField,
   Tooltip,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
@@ -33,6 +35,8 @@ const SLIDE_SPEED = 50; // 픽셀당 이동 속도 (px/s)
 const cheat = "copyResume";
 
 function Home() {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up("md"));
   const [openInput, setOpenInput] = useState(false);
   const [inputText, setInputText] = useState("");
   const skillItems = Information.skill.main.concat(
@@ -43,7 +47,7 @@ function Home() {
   // 동적으로 아이템 너비와 총 너비 계산
   const itemWidth = SVG_ICON_SIZE + SLIDE_ITEM_GAP;
   const totalWidth = itemWidth * skillItems.length;
-  
+
   // 아이템 개수에 따라 동적으로 애니메이션 시간 계산
   const slideTime = totalWidth / SLIDE_SPEED;
 
@@ -194,18 +198,32 @@ function Home() {
                   justifyContent={{ xs: "space-between", md: "center" }}
                   alignItems={{ xs: "center", md: "flex-start" }}
                 >
-                  <Typography
-                    variant="h4"
-                    fontWeight="bold"
-                    color="#514438"
-                  >
+                  {!isMd && (
+                    <Box
+                      // component="img"
+                      // src={PROFILE_IMAGE}
+                      // alt="김경남 프로필 이미지"
+                      sx={{
+                        width: { xs: 210, md: 210 },
+                        height: "auto",
+                        aspectRatio: 1,
+                        // objectFit: "cover",
+                        // objectPosition: "right",
+                        backgroundRepeat: "no-repeat",
+                        backgroundImage: `url(${PROFILE_IMAGE})`,
+                        backgroundSize: "contain",
+                        // backgroundPosition: "right center",
+                        backgroundOrigin: "border-box",
+                        // backgroundPosition: "140% -40px",
+                        borderRadius: "50%",
+                        mb: 2,
+                      }}
+                    />
+                  )}
+                  <Typography variant="h4" fontWeight="bold" color="#514438">
                     김경남
                   </Typography>
-                  <Typography
-                    variant="h6"
-                    fontWeight={500}
-                    color="#b8a89a"
-                  >
+                  <Typography variant="h6" fontWeight={500} color="#b8a89a">
                     Backend Engineer
                   </Typography>
                 </Stack>
@@ -221,32 +239,34 @@ function Home() {
                   wordBreak: "break-all",
                 }}
               >
-                <Box
-                  // component="img"
-                  // src={PROFILE_IMAGE}
-                  // alt="김경남 프로필 이미지"
-                  sx={{
-                    float: "right",
-                    width: { xs: 150, md: 210 },
-                    height: "auto",
-                    aspectRatio: 1,
-                    // objectFit: "cover",
-                    // objectPosition: "right",
-                    backgroundRepeat: "no-repeat",
-                    backgroundImage: `url(${PROFILE_IMAGE})`,
-                    backgroundSize: "contain",
-                    // backgroundPosition: "right center",
-                    backgroundOrigin: "border-box",
-                    // backgroundPosition: "140% -40px",
-                    borderRadius: "50%",
-                    boxShadow: "0 0 0 6px #e69e45",
-                    shapeOutside: `url(${PROFILE_IMAGE})`,
-                    shapeMargin: "5rem",
-                    WebkitShapeMargin: "5rem",
-                    mr: -4,
-                    mt: -10,
-                  }}
-                />
+                {isMd && (
+                  <Box
+                    // component="img"
+                    // src={PROFILE_IMAGE}
+                    // alt="김경남 프로필 이미지"
+                    sx={{
+                      float: "right",
+                      width: { xs: 150, md: 210 },
+                      height: "auto",
+                      aspectRatio: 1,
+                      // objectFit: "cover",
+                      // objectPosition: "right",
+                      backgroundRepeat: "no-repeat",
+                      backgroundImage: `url(${PROFILE_IMAGE})`,
+                      backgroundSize: "contain",
+                      // backgroundPosition: "right center",
+                      backgroundOrigin: "border-box",
+                      // backgroundPosition: "140% -40px",
+                      borderRadius: "50%",
+                      boxShadow: "0 0 0 6px #e69e45",
+                      shapeOutside: `url(${PROFILE_IMAGE})`,
+                      shapeMargin: "5rem",
+                      WebkitShapeMargin: "5rem",
+                      mr: -4,
+                      mt: -10,
+                    }}
+                  />
+                )}
                 <Typography
                   variant="body1"
                   color="text.primary"

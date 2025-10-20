@@ -1,5 +1,6 @@
 import { calcDiffDate } from "@libs/calcDiffDate";
 import { during } from "@libs/during";
+import { sliceMultiLine } from "@libs/sliceMultiLine";
 import { ProjectModel } from "@models/ProjectModel";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Box, Chip, Stack, Typography, useTheme } from "@mui/material";
@@ -79,8 +80,9 @@ function SideFlow({ project }: SideFlowProps) {
             fontWeight={700}
             color="text.secondary"
             sx={{ textDecoration: "none" }}
+            title={project.description.join("\n")}
           >
-            {project.description}
+            {sliceMultiLine(project.description, 30)}
           </Typography>
           <Typography
             gutterBottom
