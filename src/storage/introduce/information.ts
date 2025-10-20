@@ -5,7 +5,7 @@ import Resume from "@models/Resume";
 import { companies } from "@storage/companies";
 
 export const Information = {
-  title: "빠르고 확장성 있는 서비스 개발을 지향하는 백엔드 개발자",
+  title: "팀과 서비스를 이해하며 개발하는 백엔드 개발자",
   // title: "문제 해결에 집중하고 효율성을 고민하는 서버/백엔드 개발자",
   name: "김경남",
   position: Role.Backend,
