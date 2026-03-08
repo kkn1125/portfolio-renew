@@ -24,6 +24,7 @@ import { companyAnder } from "@storage/companies/company.ander";
 import { companyDaekyung } from "@storage/companies/company.daekyung";
 import { companyFov } from "@storage/companies/company.fov";
 import { companyHit } from "@storage/companies/company.hit";
+import { companyOnflou } from "@storage/companies/company.onflou";
 import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
 import { Information } from "@storage/introduce/information";
@@ -416,8 +417,8 @@ function Home() {
 
             <Stack
               px={1.5}
-              pt={{ xs: 16, md: 11 }}
-              pb={7}
+              pt={{ xs: 16, md: 13 }}
+              pb={9}
               width="inherit"
               sx={{
                 maskImage: `linear-gradient(to bottom, 
@@ -425,6 +426,7 @@ function Home() {
                 #000000 calc(5% + ${20}px), #000000 calc(95% - ${20}px), transparent 95%)`,
               }}
             >
+              <Flow company={companyOnflou} />
               <Flow company={companyHit} />
               <Flow company={companyFov} />
               <Flow company={companyAnder} />

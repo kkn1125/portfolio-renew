@@ -5,11 +5,13 @@ import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
 import { companyFov } from "@storage/companies/company.fov";
 import { companyHit } from "@storage/companies/company.hit";
+import { companyOnflou } from "@storage/companies/company.onflou";
 import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
 
 function findCompany(
   groups: {
+    onflou: CompanyModel;
     fov: CompanyModel;
     ander: CompanyModel;
     reborn: CompanyModel;
@@ -28,6 +30,7 @@ function compareWith(a: CompanyModel | undefined, b: CompanyModel | undefined) {
 
 export const projects = ([] as ProjectModel[])
   .concat(
+    companyOnflou.projects,
     companyHit.projects,
     companyFov.projects,
     companyAnder.projects,

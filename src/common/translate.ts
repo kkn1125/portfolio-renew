@@ -16,6 +16,14 @@ export default new Proxy(translate, {
         return "NestJS";
       case "fastify":
         return "Fastify";
+      case "grafana":
+        return "Grafana";
+      case "prometheus":
+        return "Prometheus";
+      case "ecr":
+        return "AWS ECR";
+      case "k6":
+        return "K6";
       case "jenkins":
         return "Jenkins";
       case "jwt":

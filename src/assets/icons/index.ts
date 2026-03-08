@@ -27,12 +27,16 @@ import xterm from "@assets/icons/xterm";
 import awsEc2 from "./aws.ec2";
 import awsRds from "./aws.rds";
 import bootstrap from "./bootstrap";
+import ecr from "./ecr";
 import formik from "./formik";
+import grafana from "./grafana";
 import gulp from "./gulp";
+import k6 from "./k6";
 import mybatis from "./mybatis";
 import nextjs from "./nextjs";
 import postgresql from "./postgresql";
 import prisma from "./prisma";
+import prometheus from "./prometheus";
 import reactQuery from "./react-query";
 import recoil from "./recoil";
 import swagger from "./swagger";
@@ -50,6 +54,10 @@ export const Icons = {
   docker,
   express,
   fastify,
+  grafana,
+  prometheus,
+  ecr,
+  k6,
   java,
   javascript,
   jenkins,
