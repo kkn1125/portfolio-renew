@@ -4,9 +4,19 @@ html,
 body,
 #root {
   margin: 0;
-  user-select: none;
   height: 100%;
   word-break: auto-phrase;
+}
+
+#main-content,
+#layout,
+p,
+span,
+li,
+td,
+th,
+figcaption {
+  user-select: text;
 }
 
 @media print {

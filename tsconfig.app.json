@@ -29,6 +29,9 @@
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
       "@recoils/*": ["src/recoils/*"],
+      "@theme/*": ["src/theme/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@providers/*": ["src/providers/*"],
       "@src/*": ["src/*"]
     }
   },

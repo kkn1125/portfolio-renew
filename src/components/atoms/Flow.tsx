@@ -1,6 +1,6 @@
-import { calcDiffDate } from "@libs/calcDiffDate";
 import { during } from "@libs/during";
 import { CompanyModel } from "@models/CompanyModel";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
@@ -10,8 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 type FlowProps = { company: CompanyModel };
 
@@ -29,7 +28,6 @@ function Flow({ company }: FlowProps) {
   } = company;
   const navigate = useNavigate();
   const theme = useTheme();
-  const calcDate = useMemo(() => calcDiffDate(end, start), [end, start]);
 
   return (
     <Box
@@ -77,18 +75,8 @@ function Flow({ company }: FlowProps) {
           <Typography variant="body1">
             {team} / {roles[0].toUpperCase()}
           </Typography>
-          <Stack direction="row" gap={1} alignItems="center">
-            <Typography variant="body2">{during(start, end)}</Typography>
-            <Chip
-              color="primary"
-              size="small"
-              label={`${calcDate} month${calcDate > 1 ? "s" : ""}`}
-            />
-          </Stack>
+          <Typography variant="body2">{during(start, end)}</Typography>
           <Stack gap={1}>
-            {/* <Typography variant="h6" fontWeight="bold">
-              Projects
-            </Typography> */}
             {[...projects, ...simpleProjects].map((project, i) => (
               <Stack
                 key={
@@ -97,11 +85,6 @@ function Flow({ company }: FlowProps) {
                 direction="row"
                 alignItems="center"
                 gap={1}
-                sx={{
-                  ["&:hover .point"]: {
-                    transform: "translate(0%, 0%) scale(1.2)",
-                  },
-                }}
               >
                 <Box
                   className="point"
@@ -112,45 +95,48 @@ function Flow({ company }: FlowProps) {
                     backgroundColor: theme.palette.primary.main,
                     position: "absolute",
                     left: "13px",
-                    transform: "translate(0%, 0%)",
                     zIndex: 2,
-                    transition: "transform 0.3s ease-in-out",
                   }}
                 />
                 {typeof project === "string" ? (
-                  <Typography
-                    sx={{
-                      textDecoration: "none",
-                      color: "inherit",
-                      "&:hover": { color: theme.palette.primary.main },
-                      ml: 4,
-                      "&::before": {
-                        content: '"📄 "',
-                      },
-                    }}
-                  >
-                    {project}
-                  </Typography>
-                ) : (
-                  <>
+                  <Stack direction="row" alignItems="center" gap={0.5} ml={4}>
+                    <DescriptionOutlinedIcon
+                      fontSize="small"
+                      sx={{ color: "text.secondary" }}
+                    />
                     <Typography
-                      component={Link}
-                      to={project.path}
                       sx={{
                         textDecoration: "none",
                         color: "inherit",
                         "&:hover": { color: theme.palette.primary.main },
-                        ml: 4,
-                        "&::before": {
-                          content: '"📄 "',
-                        },
                       }}
                     >
-                      {project.title}
+                      {project}
                     </Typography>
+                  </Stack>
+                ) : (
+                  <>
+                    <Stack direction="row" alignItems="center" gap={0.5} ml={4}>
+                      <DescriptionOutlinedIcon
+                        fontSize="small"
+                        sx={{ color: "text.secondary" }}
+                      />
+                      <Typography
+                        component={Link}
+                        to={project.path}
+                        sx={{
+                          textDecoration: "none",
+                          color: "inherit",
+                          "&:hover": { color: theme.palette.primary.main },
+                        }}
+                      >
+                        {project.title}
+                      </Typography>
+                    </Stack>
                     <IconButton
                       size="small"
                       onClick={() => navigate(project.path)}
+                      aria-label={`${project.title} 상세 보기`}
                     >
                       <LaunchIcon fontSize="small" />
                     </IconButton>

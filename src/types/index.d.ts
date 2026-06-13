@@ -3,10 +3,12 @@ export declare global {}
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     impact: PaletteColor;
+    accent: PaletteColor;
   }
 
   interface PaletteOptions {
-    impact: PaletteOptions["primary"];
+    impact?: PaletteOptions["primary"];
+    accent?: PaletteOptions["primary"];
   }
 
   interface TypeBackground {

@@ -1,20 +1,14 @@
-import { calcDiffDate } from "@libs/calcDiffDate";
 import { during } from "@libs/during";
 import { sliceMultiLine } from "@libs/sliceMultiLine";
 import { ProjectModel } from "@models/ProjectModel";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Box, Chip, Stack, Typography, useTheme } from "@mui/material";
-import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
 type SideFlowProps = { project: ProjectModel };
 
 function SideFlow({ project }: SideFlowProps) {
   const theme = useTheme();
-  const calcDate = useMemo(
-    () => calcDiffDate(project.end, project.start),
-    [project.end, project.start]
-  );
 
   return (
     <Box
@@ -93,17 +87,9 @@ function SideFlow({ project }: SideFlowProps) {
             {project.team} / {project.roles[0].toUpperCase()}
           </Typography>
         </Box>
-        <Stack direction="row" gap={1} alignItems="center">
-          <Typography fontSize={14}>
-            {during(project.start, project.end, "진행 중")}
-          </Typography>
-          <Chip
-            color="secondary"
-            size="small"
-            label={calcDate + "month" + (calcDate > 1 ? "s" : "")}
-            sx={{ fontSize: 12, fontWeight: 700 }}
-          />
-        </Stack>
+        <Typography fontSize={14}>
+          {during(project.start, project.end, "진행 중")}
+        </Typography>
       </Stack>
 
       <Box
@@ -122,7 +108,6 @@ function SideFlow({ project }: SideFlowProps) {
           borderRadius: "50%",
           backgroundColor: (theme) => theme.palette.secondary.main,
           transform: "translateY(-50%)",
-          transition: "transform 0.3s ease-in-out",
           zIndex: 2,
         }}
       >

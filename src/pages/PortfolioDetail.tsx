@@ -1,95 +1,140 @@
 import translate from "@common/translate";
 import { DEPLOY_PATH } from "@common/variables";
-import { HomeButton } from "@components/atoms/HomeButton";
 import { ProjectCoverStack } from "@components/atoms/ProjectCoverStack";
 import { IssueCard } from "@components/moleculars/IssueCard";
+import { roleTranslate } from "@common/enums/role";
+import { during } from "@libs/during";
 import { pathJoin } from "@libs/pathJoin";
-import LaunchIcon from "@mui/icons-material/Launch";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import {
   Box,
   Button,
+  Chip,
   Container,
   Divider,
+  Grid,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Paper,
-  Portal,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
-import { projects } from "@storage/projects";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import Notfound from "./Notfound";
-import { roleTranslate } from "@common/enums/role";
-import { useEffect, useState } from "react";
 import { ProjectModel } from "@models/ProjectModel";
-import { during } from "@libs/during";
+import { projects } from "@storage/projects";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Notfound from "./Notfound";
 
-const ExternalLink = ({
-  href,
+function SectionHeading({
+  title,
+  description,
+}: {
+  title: string;
+  description?: string;
+}) {
+  return (
+    <Stack gap={0.5} mb={2.5}>
+      <Typography
+        variant="overline"
+        sx={{ color: "accent.main", fontWeight: 700, letterSpacing: 1.2 }}
+      >
+        {title}
+      </Typography>
+      {description && (
+        <Typography variant="body2" color="text.secondary">
+          {description}
+        </Typography>
+      )}
+    </Stack>
+  );
+}
+
+function MetaRow({
+  icon: Icon,
+  label,
   children,
 }: {
-  href?: string;
+  icon: React.ElementType;
+  label: string;
   children: React.ReactNode;
-}) => (
-  <Stack
-    direction="row"
-    alignItems="center"
-    gap={1}
-    {...(href && {
-      component: Link,
-      to: href,
-      target: "_blank",
-    })}
-    color="inherit"
-    sx={{ textDecoration: "none" }}
-  >
-    <Typography>{children}</Typography>
-    {href && <LaunchIcon fontSize="small" />}
-  </Stack>
-);
+}) {
+  const theme = useTheme();
 
-const getEmojiForLabel = (label: string): string => {
-  switch (label) {
-    case "소속":
-      return "🏢";
-    case "팀":
-      return "👥";
-    case "역할":
-      return "🧑‍💼";
-    case "기술 스택":
-      return "💻";
-    case "깃허브":
-      return "🐙";
-    case "데모 사이트":
-      return "🌐";
-    case "개발 기간":
-      return "📅";
-    default:
-      return "ℹ️";
-  }
-};
+  return (
+    <Stack direction="row" gap={1.5} alignItems="flex-start">
+      <Box
+        sx={{
+          mt: 0.25,
+          color: "accent.main",
+          display: "flex",
+        }}
+      >
+        <Icon fontSize="small" />
+      </Box>
+      <Stack gap={0.5} flex={1} minWidth={0}>
+        <Typography variant="caption" color="text.secondary" fontWeight={600}>
+          {label}
+        </Typography>
+        <Box sx={{ color: theme.palette.text.primary }}>{children}</Box>
+      </Stack>
+    </Stack>
+  );
+}
+
+function WorkCard({ work }: { work: ProjectModel["works"][number] }) {
+  const theme = useTheme();
+
+  return (
+    <Paper
+      elevation={0}
+      sx={{
+        p: 2,
+        borderRadius: 2,
+        border: `1px solid ${theme.palette.divider}`,
+        backgroundColor: theme.palette.background.paper,
+      }}
+    >
+      <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+        {work.content}
+      </Typography>
+      {work.hasSubWorks && (
+        <Stack
+          component="ul"
+          gap={0.75}
+          sx={{ m: 0, pl: 2.5, color: "text.secondary" }}
+        >
+          {work.subWorks.map((subWork) => (
+            <Typography
+              key={subWork.content}
+              component="li"
+              variant="body2"
+              sx={{ lineHeight: 1.6 }}
+            >
+              {subWork.content}
+            </Typography>
+          ))}
+        </Stack>
+      )}
+    </Paper>
+  );
+}
 
 function PortfolioDetail() {
   const navigate = useNavigate();
+  const theme = useTheme();
   const location = useLocation();
   const page = +(location.state?.page || 1);
   const { company, project } = useParams();
-  const headerHeight = 64;
-  const [openPw, setOpenPw] = useState<
-    {
-      id: string;
-      open: boolean;
-    }[]
-  >([]);
+  const [openPw, setOpenPw] = useState<{ id: string; open: boolean }[]>([]);
 
   const projectModel = projects.find(
     (prj) =>
@@ -98,7 +143,7 @@ function PortfolioDetail() {
   );
 
   useEffect(() => {
-    if (projectModel && projectModel.testAccount) {
+    if (projectModel?.testAccount) {
       setOpenPw(
         projectModel.testAccount.map((account) => ({
           id: account.id,
@@ -112,258 +157,312 @@ function PortfolioDetail() {
     navigate(pathJoin(DEPLOY_PATH, "/portfolio/"), { state: { page } });
   }
 
+  function handleTogglePassword(id: string) {
+    setOpenPw((prev) =>
+      prev.map((account) =>
+        account.id === id ? { ...account, open: !account.open } : account
+      )
+    );
+  }
+
   if (!projectModel) {
     return <Notfound />;
   }
 
-  function handleView(id: string) {
-    setOpenPw((prev) =>
-      prev.map((account) => {
-        if (account.id === id) {
-          account.open = !account.open;
-        }
-        return account;
-      })
-    );
-  }
-
-  const tableData = [
-    { label: "소속", value: projectModel.company },
-    {
-      label: "개발 기간",
-      value: during(projectModel.start, projectModel.end, "진행 중"),
-    },
-    { label: "팀", value: projectModel.team },
-    {
-      label: "역할",
-      value: projectModel.roles.map((role) => roleTranslate[role]).join(", "),
-      sx: { textTransform: "uppercase" },
-    },
-    {
-      label: "기술 스택",
-      value: (
-        <Stack direction="row" gap={1} flexWrap="wrap">
-          {projectModel.skills.map((skill) => (
-            <Tooltip key={skill.name} title={translate[skill.name]}>
-              <Stack alignItems="center">
-                <IconButton>
-                  <Box
-                    width={24}
-                    height={24}
-                    dangerouslySetInnerHTML={{ __html: skill.icon }}
-                  />
-                </IconButton>
-                <Typography fontSize={12}>{translate[skill.name]}</Typography>
-              </Stack>
-            </Tooltip>
-          ))}
-        </Stack>
-      ),
-    },
-    {
-      label: "깃허브",
-      value: projectModel.github ? (
-        <ExternalLink href={projectModel.github}>
-          {projectModel.github}
-        </ExternalLink>
-      ) : (
-        <Typography>등록된 깃허브가 없습니다.</Typography>
-      ),
-    },
-    {
-      label: "데모 사이트",
-      value:
-        projectModel.demoSites && projectModel.demoSites.length > 0 ? (
-          projectModel.demoSites.map((demo) => (
-            <ExternalLink key={demo} href={demo}>
-              {demo}
-            </ExternalLink>
-          ))
-        ) : (
-          <Typography>등록된 데모 사이트가 없습니다.</Typography>
-        ),
-    },
-    ...(projectModel.testAccount
-      ? [
-          {
-            label: "테스트 계정",
-            value:
-              projectModel.testAccount.length > 0 ? (
-                projectModel.testAccount.map((account, index) => (
-                  <Stack
-                    key={account.id + index}
-                    direction="row"
-                    alignItems="center"
-                    gap={1}
-                  >
-                    <Typography>ID: {account.id}</Typography>
-                    {" / "}
-                    <Typography>
-                      PW:{" "}
-                      {openPw?.[index]?.open ? account.password : "********"}
-                    </Typography>
-                    <Button onClick={() => handleView(account.id)}>
-                      {openPw?.[index]?.open ? "숨기기" : "보기"}
-                    </Button>
-                  </Stack>
-                ))
-              ) : (
-                <Typography>제공된 테스트 계정이 없습니다.</Typography>
-              ),
-          },
-        ]
-      : []),
-  ];
+  const roleLabel = projectModel.roles
+    .map((role) => roleTranslate[role])
+    .join(", ");
 
   return (
-    <Stack
-      flex={1}
-      gap={5}
-      alignItems="center"
-      overflow="auto"
-      height="inherit"
-    >
-      <Portal container={document.body}>
-        <HomeButton goToList={goToList} />
-      </Portal>
-      <ProjectCoverStack
-        projectModel={projectModel}
-        headerHeight={headerHeight}
-      />
+    <Stack flex={1} height="inherit" overflow="hidden">
+      <Box
+        flexShrink={0}
+        sx={{
+          borderBottom: `1px solid ${theme.palette.divider}`,
+          backgroundColor: theme.palette.background.paper,
+        }}
+      >
+        <Container maxWidth="lg">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            py={1.5}
+            gap={2}
+          >
+            <Button
+              onClick={goToList}
+              startIcon={<ArrowBackIcon />}
+              color="inherit"
+              sx={{ minHeight: 44, fontWeight: 600 }}
+            >
+              Portfolio
+            </Button>
 
-      {/* 프로젝트 정보 섹션 */}
-      <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-        <Paper elevation={3} sx={{ borderRadius: 2, overflow: "hidden" }}>
-          <Table>
-            <TableBody>
-              {tableData.map(({ label, value, sx }) => (
-                <TableRow
-                  key={label}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            <Stack direction="row" gap={1} flexWrap="wrap" justifyContent="flex-end">
+              {projectModel.github && (
+                <Button
+                  component="a"
+                  href={projectModel.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="small"
+                  variant="outlined"
+                  startIcon={<GitHubIcon />}
+                  sx={{ minHeight: 40 }}
                 >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    width={100}
-                    sx={{
-                      fontWeight: "bold",
-                      backgroundColor: "rgba(173, 216, 230, 0.2)",
-                      color: "#333",
-                    }}
-                  >
-                    {getEmojiForLabel(label)} {label}
-                  </TableCell>
-                  <TableCell sx={{ ...sx, py: 2 }}>{value}</TableCell>
-                </TableRow>
+                  GitHub
+                </Button>
+              )}
+              {projectModel.demoSites?.map((demo) => (
+                <Button
+                  key={demo}
+                  component="a"
+                  href={demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="small"
+                  variant="outlined"
+                  startIcon={<LanguageOutlinedIcon />}
+                  sx={{ minHeight: 40 }}
+                >
+                  Demo
+                </Button>
               ))}
-            </TableBody>
-          </Table>
-        </Paper>
-      </Container>
+            </Stack>
+          </Stack>
+        </Container>
+      </Box>
 
-      {/* Works 섹션 */}
-      <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-        <Typography fontSize={32} fontWeight={700} gutterBottom>
-          Works
-        </Typography>
-        <List>
-          {projectModel.works.map((work) => (
-            <ListItem key={work.content}>
-              <ListItemText
-                primary={
-                  <Typography component="div" variant="body1" fontWeight="bold">
-                    ✨ {work.content}
-                  </Typography>
-                }
-                secondary={
-                  work.hasSubWorks && (
-                    <List>
-                      {work.subWorks.map((subWork) => (
-                        <ListItem key={work.content + subWork.content}>
-                          <ListItemText
-                            primary={
-                              <Typography
-                                component="div"
-                                variant="body1"
-                                fontWeight="bold"
-                              >
-                                🛠️ {subWork.content}
-                              </Typography>
-                            }
-                          />
-                        </ListItem>
-                      ))}
-                    </List>
-                  )
-                }
-                secondaryTypographyProps={{
-                  component: "div",
-                }}
+      <Box flex={1} overflow="auto" height="inherit">
+        <ProjectCoverStack projectModel={projectModel} />
+
+        <Container maxWidth="lg" sx={{ pb: 8 }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} lg={8}>
+            <Box mb={5}>
+              <SectionHeading
+                title="Contributions"
+                description="프로젝트에서 맡은 역할과 주요 기여"
               />
-            </ListItem>
-          ))}
-        </List>
-      </Container>
-
-      {/* 문제 해결 섹션 */}
-      {projectModel.issues && (
-        <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-          <Stack gap={2}>
-            {projectModel.issues.map((issue) => (
-              <IssueCard key={issue.problem} issue={issue} />
-            ))}
-          </Stack>
-        </Container>
-      )}
-
-      {/* 이미지 섹션 */}
-      {projectModel.images && (
-        <Container maxWidth="lg" sx={{ flex: 1, py: 3 }}>
-          <Stack gap={3}>
-            {projectModel.images.map(({ src, alt }) => (
-              <Stack
-                key={src}
-                component="figure"
-                mx="auto"
-                overflow="hidden"
-                boxShadow="5px 5px 1rem 0 #56565656"
-                sx={{
-                  borderRadius: 3,
-                  transition: "box-shadow 150ms ease-in-out",
-                  ["&:hover"]: {
-                    boxShadow: "1px 1px 1rem 0 #56565656",
-                  },
-                }}
-              >
-                {src.endsWith(".mp4") ? (
-                  <Box
-                    component="video"
-                    width="100%"
-                    autoPlay
-                    loop
-                    muted
-                    src={src}
-                  />
-                ) : (
-                  <Box component="img" width="100%" src={src} alt={alt} />
-                )}
-                <Typography
-                  component="figcaption"
-                  p={1}
-                  align="center"
-                  fontWeight={700}
-                  color="white"
-                  sx={{
-                    background: (theme) => theme.palette.text.disabled,
-                  }}
-                >
-                  {alt}
-                </Typography>
+              <Stack gap={1.5}>
+                {projectModel.works.map((work) => (
+                  <WorkCard key={work.content} work={work} />
+                ))}
               </Stack>
-            ))}
-          </Stack>
-        </Container>
-      )}
+            </Box>
+
+            {projectModel.issues && projectModel.issues.length > 0 && (
+              <Box mb={5}>
+                <SectionHeading
+                  title="Problem Solving"
+                  description="문제 정의부터 해결까지의 과정"
+                />
+                <Stack gap={2}>
+                  {projectModel.issues.map((issue) => (
+                    <IssueCard key={issue.problem} issue={issue} />
+                  ))}
+                </Stack>
+              </Box>
+            )}
+
+            {projectModel.images && projectModel.images.length > 0 && (
+              <Box>
+                <SectionHeading
+                  title="Screenshots"
+                  description="서비스 화면 및 구현 결과"
+                />
+                <Stack gap={3}>
+                  {projectModel.images.map(({ src, alt }) => (
+                    <Box
+                      key={src}
+                      component="figure"
+                      sx={{
+                        m: 0,
+                        borderRadius: 2,
+                        overflow: "hidden",
+                        border: `1px solid ${theme.palette.divider}`,
+                        backgroundColor: theme.palette.background.paper,
+                      }}
+                    >
+                      {src.endsWith(".mp4") ? (
+                        <Box
+                          component="video"
+                          width="100%"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          src={src}
+                        />
+                      ) : (
+                        <Box
+                          component="img"
+                          width="100%"
+                          src={src}
+                          alt={alt}
+                          loading="lazy"
+                          sx={{ display: "block" }}
+                        />
+                      )}
+                      {alt && (
+                        <Typography
+                          component="figcaption"
+                          variant="caption"
+                          color="text.secondary"
+                          sx={{ px: 2, py: 1.5, display: "block" }}
+                        >
+                          {alt}
+                        </Typography>
+                      )}
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
+            )}
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 2.5,
+                borderRadius: 2,
+                border: `1px solid ${theme.palette.divider}`,
+                position: { lg: "sticky" },
+                top: { lg: 16 },
+              }}
+            >
+              <Typography variant="subtitle1" fontWeight={700} mb={2}>
+                프로젝트 정보
+              </Typography>
+
+              <Stack gap={2} divider={<Divider />}>
+                <MetaRow icon={BusinessOutlinedIcon} label="소속">
+                  <Typography variant="body2">{projectModel.company}</Typography>
+                </MetaRow>
+
+                <MetaRow icon={CalendarTodayOutlinedIcon} label="개발 기간">
+                  <Typography variant="body2">
+                    {during(projectModel.start, projectModel.end, "진행 중")}
+                  </Typography>
+                </MetaRow>
+
+                <MetaRow icon={GroupsOutlinedIcon} label="팀">
+                  <Typography variant="body2">{projectModel.team}</Typography>
+                </MetaRow>
+
+                <MetaRow icon={PersonOutlineOutlinedIcon} label="역할">
+                  <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
+                    {roleLabel}
+                  </Typography>
+                </MetaRow>
+
+                <MetaRow icon={GroupsOutlinedIcon} label="기술 스택">
+                  <Stack direction="row" flexWrap="wrap" gap={0.75}>
+                    {projectModel.skills.map((skill) => (
+                      <Tooltip key={skill.name} title={translate[skill.name]}>
+                        <Chip
+                          size="small"
+                          label={translate[skill.name]}
+                          sx={{
+                            height: 28,
+                            "& .MuiChip-label": { px: 1 },
+                          }}
+                        />
+                      </Tooltip>
+                    ))}
+                  </Stack>
+                </MetaRow>
+
+                {projectModel.github && (
+                  <MetaRow icon={GitHubIcon} label="깃허브">
+                    <Typography
+                      component="a"
+                      href={projectModel.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variant="body2"
+                      sx={{
+                        color: "primary.main",
+                        textDecoration: "none",
+                        wordBreak: "break-all",
+                        "&:hover": { textDecoration: "underline" },
+                      }}
+                    >
+                      {projectModel.github}
+                    </Typography>
+                  </MetaRow>
+                )}
+
+                {projectModel.demoSites && projectModel.demoSites.length > 0 && (
+                  <MetaRow icon={LanguageOutlinedIcon} label="데모 사이트">
+                    <Stack gap={0.5}>
+                      {projectModel.demoSites.map((demo) => (
+                        <Typography
+                          key={demo}
+                          component="a"
+                          href={demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          variant="body2"
+                          sx={{
+                            color: "primary.main",
+                            textDecoration: "none",
+                            wordBreak: "break-all",
+                            "&:hover": { textDecoration: "underline" },
+                          }}
+                        >
+                          {demo}
+                        </Typography>
+                      ))}
+                    </Stack>
+                  </MetaRow>
+                )}
+
+                {projectModel.testAccount && projectModel.testAccount.length > 0 && (
+                  <MetaRow icon={PersonOutlineOutlinedIcon} label="테스트 계정">
+                    <Stack gap={1.5}>
+                      {projectModel.testAccount.map((account, index) => (
+                        <Stack key={account.id} gap={0.5}>
+                          <Typography variant="body2">
+                            ID: {account.id}
+                          </Typography>
+                          <Stack direction="row" alignItems="center" gap={0.5}>
+                            <Typography variant="body2">
+                              PW:{" "}
+                              {openPw[index]?.open
+                                ? account.password
+                                : "••••••••"}
+                            </Typography>
+                            <IconButton
+                              size="small"
+                              onClick={() => handleTogglePassword(account.id)}
+                              aria-label={
+                                openPw[index]?.open
+                                  ? "비밀번호 숨기기"
+                                  : "비밀번호 보기"
+                              }
+                              sx={{ minWidth: 44, minHeight: 44 }}
+                            >
+                              {openPw[index]?.open ? (
+                                <VisibilityOffIcon fontSize="small" />
+                              ) : (
+                                <VisibilityIcon fontSize="small" />
+                              )}
+                            </IconButton>
+                          </Stack>
+                        </Stack>
+                      ))}
+                    </Stack>
+                  </MetaRow>
+                )}
+              </Stack>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
+      </Box>
     </Stack>
   );
 }

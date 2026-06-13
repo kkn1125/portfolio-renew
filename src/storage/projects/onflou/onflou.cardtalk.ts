@@ -13,11 +13,13 @@ export const onflouCardtalk = new ProjectModel({
   demoSites: null,
   relations: null,
   path: "/onflou/cardtalk",
-  title: "Cardtalk",
-  description: ["Cardtalk 프로젝트 백엔드 개발"],
+  title: "카드톡 구축",
+  description: [
+    "Node WebSocket 기반 실시간 멀티플레이 카드 게임 백엔드 설계·개발",
+  ],
   team: Team.Backend,
   company: Company.Onflou,
-  roles: [Role.Backend],
+  roles: [Role.Backend, Role.Server],
   skills: [
     Skill("typescript"),
     Skill("socketio"),
@@ -29,45 +31,46 @@ export const onflouCardtalk = new ProjectModel({
     Skill("docker"),
   ],
   start: new Date(2025, 10),
-  end: new Date(2026, 1),
+  end: new Date(2025, 11),
   works: [
     new Work(
-      "웹소켓 서버 담당 및 멀티 플레이 카드 게임 개발",
-      "실시간 양방향 통신 기반 멀티플레이어 카드 게임 백엔드 담당"
+      "Node WebSocket 서버 설계·구축 및 멀티플레이 카드 게임 개발",
+      "프로젝트 구축 단계에서 WebSocket 서버를 직접 담당·개발",
+      "실시간 양방향 통신 기반 멀티플레이어 카드 게임 백엔드 구현",
     ),
     new Work(
       "양방향 통신 기반 4종 게임 개발 및 게임별 정책 적용",
       "총 4종의 게임 개발",
-      "게임별로 상이한 비즈니스·만료·저장 정책 적용"
+      "게임별로 상이한 비즈니스·만료·저장 정책 적용",
     ),
     new Work(
       "게임 만료 정책 타이머 로직 개선",
       "기존 타이머의 반응 지연, 버그, 만료 처리 누락 문제 발견",
-      "만료 처리 정확성 향상, 버그 제거, ms 단위 반응으로 개선"
+      "만료 처리 정확성 향상, 버그 제거, ms 단위 반응으로 개선",
     ),
     new Work(
       "Redis 분산락 및 Lua 스크립트 기반 게임 로직 처리",
-      "분산락과 원자성을 고려하여 Lua 스크립트로 게임 비즈니스 로직 처리"
+      "분산락과 원자성을 고려하여 Lua 스크립트로 게임 비즈니스 로직 처리",
     ),
     new Work(
       "타이머 기반 저장·만료 제어 방식으로 전환",
       "Redis 만료 정책 의존 시 게임 종료 시 API 저장 요청에서 데이터 누락·미감지 이슈",
-      "타이머에 저장 처리와 만료 제어를 위임하여 데이터 무결성 확보"
+      "타이머에 저장 처리와 만료 제어를 위임하여 데이터 무결성 확보",
     ),
     new Work("부하 테스트 실행 계획 수립"),
     new Work(
       "모니터링 서버 구조 계획 및 관측성·성능 테스트 아키텍처 설계",
       "모니터링 서버 구조 계획",
-      "관측성 및 성능 테스트 아키텍처 설계"
+      "관측성 및 성능 테스트 아키텍처 설계",
     ),
     new Work(
       "Loki·Grafana 연동을 통한 로그 중앙화",
-      "이중화된 운영 서버의 로그 분산 이슈를 Loki와 Grafana 결합으로 중앙화하여 해결"
+      "이중화된 운영 서버의 로그 분산 이슈를 Loki와 Grafana 결합으로 중앙화하여 해결",
     ),
     new Work(
       "부하 테스트 결과 분석 및 보고서 작성",
       "매트릭 결과 그래프 분석",
-      "결과 보고서 작성"
+      "결과 보고서 작성",
     ),
   ],
   isSideProject: false,
@@ -87,7 +90,8 @@ export const onflouCardtalk = new ProjectModel({
       ],
     }),
     new Issue({
-      problem: "Redis 만료 정책 의존 시 게임 종료 시 API 저장 요청에서 데이터 누락·미감지",
+      problem:
+        "Redis 만료 정책 의존 시 게임 종료 시 API 저장 요청에서 데이터 누락·미감지",
       processes: [
         "Redis TTL 만료와 저장 API 호출 타이밍 이슈 분석",
         "만료에만 의존하지 않고 저장·만료를 타이머에서 제어하는 방식 설계",

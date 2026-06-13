@@ -1,6 +1,6 @@
 import { DEFAULT_COVER } from "@common/variables";
 import { ProjectModel } from "@models/ProjectModel";
-import { Box, Chip, Grow, Paper, Stack, Typography } from "@mui/material";
+import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const skillLimit = 3;
@@ -14,26 +14,27 @@ function ProjectCard({ project, page }: ProjectCardProps) {
   if (!project) return null;
 
   return (
-    <Grow in={true} timeout={500}>
-      <Paper
-        component={Link}
-        to={project.path}
-        state={{ page }}
-        elevation={3}
-        sx={{
-          display: "block",
-          width: { xs: "100%", lg: "calc((100% - 72px) / 4)" },
-          height: 350,
-          overflow: "hidden",
-          position: "relative",
-          textDecoration: "none",
-          transition: "all 150ms ease-in-out !important",
-          "&:hover": {
-            transform: "translateY(-10px) !important",
-            boxShadow: (theme) => theme.shadows[10],
-          },
-        }}
-      >
+    <Paper
+      component={Link}
+      to={project.path}
+      state={{ page }}
+      elevation={3}
+      sx={{
+        display: "block",
+        width: { xs: "100%", lg: "calc((100% - 72px) / 4)" },
+        height: 350,
+        overflow: "hidden",
+        position: "relative",
+        textDecoration: "none",
+        transition: "box-shadow 150ms ease-in-out, transform 150ms ease-in-out",
+        backgroundColor: (theme) => theme.palette.background.paper,
+        "&:hover": {
+          transform: "translateY(-2px)",
+          boxShadow: (theme) =>
+            theme.palette.mode === "light" ? theme.shadows[6] : theme.shadows[4],
+        },
+      }}
+    >
         <Chip
           size="small"
           color={project.isSideProject ? "secondary" : "primary"}
@@ -101,7 +102,6 @@ function ProjectCard({ project, page }: ProjectCardProps) {
           </Stack>
         </Box>
       </Paper>
-    </Grow>
   );
 }
 

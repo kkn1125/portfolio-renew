@@ -1,10 +1,12 @@
-import { DEPLOY_PATH, VERSION } from "@common/variables";
+import { DEPLOY_PATH } from "@common/variables";
 import { getImages } from "@libs/getResource";
 import { Page } from "@libs/page";
+import { useThemeMode } from "@providers/AppThemeProvider";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Button,
-  Chip,
   Container,
   Menu,
   MenuItem,
@@ -15,6 +17,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { alpha } from "@mui/material/styles";
 import { MouseEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,6 +27,29 @@ const pages = [
 ];
 
 const LOGO_SIZE = 40;
+
+function ThemeToggleButton() {
+  const { mode, toggleMode } = useThemeMode();
+  const theme = useTheme();
+
+  return (
+    <IconButton
+      onClick={toggleMode}
+      aria-label={mode === "light" ? "다크 모드로 전환" : "라이트 모드로 전환"}
+      sx={{
+        color: theme.palette.text.primary,
+        minWidth: 44,
+        minHeight: 44,
+        "&:focus-visible": {
+          outline: `2px solid ${theme.palette.accent.main}`,
+          outlineOffset: 2,
+        },
+      }}
+    >
+      {mode === "light" ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
+    </IconButton>
+  );
+}
 
 export default function Header() {
   const navigate = useNavigate();
@@ -43,18 +69,19 @@ export default function Header() {
     <Box sx={{ zIndex: 999 }}>
       <AppBar
         position="fixed"
+        elevation={0}
         sx={{
-          background: "rgba(255, 255, 255, 0.8)",
+          background: alpha(theme.palette.background.paper, 0.85),
           backdropFilter: "blur(10px)",
+          borderBottom: `1px solid ${theme.palette.divider}`,
         }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ minHeight: 64, alignItems: "center" }}>
-            {/* 모바일 메뉴 */}
             <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                aria-label="account of current user"
+                aria-label="메뉴 열기"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
@@ -97,7 +124,6 @@ export default function Header() {
               </Menu>
             </Box>
 
-            {/* PC 로고 */}
             <Typography
               component={Link}
               variant="h6"
@@ -124,7 +150,6 @@ export default function Header() {
               />
             </Typography>
 
-            {/* 모바일 로고 */}
             <Box
               sx={{
                 flexGrow: 1,
@@ -156,16 +181,22 @@ export default function Header() {
               </Typography>
             </Box>
 
-            {/* 모바일 빈 컴포넌트 */}
-            <Box sx={{ width: 48, display: { xs: "flex", md: "none" } }} />
+            <Box
+              sx={{
+                display: { xs: "flex", md: "none" },
+                alignItems: "center",
+              }}
+            >
+              <ThemeToggleButton />
+            </Box>
 
-            {/* PC 메뉴 */}
             <Box
               sx={{
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 justifyContent: "flex-end",
                 alignItems: "center",
+                gap: 0.5,
               }}
             >
               {pages.map(({ name, path }) => (
@@ -182,24 +213,23 @@ export default function Header() {
                     fontSize: "1rem",
                     textTransform: "uppercase",
                     "&:hover": {
-                      backgroundColor: "rgba(0, 0, 0, 0.04)",
+                      backgroundColor: alpha(theme.palette.text.primary, 0.04),
+                    },
+                    "&:focus-visible": {
+                      outline: `2px solid ${theme.palette.accent.main}`,
+                      outlineOffset: 2,
                     },
                   }}
                 >
                   {name}
                 </Button>
               ))}
-              <Chip
-                color="primary"
-                size="small"
-                label={VERSION}
-                sx={{ ml: 2, fontWeight: 600 }}
-              />
+              <ThemeToggleButton />
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
-      <Toolbar /> {/* 고정 헤더를 위한 여백 */}
+      <Toolbar />
     </Box>
   );
 }

@@ -1,24 +1,32 @@
 import translate from "@common/translate";
+import { roleTranslate } from "@common/enums/role";
 import { PROFILE_IMAGE, SVG_ICON_SIZE } from "@common/variables";
 import Flow from "@components/atoms/Flow";
+import ScrollReveal from "@components/atoms/ScrollReveal";
 import SideFlow from "@components/atoms/SideFlow";
+import { usePrefersReducedMotion } from "@hooks/useScrollReveal";
 import { getResumeDocuments } from "@libs/getResumeDocuments";
 import { sortByEnd } from "@libs/sortBy";
 import { CopyTemplate } from "@models/CopyTemplate";
 import Resume from "@models/Resume";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import {
   Box,
+  Button,
   Chip,
   Container,
-  keyframes,
+  Paper,
   Portal,
   Stack,
   TextField,
   Tooltip,
   Typography,
-  useMediaQuery,
+  keyframes,
   useTheme,
 } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import { companies } from "@storage/companies";
 import { companyAnder } from "@storage/companies/company.ander";
 import { companyDaekyung } from "@storage/companies/company.daekyung";
@@ -29,37 +37,39 @@ import { companyReborn } from "@storage/companies/company.reborn";
 import { sideProject } from "@storage/companies/side.project";
 import { Information } from "@storage/introduce/information";
 import sideProjects from "@storage/side-projects";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
-const SLIDE_ITEM_GAP = 24; // 실제 사용하는 gap 값 (3 * 8px = 24px)
-const SLIDE_SPEED = 50; // 픽셀당 이동 속도 (px/s)
+const SLIDE_ITEM_GAP = 24;
+const SLIDE_SPEED = 50;
 const cheat = "copyResume";
 
 function Home() {
   const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up("md"));
+  const reducedMotion = usePrefersReducedMotion();
   const [openInput, setOpenInput] = useState(false);
   const [inputText, setInputText] = useState("");
-  const skillItems = Information.skill.main.concat(
-    Information.skill.sub,
-    Information.stacks
-  );
 
-  // 동적으로 아이템 너비와 총 너비 계산
+  const skillItems = Information.skill.main.concat(Information.skill.sub);
+
   const itemWidth = SVG_ICON_SIZE + SLIDE_ITEM_GAP;
   const totalWidth = itemWidth * skillItems.length;
-
-  // 아이템 개수에 따라 동적으로 애니메이션 시간 계산
   const slideTime = totalWidth / SLIDE_SPEED;
 
   const infinitySlide = keyframes`
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-${totalWidth}px);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-${totalWidth}px); }
   `;
+
+  const heroBackground = useMemo(
+    () =>
+      theme.palette.mode === "light"
+        ? `radial-gradient(ellipse at 20% 20%, ${alpha(theme.palette.accent.main, 0.12)} 0%, transparent 50%),
+           ${theme.palette.background.default}`
+        : `radial-gradient(ellipse at 20% 20%, ${alpha(theme.palette.accent.main, 0.15)} 0%, transparent 50%),
+           ${theme.palette.background.default}`,
+    [theme]
+  );
 
   useEffect(() => {
     function handleHiddenCopyData(e: KeyboardEvent) {
@@ -75,75 +85,49 @@ function Home() {
       if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "P") {
         window.print();
       }
-
-      // if (openInput) {
-      //   if (e.ctrlKey && e.shiftKey && e.altKey && e.key === "O") {
-      //     const projectGap = "\n\n";
-      //     const result1 = sortByEnd(
-      //       Object.values(companies).flatMap((item) => item.projects)
-      //     )
-      //       .map(CopyTemplate)
-      //       .join(projectGap);
-      //     const result2 = sortByEnd(sideProjects)
-      //       .map(CopyTemplate)
-      //       .join(projectGap);
-      //     const resumeList = getResumeDocuments(
-      //       Information.resume as unknown as Resume[]
-      //     );
-      //     navigator.clipboard.writeText(
-      //       `Resume List\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
-      //     );
-      //   }
-      // }
     }
 
     window.addEventListener("keydown", handleHiddenCopyData);
-
-    return () => {
-      window.removeEventListener("keydown", handleHiddenCopyData);
-    };
+    return () => window.removeEventListener("keydown", handleHiddenCopyData);
   }, []);
 
   function handleChangeInputText(e: React.ChangeEvent<HTMLInputElement>) {
-    const target = e.currentTarget;
-    setInputText(target.value || "");
+    setInputText(e.currentTarget.value || "");
   }
 
   function handleSubmitInputText(e: React.FormEvent) {
     e.preventDefault();
-    if (openInput) {
-      if (inputText === cheat) {
-        setOpenInput(false);
-        const projectGap = "\n\n";
-        const result1 = sortByEnd(
-          Object.values(companies).flatMap((item) => item.projects)
-        )
-          .map(CopyTemplate)
-          .join(projectGap);
-        const result2 = sortByEnd(sideProjects)
-          .map(CopyTemplate)
-          .join(projectGap);
-        const resumeList = getResumeDocuments(
-          Information.resume as unknown as Resume[]
-        );
-        const title = Information.title;
-        const description = Information.description.join("\n\n");
-        const useStacks = Information.skill.main
-          .concat(Information.skill.sub)
-          .map((skill) => skill.name)
-          .join(", ");
-        navigator.clipboard.writeText(
-          `"${title}"\n\n\n${description}\n\n\n${useStacks}\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
-        );
-      }
-      setInputText("");
+    if (openInput && inputText === cheat) {
+      setOpenInput(false);
+      const projectGap = "\n\n";
+      const result1 = sortByEnd(
+        Object.values(companies).flatMap((item) => item.projects)
+      )
+        .map(CopyTemplate)
+        .join(projectGap);
+      const result2 = sortByEnd(sideProjects)
+        .map(CopyTemplate)
+        .join(projectGap);
+      const resumeList = getResumeDocuments(
+        Information.resume as unknown as Resume[]
+      );
+      const title = Information.title;
+      const description = Information.description.join("\n\n");
+      const useStacks = Information.skill.main
+        .concat(Information.skill.sub)
+        .map((skill) => skill.name)
+        .join(", ");
+      navigator.clipboard.writeText(
+        `"${title}"\n\n\n${description}\n\n\n${useStacks}\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+      );
     }
+    setInputText("");
   }
 
   return (
     <Stack id="main-content" flex={1} overflow="auto" height="inherit">
-      {/* Section1 */}
-      <Box py={5} sx={{ backgroundColor: "#f7f8fa" }}>
+      {/* Hero Section */}
+      <Box py={{ xs: 4, md: 6 }} sx={{ background: heroBackground }}>
         {openInput && (
           <Portal>
             <Box component="form" onSubmit={handleSubmitInputText}>
@@ -158,7 +142,7 @@ function Home() {
                   left: "50%",
                   bottom: 100,
                   ["& fieldset"]: {
-                    backgroundColor: "#ffffff56",
+                    backgroundColor: alpha(theme.palette.background.paper, 0.7),
                   },
                 }}
               />
@@ -166,246 +150,233 @@ function Home() {
           </Portal>
         )}
         <Container maxWidth="md">
-          <Box
+          <Paper
+            elevation={0}
             sx={{
-              position: "relative",
-              backgroundColor: "#fff",
               borderRadius: 4,
               p: { xs: 3, md: 5 },
-              boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: 4,
+              boxShadow: theme.shadows[2],
+              border: `1px solid ${theme.palette.divider}`,
+              backgroundColor: theme.palette.background.paper,
             }}
           >
-            <Box
-              sx={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-              }}
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              alignItems={{ xs: "center", md: "flex-start" }}
+              gap={4}
             >
-              <Stack
-                direction={{ xs: "column-reverse", md: "row" }}
-                alignItems="center"
-                gap={2}
-              >
+              <ScrollReveal>
+                <Box
+                  component="img"
+                  src={PROFILE_IMAGE}
+                  alt="김경남 프로필"
+                  width={210}
+                  height={210}
+                  sx={{
+                    width: { xs: 160, md: 210 },
+                    height: { xs: 160, md: 210 },
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    boxShadow: `0 0 0 4px ${theme.palette.accent.main}`,
+                    flexShrink: 0,
+                  }}
+                />
+              </ScrollReveal>
+
+              <Stack flex={1} gap={2} alignItems={{ xs: "center", md: "flex-start" }}>
+                <Stack alignItems={{ xs: "center", md: "flex-start" }} gap={0.5}>
+                  <Typography variant="h4" fontWeight="bold" color="text.primary">
+                    {Information.name}
+                  </Typography>
+                  <Typography variant="h6" fontWeight={500} color="text.secondary">
+                    {roleTranslate[Information.position]} 개발자
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    textAlign={{ xs: "center", md: "left" }}
+                    sx={{ mt: 1, maxWidth: 520 }}
+                  >
+                    {Information.title}
+                  </Typography>
+                </Stack>
+
+                <Box sx={{ width: "100%" }}>
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight={600}
+                    sx={{ color: "accent.main", mb: 1 }}
+                  >
+                    핵심 역량
+                  </Typography>
+                  <Stack direction="row" flexWrap="wrap" gap={1}>
+                    {Information.coreCompetencies.map((competency, index) => (
+                      <Chip
+                        key={index}
+                        label={competency}
+                        sx={{
+                          backgroundColor: theme.palette.background.highlight,
+                          color: theme.palette.text.primary,
+                          fontWeight: 500,
+                        }}
+                      />
+                    ))}
+                  </Stack>
+                </Box>
+
                 <Stack
-                  direction="column"
-                  gap={1}
-                  flex={1}
-                  justifyContent={{ xs: "space-between", md: "center" }}
-                  alignItems={{ xs: "center", md: "flex-start" }}
+                  direction={{ xs: "column", sm: "row" }}
+                  gap={1.5}
+                  flexWrap="wrap"
+                  justifyContent={{ xs: "center", md: "flex-start" }}
+                  sx={{ width: "100%" }}
                 >
-                  {!isMd && (
-                    <Box
-                      // component="img"
-                      // src={PROFILE_IMAGE}
-                      // alt="김경남 프로필 이미지"
-                      sx={{
-                        width: { xs: 210, md: 210 },
-                        height: "auto",
-                        aspectRatio: 1,
-                        // objectFit: "cover",
-                        // objectPosition: "right",
-                        backgroundRepeat: "no-repeat",
-                        backgroundImage: `url(${PROFILE_IMAGE})`,
-                        backgroundSize: "contain",
-                        // backgroundPosition: "right center",
-                        backgroundOrigin: "border-box",
-                        // backgroundPosition: "140% -40px",
-                        borderRadius: "50%",
-                        mb: 2,
-                      }}
-                    />
-                  )}
-                  <Typography variant="h4" fontWeight="bold" color="#514438">
-                    김경남
-                  </Typography>
-                  <Typography variant="h6" fontWeight={500} color="#b8a89a">
-                    Backend Engineer
-                  </Typography>
+                  <Button
+                    component={Link}
+                    to="/portfolio"
+                    variant="contained"
+                    color="primary"
+                    startIcon={<WorkOutlineIcon />}
+                    sx={{ minHeight: 44 }}
+                  >
+                    Portfolio 보기
+                  </Button>
+                  <Button
+                    component="a"
+                    href={Information.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    startIcon={<GitHubIcon />}
+                    sx={{ minHeight: 44 }}
+                  >
+                    GitHub
+                  </Button>
+                  <Button
+                    component="a"
+                    href={Information.blog}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    startIcon={<ArticleOutlinedIcon />}
+                    sx={{ minHeight: 44 }}
+                  >
+                    Blog
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/about"
+                    variant="text"
+                    color="secondary"
+                    sx={{ minHeight: 44 }}
+                  >
+                    About 더보기
+                  </Button>
                 </Stack>
               </Stack>
+            </Stack>
 
-              <Box
-                sx={{
-                  backgroundColor: "#f5f5f5",
-                  py: 2,
-                  pl: 2,
-                  pr: 2,
-                  borderRadius: 2,
-                  wordBreak: "break-all",
-                }}
+            <Box
+              mt={3}
+              sx={{
+                backgroundColor: theme.palette.background.highlight,
+                py: 2,
+                px: 2,
+                borderRadius: 2,
+              }}
+            >
+              <Typography
+                variant="body1"
+                color="text.primary"
+                sx={{ whiteSpace: "pre-wrap", userSelect: "text" }}
               >
-                {isMd && (
-                  <Box
-                    // component="img"
-                    // src={PROFILE_IMAGE}
-                    // alt="김경남 프로필 이미지"
-                    sx={{
-                      float: "right",
-                      width: { xs: 150, md: 210 },
-                      height: "auto",
-                      aspectRatio: 1,
-                      // objectFit: "cover",
-                      // objectPosition: "right",
-                      backgroundRepeat: "no-repeat",
-                      backgroundImage: `url(${PROFILE_IMAGE})`,
-                      backgroundSize: "contain",
-                      // backgroundPosition: "right center",
-                      backgroundOrigin: "border-box",
-                      // backgroundPosition: "140% -40px",
-                      borderRadius: "50%",
-                      boxShadow: "0 0 0 6px #e69e45",
-                      shapeOutside: `url(${PROFILE_IMAGE})`,
-                      shapeMargin: "5rem",
-                      WebkitShapeMargin: "5rem",
-                      mr: -4,
-                      mt: -10,
-                    }}
-                  />
-                )}
-                <Typography
-                  variant="body1"
-                  color="text.primary"
-                  sx={{
-                    wordBreak: "break-all",
-                    whiteSpace: "pre-wrap",
-                  }}
-                >
-                  {Information.description.join("\n\n")}
-                </Typography>
-              </Box>
-
-              <Box>
-                <Typography
-                  variant="subtitle1"
-                  fontWeight={600}
-                  color="#e69e45"
-                  mb={1}
-                >
-                  핵심 역량
-                </Typography>
-                <Stack direction="row" flexWrap="wrap" gap={1}>
-                  {Information.coreCompetencies.map((competency, index) => (
-                    <Chip
-                      key={index}
-                      label={competency}
-                      sx={{
-                        backgroundColor: "#f0f0f0",
-                        color: "#333",
-                        fontWeight: 500,
-                      }}
-                    />
-                  ))}
-                </Stack>
-              </Box>
+                {Information.description.join("\n\n")}
+              </Typography>
             </Box>
-          </Box>
+          </Paper>
         </Container>
       </Box>
 
-      {/* Section2 */}
-      <Box py={5}>
+      {/* Tech Stack Section */}
+      <Box py={5} sx={{ backgroundColor: theme.palette.background.default }}>
         <Container maxWidth="lg">
-          <Stack alignItems="center" spacing={3}>
-            <Typography variant="h4" fontWeight={600}>
-              Tech Stack
-            </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              프로젝트에서 사용한 기술들
-            </Typography>
-            <Box
-              id="stacks"
-              width="100%"
-              sx={{
-                overflow: "hidden",
-                position: "relative",
-                "&::before, &::after": {
-                  content: '""',
-                  position: "absolute",
-                  top: 0,
-                  width: "100px",
-                  height: "100%",
-                  zIndex: 2,
-                },
-                "&::before": {
-                  left: 0,
-                  background: "linear-gradient(to right, #fff, transparent)",
-                },
-                "&::after": {
-                  right: 0,
-                  background: "linear-gradient(to left, #fff, transparent)",
-                },
-              }}
-            >
-              <Stack
-                direction="row"
-                flexWrap="nowrap"
-                width="max-content"
-                gap={3}
+          <ScrollReveal>
+            <Stack alignItems="center" spacing={3}>
+              <Typography variant="h4" fontWeight={600}>
+                Tech Stack
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                주요 기술
+              </Typography>
+              <Box
+                id="stacks"
+                width="100%"
                 sx={{
-                  animation: `${infinitySlide} ${slideTime}s linear infinite`,
-                  "&:hover": {
-                    animationPlayState: "paused",
+                  overflow: "hidden",
+                  position: "relative",
+                  "&::before, &::after": {
+                    content: '""',
+                    position: "absolute",
+                    top: 0,
+                    width: "100px",
+                    height: "100%",
+                    zIndex: 2,
+                    pointerEvents: "none",
+                  },
+                  "&::before": {
+                    left: 0,
+                    background: `linear-gradient(to right, ${theme.palette.background.default}, transparent)`,
+                  },
+                  "&::after": {
+                    right: 0,
+                    background: `linear-gradient(to left, ${theme.palette.background.default}, transparent)`,
                   },
                 }}
               >
-                {/* 첫 번째 세트 */}
-                {skillItems.map(({ name, icon }, index) => (
-                  <Tooltip
-                    key={`first-${name}-${index}`}
-                    title={translate[name]}
-                    placement="top"
-                  >
-                    <Box
-                      dangerouslySetInnerHTML={{ __html: icon }}
-                      width={SVG_ICON_SIZE}
-                      height={SVG_ICON_SIZE}
-                      sx={{
-                        opacity: 0.7,
-                        transition: "opacity 0.3s",
-                        "&:hover": {
-                          opacity: 1,
-                        },
-                      }}
-                    />
-                  </Tooltip>
-                ))}
-                {/* 두 번째 세트 (무한 반복을 위해) */}
-                {skillItems.map(({ name, icon }, index) => (
-                  <Tooltip
-                    key={`second-${name}-${index}`}
-                    title={translate[name]}
-                    placement="top"
-                  >
-                    <Box
-                      dangerouslySetInnerHTML={{ __html: icon }}
-                      width={SVG_ICON_SIZE}
-                      height={SVG_ICON_SIZE}
-                      sx={{
-                        opacity: 0.7,
-                        transition: "opacity 0.3s",
-                        "&:hover": {
-                          opacity: 1,
-                        },
-                      }}
-                    />
-                  </Tooltip>
-                ))}
-              </Stack>
-            </Box>
-          </Stack>
+                <Stack
+                  direction="row"
+                  flexWrap="nowrap"
+                  width="max-content"
+                  gap={3}
+                  sx={{
+                    animation: reducedMotion
+                      ? "none"
+                      : `${infinitySlide} ${slideTime}s linear infinite`,
+                    "&:hover": {
+                      animationPlayState: reducedMotion ? "running" : "paused",
+                    },
+                  }}
+                >
+                  {[...skillItems, ...skillItems].map(({ name, icon }, index) => (
+                    <Tooltip
+                      key={`${name}-${index}`}
+                      title={translate[name]}
+                      placement="top"
+                    >
+                      <Box
+                        dangerouslySetInnerHTML={{ __html: icon }}
+                        width={SVG_ICON_SIZE}
+                        height={SVG_ICON_SIZE}
+                        sx={{
+                          opacity: 0.7,
+                          transition: "opacity 150ms ease",
+                          cursor: "default",
+                          "&:hover": { opacity: 1 },
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+                </Stack>
+              </Box>
+            </Stack>
+          </ScrollReveal>
         </Container>
       </Box>
 
-      {/* Section3 */}
-      <Box py={5} sx={{ background: (theme) => theme.palette.impact.main }}>
+      {/* Work Experiences Section */}
+      <Box py={5} sx={{ background: theme.palette.impact.main }}>
         <Container maxWidth="lg">
-          <Stack>
+          <ScrollReveal>
             <Typography
               fontSize={30}
               fontWeight={700}
@@ -414,33 +385,23 @@ function Home() {
             >
               Work Experiences
             </Typography>
+          </ScrollReveal>
 
-            <Stack
-              px={1.5}
-              pt={{ xs: 16, md: 13 }}
-              pb={9}
-              width="inherit"
-              sx={{
-                maskImage: `linear-gradient(to bottom, 
-                transparent 5%,
-                #000000 calc(5% + ${20}px), #000000 calc(95% - ${20}px), transparent 95%)`,
-              }}
-            >
-              <Flow company={companyOnflou} />
-              <Flow company={companyHit} />
-              <Flow company={companyFov} />
-              <Flow company={companyAnder} />
-              <Flow company={companyReborn} />
-              <Flow company={companyDaekyung} />
-            </Stack>
+          <Stack px={1.5} pt={{ xs: 4, md: 3 }} pb={5} width="inherit">
+            <Flow company={companyOnflou} />
+            <Flow company={companyHit} />
+            <Flow company={companyFov} />
+            <Flow company={companyAnder} />
+            <Flow company={companyReborn} />
+            <Flow company={companyDaekyung} />
           </Stack>
         </Container>
       </Box>
 
-      {/* Section4 */}
-      <Box py={5}>
+      {/* Side Projects Section */}
+      <Box py={5} sx={{ backgroundColor: theme.palette.background.default }}>
         <Container maxWidth="lg">
-          <Stack>
+          <ScrollReveal>
             <Typography
               fontSize={30}
               fontWeight={700}
@@ -449,25 +410,19 @@ function Home() {
             >
               Side Projects
             </Typography>
+          </ScrollReveal>
 
-            <Box
-              px={1.5}
-              py={5}
-              sx={{
-                maskImage: `linear-gradient(to bottom,
-                transparent 60px,
-                #000000 calc(60px + ${25}px), #000000 calc(100% - ${80}px), transparent calc(100% - ${50}px), transparent 100%)`,
-              }}
-            >
-              {sideProject.projects.map((project) =>
-                typeof project === "string" ? (
-                  project
-                ) : (
-                  <SideFlow key={project.title} project={project} />
-                )
-              )}
-            </Box>
-          </Stack>
+          <Box px={1.5} py={5}>
+            {sideProject.projects.map((project, index) =>
+              typeof project === "string" ? (
+                <Typography key={project + index} px={2}>
+                  {project}
+                </Typography>
+              ) : (
+                <SideFlow key={project.title} project={project} />
+              )
+            )}
+          </Box>
         </Container>
       </Box>
     </Stack>

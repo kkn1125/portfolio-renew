@@ -2,7 +2,6 @@ import ProjectCard from "@components/atoms/ProjectCard";
 import { groupBy } from "@libs/groupBy";
 import {
   Container,
-  Fade,
   Pagination,
   Stack,
   useMediaQuery,
@@ -36,26 +35,22 @@ function Portfolio() {
       <Container maxWidth="lg" sx={{ flex: 1, mb: 5 }}>
         <Stack gap={4} alignItems="center">
           {groupList.map((projects, i) => (
-            <Fade key={i} in={true} timeout={300 * (i + 1)}>
-              <Stack
-                direction="row"
-                gap={3}
-                flexWrap="wrap"
-                justifyContent="center"
-                sx={{
-                  perspective: "1500px",
-                  width: "100%",
-                }}
-              >
-                {projects.map((project, q) => (
-                  <ProjectCard
-                    key={project?.title || q}
-                    project={project}
-                    page={page}
-                  />
-                ))}
-              </Stack>
-            </Fade>
+            <Stack
+              key={i}
+              direction="row"
+              gap={3}
+              flexWrap="wrap"
+              justifyContent="center"
+              sx={{ width: "100%" }}
+            >
+              {projects.map((project, q) => (
+                <ProjectCard
+                  key={project?.title || q}
+                  project={project}
+                  page={page}
+                />
+              ))}
+            </Stack>
           ))}
         </Stack>
       </Container>
