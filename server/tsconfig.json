@@ -18,7 +18,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./",
+    "types": ["node"],
     "paths": {
       "@common/*": ["../src/common/*"],
       "@assets/*": ["../src/assets/*"],

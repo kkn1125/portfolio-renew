@@ -33,7 +33,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: tsc -b && cross-env NODE_ENV=production vite build --mode=production
+        run: npm run build
         env:
           VITE_BRAND: ${{ vars.VITE_BRAND }}
           VITE_BLOG: ${{ vars.VITE_BLOG }}
