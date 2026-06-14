@@ -1,4 +1,3 @@
-import { DEPLOY_PATH } from "@common/variables";
 import Layout from "@components/templates/Layout";
 import About from "@pages/About";
 import Home from "@pages/Home";
@@ -9,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route path={DEPLOY_PATH} element={<Layout />}>
+      <Route path="" element={<Layout />}>
         <Route path="" element={<Home />} />
         <Route path="portfolio">
           <Route index element={<Portfolio />} />

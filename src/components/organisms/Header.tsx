@@ -1,23 +1,16 @@
-import { DEPLOY_PATH } from "@common/variables";
-import { getImages } from "@libs/getResource";
+import { getImages, getImageUrl } from "@libs/getResource";
 import { Page } from "@libs/page";
-import { useThemeMode } from "@providers/AppThemeProvider";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  Button,
-  Container,
-  Menu,
-  MenuItem,
-  useTheme,
-} from "@mui/material";
+import { Button, Container, Menu, MenuItem, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { alpha } from "@mui/material/styles";
+import { useThemeMode } from "@providers/AppThemeProvider";
 import { MouseEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -128,7 +121,7 @@ export default function Header() {
               component={Link}
               variant="h6"
               noWrap
-              to={DEPLOY_PATH}
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -161,7 +154,7 @@ export default function Header() {
                 component={Link}
                 variant="h6"
                 noWrap
-                to={DEPLOY_PATH}
+                to="/"
                 sx={{
                   fontWeight: 700,
                   letterSpacing: "0.3rem",
@@ -175,7 +168,7 @@ export default function Header() {
                   component="img"
                   width={LOGO_SIZE}
                   height={LOGO_SIZE}
-                  src={getImages("brand_logo", "logo_color.png")}
+                  src={getImageUrl("brand_logo/logo_color.png")}
                   alt="logo"
                 />
               </Typography>

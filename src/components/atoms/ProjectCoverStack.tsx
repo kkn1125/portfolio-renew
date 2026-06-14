@@ -1,6 +1,7 @@
-import { DEFAULT_COVER } from "@common/variables";
 import { roleTranslate } from "@common/enums/role";
+import { DEFAULT_COVER } from "@common/variables";
 import { during } from "@libs/during";
+import { getImageUrl } from "@libs/getResource";
 import { ProjectModel } from "@models/ProjectModel";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -25,7 +26,7 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
   projectModel,
 }) => {
   const theme = useTheme();
-  const coverUrl = projectModel.cover ?? DEFAULT_COVER;
+  const coverUrl = getImageUrl(projectModel.cover ?? DEFAULT_COVER);
   const period = during(projectModel.start, projectModel.end, "진행 중");
   const roleLabel = projectModel.roles
     .map((role) => roleTranslate[role])
@@ -114,7 +115,8 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
               </Stack>
 
               {(projectModel.github ||
-                (projectModel.demoSites && projectModel.demoSites.length > 0)) && (
+                (projectModel.demoSites &&
+                  projectModel.demoSites.length > 0)) && (
                 <Stack direction="row" flexWrap="wrap" gap={1}>
                   {projectModel.github && (
                     <Button
@@ -149,7 +151,12 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
               )}
 
               {projectModel.relations && projectModel.relations.length > 0 && (
-                <Stack direction="row" alignItems="center" gap={1} flexWrap="wrap">
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  gap={1}
+                  flexWrap="wrap"
+                >
                   <Typography variant="caption" color="text.secondary">
                     관련 프로젝트
                   </Typography>

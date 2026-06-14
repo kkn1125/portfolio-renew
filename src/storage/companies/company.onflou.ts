@@ -9,7 +9,7 @@ import { onflouDaldaleng } from "@storage/projects/onflou/onflou.daldaleng";
 export const companyOnflou = new CompanyModel({
   name: Company.Onflou,
   description:
-    "실시간 게임 WebSocket 서버 구축, 이중화 운영, 온프레미스 인프라 구축 및 다협력사 협업 프로젝트",
+    "실시간 게임 WebSocket 서버 구축, 이중화 운영, 온프레미스 인프라 구축 및 협력사 협업 프로젝트",
   roles: [Role.Backend, Role.Server],
   team: Team.Backend,
   projects: [onflouCardtalk, onflouCardtalkOps, onflouDaldaleng],

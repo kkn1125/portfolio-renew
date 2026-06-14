@@ -1,15 +1,11 @@
-import { pathJoin } from "@libs/pathJoin";
-
 export const DEPLOY_PATH = process.env.DEPLOY_PATH || "/";
 export const BRAND = process.env.BRAND;
 export const BLOG = process.env.BLOG;
 export const GITHUB = process.env.GITHUB;
 export const PUBLISHED_YEAR = process.env.PUBLISHED_YEAR;
-export const PROFILE_IMAGE =
-  process.env.PROFILE_IMAGE || pathJoin(DEPLOY_PATH, "profile.jpg");
+export const PROFILE_IMAGE = process.env.PROFILE_IMAGE || "profile.jpg";
 
-export const DEFAULT_COVER =
-  process.env.DEFAULT_COVER || pathJoin(DEPLOY_PATH, "thumbnail.png");
+export const DEFAULT_COVER = process.env.DEFAULT_COVER || "thumbnail.png";
 
 export const SVG_ICON_SIZE = 50;
 

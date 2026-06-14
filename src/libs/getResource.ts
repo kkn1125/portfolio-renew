@@ -16,7 +16,7 @@ export function getExternalImage(url: string, alias: string) {
 export function getImage(
   projectName: string,
   filename: string,
-  alias: string
+  alias: string,
 ): ImageObject {
   return {
     src: getResource(projectName, filename),
@@ -25,9 +25,13 @@ export function getImage(
 }
 
 export function getResource(projectName: string, filename: string) {
-  return pathJoin(DEPLOY_PATH, "images", projectName, filename);
+  return pathJoin("images", projectName, filename);
 }
 
 export function getImages(projectName: string, filename: string) {
   return pathJoin(DEPLOY_PATH, projectName, filename);
+}
+
+export function getImageUrl(filename: string) {
+  return DEPLOY_PATH + filename;
 }
