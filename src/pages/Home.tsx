@@ -1,5 +1,5 @@
-import translate from "@common/translate";
 import { roleTranslate } from "@common/enums/role";
+import translate from "@common/translate";
 import { PROFILE_IMAGE, SVG_ICON_SIZE } from "@common/variables";
 import Flow from "@components/atoms/Flow";
 import ScrollReveal from "@components/atoms/ScrollReveal";
@@ -68,7 +68,7 @@ function Home() {
            ${theme.palette.background.default}`
         : `radial-gradient(ellipse at 20% 20%, ${alpha(theme.palette.accent.main, 0.15)} 0%, transparent 50%),
            ${theme.palette.background.default}`,
-    [theme]
+    [theme],
   );
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function Home() {
       setOpenInput(false);
       const projectGap = "\n\n";
       const result1 = sortByEnd(
-        Object.values(companies).flatMap((item) => item.projects)
+        Object.values(companies).flatMap((item) => item.projects),
       )
         .map(CopyTemplate)
         .join(projectGap);
@@ -109,7 +109,7 @@ function Home() {
         .map(CopyTemplate)
         .join(projectGap);
       const resumeList = getResumeDocuments(
-        Information.resume as unknown as Resume[]
+        Information.resume as unknown as Resume[],
       );
       const title = Information.title;
       const description = Information.description.join("\n\n");
@@ -118,7 +118,7 @@ function Home() {
         .map((skill) => skill.name)
         .join(", ");
       navigator.clipboard.writeText(
-        `"${title}"\n\n\n${description}\n\n\n${useStacks}\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`
+        `"${title}"\n\n\n${description}\n\n\n${useStacks}\n\n\n${resumeList}\n\n\n\n# 실무 경력\n\n${result1}\n\n\n# 사이드 프로젝트\n\n${result2}`,
       );
     }
     setInputText("");
@@ -183,12 +183,27 @@ function Home() {
                 />
               </ScrollReveal>
 
-              <Stack flex={1} gap={2} alignItems={{ xs: "center", md: "flex-start" }}>
-                <Stack alignItems={{ xs: "center", md: "flex-start" }} gap={0.5}>
-                  <Typography variant="h4" fontWeight="bold" color="text.primary">
+              <Stack
+                flex={1}
+                gap={2}
+                alignItems={{ xs: "center", md: "flex-start" }}
+              >
+                <Stack
+                  alignItems={{ xs: "center", md: "flex-start" }}
+                  gap={0.5}
+                >
+                  <Typography
+                    variant="h4"
+                    fontWeight="bold"
+                    color="text.primary"
+                  >
                     {Information.name}
                   </Typography>
-                  <Typography variant="h6" fontWeight={500} color="text.secondary">
+                  <Typography
+                    variant="h6"
+                    fontWeight={500}
+                    color="text.secondary"
+                  >
                     {roleTranslate[Information.position]} 개발자
                   </Typography>
                   <Typography
@@ -333,6 +348,10 @@ function Home() {
                   },
                 }}
               >
+                {/* 
+                  To achieve a truly seamless infinite scroll, render three sets in a row,
+                  and ensure the animation loop's width and position lines up perfectly.
+                */}
                 <Stack
                   direction="row"
                   flexWrap="nowrap"
@@ -347,25 +366,27 @@ function Home() {
                     },
                   }}
                 >
-                  {[...skillItems, ...skillItems].map(({ name, icon }, index) => (
-                    <Tooltip
-                      key={`${name}-${index}`}
-                      title={translate[name]}
-                      placement="top"
-                    >
-                      <Box
-                        dangerouslySetInnerHTML={{ __html: icon }}
-                        width={SVG_ICON_SIZE}
-                        height={SVG_ICON_SIZE}
-                        sx={{
-                          opacity: 0.7,
-                          transition: "opacity 150ms ease",
-                          cursor: "default",
-                          "&:hover": { opacity: 1 },
-                        }}
-                      />
-                    </Tooltip>
-                  ))}
+                  {[...skillItems, ...skillItems, ...skillItems].map(
+                    ({ name, icon }, index) => (
+                      <Tooltip
+                        key={`${name}-${index}`}
+                        title={translate[name]}
+                        placement="top"
+                      >
+                        <Box
+                          dangerouslySetInnerHTML={{ __html: icon }}
+                          width={SVG_ICON_SIZE}
+                          height={SVG_ICON_SIZE}
+                          sx={{
+                            opacity: 0.7,
+                            transition: "opacity 150ms ease",
+                            cursor: "default",
+                            "&:hover": { opacity: 1 },
+                          }}
+                        />
+                      </Tooltip>
+                    ),
+                  )}
                 </Stack>
               </Box>
             </Stack>
@@ -420,7 +441,7 @@ function Home() {
                 </Typography>
               ) : (
                 <SideFlow key={project.title} project={project} />
-              )
+              ),
             )}
           </Box>
         </Container>

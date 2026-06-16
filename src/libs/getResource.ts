@@ -33,5 +33,8 @@ export function getImages(projectName: string, filename: string) {
 }
 
 export function getImageUrl(filename: string) {
-  return DEPLOY_PATH + filename;
+  if (filename.startsWith("https")) {
+    return filename;
+  }
+  return (DEPLOY_PATH + filename).replace(/\/+/g, "/");
 }
