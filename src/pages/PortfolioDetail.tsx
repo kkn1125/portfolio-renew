@@ -44,8 +44,9 @@ function SectionHeading({
     <Stack
       sx={{
         gap: 0.5,
-        mb: 2.5
-      }}>
+        mb: 2.5,
+      }}
+    >
       <Typography
         variant="overline"
         sx={{ color: "accent.main", fontWeight: 700, letterSpacing: 1.2 }}
@@ -53,9 +54,12 @@ function SectionHeading({
         {title}
       </Typography>
       {description && (
-        <Typography variant="body2" sx={{
-          color: "text.secondary"
-        }}>
+        <Typography
+          variant="body2"
+          sx={{
+            color: "text.secondary",
+          }}
+        >
           {description}
         </Typography>
       )}
@@ -79,8 +83,9 @@ function MetaRow({
       direction="row"
       sx={{
         gap: 1.5,
-        alignItems: "flex-start"
-      }}>
+        alignItems: "flex-start",
+      }}
+    >
       <Box
         sx={{
           mt: 0.25,
@@ -94,14 +99,16 @@ function MetaRow({
         sx={{
           gap: 0.5,
           flex: 1,
-          minWidth: 0
-        }}>
+          minWidth: 0,
+        }}
+      >
         <Typography
           variant="caption"
           sx={{
             color: "text.secondary",
-            fontWeight: 600
-          }}>
+            fontWeight: 600,
+          }}
+        >
           {label}
         </Typography>
         <Box sx={{ color: theme.palette.text.primary }}>{children}</Box>
@@ -123,9 +130,13 @@ function WorkCard({ work }: { work: ProjectModel["works"][number] }) {
         backgroundColor: theme.palette.background.paper,
       }}
     >
-      <Typography variant="subtitle1" gutterBottom sx={{
-        fontWeight: 600
-      }}>
+      <Typography
+        variant="subtitle1"
+        gutterBottom
+        sx={{
+          fontWeight: 600,
+        }}
+      >
         {work.content}
       </Typography>
       {work.hasSubWorks && (
@@ -135,8 +146,9 @@ function WorkCard({ work }: { work: ProjectModel["works"][number] }) {
             gap: 0.75,
             m: 0,
             pl: 2.5,
-            color: "text.secondary"
-          }}>
+            color: "text.secondary",
+          }}
+        >
           {work.subWorks.map((subWork) => (
             <Typography
               key={subWork.content}
@@ -201,14 +213,16 @@ function PortfolioDetail() {
       sx={{
         flex: 1,
         height: "inherit",
-        overflow: "hidden"
-      }}>
+        overflow: "hidden",
+      }}
+    >
       <Box
         sx={{
           flexShrink: 0,
           borderBottom: `1px solid ${theme.palette.divider}`,
-          backgroundColor: theme.palette.background.paper
-        }}>
+          backgroundColor: theme.palette.background.paper,
+        }}
+      >
         <Container maxWidth="lg">
           <Stack
             direction="row"
@@ -216,8 +230,9 @@ function PortfolioDetail() {
               alignItems: "center",
               justifyContent: "space-between",
               py: 1.5,
-              gap: 2
-            }}>
+              gap: 2,
+            }}
+          >
             <Button
               onClick={goToList}
               startIcon={<ArrowBackIcon />}
@@ -232,8 +247,9 @@ function PortfolioDetail() {
               sx={{
                 gap: 1,
                 flexWrap: "wrap",
-                justifyContent: "flex-end"
-              }}>
+                justifyContent: "flex-end",
+              }}
+            >
               {projectModel.github && (
                 <Button
                   component="a"
@@ -272,23 +288,28 @@ function PortfolioDetail() {
         sx={{
           flex: 1,
           overflow: "auto",
-          height: "inherit"
-        }}>
+          height: "inherit",
+        }}
+      >
         <ProjectCoverStack projectModel={projectModel} />
 
         <Container maxWidth="lg" sx={{ pb: 8 }}>
           <Grid container spacing={4}>
-            <Grid item xs={12} lg={8}>
-              <Box sx={{
-                mb: 5
-              }}>
+            <Grid size={{ xs: 12, lg: 8 }}>
+              <Box
+                sx={{
+                  mb: 5,
+                }}
+              >
                 <SectionHeading
                   title="Contributions"
                   description="프로젝트에서 맡은 역할과 주요 기여"
                 />
-                <Stack sx={{
-                  gap: 1.5
-                }}>
+                <Stack
+                  sx={{
+                    gap: 1.5,
+                  }}
+                >
                   {projectModel.works.map((work) => (
                     <WorkCard key={work.content} work={work} />
                   ))}
@@ -296,16 +317,20 @@ function PortfolioDetail() {
               </Box>
 
               {projectModel.issues && projectModel.issues.length > 0 && (
-                <Box sx={{
-                  mb: 5
-                }}>
+                <Box
+                  sx={{
+                    mb: 5,
+                  }}
+                >
                   <SectionHeading
                     title="Problem Solving"
                     description="문제 정의부터 해결까지의 과정"
                   />
-                  <Stack sx={{
-                    gap: 2
-                  }}>
+                  <Stack
+                    sx={{
+                      gap: 2,
+                    }}
+                  >
                     {projectModel.issues.map((issue) => (
                       <IssueCard key={issue.problem} issue={issue} />
                     ))}
@@ -319,9 +344,11 @@ function PortfolioDetail() {
                     title="Screenshots"
                     description="서비스 화면 및 구현 결과"
                   />
-                  <Stack sx={{
-                    gap: 3
-                  }}>
+                  <Stack
+                    sx={{
+                      gap: 3,
+                    }}
+                  >
                     {projectModel.images.map(({ src, alt }) => (
                       <Box
                         key={src}
@@ -343,7 +370,7 @@ function PortfolioDetail() {
                             playsInline
                             src={src}
                             sx={{
-                              width: "100%"
+                              width: "100%",
                             }}
                           />
                         ) : (
@@ -354,8 +381,9 @@ function PortfolioDetail() {
                             loading="lazy"
                             sx={{
                               width: "100%",
-                              display: "block"
-                            }} />
+                              display: "block",
+                            }}
+                          />
                         )}
                         {alt && (
                           <Typography
@@ -365,8 +393,9 @@ function PortfolioDetail() {
                               color: "text.secondary",
                               px: 2,
                               py: 1.5,
-                              display: "block"
-                            }}>
+                              display: "block",
+                            }}
+                          >
                             {alt}
                           </Typography>
                         )}
@@ -377,7 +406,7 @@ function PortfolioDetail() {
               )}
             </Grid>
 
-            <Grid item xs={12} lg={4}>
+            <Grid size={{ xs: 12, lg: 4 }}>
               <Paper
                 elevation={0}
                 sx={{
@@ -392,14 +421,18 @@ function PortfolioDetail() {
                   variant="subtitle1"
                   sx={{
                     fontWeight: 700,
-                    mb: 2
-                  }}>
+                    mb: 2,
+                  }}
+                >
                   프로젝트 정보
                 </Typography>
 
-                <Stack divider={<Divider />} sx={{
-                  gap: 2
-                }}>
+                <Stack
+                  divider={<Divider />}
+                  sx={{
+                    gap: 2,
+                  }}
+                >
                   <MetaRow icon={BusinessOutlinedIcon} label="소속">
                     <Typography variant="body2">
                       {projectModel.company}
@@ -430,8 +463,9 @@ function PortfolioDetail() {
                       direction="row"
                       sx={{
                         flexWrap: "wrap",
-                        gap: 0.75
-                      }}>
+                        gap: 0.75,
+                      }}
+                    >
                       {projectModel.skills.map((skill) => (
                         <Tooltip key={skill.name} title={translate[skill.name]}>
                           <Chip
@@ -470,9 +504,11 @@ function PortfolioDetail() {
                   {projectModel.demoSites &&
                     projectModel.demoSites.length > 0 && (
                       <MetaRow icon={LanguageOutlinedIcon} label="데모 사이트">
-                        <Stack sx={{
-                          gap: 0.5
-                        }}>
+                        <Stack
+                          sx={{
+                            gap: 0.5,
+                          }}
+                        >
                           {projectModel.demoSites.map((demo) => (
                             <Typography
                               key={demo}
@@ -501,13 +537,18 @@ function PortfolioDetail() {
                         icon={PersonOutlineOutlinedIcon}
                         label="테스트 계정"
                       >
-                        <Stack sx={{
-                          gap: 1.5
-                        }}>
+                        <Stack
+                          sx={{
+                            gap: 1.5,
+                          }}
+                        >
                           {projectModel.testAccount.map((account, index) => (
-                            <Stack key={account.id} sx={{
-                              gap: 0.5
-                            }}>
+                            <Stack
+                              key={account.id}
+                              sx={{
+                                gap: 0.5,
+                              }}
+                            >
                               <Typography variant="body2">
                                 ID: {account.id}
                               </Typography>
@@ -515,8 +556,9 @@ function PortfolioDetail() {
                                 direction="row"
                                 sx={{
                                   alignItems: "center",
-                                  gap: 0.5
-                                }}>
+                                  gap: 0.5,
+                                }}
+                              >
                                 <Typography variant="body2">
                                   PW:{" "}
                                   {openPw[index]?.open
