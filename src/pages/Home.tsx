@@ -11,7 +11,7 @@ import { CopyTemplate } from "@models/CopyTemplate";
 import Resume from "@models/Resume";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutlined";
 import {
   Box,
   Button,
@@ -47,6 +47,7 @@ const cheat = "copyResume";
 function Home() {
   const theme = useTheme();
   const reducedMotion = usePrefersReducedMotion();
+  console.log("🚀 ~ Home ~ reducedMotion:", reducedMotion);
   const [openInput, setOpenInput] = useState(false);
   const [inputText, setInputText] = useState("");
 
@@ -125,9 +126,12 @@ function Home() {
   }
 
   return (
-    <Stack id="main-content" flex={1} overflow="auto" height="inherit">
+    <Stack
+      id="main-content"
+      sx={{ flex: 1, overflow: "auto", height: "inherit" }}
+    >
       {/* Hero Section */}
-      <Box py={{ xs: 4, md: 6 }} sx={{ background: heroBackground }}>
+      <Box sx={{ py: { xs: 4, md: 6 }, background: heroBackground }}>
         {openInput && (
           <Portal>
             <Box component="form" onSubmit={handleSubmitInputText}>
@@ -162,8 +166,10 @@ function Home() {
           >
             <Stack
               direction={{ xs: "column", md: "row" }}
-              alignItems={{ xs: "center", md: "flex-start" }}
-              gap={4}
+              sx={{
+                alignItems: { xs: "center", md: "flex-start" },
+                gap: 4,
+              }}
             >
               <ScrollReveal>
                 <Box
@@ -184,33 +190,44 @@ function Home() {
               </ScrollReveal>
 
               <Stack
-                flex={1}
-                gap={2}
-                alignItems={{ xs: "center", md: "flex-start" }}
+                sx={{
+                  flex: 1,
+                  gap: 2,
+                  alignItems: { xs: "center", md: "flex-start" },
+                }}
               >
                 <Stack
-                  alignItems={{ xs: "center", md: "flex-start" }}
-                  gap={0.5}
+                  sx={{
+                    alignItems: { xs: "center", md: "flex-start" },
+                    gap: 0.5,
+                  }}
                 >
                   <Typography
-                    variant="h4"
-                    fontWeight="bold"
-                    color="text.primary"
+                    sx={{
+                      variant: "h4",
+                      fontWeight: "bold",
+                      color: "text.primary",
+                    }}
                   >
                     {Information.name}
                   </Typography>
                   <Typography
-                    variant="h6"
-                    fontWeight={500}
-                    color="text.secondary"
+                    sx={{
+                      variant: "h6",
+                      fontWeight: 500,
+                      color: "text.secondary",
+                    }}
                   >
                     {roleTranslate[Information.position]} 개발자
                   </Typography>
                   <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    textAlign={{ xs: "center", md: "left" }}
-                    sx={{ mt: 1, maxWidth: 520 }}
+                    sx={{
+                      variant: "body1",
+                      color: "text.secondary",
+                      textAlign: { xs: "center", md: "left" },
+                      mt: 1,
+                      maxWidth: 520,
+                    }}
                   >
                     {Information.title}
                   </Typography>
@@ -218,13 +235,16 @@ function Home() {
 
                 <Box sx={{ width: "100%" }}>
                   <Typography
-                    variant="subtitle1"
-                    fontWeight={600}
-                    sx={{ color: "accent.main", mb: 1 }}
+                    sx={{
+                      variant: "subtitle1",
+                      fontWeight: 600,
+                      color: "accent.main",
+                      mb: 1,
+                    }}
                   >
                     핵심 역량
                   </Typography>
-                  <Stack direction="row" flexWrap="wrap" gap={1}>
+                  <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
                     {Information.coreCompetencies.map((competency, index) => (
                       <Chip
                         key={index}
@@ -241,10 +261,13 @@ function Home() {
 
                 <Stack
                   direction={{ xs: "column", sm: "row" }}
-                  gap={1.5}
-                  flexWrap="wrap"
-                  justifyContent={{ xs: "center", md: "flex-start" }}
-                  sx={{ width: "100%" }}
+                  useFlexGap
+                  sx={{
+                    gap: 1.5,
+                    flexWrap: "wrap",
+                    justifyContent: { xs: "center", md: "flex-start" },
+                    width: "100%",
+                  }}
                 >
                   <Button
                     component={Link}
@@ -292,8 +315,8 @@ function Home() {
             </Stack>
 
             <Box
-              mt={3}
               sx={{
+                mt: 3,
                 backgroundColor: theme.palette.background.highlight,
                 py: 2,
                 px: 2,
@@ -313,20 +336,20 @@ function Home() {
       </Box>
 
       {/* Tech Stack Section */}
-      <Box py={5} sx={{ backgroundColor: theme.palette.background.default }}>
+      <Box sx={{ py: 5, backgroundColor: theme.palette.background.default }}>
         <Container maxWidth="lg">
           <ScrollReveal>
-            <Stack alignItems="center" spacing={3}>
-              <Typography variant="h4" fontWeight={600}>
+            <Stack sx={{ alignItems: "center", gap: 3 }}>
+              <Typography sx={{ variant: "h4", fontWeight: 600 }}>
                 Tech Stack
               </Typography>
-              <Typography variant="subtitle1" color="text.secondary">
+              <Typography variant="subtitle1" color="textSecondary">
                 주요 기술
               </Typography>
               <Box
                 id="stacks"
-                width="100%"
                 sx={{
+                  width: "100%",
                   overflow: "hidden",
                   position: "relative",
                   "&::before, &::after": {
@@ -354,10 +377,10 @@ function Home() {
                 */}
                 <Stack
                   direction="row"
-                  flexWrap="nowrap"
-                  width="max-content"
-                  gap={3}
                   sx={{
+                    flexWrap: "nowrap",
+                    width: "max-content",
+                    gap: 3,
                     animation: reducedMotion
                       ? "none"
                       : `${infinitySlide} ${slideTime}s linear infinite`,
@@ -375,13 +398,16 @@ function Home() {
                       >
                         <Box
                           dangerouslySetInnerHTML={{ __html: icon }}
-                          width={SVG_ICON_SIZE}
-                          height={SVG_ICON_SIZE}
                           sx={{
+                            width: SVG_ICON_SIZE,
+                            height: SVG_ICON_SIZE,
                             opacity: 0.7,
                             transition: "opacity 150ms ease",
                             cursor: "default",
-                            "&:hover": { opacity: 1 },
+                            "&:hover": {
+                              opacity: 1,
+                              transition: "opacity 150ms ease",
+                            },
                           }}
                         />
                       </Tooltip>
@@ -395,20 +421,19 @@ function Home() {
       </Box>
 
       {/* Work Experiences Section */}
-      <Box py={5} sx={{ background: theme.palette.impact.main }}>
+      <Box sx={{ py: 5, background: theme.palette.impact.main }}>
         <Container maxWidth="lg">
           <ScrollReveal>
             <Typography
-              fontSize={30}
-              fontWeight={700}
-              align="center"
-              gutterBottom
+              sx={{ fontSize: 30, fontWeight: 700, textAlign: "center", mb: 2 }}
             >
               Work Experiences
             </Typography>
           </ScrollReveal>
 
-          <Stack px={1.5} pt={{ xs: 4, md: 3 }} pb={5} width="inherit">
+          <Stack
+            sx={{ px: 1.5, pt: { xs: 4, md: 3 }, pb: 5, width: "inherit" }}
+          >
             <Flow company={companyOnflou} />
             <Flow company={companyHit} />
             <Flow company={companyFov} />
@@ -420,23 +445,20 @@ function Home() {
       </Box>
 
       {/* Side Projects Section */}
-      <Box py={5} sx={{ backgroundColor: theme.palette.background.default }}>
+      <Box sx={{ py: 5, backgroundColor: theme.palette.background.default }}>
         <Container maxWidth="lg">
           <ScrollReveal>
             <Typography
-              fontSize={30}
-              fontWeight={700}
-              align="center"
-              gutterBottom
+              sx={{ fontSize: 30, fontWeight: 700, textAlign: "center", mb: 2 }}
             >
               Side Projects
             </Typography>
           </ScrollReveal>
 
-          <Box px={1.5} py={5}>
+          <Box sx={{ px: 1.5, py: 5 }}>
             {sideProject.projects.map((project, index) =>
               typeof project === "string" ? (
-                <Typography key={project + index} px={2}>
+                <Typography key={project + index} sx={{ px: 2 }}>
                   {project}
                 </Typography>
               ) : (

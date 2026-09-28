@@ -12,10 +12,10 @@ function SideFlow({ project }: SideFlowProps) {
 
   return (
     <Box
-      position="relative"
-      py={4}
-      pr={2}
       sx={{
+        position: "relative",
+        py: 4,
+        pr: 2,
         "&::before": {
           content: '""',
           position: "absolute",
@@ -27,9 +27,9 @@ function SideFlow({ project }: SideFlowProps) {
         },
       }}
     >
-      <Stack pr={5} alignItems="flex-end" textAlign="right">
-        <Stack mb={1}>
-          <Stack direction="row" alignItems="center" gap={1}>
+      <Stack sx={{ pr: 5, alignItems: "flex-end", textAlign: "right" }}>
+        <Stack sx={{ mb: 1 }}>
+          <Stack direction="row" sx={{ alignItems: "center", gap: 1 }}>
             <Box
               component={Link}
               to={project.path}
@@ -41,7 +41,9 @@ function SideFlow({ project }: SideFlowProps) {
                 color: "inherit",
               }}
             >
-              <Typography component="span" fontSize={24} fontWeight={700}>
+              <Typography
+                sx={{ component: "span", fontSize: 24, fontWeight: 700 }}
+              >
                 {project.title}
               </Typography>
               <LaunchIcon />
@@ -50,9 +52,11 @@ function SideFlow({ project }: SideFlowProps) {
           {project.relations && (
             <Stack
               direction="row"
-              justifyContent="flex-end"
-              alignItems="center"
-              gap={1}
+              sx={{
+                justifyContent: "flex-end",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
               <Typography component="span">관련 프로젝트</Typography>
               <Chip
@@ -69,36 +73,41 @@ function SideFlow({ project }: SideFlowProps) {
 
         <Box>
           <Typography
-            gutterBottom
-            fontSize={20}
-            fontWeight={700}
-            color="text.secondary"
-            sx={{ textDecoration: "none" }}
+            sx={{
+              component: "span",
+              fontSize: 20,
+              fontWeight: 700,
+              color: "text.secondary",
+              textDecoration: "none",
+            }}
             title={project.description.join("\n")}
           >
             {sliceMultiLine(project.description, 30)}
           </Typography>
           <Typography
-            gutterBottom
-            fontSize={16}
-            fontWeight={700}
-            color="text.secondary"
+            sx={{
+              component: "span",
+              fontSize: 16,
+              fontWeight: 700,
+              color: "text.secondary",
+              textDecoration: "none",
+            }}
           >
             {project.team} / {project.roles[0].toUpperCase()}
           </Typography>
         </Box>
-        <Typography fontSize={14}>
+        <Typography sx={{ fontSize: 14 }}>
           {during(project.start, project.end, "진행 중")}
         </Typography>
       </Stack>
 
       <Box
-        position="absolute"
-        top="50px"
-        right={0}
-        width={40}
-        height={40}
         sx={{
+          position: "absolute",
+          top: "50px",
+          right: 0,
+          width: 40,
+          height: 40,
           color: (theme) => theme.palette.secondary.contrastText,
           fontWeight: "bold",
           fontSize: "1.2rem",

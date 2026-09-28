@@ -41,8 +41,8 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 3, md: 4 }} alignItems="center">
-          <Grid item xs={12} md={5}>
+        <Grid container sx={{ gap: { xs: 3, md: 4 }, alignItems: "center" }}>
+          <Grid sx={{ width: { xs: "100%", md: "50%" } }}>
             <Box
               sx={{
                 borderRadius: 3,
@@ -67,9 +67,9 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={7}>
-            <Stack gap={2}>
-              <Stack direction="row" flexWrap="wrap" gap={1}>
+          <Grid sx={{ width: { xs: "100%", md: "50%" } }}>
+            <Stack sx={{ gap: 2 }}>
+              <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
                 <Chip
                   size="small"
                   color={projectModel.isSideProject ? "secondary" : "primary"}
@@ -90,25 +90,26 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
 
               <Typography
                 component="h1"
-                variant="h3"
-                fontWeight={700}
-                sx={{ lineHeight: 1.2 }}
+                sx={{ variant: "h3", fontWeight: 700, lineHeight: 1.2 }}
               >
                 {projectModel.title}
               </Typography>
 
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{
+                color: "text.secondary"
+              }}>
                 {period} · {projectModel.team} · {roleLabel}
               </Typography>
 
-              <Stack gap={1}>
+              <Stack sx={{ gap: 1 }}>
                 {projectModel.description.map((desc) => (
                   <Typography
                     key={desc}
                     variant="body1"
-                    color="text.primary"
-                    sx={{ lineHeight: 1.7 }}
-                  >
+                    sx={{
+                      color: "text.primary",
+                      lineHeight: 1.7
+                    }}>
                     {desc}
                   </Typography>
                 ))}
@@ -117,7 +118,7 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
               {(projectModel.github ||
                 (projectModel.demoSites &&
                   projectModel.demoSites.length > 0)) && (
-                <Stack direction="row" flexWrap="wrap" gap={1}>
+                <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
                   {projectModel.github && (
                     <Button
                       component="a"
@@ -153,11 +154,15 @@ export const ProjectCoverStack: React.FC<ProjectCoverStackProps> = ({
               {projectModel.relations && projectModel.relations.length > 0 && (
                 <Stack
                   direction="row"
-                  alignItems="center"
-                  gap={1}
-                  flexWrap="wrap"
+                  sx={{
+                    alignItems: "center",
+                    gap: 1,
+                    flexWrap: "wrap",
+                  }}
                 >
-                  <Typography variant="caption" color="text.secondary">
+                  <Typography
+                    sx={{ variant: "caption", color: "text.secondary" }}
+                  >
                     관련 프로젝트
                   </Typography>
                   {projectModel.relations.map((relation) => (

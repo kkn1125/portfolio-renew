@@ -109,7 +109,11 @@ export default function Header() {
                       handleCloseNavMenu();
                     }}
                   >
-                    <Typography textAlign="center" textTransform="uppercase">
+                    <Typography
+                      sx={{
+                        textAlign: "center",
+                        textTransform: "uppercase"
+                      }}>
                       {name}
                     </Typography>
                   </MenuItem>
@@ -136,11 +140,12 @@ export default function Header() {
             >
               <Box
                 component="img"
-                width={LOGO_SIZE}
-                height={LOGO_SIZE}
                 src={getImages("brand_logo", "logo_color.png")}
                 alt="logo"
-              />
+                sx={{
+                  width: LOGO_SIZE,
+                  height: LOGO_SIZE
+                }} />
             </Typography>
 
             <Box
@@ -166,11 +171,12 @@ export default function Header() {
               >
                 <Box
                   component="img"
-                  width={LOGO_SIZE}
-                  height={LOGO_SIZE}
                   src={getImageUrl("brand_logo/logo_color.png")}
                   alt="logo"
-                />
+                  sx={{
+                    width: LOGO_SIZE,
+                    height: LOGO_SIZE
+                  }} />
               </Typography>
             </Box>
 

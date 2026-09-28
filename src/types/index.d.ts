@@ -1,6 +1,6 @@
-export declare global {}
+export {};
 
-declare module "@mui/material/styles/createPalette" {
+declare module "@mui/material/styles" {
   interface Palette {
     impact: PaletteColor;
     accent: PaletteColor;
@@ -16,9 +16,8 @@ declare module "@mui/material/styles/createPalette" {
   }
 }
 
-// Extend color prop on components
 declare module "@mui/material/Button" {
   export interface ButtonPropsColorOverrides {
-    imapact: true;
+    impact: true;
   }
 }

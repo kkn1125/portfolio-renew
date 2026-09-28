@@ -45,21 +45,30 @@ function About() {
 
   return (
     <Stack
-      py={8}
-      flex={1}
-      alignItems="center"
-      overflow="auto"
-      height="inherit"
-      sx={{ backgroundColor: theme.palette.background.default }}
-    >
+      sx={{
+        py: 8,
+        flex: 1,
+        alignItems: "center",
+        overflow: "auto",
+        height: "inherit",
+        backgroundColor: theme.palette.background.default
+      }}>
       <Container maxWidth="lg" sx={{ flex: 1 }}>
         <ScrollReveal>
-          <Typography variant="h3" fontWeight={700} mb={4} color="primary">
+          <Typography
+            variant="h3"
+            color="primary"
+            sx={{
+              fontWeight: 700,
+              mb: 4
+            }}>
             About Me
           </Typography>
         </ScrollReveal>
 
-        <Stack spacing={2} mb={6}>
+        <Stack spacing={2} sx={{
+          mb: 6
+        }}>
           {contactItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -102,11 +111,17 @@ function About() {
                 >
                   <Icon />
                 </Box>
-                <Stack flex={1}>
-                  <Typography variant="subtitle2" color="text.secondary">
+                <Stack sx={{
+                  flex: 1
+                }}>
+                  <Typography variant="subtitle2" sx={{
+                    color: "text.secondary"
+                  }}>
                     {item.label}
                   </Typography>
-                  <Typography variant="body1" fontWeight={500}>
+                  <Typography variant="body1" sx={{
+                    fontWeight: 500
+                  }}>
                     {item.value}
                   </Typography>
                 </Stack>
@@ -115,7 +130,13 @@ function About() {
           })}
         </Stack>
 
-        <Typography variant="h5" fontWeight={700} mb={2} color="primary">
+        <Typography
+          variant="h5"
+          color="primary"
+          sx={{
+            fontWeight: 700,
+            mb: 2
+          }}>
           상세 이력
         </Typography>
 
@@ -137,21 +158,24 @@ function About() {
                 id={`resume-${index}-header`}
                 sx={{ minHeight: 56 }}
               >
-                <Stack gap={0.5}>
-                  <Typography variant="subtitle1" fontWeight={600}>
+                <Stack sx={{
+                  gap: 0.5
+                }}>
+                  <Typography variant="subtitle1" sx={{
+                    fontWeight: 600
+                  }}>
                     {resume.title}
                   </Typography>
                   <Typography
                     variant="body2"
-                    color="text.secondary"
                     sx={{
+                      color: "text.secondary",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                    }}
-                  >
+                      WebkitBoxOrient: "vertical"
+                    }}>
                     {resume.contents[0]}
                   </Typography>
                 </Stack>
@@ -162,9 +186,11 @@ function About() {
                     <Typography
                       key={pIndex}
                       variant="body2"
-                      color="text.primary"
-                      sx={{ whiteSpace: "pre-wrap", userSelect: "text" }}
-                    >
+                      sx={{
+                        color: "text.primary",
+                        whiteSpace: "pre-wrap",
+                        userSelect: "text"
+                      }}>
                       {paragraph}
                     </Typography>
                   ))}

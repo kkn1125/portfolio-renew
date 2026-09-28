@@ -10,7 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type FlowProps = { company: CompanyModel };
 
@@ -31,8 +31,9 @@ function Flow({ company }: FlowProps) {
 
   return (
     <Box
-      position="relative"
+      component="div"
       sx={{
+        position: "relative",
         "&::before": {
           content: '""',
           position: "absolute",
@@ -44,7 +45,7 @@ function Flow({ company }: FlowProps) {
         },
       }}
     >
-      <Stack direction="row" gap={4} sx={{ py: 4 }}>
+      <Stack direction="row" sx={{ gap: 4, py: 4 }}>
         <Box
           sx={{
             width: "40px",
@@ -62,29 +63,32 @@ function Flow({ company }: FlowProps) {
         >
           {name.replace(/\(주\)/, "")[0]}
         </Box>
-        <Stack gap={2} flex={1}>
-          <Stack direction="row" gap={1} alignItems="center">
-            <Typography variant="h5" fontWeight="bold" color="primary">
+        <Stack sx={{ gap: 2, flex: 1 }}>
+          <Stack direction="row" sx={{ gap: 1, alignItems: "center" }}>
+            <Typography
+              sx={{ variant: "h5", fontWeight: "bold", color: "primary" }}
+            >
               {name}
             </Typography>
             {!isIt && <Chip label="비개발" size="small" color="warning" />}
           </Stack>
-          <Typography variant="subtitle1" color="text.secondary">
+          <Typography variant="subtitle1" sx={{
+            color: "text.secondary"
+          }}>
             {description}
           </Typography>
           <Typography variant="body1">
             {team} / {roles[0].toUpperCase()}
           </Typography>
           <Typography variant="body2">{during(start, end)}</Typography>
-          <Stack gap={1}>
+          <Stack sx={{ gap: 1 }}>
             {[...projects, ...simpleProjects].map((project, i) => (
               <Stack
                 key={
                   typeof project === "string" ? project + i : project.title + i
                 }
                 direction="row"
-                alignItems="center"
-                gap={1}
+                sx={{ alignItems: "center", gap: 1 }}
               >
                 <Box
                   className="point"
@@ -99,7 +103,14 @@ function Flow({ company }: FlowProps) {
                   }}
                 />
                 {typeof project === "string" ? (
-                  <Stack direction="row" alignItems="center" gap={0.5} ml={4}>
+                  <Stack
+                    direction="row"
+                    sx={{
+                      alignItems: "center",
+                      gap: 0.5,
+                      ml: 4,
+                    }}
+                  >
                     <DescriptionOutlinedIcon
                       fontSize="small"
                       sx={{ color: "text.secondary" }}
@@ -116,7 +127,14 @@ function Flow({ company }: FlowProps) {
                   </Stack>
                 ) : (
                   <>
-                    <Stack direction="row" alignItems="center" gap={0.5} ml={4}>
+                    <Stack
+                      direction="row"
+                      sx={{
+                        alignItems: "center",
+                        gap: 0.5,
+                        ml: 4,
+                      }}
+                    >
                       <DescriptionOutlinedIcon
                         fontSize="small"
                         sx={{ color: "text.secondary" }}

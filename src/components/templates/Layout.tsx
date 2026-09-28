@@ -8,14 +8,21 @@ function Layout() {
     <Stack
       id="wrapper"
       component={Paper}
-      height="inherit"
-      sx={{ borderRadius: "none" }}
-    >
+      sx={{
+        height: "inherit",
+        borderRadius: "none"
+      }}>
       {/* 상단 메뉴 */}
       <Header />
 
       {/* 본문 */}
-      <Stack id="layout" flex={1} overflow="hidden" height="inherit">
+      <Stack
+        id="layout"
+        sx={{
+          flex: 1,
+          overflow: "hidden",
+          height: "inherit"
+        }}>
         <Outlet />
       </Stack>
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 export function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(() =>
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const [reduced, setReduced] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function useScrollReveal(threshold = 0.15) {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold },
     );
 
     observer.observe(node);

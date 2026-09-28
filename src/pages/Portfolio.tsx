@@ -31,18 +31,30 @@ function Portfolio() {
   }, [groupAmount, page]);
 
   return (
-    <Stack py={5} flex={1} alignItems="center" overflow="auto" height="inherit">
+    <Stack
+      sx={{
+        py: 5,
+        flex: 1,
+        alignItems: "center",
+        overflow: "auto",
+        height: "inherit"
+      }}>
       <Container maxWidth="lg" sx={{ flex: 1, mb: 5 }}>
-        <Stack gap={4} alignItems="center">
+        <Stack
+          sx={{
+            gap: 4,
+            alignItems: "center"
+          }}>
           {groupList.map((projects, i) => (
             <Stack
               key={i}
               direction="row"
-              gap={3}
-              flexWrap="wrap"
-              justifyContent="center"
-              sx={{ width: "100%" }}
-            >
+              sx={{
+                gap: 3,
+                flexWrap: "wrap",
+                justifyContent: "center",
+                width: "100%"
+              }}>
               {projects.map((project, q) => (
                 <ProjectCard
                   key={project?.title || q}

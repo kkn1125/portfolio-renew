@@ -64,27 +64,24 @@ function ProjectCard({ project, page }: ProjectCardProps) {
         </Typography>
         <Typography
           variant="body2"
-          color="text.secondary"
           sx={{
+            color: "text.secondary",
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
             WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-          }}
-        >
+            WebkitBoxOrient: "vertical"
+          }}>
           {project.description.join(" ")}
         </Typography>
         <Stack
           direction="row"
-          spacing={1}
-          mt={1}
-          flexWrap="nowrap"
-          overflow="auto"
           sx={{
-            ["&::-webkit-scrollbar"]: {
-              display: "none",
-            },
+            gap: 1,
+            mt: 1,
+            flexWrap: "nowrap",
+            overflow: "auto",
+            "&::-webkit-scrollbar": { display: "none" },
           }}
         >
           {project.skills.slice(0, skillLimit).map((skill) => (
