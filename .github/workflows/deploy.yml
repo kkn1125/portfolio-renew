@@ -22,15 +22,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Initialize global dependencies
-        run: npm install -g cross-env vite
-
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Server dir install dependencies
         working-directory: ./server
-        run: npm install
+        # ts-node 10 requires the JavaScript compiler API; TypeScript 7 omits it.
+        run: npm install --save-dev --save-exact typescript@5.9.3
 
       - name: Build
         run: npm run build
@@ -42,10 +40,6 @@ jobs:
           VITE_DEFAULT_COVER: ${{ vars.VITE_DEFAULT_COVER }}
           VITE_PUBLISHED_YEAR: ${{ vars.VITE_PUBLISHED_YEAR }}
           VITE_PROFILE_IMAGE: ${{ vars.VITE_PROFILE_IMAGE }}
-
-      - name: Build Server
-        working-directory: ./server
-        run: npm run build
 
       - name: Create nojekyll
         working-directory: ./dist
