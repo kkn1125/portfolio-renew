@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T10:04:38Z",
+  "title": "Design System: Kim Kyeungnam Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Desk Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.0745 174.86)",
+          "oklch(26.43% 0.0745 174.86)",
+          "oklch(37.86% 0.0745 174.86)",
+          "oklch(49.29% 0.0745 174.86)",
+          "oklch(60.71% 0.0745 174.86)",
+          "oklch(72.14% 0.0745 174.86)",
+          "oklch(83.57% 0.0745 174.86)",
+          "oklch(95.00% 0.0745 174.86)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Deep Desk Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.0599 175.28)",
+          "oklch(26.43% 0.0599 175.28)",
+          "oklch(37.86% 0.0599 175.28)",
+          "oklch(49.29% 0.0599 175.28)",
+          "oklch(60.71% 0.0599 175.28)",
+          "oklch(72.14% 0.0599 175.28)",
+          "oklch(83.57% 0.0599 175.28)",
+          "oklch(95.00% 0.0599 175.28)"
+        ]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "On Accent",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 0.00)",
+          "oklch(26.43% 0.0000 0.00)",
+          "oklch(37.86% 0.0000 0.00)",
+          "oklch(49.29% 0.0000 0.00)",
+          "oklch(60.71% 0.0000 0.00)",
+          "oklch(72.14% 0.0000 0.00)",
+          "oklch(83.57% 0.0000 0.00)",
+          "oklch(95.00% 0.0000 0.00)"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Cool Desk",
+        "tonalRamp": [
+          "oklch(15.00% 0.0025 165.08)",
+          "oklch(26.43% 0.0025 165.08)",
+          "oklch(37.86% 0.0025 165.08)",
+          "oklch(49.29% 0.0025 165.08)",
+          "oklch(60.71% 0.0025 165.08)",
+          "oklch(72.14% 0.0025 165.08)",
+          "oklch(83.57% 0.0025 165.08)",
+          "oklch(95.00% 0.0025 165.08)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 0.00)",
+          "oklch(26.43% 0.0000 0.00)",
+          "oklch(37.86% 0.0000 0.00)",
+          "oklch(49.29% 0.0000 0.00)",
+          "oklch(60.71% 0.0000 0.00)",
+          "oklch(72.14% 0.0000 0.00)",
+          "oklch(83.57% 0.0000 0.00)",
+          "oklch(95.00% 0.0000 0.00)"
+        ]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Media Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0066 160.07)",
+          "oklch(26.43% 0.0066 160.07)",
+          "oklch(37.86% 0.0066 160.07)",
+          "oklch(49.29% 0.0066 160.07)",
+          "oklch(60.71% 0.0066 160.07)",
+          "oklch(72.14% 0.0066 160.07)",
+          "oklch(83.57% 0.0066 160.07)",
+          "oklch(95.00% 0.0066 160.07)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0184 184.28)",
+          "oklch(26.43% 0.0184 184.28)",
+          "oklch(37.86% 0.0184 184.28)",
+          "oklch(49.29% 0.0184 184.28)",
+          "oklch(60.71% 0.0184 184.28)",
+          "oklch(72.14% 0.0184 184.28)",
+          "oklch(83.57% 0.0184 184.28)",
+          "oklch(95.00% 0.0184 184.28)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0206 169.37)",
+          "oklch(26.43% 0.0206 169.37)",
+          "oklch(37.86% 0.0206 169.37)",
+          "oklch(49.29% 0.0206 169.37)",
+          "oklch(60.71% 0.0206 169.37)",
+          "oklch(72.14% 0.0206 169.37)",
+          "oklch(83.57% 0.0206 169.37)",
+          "oklch(95.00% 0.0206 169.37)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.0102 164.84)",
+          "oklch(26.43% 0.0102 164.84)",
+          "oklch(37.86% 0.0102 164.84)",
+          "oklch(49.29% 0.0102 164.84)",
+          "oklch(60.71% 0.0102 164.84)",
+          "oklch(72.14% 0.0102 164.84)",
+          "oklch(83.57% 0.0102 164.84)",
+          "oklch(95.00% 0.0102 164.84)"
+        ]
+      },
+      "error": {
+        "displayName": "Error Red",
+        "tonalRamp": [
+          "oklch(15.00% 0.1385 23.74)",
+          "oklch(26.43% 0.1385 23.74)",
+          "oklch(37.86% 0.1385 23.74)",
+          "oklch(49.29% 0.1385 23.74)",
+          "oklch(60.71% 0.1385 23.74)",
+          "oklch(72.14% 0.1385 23.74)",
+          "oklch(83.57% 0.1385 23.74)",
+          "oklch(95.00% 0.1385 23.74)"
+        ]
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Soft Desk Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.0735 171.18)",
+          "oklch(26.43% 0.0735 171.18)",
+          "oklch(37.86% 0.0735 171.18)",
+          "oklch(49.29% 0.0735 171.18)",
+          "oklch(60.71% 0.0735 171.18)",
+          "oklch(72.14% 0.0735 171.18)",
+          "oklch(83.57% 0.0735 171.18)",
+          "oklch(95.00% 0.0735 171.18)"
+        ]
+      },
+      "dark-accent-hover": {
+        "role": "primary",
+        "displayName": "Pale Desk Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.0509 170.92)",
+          "oklch(26.43% 0.0509 170.92)",
+          "oklch(37.86% 0.0509 170.92)",
+          "oklch(49.29% 0.0509 170.92)",
+          "oklch(60.71% 0.0509 170.92)",
+          "oklch(72.14% 0.0509 170.92)",
+          "oklch(83.57% 0.0509 170.92)",
+          "oklch(95.00% 0.0509 170.92)"
+        ]
+      },
+      "dark-on-accent": {
+        "role": "neutral",
+        "displayName": "Dark On Accent",
+        "tonalRamp": [
+          "oklch(15.00% 0.0156 174.39)",
+          "oklch(26.43% 0.0156 174.39)",
+          "oklch(37.86% 0.0156 174.39)",
+          "oklch(49.29% 0.0156 174.39)",
+          "oklch(60.71% 0.0156 174.39)",
+          "oklch(72.14% 0.0156 174.39)",
+          "oklch(83.57% 0.0156 174.39)",
+          "oklch(95.00% 0.0156 174.39)"
+        ]
+      },
+      "dark-bg": {
+        "role": "neutral",
+        "displayName": "Dark Desk",
+        "tonalRamp": [
+          "oklch(15.00% 0.0156 174.39)",
+          "oklch(26.43% 0.0156 174.39)",
+          "oklch(37.86% 0.0156 174.39)",
+          "oklch(49.29% 0.0156 174.39)",
+          "oklch(60.71% 0.0156 174.39)",
+          "oklch(72.14% 0.0156 174.39)",
+          "oklch(83.57% 0.0156 174.39)",
+          "oklch(95.00% 0.0156 174.39)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.0202 169.07)",
+          "oklch(26.43% 0.0202 169.07)",
+          "oklch(37.86% 0.0202 169.07)",
+          "oklch(49.29% 0.0202 169.07)",
+          "oklch(60.71% 0.0202 169.07)",
+          "oklch(72.14% 0.0202 169.07)",
+          "oklch(83.57% 0.0202 169.07)",
+          "oklch(95.00% 0.0202 169.07)"
+        ]
+      },
+      "dark-surface-muted": {
+        "role": "neutral",
+        "displayName": "Dark Media Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0265 164.20)",
+          "oklch(26.43% 0.0265 164.20)",
+          "oklch(37.86% 0.0265 164.20)",
+          "oklch(49.29% 0.0265 164.20)",
+          "oklch(60.71% 0.0265 164.20)",
+          "oklch(72.14% 0.0265 164.20)",
+          "oklch(83.57% 0.0265 164.20)",
+          "oklch(95.00% 0.0265 164.20)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0091 161.35)",
+          "oklch(26.43% 0.0091 161.35)",
+          "oklch(37.86% 0.0091 161.35)",
+          "oklch(49.29% 0.0091 161.35)",
+          "oklch(60.71% 0.0091 161.35)",
+          "oklch(72.14% 0.0091 161.35)",
+          "oklch(83.57% 0.0091 161.35)",
+          "oklch(95.00% 0.0091 161.35)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Quiet Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0190 160.99)",
+          "oklch(26.43% 0.0190 160.99)",
+          "oklch(37.86% 0.0190 160.99)",
+          "oklch(49.29% 0.0190 160.99)",
+          "oklch(60.71% 0.0190 160.99)",
+          "oklch(72.14% 0.0190 160.99)",
+          "oklch(83.57% 0.0190 160.99)",
+          "oklch(95.00% 0.0190 160.99)"
+        ]
+      },
+      "dark-rule": {
+        "role": "neutral",
+        "displayName": "Dark Rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.0319 165.23)",
+          "oklch(26.43% 0.0319 165.23)",
+          "oklch(37.86% 0.0319 165.23)",
+          "oklch(49.29% 0.0319 165.23)",
+          "oklch(60.71% 0.0319 165.23)",
+          "oklch(72.14% 0.0319 165.23)",
+          "oklch(83.57% 0.0319 165.23)",
+          "oklch(95.00% 0.0319 165.23)"
+        ]
+      },
+      "dark-error": {
+        "displayName": "Dark Error Red",
+        "tonalRamp": [
+          "oklch(15.00% 0.0880 19.19)",
+          "oklch(26.43% 0.0880 19.19)",
+          "oklch(37.86% 0.0880 19.19)",
+          "oklch(49.29% 0.0880 19.19)",
+          "oklch(60.71% 0.0880 19.19)",
+          "oklch(72.14% 0.0880 19.19)",
+          "oklch(83.57% 0.0880 19.19)",
+          "oklch(95.00% 0.0880 19.19)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Introductory heading; responsive CSS overrides are recorded in DESIGN.md."
+      },
+      "headline": {
+        "displayName": "Page Headline",
+        "purpose": "Page-level semantic h1."
+      },
+      "section-title": {
+        "displayName": "Section Title",
+        "purpose": "Major reading chapters."
+      },
+      "title": {
+        "displayName": "Record Title",
+        "purpose": "Record and subsection headings."
+      },
+      "body": {
+        "displayName": "Korean Reading",
+        "purpose": "Long-form SUIT reading with a general 70ch measure."
+      },
+      "body-small": {
+        "displayName": "Compact Reading",
+        "purpose": "Secondary compact text."
+      },
+      "label": {
+        "displayName": "Control Label",
+        "purpose": "Sentence-case buttons; tabs retain their separate actual 1.25 line-height."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Small support text; media captions have a local line-height override."
+      }
+    },
+    "shadows": [
+      {
+        "name": "navigation-menu",
+        "value": "0 10px 36px #00000026",
+        "purpose": "Transient navigation menu only."
+      },
+      {
+        "name": "resume-command",
+        "value": "0 8px 32px #00000026",
+        "purpose": "Temporary command form only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "motion-fast",
+        "value": "180ms",
+        "purpose": "Authored link and navigation state transitions."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Authored navigation, arrow, case-selection and media easing."
+      },
+      {
+        "name": "case-select",
+        "value": "220ms",
+        "purpose": "Selected case: opacity .75 and translateY(4px) to final state; removed under reduced motion."
+      },
+      {
+        "name": "media-hover",
+        "value": "220ms",
+        "purpose": "Deliberate image hover scales to 1.025; removed under reduced motion."
+      },
+      {
+        "name": "mui-shortest",
+        "value": "150ms",
+        "purpose": "Actual theme shortest-duration override."
+      },
+      {
+        "name": "mui-short",
+        "value": "180ms",
+        "purpose": "Actual theme short-duration override, including button state transitions."
+      },
+      {
+        "name": "mui-standard",
+        "value": "220ms",
+        "purpose": "Actual theme standard-duration override."
+      },
+      {
+        "name": "mui-ease-in-out",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Installed MUI default retained by the theme; distinct from authored CSS easing."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "600px"
+      },
+      {
+        "name": "md",
+        "value": "900px"
+      },
+      {
+        "name": "lg",
+        "value": "1200px"
+      },
+      {
+        "name": "xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled, unelevated project action; paired light/dark hover colors are resolved from the JS palette.",
+      "html": "<button class=\"ds-button ds-button-primary\">프로젝트 살펴보기</button>",
+      "css": ".ds-button { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; min-height: 44px; border-radius: 8px; padding: 10px 18px; font-family: \"SUIT Variable\", sans-serif; font-size: .9375rem; font-weight: 600; line-height: 1.5; text-transform: none; cursor: pointer; text-decoration: none; box-shadow: none; transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1), border-color 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-button:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } .ds-button:disabled { cursor: not-allowed; } .ds-button-primary { border: 0; background: var(--accent, #1F6656); color: var(--on-accent, #FFFFFF); } @media (hover: hover) { .ds-button-primary:hover { background: light-dark(#164C40, #B2DECE); } } .ds-button-primary:active { box-shadow: none; } @media (prefers-reduced-motion: reduce) { .ds-button, .ds-nav-link::after, .ds-tab, .ds-text-link svg { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }"
+    },
+    {
+      "name": "Outlined Button",
+      "kind": "button",
+      "refersTo": "button-outlined",
+      "description": "A quiet secondary action with the project's rule-colored border and inherited MUI hover wash.",
+      "html": "<button class=\"ds-button ds-button-outlined\">검색</button>",
+      "css": ".ds-button { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; min-height: 44px; border-radius: 8px; padding: 10px 18px; font-family: \"SUIT Variable\", sans-serif; font-size: .9375rem; font-weight: 600; line-height: 1.5; text-transform: none; cursor: pointer; text-decoration: none; box-shadow: none; transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1), border-color 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-button:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } .ds-button:disabled { cursor: not-allowed; } .ds-button-outlined { border: 1px solid var(--rule, #D5DDD9); background: transparent; color: var(--accent, #1F6656); } @media (hover: hover) { .ds-button-outlined:hover { background: light-dark(rgba(31, 102, 86, .04), rgba(138, 203, 181, .08)); } } .ds-button-outlined:active { box-shadow: none; } @media (prefers-reduced-motion: reduce) { .ds-button, .ds-nav-link::after, .ds-tab, .ds-text-link svg { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "The same control geometry with accent text and no resting border or elevation.",
+      "html": "<button class=\"ds-button ds-button-text\">실행</button>",
+      "css": ".ds-button { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; min-height: 44px; border-radius: 8px; padding: 10px 18px; font-family: \"SUIT Variable\", sans-serif; font-size: .9375rem; font-weight: 600; line-height: 1.5; text-transform: none; cursor: pointer; text-decoration: none; box-shadow: none; transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1), border-color 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-button:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } .ds-button:disabled { cursor: not-allowed; } .ds-button-text { border: 0; background: transparent; color: var(--accent, #1F6656); } @media (hover: hover) { .ds-button-text:hover { background: light-dark(rgba(31, 102, 86, .04), rgba(138, 203, 181, .08)); } } .ds-button-text:active { box-shadow: none; } @media (prefers-reduced-motion: reduce) { .ds-button, .ds-nav-link::after, .ds-tab, .ds-text-link svg { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Framework-free translation of the small, labeled outlined search field with its source notch, adornment and focus border.",
+      "html": "<div class=\"ds-search\"><label class=\"ds-search-label\" for=\"ds-search-input\">프로젝트 검색</label><div class=\"ds-search-control\"><svg class=\"ds-search-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14A4.5 4.5 0 1 1 14 9.5 4.49 4.49 0 0 1 9.5 14z\"/></svg><input class=\"ds-search-input\" id=\"ds-search-input\" type=\"search\" value=\"NestJS\"><fieldset class=\"ds-search-outline\" aria-hidden=\"true\"><legend class=\"ds-search-legend\"><span>프로젝트 검색</span></legend></fieldset></div></div>",
+      "css": ".ds-search { position: relative; font-family: \"SUIT Variable\", sans-serif; font-size: 1rem; font-weight: 400; } .ds-search-label { position: absolute; left: 0; top: 0; z-index: 1; transform: translate(14px, -9px) scale(.75); transform-origin: top left; color: var(--muted, #56655F); line-height: 1.4375em; } .ds-search-control { position: relative; display: inline-flex; align-items: center; width: 100%; border-radius: 8px; background: var(--surface, #FFFFFF); color: var(--ink, #172422); padding-left: 14px; line-height: 1.4375em; } .ds-search-icon { width: 20px; height: 20px; color: var(--muted, #56655F); margin-right: 8px; flex-shrink: 0; } .ds-search-input { position: relative; padding: 8.5px 14px 8.5px 0; height: 1.4375em; width: 100%; min-width: 0; border: 0; background: none; color: currentColor; font: inherit; box-sizing: content-box; caret-color: var(--accent, #1F6656); } .ds-search-outline { position: absolute; top: -5px; left: 0; right: 0; bottom: 0; margin: 0; padding: 0 8px; border: 1px solid var(--rule, #D5DDD9); border-radius: inherit; pointer-events: none; } .ds-search-legend { float: unset; overflow: hidden; padding: 0; font-size: .75em; width: auto; height: 11px; visibility: hidden; } .ds-search-legend span { padding-left: 5px; padding-right: 5px; } .ds-search-control:hover .ds-search-outline { border-color: var(--ink, #172422); } .ds-search-control:focus-within .ds-search-outline { border-width: 2px; border-color: var(--accent, #1F6656); } .ds-search:focus-within .ds-search-label { color: var(--accent, #1F6656); } .ds-search-input:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; }"
+    },
+    {
+      "name": "Company Select",
+      "kind": "input",
+      "refersTo": "company-select",
+      "description": "Native labeled filter with minimum 44px control height and the same paper/rule treatment.",
+      "html": "<label class=\"ds-company-filter\">소속 <select class=\"ds-company-select\" aria-label=\"회사별 프로젝트\"><option>모든 회사</option><option>온플러</option></select></label>",
+      "css": ".ds-company-filter { display: flex; align-items: center; gap: .75rem; color: var(--muted, #56655F); font-family: \"SUIT Variable\", sans-serif; font-size: .875rem; } .ds-company-select { background: var(--surface, #FFFFFF); color: var(--ink, #172422); border: 1px solid var(--rule, #D5DDD9); border-radius: 8px; font-family: \"SUIT Variable\", sans-serif; font-size: .875rem; min-height: 44px; max-width: 250px; padding: .5rem 2rem .5rem .75rem; } .ds-company-select:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } @media (max-width: 599px) { .ds-company-filter { width: 100%; } .ds-company-select { flex: 1; max-width: none; } }"
+    },
+    {
+      "name": "Desktop Navigation",
+      "kind": "nav",
+      "description": "Minimum-height text links with the source's animated rule for hover and active state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"주 메뉴\"><a class=\"ds-nav-link\" href=\"#career\">경력</a><a class=\"ds-nav-link\" href=\"#portfolio\" aria-current=\"page\">프로젝트</a><a class=\"ds-nav-link\" href=\"#about\">소개</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: stretch; gap: 2rem; font-family: \"SUIT Variable\", sans-serif; color: var(--ink, #172422); font-size: 1rem; } .ds-nav-link { position: relative; display: flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; font-weight: 600; } .ds-nav-link::after { content: \"\"; position: absolute; height: 2px; bottom: 0; left: 0; right: 0; background: var(--accent, #1F6656); transform: scaleX(0); transform-origin: left; transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-link:hover::after, .ds-nav-link[aria-current=\"page\"]::after { transform: scaleX(1); } .ds-nav-link:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } @media (prefers-reduced-motion: reduce) { .ds-button, .ds-nav-link::after, .ds-tab, .ds-text-link svg { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }"
+    },
+    {
+      "name": "Evidence Tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Static selected-state preview of actual full-width MUI case tabs; application selection remains in CaseExplorer.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\" aria-label=\"문제 해결 사례 선택\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">상태 수명</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">SQL 조회</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">계산 검증</button></div>",
+      "css": ".ds-tabs { display: flex; border-bottom: 1px solid var(--rule, #D5DDD9); background: var(--surface, #FFFFFF); } .ds-tab { position: relative; flex: 1; min-width: 0; min-height: 48px; padding: 12px 16px; border: 0; border-radius: 0; background: transparent; color: var(--muted, #56655F); font-family: \"SUIT Variable\", sans-serif; font-size: .9375rem; font-weight: 600; line-height: 1.25; text-transform: none; cursor: pointer; } .ds-tab[aria-selected=\"true\"] { color: var(--accent, #1F6656); } .ds-tab[aria-selected=\"true\"]::after { content: \"\"; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent, #1F6656); } .ds-tab:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } @media (max-width: 599px) { .ds-tab { font-size: .8125rem; padding-inline: .5rem; } } @media (prefers-reduced-motion: reduce) { .ds-button, .ds-nav-link::after, .ds-tab, .ds-text-link svg { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }"
+    },
+    {
+      "name": "Evidence Reading Object",
+      "kind": "card",
+      "refersTo": "case-object",
+      "description": "Independent paper object containing the actual problem/implementation/result reading grammar; surrounding records stay flat.",
+      "html": "<section class=\"ds-case-object\" aria-label=\"문제 해결 사례\"><div class=\"ds-case-panel\" tabindex=\"0\"><h2 class=\"ds-case-title\">저장까지 살아 있어야 하는 상태</h2><p class=\"ds-case-context\">미래엔 멀티처 카드톡 운영</p><dl class=\"ds-case-reading\"><div><dt>문제</dt><dd>게임 종료 시 결과 저장에 필요한 Redis 상태가 먼저 만료됨</dd></div><div><dt>구현</dt><dd>타이머 결과 전송·상태 정리의 실행 순서 확인, 개별 TTL 설정을 공통 처리로 옮기고 종료 흐름 수정</dd></div><div><dt>결과</dt><dd>결과 저장 시점에 필요한 상태 수명과 정리 순서를 보완</dd></div></dl></div></section>",
+      "css": ".ds-case-object { background: var(--surface, #FFFFFF); color: var(--ink, #172422); border: 1px solid var(--rule, #D5DDD9); border-radius: 12px; overflow: hidden; min-width: 0; font-family: \"SUIT Variable\", sans-serif; } .ds-case-panel { min-height: 33rem; padding: clamp(1.5rem, 2.4vw, 2.5rem); } .ds-case-title { margin: 0; font-family: \"Sora\", \"SUIT Variable\", sans-serif; font-size: clamp(1.4rem, 2vw, 1.9rem); font-weight: 600; line-height: 1.35; letter-spacing: -.025em; text-wrap: balance; } .ds-case-context { margin: .75rem 0 0; color: var(--muted, #56655F); font-size: .8125rem; line-height: 1.6; } .ds-case-reading { margin: 1.5rem 0 0; display: grid; gap: 1rem; font-size: .9375rem; line-height: 1.75; } .ds-case-reading div { display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; } .ds-case-reading dt { color: var(--muted, #56655F); font-size: .8125rem; padding-top: 2px; } .ds-case-reading dd { margin: 0; word-break: keep-all; overflow-wrap: anywhere; } .ds-case-reading div:last-child dd { font-weight: 600; } .ds-case-panel:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } @media (max-width: 899px) { .ds-case-panel { min-height: 0; padding: 2rem; } } @media (max-width: 599px) { .ds-case-panel { padding: 1.5rem; } .ds-case-reading div { gap: .75rem; } }"
+    },
+    {
+      "name": "Career Record",
+      "kind": "custom",
+      "description": "A flat, rule-separated semantic article with metadata aligned to responsibility and project links.",
+      "html": "<article class=\"ds-career-row\"><div><h3 class=\"ds-career-title\">온플러</h3><p class=\"ds-career-meta\">2025. 11. – 재직 중</p></div><div><p class=\"ds-career-responsibility\">교육 플랫폼의 실시간 게임 서버 구축부터 API·관리자·배치 운영, 인프라 변경과 협력사 요구사항 조율까지 담당</p><a class=\"ds-career-link\" href=\"#project\">미래엔 멀티처 카드톡 운영 <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z\"/></svg></a></div></article>",
+      "css": ".ds-career-row { display: grid; grid-template-columns: minmax(240px, .6fr) 1fr; gap: 4rem; padding-block: 2rem; border-top: 1px solid var(--rule, #D5DDD9); color: var(--ink, #172422); font-family: \"SUIT Variable\", sans-serif; } .ds-career-title { margin: 0; font-family: \"Sora\", \"SUIT Variable\", sans-serif; font-size: clamp(1.15rem, 1.5vw, 1.5rem); font-weight: 600; line-height: 1.5; letter-spacing: -.02em; } .ds-career-meta { margin: .75rem 0 0; color: var(--muted, #56655F); font-size: .875rem; font-variant-numeric: tabular-nums; line-height: 1.85; } .ds-career-responsibility { margin: 0; max-width: 70ch; font-size: 1.125rem; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; } .ds-career-link { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 44px; margin-top: 1rem; padding-block: .625rem; text-decoration: none; color: var(--muted, #56655F); font-size: .9375rem; line-height: 1.85; transition: color 180ms; } .ds-career-link svg { width: 18px; height: 18px; flex-shrink: 0; } .ds-career-link:hover { color: var(--accent, #1F6656); } .ds-career-link:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } @media (max-width: 899px) { .ds-career-row { grid-template-columns: 200px 1fr; gap: 2rem; } } @media (max-width: 599px) { .ds-career-row { grid-template-columns: 1fr; gap: 1.5rem; } .ds-career-responsibility { font-size: 1rem; } } @media (prefers-reduced-motion: reduce) { .ds-career-link { transition: none !important; } }"
+    },
+    {
+      "name": "Issue Disclosure",
+      "kind": "custom",
+      "description": "Native details/summary keeps a complete issue readable and deliberately expandable; first issue starts open in the application.",
+      "html": "<details class=\"ds-issue\" open><summary class=\"ds-issue-summary\">기업 수만큼 반복되던 통계 조회<span class=\"ds-disclosure-label\" aria-hidden=\"true\">해결 과정</span></summary><div class=\"ds-issue-reading\"><div><h3>확인과 구현</h3><ul><li>JOIN과 조건부 집계로 조회 구조를 통합</li></ul></div><div><h3>결과</h3><ul><li>해당 코드 경로의 SQL 호출을 1 + 5C회에서 1회로 변경</li></ul></div></div></details>",
+      "css": ".ds-issue { border-top: 1px solid var(--rule, #D5DDD9); color: var(--ink, #172422); font-family: \"SUIT Variable\", sans-serif; } .ds-issue-summary { font-size: 1.125rem; font-weight: 600; cursor: pointer; padding-block: 1.5rem; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; } .ds-issue-summary:hover { color: var(--accent, #1F6656); } .ds-issue-summary:focus-visible { outline: 2px solid var(--accent, #1F6656); outline-offset: 4px; } .ds-disclosure-label { display: block; font-size: .8125rem; font-weight: 400; color: var(--muted, #56655F); margin-top: .5rem; padding-left: 1rem; } .ds-issue-reading { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; padding-bottom: 2rem; } .ds-issue-reading h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 600; color: var(--muted, #56655F); } .ds-issue-reading ul { padding-left: 1.25rem; margin: 0; line-height: 1.85; } .ds-issue-reading li + li { margin-top: .75rem; } @media (max-width: 599px) { .ds-issue-summary { font-size: 1rem; } .ds-issue-reading { grid-template-columns: 1fr; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Evidence Desk",
+    "overview": "The Evidence Desk makes technical work legible through confident typography, aligned records, quiet surfaces and fine rules. Its voice is modern, clean, structured, technical, calm and distinctive. Sora gives Latin headings a precise silhouette; SUIT supports long Korean reading without a competing decorative voice.\n\nDepth is functional: independent evidence and media objects have gently curved edges, while the surrounding document is organized by whitespace and dividers. Green identifies action, selected state and useful evidence. Motion responds to a deliberate action; it does not postpone reading. Neon, gradients, glass, decorative terminals, pervasive cards and excessive animation are outside the user-approved world.",
+    "keyCharacteristics": [
+      "Clear type hierarchy and aligned reading columns.",
+      "Cool neutrals with one restrained green accent.",
+      "Rule-separated records; rounded controls and independent objects.",
+      "Native document flow, explicit disclosure and visible keyboard focus."
+    ],
+    "rules": [
+      {
+        "name": "The Meaningful Accent Rule",
+        "body": "Use green for actions, selected state, focused controls and highlighted evidence; let neutral type and rules carry the rest of the document.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading First Rule",
+        "body": "Use the display stack for headings and the Korean body stack for reading and controls. Preserve the reading measure and natural wrapping instead of forcing fixed-height text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Document Rule",
+        "body": "Keep structural sections and record rows flat. Reserve the two authored shadows for the transient navigation menu and command surface.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the paired light and dark semantic roles supplied by the theme.",
+      "Do separate long records with whitespace and a fine divider; align metadata with its reading content.",
+      "Do keep Korean reading in SUIT, headings in the Sora/SUIT stack, and dates in tabular numerals.",
+      "Do retain semantic headings, lists, definition lists, labeled navigation, native disclosure and visible focus.",
+      "Do let narrow layouts return to document flow and expose intentional search, selection and media controls.",
+      "Do remove authored animation and transitions under reduced motion, and require an explicit choice to show a GIF in that state."
+    ],
+    "donts": [
+      "Don't add neon, decorative gradients, glass surfaces or ornamental terminal treatments.",
+      "Don't wrap every section, career item or archive record in a card.",
+      "Don't replace actual project media with generic decorative covers.",
+      "Don't gate reading behind entrance animations or autoplay project videos.",
+      "Don't treat a dark mode as a translucent overlay; use its semantic palette.",
+      "Don't turn page-specific composition or case-study copy into global design tokens."
+    ]
+  }
+}

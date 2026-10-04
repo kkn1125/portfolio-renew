@@ -17,7 +17,7 @@ export const sideGanttChart = new ProjectModel({
   path: "/side/gantt-chart",
   title: "Gantt Chart",
   description: [
-    "개인 블로그 작성 중 느낀 불편함을 해소하기 위해 제작된 테이블 생성 웹 툴",
+    "블로그용 표를 시각적으로 편집하고 HTML로 내보내는 웹 도구",
   ],
   company: Company.Side,
   team: Team.Personal,
@@ -26,16 +26,14 @@ export const sideGanttChart = new ProjectModel({
   start: new Date(2022, 1),
   end: new Date(2022, 1),
   works: [
-    new Work("상단 메뉴 트리 작성"),
-    new Work("셀 단위 행, 열 추가 기능 구현"),
-    new Work("드래그 셀렉팅 기능 구현"),
     new Work(
-      "선택 또는 전체 셀 배경, 폰트, 테두리 색상 및 두께 등 스타일 지정 패널 제작"
+      "셀 편집과 시트 저장",
+      "드래그 선택·행열 추가·병합·분할·스타일 변경을 구현하고 시트 데이터를 직렬화해 저장",
     ),
-    new Work("작성된 시트 데이터 직렬화 및 저장 기능 구현"),
-    new Work("시트 단위 간트 차트 설정 기능 구현"),
-    new Work("작성된 시트 HTML 내보내기 기능 추가"),
-    new Work("행, 열 합치기, 나누기 기능 구현"),
+    new Work(
+      "간트 차트와 HTML 내보내기",
+      "시트 단위 일정 표시 설정과 작성된 표의 HTML 내보내기를 구현",
+    ),
   ],
   isSideProject: true,
   issues: null,

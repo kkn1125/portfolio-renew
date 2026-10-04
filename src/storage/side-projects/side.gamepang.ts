@@ -14,7 +14,9 @@ export const sideGamepang = new ProjectModel({
   relations: null,
   path: "/side/gamepang",
   title: "GamePang",
-  description: ["같은 동물 이미지를 매치시켜 점수를 얻는 2D 게임 모방"],
+  description: [
+    "같은 블록을 매칭해 제거하는 2D 퍼즐 게임",
+  ],
   company: Company.Side,
   team: Team.Personal,
   roles: [Role.Frontend],
@@ -22,16 +24,14 @@ export const sideGamepang = new ProjectModel({
   start: new Date(2023, 8),
   end: new Date(2023, 8),
   works: [
-    new Work("비동기 애니메이션 처리 구현"),
-    new Work("동물 블록 제거 및 낙하 동작 구현"),
-    new Work("자동 매칭 및 제거 알고리즘 개발"),
-    new Work("게임 규칙 및 아이템 사용 시스템 설계"),
-    new Work("캔버스 레이어 분할을 통한 렌더링 최적화"),
-    new Work("아이템 사용 시 규칙 체이닝 연산 구현"),
-    new Work("힌트 기능 및 매치 가능 블록 하이라이트 알고리즘 개발"),
-    new Work("퀘스트 시스템 구현 및 완료 항목 순차 처리"),
-    new Work("게임 완료 및 새 게임 기능 구현"),
-    new Work("Cordova를 이용한 안드로이드 APK 빌드 및 배포"),
+    new Work(
+      "연쇄 매칭과 애니메이션 순서 제어",
+      "블록 제거·낙하·재매칭을 Promise 완료 시점에 연결하고 애니메이션 중 입력을 제한해 데이터 처리와 화면 동작 순서를 맞춤",
+    ),
+    new Work(
+      "게임 규칙·렌더링과 앱 빌드",
+      "아이템·힌트·퀘스트 규칙과 Canvas 레이어 렌더링을 구현하고 Cordova로 Android APK를 빌드·배포",
+    ),
   ],
   // works: [
   //   "애니메이션 동작 비동기 처리",
@@ -49,19 +49,14 @@ export const sideGamepang = new ProjectModel({
   isSideProject: true,
   issues: [
     new Issue({
-      problem: "애니메이션 비동기 처리",
+      problem: "블록 이동 중 추가 입력과 후속 매칭이 진행되면 화면·데이터 처리 순서가 엇갈림",
       processes: [
-        "애니메이션 동작 중 사용자 입력 차단",
-        "Promise 객체를 변수에 할당하고 resolve 함수를 별도로 저장",
-        "애니메이션 및 데이터 처리가 완료되는 시점에 저장된 resolve 함수 호출",
-        "Promise의 pending 상태를 활용하여 비동기 작업 완료 시점 제어",
-      ],
-      // processes: [
-      //   "애니메이션 비동기 수행 시 클릭 방지",
-      //   "Promise를 변수에 할당하면서 resolve함수를 반환 전 시점에 변수로 저장",
-      //   "Promise를 반환시킬때 Pending하는 특성을 활용해서 애니메이션 및 데이터 처리 완료되는 시점에 resolve함수 호출",
-      // ],
-      solves: ["애니메이션 병렬처리 및 후순위 단계 처리에 대한 이해도 향상"],
+      "애니메이션 중 입력 제한",
+      "Promise를 애니메이션·데이터 처리 완료 시점에 해제",
+    ],
+      solves: [
+      "애니메이션 이후 후속 단계를 수행하는 순서 제어 구현",
+    ],
     }),
   ],
   images: [

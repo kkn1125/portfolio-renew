@@ -1,6 +1,6 @@
 import Resume from "@models/Resume";
 
-export function getResumeDocuments<T extends Resume>(resumeList: T[]) {
+export function getResumeDocuments<T extends Resume>(resumeList: readonly T[]) {
   return resumeList
     .map((resume) => {
       const title = resume.title;

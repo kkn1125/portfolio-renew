@@ -12,7 +12,9 @@ export const rebornBlockChain = new ProjectModel({
   relations: null,
   path: "/reborn/blockchain",
   title: "NFTMarketplace Blockchain 웹 페이지 제작",
-  description: ["BlockChain + NFTMarketplace 웹 페이지 제작"],
+  description: [
+    "NFT 마켓플레이스의 React·Next.js 웹 화면과 지갑 연동 개발",
+  ],
   team: Team.Backend,
   company: Company.Reborn,
   roles: [Role.Frontend],
@@ -26,9 +28,10 @@ export const rebornBlockChain = new ProjectModel({
   start: new Date(2022, 4),
   end: new Date(2022, 6),
   works: [
-    new Work("metamask wallet 연동"),
-    new Work("NFTMarketplace 스토어 페이지 연동"),
-    new Work("프론트엔드 전체 페이지 제작"),
+    new Work(
+      "웹 서비스 화면과 지갑 연결 구현",
+      "스토어를 포함한 프론트엔드 페이지를 제작하고 MetaMask 지갑과 NFT 마켓플레이스 화면을 연동",
+    ),
   ],
   isSideProject: false,
   issues: null,

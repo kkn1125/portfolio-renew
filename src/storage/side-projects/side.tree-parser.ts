@@ -13,7 +13,9 @@ export const sideTreeParser = new ProjectModel({
   relations: null,
   path: "/side/tree-parser",
   title: "Tree Parser",
-  description: ["파일 디렉토리 시각화 도구"],
+  description: [
+    "들여쓴 텍스트를 디렉토리 트리로 변환하는 웹 도구",
+  ],
   company: Company.Side,
   team: Team.Personal,
   roles: [Role.Frontend],
@@ -21,15 +23,10 @@ export const sideTreeParser = new ProjectModel({
   start: new Date(2022, 3),
   end: new Date(2022, 3),
   works: [
-    new Work("들여쓰기 단위로 텍스트 파싱"),
-    new Work("파이프라인 방식으로 텍스트 전처리기 제작"),
     new Work(
-      "전처리된 텍스트를 브랜치, 들여쓰기 단계, 그룹으로 판별하여 데이터 변환"
+      "텍스트 파싱과 트리 출력",
+      "파이프라인 전처리로 들여쓰기·분기·그룹을 판별해 트리 데이터로 변환하고 실시간 미리보기와 텍스트·HTML 복사를 제공",
     ),
-    new Work(
-      "데모 사이트 제작 및 실시간 입/출력 및 사이즈, 이모지 추가 여부, 띄어쓰기 조절 패널 추가"
-    ),
-    new Work("출력된 결과물 텍스트 또는 HTML 유형 복사 기능 추가"),
   ],
   isSideProject: true,
   issues: null,

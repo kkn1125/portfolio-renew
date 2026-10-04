@@ -13,7 +13,9 @@ export const sideMentees = new ProjectModel({
   relations: null,
   path: "/side/mentees",
   title: "Mentees",
-  description: ["멘티들이 모여 함께 지식을 공유하고 이야기하는 성장 커뮤니티"],
+  description: [
+    "추천과 세미나 신청 기능을 제공하는 초기 커뮤니티 프로젝트",
+  ],
   company: Company.Side,
   team: Team.Personal,
   roles: [Role.Backend, Role.Frontend],
@@ -27,12 +29,10 @@ export const sideMentees = new ProjectModel({
   start: new Date(2021, 8),
   end: new Date(2021, 8),
   works: [
-    new Work("페이지 제작"),
-    new Work("API 설계 및 구현"),
-    new Work("DB 스키마 설계 및 제작"),
-    new Work("유저간 추천 시스템 개발"),
-    new Work("추천 점수를 통해 가장 높은 순서대로 5명까지 모든 유저에게 공개"),
-    new Work("세미나 등록, 기간, 신청, 제한 인원 및 마감 기능 개발"),
+    new Work(
+      "추천·세미나 업무 흐름 구현",
+      "Spring Boot·MyBatis API와 데이터 모델·화면을 개발하고, 추천 순위와 신청 기간·인원 제한·마감을 처리",
+    ),
   ],
   isSideProject: true,
   issues: null,

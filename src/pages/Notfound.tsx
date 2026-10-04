@@ -1,29 +1,16 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function Notfound() {
+export default function Notfound() {
   return (
-    <Stack
-      sx={{
-        width: "50%",
-        m: "auto",
-        alignItems: "center"
-      }}>
-      <Typography component="div" sx={{
-        fontSize: 82
-      }}>
-        404
+    <div className="page-shell not-found">
+      <Typography variant="h1" component="h1">
+        페이지를 찾을 수 없습니다.
       </Typography>
-      <Typography component="div" gutterBottom sx={{
-        fontSize: 48
-      }}>
-        Not Found
-      </Typography>
-      <Button component={Link} variant="contained" color="primary" to="/">
-        Home
+      <p>주소가 변경되었거나 존재하지 않는 프로젝트입니다.</p>
+      <Button component={Link} to="/portfolio" variant="contained">
+        프로젝트 색인으로 이동
       </Button>
-    </Stack>
+    </div>
   );
 }
-
-export default Notfound;

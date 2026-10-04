@@ -6,6 +6,7 @@ import { Issue } from "@models/Issue";
 import { ProjectModel } from "@models/ProjectModel";
 import Work from "@models/Work";
 
+// 경력 근거: db-updater: e96e18a92d, 1f589dc8a8; v2: ad0e65075e, 3ad1911135, f35947f0d4; 협력사 dbupdate: 3abc945c0c, a0f95b2072.
 export const fovDbupdater = new ProjectModel({
   cover: null,
   github: null,
@@ -14,50 +15,30 @@ export const fovDbupdater = new ProjectModel({
   path: "/fov/rnd-db-updater",
   title: "데이터베이스 자동 업데이터 R&D",
   description: [
-    "구글 시트 데이터를 로컬 DB에 자동 업데이트하는 서비스 개발",
-    "기획자와 유니티 개발자의 DB 사용 편의성 향상",
+    "기획자·클라이언트 개발자가 Google Sheets·CSV/SQL 데이터를 사내 DB에 반영하는 웹 도구",
+    "초기 개발 2024.05~06; 후속 v2 개선 07~09, 협력사 도구 유지보수 07~10, 실행 가이드 정리 11월",
   ],
   // description: [
   //   "사내 데이터베이스 사용이 어려운 기획자 및 유니티 클라이언트 개발자를 위해 구글 시트 데이터를 로컬 데이터베이스 업데이트 하는 서비스",
   // ],
   team: Team.Development,
   company: Company.Fov,
-  roles: [Role.Server],
-  skills: [
-    Skill("typescript"),
-    Skill("react"),
-    Skill("nest"),
-    Skill("nginx"),
-    Skill("typeorm"),
-    Skill("docker"),
-    Skill("socketio"),
-  ],
+  roles: [Role.Backend, Role.Frontend, Role.Server],
+  skills: [Skill("typescript"), Skill("express"), Skill("nest"), Skill("typeorm"), Skill("react"), Skill("mysql"), Skill("mariadb"), Skill("socketio"), Skill("docker"), Skill("java"), Skill("springboot"), Skill("mybatis")],
   start: new Date(2024, 4),
   end: new Date(2024, 5),
   works: [
     new Work(
-      "구글 시트와 데이터베이스 간 데이터 정합겅 검증 및 동기화",
-      "구글 시트와 로컬 데이터베이스 간 데이터의 공백, 오타, 타입 불일치를 검사하여 데이터 동기화"
+      "변경 검토와 선택 갱신이 가능한 DB 도구 개발",
+      "DB 메타데이터와 시트 헤더·타입을 비교해 신규·변경 행을 분류하고 선택한 데이터만 갱신하고 자동 공백 제거가 비교를 오작동시키는 조건을 수정",
     ),
     new Work(
-      "데이터 동기화 문제",
-      "추가, 수정, 삭제 데이터를 라벨링하여 필요한 쿼리 구문 생성 및 적용 "
+      "여러 사용자의 갱신 이력 공유",
+      "동기화 이력을 저장하고 SSE에서 Socket.IO 알림으로 전환해 다른 사용자에게 변경을 전달하고 연결 종료와 본인 제외 알림 조건을 보완",
     ),
     new Work(
-      "비개발자를 대상으로 한 웹 개발",
-      "팀 내 비개발 인원을 대상으로 데이터베이스 동기화, 엑셀 다운로드, 미리보기 기능 개발"
-    ),
-    new Work(
-      "동기화 시 누가, 어떤 테이블을 동기화 했는지 모르는 문제",
-      "웹 소켓을 이용해 동기화 테이블을 데이터베이스에 로그를 남기고, IP를 기반으로 동기화 목록 브로드캐스트"
-    ),
-    new Work(
-      "피드백을 통한 시스템 개선 및 유지보수",
-      "팀원의 피드백을 기반으로 지속적인 시스템 개선 및 유지보수 수행"
-    ),
-    new Work(
-      "업무 효율 향상",
-      "데이터베이스 동기화 개발로 업무 시간 절감"
+      "현장 실행 환경과 협력사 제공 도구 유지보수",
+      "Docker·NAS·Windows 실행 환경과 사용 가이드를 구성하고, 제공받은 Java 도구의 설정 변환·예외 처리·SQL 호환 오류를 수정",
     ),
   ],
   // works: [
@@ -73,29 +54,15 @@ export const fovDbupdater = new ProjectModel({
   isSideProject: false,
   issues: [
     new Issue({
-      problem: "구글 시트 및 로컬 데이터베이스 컬럼 및 타입 검증 문제",
+      problem: "시트와 DB의 컬럼·타입·순서가 달라 데이터를 그대로 갱신하기 어려움",
       processes: [
-        "구글 시트 API와 연동 및 문서 ID와 데이터베이스 매칭 구현",
-        "선택된 스키마와 테이블 키를 기반으로 로컬 DB 테이블 컬럼 정보 추출 로직 개발",
-        "구글 시트 데이터 가져오기 및 로컬 DB 컬럼과 비교 기능 구현",
-        "사용자 정의 컬럼명 설정 기능 추가로 유연성 확보",
-        "구글 시트와 로컬 DB 테이블 컬럼 간 인덱스 매핑 알고리즘 구현",
-        "매핑된 인덱스를 활용한 구글 시트 데이터 선별적 추출 기능 개발",
-        "컬럼별 데이터 타입 검증 및 응답 데이터 가공 프로세스 구축",
-      ],
-      // processes: [
-      //   "구글 시트 API 연동",
-      //   "구글 시트 문서 ID와 데이터베이스별 매칭",
-      //   "선택한 스키마, 테이블 키를 사용하여 로컬 DB의 테이블 컬럼 정보 읽기",
-      //   "구글 시트 데이터 가져와 컬럼과 비교 및 컬럼명 커스텀 설정 가능하도록 기능 정의",
-      //   "구글 시트에서 로컬 DB 테이블 컬럼과 비교하여 배열 인덱스 매핑",
-      //   "매핑된 인덱스 값으로 구글 시트에서 해당하는 데이터만 추출",
-      //   "컬럼별 타입 검증 및 응답 데이터로 가공 생성",
-      // ],
+      "DB 메타데이터를 읽어 시트 헤더·타입을 매핑하고 유효한 행 확인",
+      "신규·변경 행을 구분해 미리 보여주고 선택한 목록만 갱신",
+      "원본 셀 값의 자동 공백 제거로 발생하는 비교 오류 수정",
+    ],
       solves: [
-        "프론트에서 제어가 쉽도록 추가 또는 수정된 데이터로 분류하여 응답",
-        "데이터베이스 업데이트 과정 대폭 감소",
-      ],
+      "반영할 변경을 검토하고 선택할 수 있는 데이터 갱신 흐름 구현",
+    ],
     }),
   ],
   images: null,

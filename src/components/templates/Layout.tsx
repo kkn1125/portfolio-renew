@@ -1,35 +1,21 @@
 import Footer from "@components/organisms/Footer";
 import Header from "@components/organisms/Header";
-import { Paper, Stack } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
-function Layout() {
+export default function Layout() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
+    else window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname, hash]);
   return (
-    <Stack
-      id="wrapper"
-      component={Paper}
-      sx={{
-        height: "inherit",
-        borderRadius: "none"
-      }}>
-      {/* 상단 메뉴 */}
+    <div id="wrapper" className="site-wrapper">
       <Header />
-
-      {/* 본문 */}
-      <Stack
-        id="layout"
-        sx={{
-          flex: 1,
-          overflow: "hidden",
-          height: "inherit"
-        }}>
+      <main id="main-content" tabIndex={-1}>
         <Outlet />
-      </Stack>
-
-      {/* 하단 텍스트 */}
+      </main>
       <Footer />
-    </Stack>
+    </div>
   );
 }
-
-export default Layout;

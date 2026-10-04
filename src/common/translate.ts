@@ -1,8 +1,6 @@
-import { IconList } from "@assets/icons";
-
 const translate: Record<string, string> = {};
 export default new Proxy(translate, {
-  get(target, p: IconList, receiver) {
+  get(target, p: string, receiver) {
     switch (p) {
       case "javascript":
         return "JavaScript";
@@ -52,6 +50,8 @@ export default new Proxy(translate, {
         return "Docker";
       case "linux":
         return "Linux";
+      case "redis":
+        return "Redis";
       case "mariadb":
         return "MariaDB";
       case "mui":

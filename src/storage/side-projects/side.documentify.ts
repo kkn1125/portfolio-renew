@@ -14,7 +14,7 @@ export const sideDocumentify = new ProjectModel({
   path: "/side/documentify",
   title: "Documentify",
   description: [
-    "JSDoc 방식의 주석을 분석하고 자동으로 문서화 페이지를 제작해주는 기능",
+    "JavaScript 주석을 분석해 API 문서 페이지를 생성하는 도구",
   ],
   company: Company.Side,
   team: Team.Personal,
@@ -23,15 +23,14 @@ export const sideDocumentify = new ProjectModel({
   start: new Date(2021, 9),
   end: new Date(2021, 10),
   works: [
-    new Work("로컬 디렉토리 자바스크립트 파일 주석 분석"),
-    new Work("단일/분할 방식 저장 기능 구현"),
-    new Work("채팅봇 기능 구현"),
-    new Work("검색창 구현 및 MDN 검색창 디자인 참조"),
-    new Work("자바스크립트 파일 읽기 및 주석 필터링 기능 개발"),
-    new Work("분류된 주석 직렬화 및 데이터 추출 알고리즘 제작"),
-    new Work("@reference 분석 후 연관 정의로 이동하는 링크 자동 첨부"),
-    new Work("변수 및 메서드 파일별 자동 문서화"),
-    new Work("zip 저장 지원"),
+    new Work(
+      "주석 파싱과 정의 간 참조 연결",
+      "로컬 파일의 JSDoc 주석을 필터링·직렬화해 변수·메서드 문서를 생성하고 참조 정의 링크를 자동 연결",
+    ),
+    new Work(
+      "문서 탐색과 내보내기",
+      "검색·문서 안내 기능과 단일·분할 파일·ZIP 저장을 제공",
+    ),
   ],
   isSideProject: true,
   issues: null,

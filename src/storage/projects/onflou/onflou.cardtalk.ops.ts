@@ -7,83 +7,85 @@ import { ProjectModel } from "@models/ProjectModel";
 import Work from "@models/Work";
 
 // 문제-해결-이유-성과
+// 경력 근거: miraen_cardtalk_socket: 8741f1cbad, 179d330080, 37f35a5c62, 4ca8937797; BE: a0bfe92a60; FE: dab54cc24e, cc1033ae18.
 export const onflouCardtalkOps = new ProjectModel({
   cover: null,
   github: null,
   demoSites: null,
   relations: null,
   path: "/onflou/cardtalk-ops",
-  title: "카드톡 운영",
+  title: "미래엔 엠티처 카드톡 운영",
   description: [
-    "이중화된 React·API·게임 API·백오피스 운영 전담",
-    "일정 조율, 추가 요청 대응, DB·CI/CD 이관 포함",
+    "교육 게임 출시 이후 게임 서버·Spring API·React 화면·관리자 서비스의 개발과 운영 담당",
+    "이중화 환경의 배포·장애 대응과 DB 이관, 협력사 변경 요청·일정 조율 병행",
   ],
   team: Team.Backend,
   company: Company.Onflou,
   roles: [Role.Backend, Role.Server],
   skills: [
-    Skill("react"),
+    Skill("typescript"),
+    Skill("socketio"),
     Skill("nodejs"),
-    Skill("docker"),
-    Skill("grafana"),
-    Skill("prometheus"),
-    Skill("mariadb"),
     Skill("redis"),
+    Skill("java"),
+    Skill("springboot"),
+    Skill("mybatis"),
+    Skill("react"),
+    Skill("docker"),
+    Skill("mariadb"),
     Skill("jenkins"),
     Skill("linux"),
+    Skill("grafana"),
+    Skill("k6"),
   ],
   start: new Date(2026, 0),
   end: null,
   works: [
     new Work(
-      "이중화 운영 환경 전반 운영 담당",
-      "React 프론트엔드, 백엔드 API, 게임 전용 API, 백오피스 서버 이중화 운영",
-      "배포·장애 대응·모니터링 등 운영 건 전반 직접 처리",
+      "게임 종료 결과와 상태 만료 순서 수정",
+      "결과 저장 전에 Redis 상태가 만료되는 원인을 추적하고 TTL 처리 위치와 종료 흐름을 변경해 저장에 필요한 상태 수명을 보완",
     ),
     new Work(
-      "일정 조율 및 추가 요청 대응",
-      "팀·이해관계자와 직접 소통하며 일정 조율 주도",
-      "운영 중 발생하는 추가 요청·변경 사항 대응",
+      "게임별 데이터 접근 구조 분리",
+      "Redis·외부 API 접근을 공통·게임별 Repository로 분리하고, Redis 우선 조회와 데이터가 없을 때의 API 조회 조건을 명시",
     ),
     new Work(
-      "DB 버전 업그레이드 이관",
-      "개발·검증·운영 서버 DB 이관 기획 및 실행",
-      "스키마 변경·데이터 호환성 검증 후 무중단 이관 완료",
+      "콘텐츠 목록 조회 구조 개선",
+      "페이지에 해당하는 콘텐츠를 먼저 선정한 뒤 상세 정보를 JOIN하도록 SQL을 재구성하고 조회 결과 매핑을 수정",
     ),
     new Work(
-      "CI/CD 이관 협의 및 일정 조율",
-      "CI/CD 이관을 위한 협의 주도",
-      "이관 일정 조율 및 배포 파이프라인 전환 지원",
+      "환경별 DB 이관과 배포 변경 대응",
+      "개발·검증·운영 환경의 스키마·데이터 호환성을 확인해 DB 버전 업그레이드와 순차 이관을 수행하고 CI/CD 전환 일정을 조율",
+    ),
+    new Work(
+      "서비스 전반의 운영과 변경 요청 조율",
+      "이중화된 프론트엔드·API·게임 API·관리자 서비스의 배포·장애 대응을 담당하고 콘텐츠·문의·기기 호환성 요구사항을 관련 서비스에 반영",
     ),
   ],
   isSideProject: false,
   issues: [
     new Issue({
-      problem:
-        "이중화된 다중 서버(프론트·API·게임 API·백오피스) 운영 부담 및 소통 비용",
+      problem: "게임 종료 시 결과 저장에 필요한 Redis 상태가 먼저 만료됨",
       processes: [
-        "서버별 역할·배포·모니터링 체계 정리",
-        "운영 이슈 직접 대응 및 추가 요청·일정 조율 프로세스 수립",
-        "이중화 환경에서 장애 대응·배포 절차 정립",
-      ],
+      "타이머·결과 전송·상태 정리의 실행 순서 확인",
+      "개별 TTL 설정을 공통 처리로 옮기고 종료 흐름 수정",
+    ],
       solves: [
-        "다중 서버 운영 안정성 유지",
-        "일정·요청 대응 체계로 개발·운영 간극 축소",
-      ],
+      "결과 저장 시점에 필요한 상태 수명과 정리 순서를 보완",
+    ],
     }),
     new Issue({
-      problem:
-        "DB 버전 업그레이드 시 개발·검증·운영 환경 간 스키마·데이터 호환 이슈",
+      problem: "게임 로직에 Redis와 외부 API의 데이터 접근이 섞여 변경 범위를 파악하기 어려움",
       processes: [
-        "환경별 스키마 차이 및 데이터 호환성 분석",
-        "이관 순서·검증 절차 수립",
-        "개발·검증·운영 서버 순차 이관 및 검증",
-      ],
+      "공통·게임별 Repository로 데이터 접근을 분리",
+      "Redis 우선 조회와 API 보완 조회 조건을 정리",
+    ],
       solves: [
-        "DB 버전 업그레이드 이관 무사히 완료",
-        "환경별 데이터 정합성 확보",
-      ],
+      "게임 진행 로직과 데이터 접근 책임을 구분한 구조로 변경",
+    ],
     }),
   ],
   images: null,
 });
+
+// 기존 문구 보존(무중단 근거 미확인): "스키마 변경·데이터 호환성 검증 후 무중단 이관 완료"

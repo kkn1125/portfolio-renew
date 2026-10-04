@@ -7,7 +7,7 @@ import { fovKalis } from "@storage/projects/fov/fov.kalis";
 
 export const companyFov = new CompanyModel({
   name: Company.Fov,
-  description: "사내 서버 관리 및 AWS 클라우드 데이터 마이그레이션,  API 및 DB 개발",
+  description: "공공기관 CMS·분석 API의 레거시 전환과 조회 구조 개선, 사내 데이터 갱신 도구·서버 환경 담당",
   roles: [Role.Server, Role.Backend, Role.Frontend],
   team: Team.Development,
   projects: [fovKalis, fovDbupdater],

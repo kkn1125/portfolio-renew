@@ -1,108 +1,65 @@
-import { DEFAULT_COVER } from "@common/variables";
-import { getImageUrl } from "@libs/getResource";
+import { roleTranslate } from "@common/enums/role";
+import translate from "@common/translate";
+import { during } from "@libs/during";
 import { ProjectModel } from "@models/ProjectModel";
-import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const skillLimit = 3;
-
-type ProjectCardProps = {
-  project: ProjectModel | null;
+export default function ProjectCard({
+  project,
+  page,
+  returnTo = "/portfolio",
+}: {
+  project: ProjectModel;
   page: number;
-};
-
-function ProjectCard({ project, page }: ProjectCardProps) {
-  if (!project) return null;
-
+  returnTo?: string;
+}) {
   return (
-    <Paper
-      component={Link}
-      to={project.path}
-      state={{ page }}
-      elevation={3}
-      sx={{
-        display: "block",
-        width: { xs: "100%", lg: "calc((100% - 72px) / 4)" },
-        height: 350,
-        overflow: "hidden",
-        position: "relative",
-        textDecoration: "none",
-        transition: "box-shadow 150ms ease-in-out, transform 150ms ease-in-out",
-        backgroundColor: (theme) => theme.palette.background.paper,
-        "&:hover": {
-          transform: "translateY(-2px)",
-          boxShadow: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.shadows[6]
-              : theme.shadows[4],
-        },
-      }}
-    >
-      <Chip
-        size="small"
-        color={project.isSideProject ? "secondary" : "primary"}
-        label={
-          project.isSideProject
-            ? project.team === "개인"
-              ? "Personal"
-              : "Team"
-            : "Professional"
-        }
-        sx={{ position: "absolute", right: 5, top: 5 }}
-      />
-      <Box
-        sx={{
-          height: "60%",
-          backgroundImage: `url(${getImageUrl(project.cover ?? DEFAULT_COVER)})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <Box sx={{ p: 2 }}>
-        <Typography variant="h6" gutterBottom noWrap>
-          {project.title}
+    <article className="project-row">
+      <div className="project-row-meta">
+        <span>
+          {project.isSideProject
+            ? "개인·팀 프로젝트"
+            : project.company.replace(/^㈜/, "")}
+        </span>
+        <span className="metadata">
+          {during(project.start, project.end, "진행 중")}
+        </span>
+        <span>
+          {project.roles.map((role) => roleTranslate[role]).join(" · ")}
+        </span>
+      </div>
+      <div className="project-row-body">
+        <Typography variant="h3" component="h2">
+          <Link
+            to={project.path}
+            state={{ page, returnTo }}
+            className="project-title-link"
+          >
+            {project.title}
+            <ArrowForwardOutlinedIcon aria-hidden="true" />
+          </Link>
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            color: "text.secondary",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical"
-          }}>
-          {project.description.join(" ")}
-        </Typography>
-        <Stack
-          direction="row"
-          sx={{
-            gap: 1,
-            mt: 1,
-            flexWrap: "nowrap",
-            overflow: "auto",
-            "&::-webkit-scrollbar": { display: "none" },
-          }}
-        >
-          {project.skills.slice(0, skillLimit).map((skill) => (
-            <Chip
-              key={skill.name}
-              label={skill.name}
-              size="small"
-              sx={{ fontSize: 10, mt: 0.5 }}
-            />
-          ))}
-          {project.skills.length > skillLimit && (
-            <Chip
-              label={`+${project.skills.length - skillLimit}`}
-              size="small"
-              sx={{ fontSize: 10, mt: 0.5 }}
-            />
-          )}
-        </Stack>
-      </Box>
-    </Paper>
+        <p>{project.description[0]}</p>
+        {project.description[1] && (
+          <p className="secondary-text">{project.description[1]}</p>
+        )}
+        {project.works[0] && (
+          <p className="project-evidence">
+            <span>주요 기여</span>
+            {project.works[0].content}
+          </p>
+        )}
+      </div>
+      <ul className="project-row-skills" aria-label="사용 기술">
+        {project.skills.slice(0, 5).map((skill) => (
+          <li key={skill.name}>{translate[skill.name]}</li>
+        ))}
+        {project.skills.length > 5 && (
+          <li className="secondary-text">외 {project.skills.length - 5}개</li>
+        )}
+      </ul>
+    </article>
   );
 }
-
-export default ProjectCard;

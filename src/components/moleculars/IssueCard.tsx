@@ -1,107 +1,36 @@
 import { Issue } from "@models/Issue";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutlined";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutlined";
-import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
-import {
-  Box,
-  Divider,
-  Paper,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import { alpha } from "@mui/material/styles";
 
-export const IssueCard: React.FC<{ issue: Issue }> = ({ issue }) => {
-  const theme = useTheme();
-
-  return (
-    <Paper
-      elevation={0}
-      sx={{
-        borderRadius: 2,
-        border: `1px solid ${theme.palette.divider}`,
-        overflow: "hidden",
-      }}
-    >
-      <Box
-        sx={{
-          px: 2.5,
-          py: 2,
-          borderLeft: `4px solid ${theme.palette.error.main}`,
-          backgroundColor: alpha(theme.palette.error.main, 0.06),
-        }}
-      >
-        <Stack sx={{ direction: "row", alignItems: "center", gap: 1, mb: 1 }}>
-          <ErrorOutlineIcon fontSize="small" color="error" />
-          <Typography
-            sx={{ variant: "subtitle2", fontWeight: 700, color: "error.main" }}
-          >
-            문제 상황
-          </Typography>
-        </Stack>
-        <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
-          {issue.problem}
-        </Typography>
-      </Box>
-
-      <Divider />
-
-      <Box sx={{ px: 2.5, py: 2 }}>
-        <Stack sx={{ direction: "row", alignItems: "center", gap: 1, mb: 1.5 }}>
-          <LightbulbOutlinedIcon fontSize="small" color="warning" />
-          <Typography sx={{ variant: "subtitle2", fontWeight: 700 }}>
-            해결 과정
-          </Typography>
-        </Stack>
-        <Stack sx={{ component: "ol", gap: 1, m: 0, pl: 2.5 }}>
-          {issue.processes.map((process, index) => (
-            <Typography
-              key={index}
-              component="li"
-              variant="body2"
-              sx={{ lineHeight: 1.7 }}
-            >
-              {process}
-            </Typography>
+export const IssueCard = ({
+  issue,
+  expanded = false,
+}: {
+  issue: Issue;
+  expanded?: boolean;
+}) => (
+  <details className="issue-detail" open={expanded}>
+    <summary>
+      {issue.problem}
+      <span className="disclosure-label" aria-hidden="true">
+        해결 과정
+      </span>
+    </summary>
+    <div className="issue-reading">
+      <div>
+        <h3>확인과 구현</h3>
+        <ul>
+          {issue.processes.map((process) => (
+            <li key={process}>{process}</li>
           ))}
-        </Stack>
-      </Box>
-
-      <Divider />
-
-      <Box
-        sx={{
-          px: 2.5,
-          py: 2,
-          borderLeft: `4px solid ${theme.palette.success.main}`,
-          backgroundColor: alpha(theme.palette.success.main, 0.05),
-        }}
-      >
-        <Stack sx={{ direction: "row", alignItems: "center", gap: 1, mb: 1.5 }}>
-          <CheckCircleOutlineIcon fontSize="small" color="success" />
-          <Typography
-            sx={{
-              variant: "subtitle2",
-              fontWeight: 700,
-              color: "success.main",
-            }}
-          >
-            해결 결과
-          </Typography>
-        </Stack>
-        <Stack sx={{ gap: 0.75 }}>
-          {issue.solves.map((solve, index) => (
-            <Typography
-              key={index}
-              variant="body2"
-              sx={{ lineHeight: 1.7, pl: 0.5 }}
-            >
-              {solve}
-            </Typography>
+        </ul>
+      </div>
+      <div>
+        <h3>결과</h3>
+        <ul>
+          {issue.solves.map((solve) => (
+            <li key={solve}>{solve}</li>
           ))}
-        </Stack>
-      </Box>
-    </Paper>
-  );
-};
+        </ul>
+      </div>
+    </div>
+  </details>
+);

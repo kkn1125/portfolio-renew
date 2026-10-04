@@ -13,7 +13,9 @@ export const sideTypoz = new ProjectModel({
   relations: null,
   path: "/side/typoz",
   title: "Library Typoz",
-  description: ["한글 분해, 재조합 기능이 포함된 타이핑 효과 라이브러리"],
+  description: [
+    "한글 자모의 분해·재조합을 지원하는 npm 타이핑 효과 라이브러리",
+  ],
   company: Company.Side,
   team: Team.Personal,
   roles: [Role.Frontend],
@@ -21,14 +23,13 @@ export const sideTypoz = new ProjectModel({
   start: new Date(2023, 11),
   end: new Date(2023, 11),
   works: [
-    new Work("Npm 모듈 등록"),
-    new Work("ReactJS로 Docs 페이지 제작"),
-    new Work("여러 작업 환경에 대응하기 위해 Umd, Esm, Cjs 다중 빌드"),
-    new Work("한글 자모 분해, 재조합 기능 구현"),
-    new Work("타이핑 애니메이션 처리를 위해 비동기로 데이터 처리"),
-    new Work("타이핑 조작 설정을 쉽게 하기 위해 빌더 패턴 적용"),
     new Work(
-      "테스트 코드 작성으로 예시 제공 및 다양한 에러에 대응과 확장성 고려"
+      "한글 타이핑과 설정 인터페이스 구현",
+      "한글 자모 분해·재조합과 비동기 타이핑을 구현하고, 빌더 패턴으로 애니메이션 설정 인터페이스 제공",
+    ),
+    new Work(
+      "사용 환경별 패키지 배포와 문서·테스트",
+      "UMD·ESM·CJS 빌드를 npm으로 배포하고 React 문서·예제와 테스트 코드로 사용 방법 및 오류 사례를 정리",
     ),
   ],
   isSideProject: true,

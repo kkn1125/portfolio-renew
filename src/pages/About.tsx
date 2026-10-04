@@ -1,207 +1,118 @@
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Container,
-  Paper,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import translate from "@common/translate";
+import { PROFILE_IMAGE } from "@common/variables";
+import ArrowOutwardOutlinedIcon from "@mui/icons-material/ArrowOutwardOutlined";
+import { Typography } from "@mui/material";
 import { Information } from "@storage/introduce/information";
-import ScrollReveal from "@components/atoms/ScrollReveal";
 
-const contactItems = [
-  {
-    label: "Email",
-    value: Information.email,
-    href: `mailto:${Information.email}`,
-    icon: EmailOutlinedIcon,
-    external: false,
-  },
-  {
-    label: "Github",
-    value: Information.github,
-    href: Information.github,
-    icon: GitHubIcon,
-    external: true,
-  },
-  {
-    label: "Blog",
-    value: Information.blog,
-    href: Information.blog,
-    icon: ArticleOutlinedIcon,
-    external: true,
-  },
-] as const;
-
-function About() {
-  const theme = useTheme();
-
+export default function About() {
   return (
-    <Stack
-      sx={{
-        py: 8,
-        flex: 1,
-        alignItems: "center",
-        overflow: "auto",
-        height: "inherit",
-        backgroundColor: theme.palette.background.default
-      }}>
-      <Container maxWidth="lg" sx={{ flex: 1 }}>
-        <ScrollReveal>
-          <Typography
-            variant="h3"
-            color="primary"
-            sx={{
-              fontWeight: 700,
-              mb: 4
-            }}>
-            About Me
+    <div className="page-shell about-page">
+      <section className="about-opening">
+        <div>
+          <Typography variant="h1" component="h1">
+            문제를 확인하고,
+            <br />
+            변경의 이유를 남깁니다.
           </Typography>
-        </ScrollReveal>
-
-        <Stack spacing={2} sx={{
-          mb: 6
-        }}>
-          {contactItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Paper
-                key={item.label}
-                component="a"
-                href={item.href}
-                {...(item.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                elevation={0}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  p: 2.5,
-                  minHeight: 64,
-                  textDecoration: "none",
-                  color: "inherit",
-                  border: `1px solid ${theme.palette.divider}`,
-                  borderRadius: 2,
-                  transition: "border-color 150ms ease, background-color 150ms ease",
-                  "&:hover": {
-                    borderColor: theme.palette.accent.main,
-                    backgroundColor: theme.palette.background.highlight,
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 44,
-                    height: 44,
-                    borderRadius: "50%",
-                    backgroundColor: theme.palette.background.highlight,
-                    color: theme.palette.accent.main,
-                  }}
-                >
-                  <Icon />
-                </Box>
-                <Stack sx={{
-                  flex: 1
-                }}>
-                  <Typography variant="subtitle2" sx={{
-                    color: "text.secondary"
-                  }}>
-                    {item.label}
-                  </Typography>
-                  <Typography variant="body1" sx={{
-                    fontWeight: 500
-                  }}>
-                    {item.value}
-                  </Typography>
-                </Stack>
-              </Paper>
-            );
-          })}
-        </Stack>
-
-        <Typography
-          variant="h5"
-          color="primary"
-          sx={{
-            fontWeight: 700,
-            mb: 2
-          }}>
-          상세 이력
-        </Typography>
-
-        <Stack spacing={1}>
-          {Information.resume.map((resume, index) => (
-            <Accordion
-              key={resume.title}
-              elevation={0}
-              sx={{
-                border: `1px solid ${theme.palette.divider}`,
-                "&:before": { display: "none" },
-                borderRadius: "8px !important",
-                overflow: "hidden",
-              }}
+          <p className="about-identity">{Information.name} · 백엔드 개발자</p>
+          <p>{Information.title}</p>
+        </div>
+        <div className="about-contact">
+          <img
+            className="profile-photo"
+            src={PROFILE_IMAGE}
+            alt="김경남 프로필"
+            width="120"
+            height="144"
+          />
+          <div>
+            <a href={`mailto:${Information.email}`} className="text-link">
+              {Information.email}
+              <ArrowOutwardOutlinedIcon />
+            </a>
+            <a
+              href={Information.github}
+              className="text-link"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`resume-${index}-content`}
-                id={`resume-${index}-header`}
-                sx={{ minHeight: 56 }}
-              >
-                <Stack sx={{
-                  gap: 0.5
-                }}>
-                  <Typography variant="subtitle1" sx={{
-                    fontWeight: 600
-                  }}>
-                    {resume.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical"
-                    }}>
-                    {resume.contents[0]}
-                  </Typography>
-                </Stack>
-              </AccordionSummary>
-              <AccordionDetails sx={{ pt: 0 }}>
-                <Stack spacing={2}>
-                  {resume.contents.map((paragraph, pIndex) => (
-                    <Typography
-                      key={pIndex}
-                      variant="body2"
-                      sx={{
-                        color: "text.primary",
-                        whiteSpace: "pre-wrap",
-                        userSelect: "text"
-                      }}>
-                      {paragraph}
-                    </Typography>
-                  ))}
-                </Stack>
-              </AccordionDetails>
-            </Accordion>
+              GitHub
+              <ArrowOutwardOutlinedIcon />
+            </a>
+            <a
+              href={Information.blog}
+              className="text-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
+              <ArrowOutwardOutlinedIcon />
+            </a>
+          </div>
+        </div>
+      </section>
+      <section className="page-section about-approach">
+        <Typography variant="h2" component="h2">
+          일하는 방식
+        </Typography>
+        <div>
+          {Information.resume.map((resume) => (
+            <article className="approach-row" key={resume.title}>
+              <Typography variant="h3" component="h3">
+                {resume.title}
+              </Typography>
+              <div>
+                {resume.contents.map((content) => (
+                  <p key={content}>{content}</p>
+                ))}
+              </div>
+            </article>
           ))}
-        </Stack>
-      </Container>
-    </Stack>
+        </div>
+      </section>
+      <section className="page-section about-technologies">
+        <div className="section-intro">
+          <Typography variant="h2" component="h2">
+            기술은 문제의 맥락에서.
+          </Typography>
+          <div>
+            <p>
+              Socket.IO·Redis로 실시간 상태를 다루고, NestJS·Spring Boot와 SQL로
+              업무 규칙을 구현했습니다. Docker·Linux 환경에서 배포와 운영 문제에
+              대응했습니다.
+            </p>
+          </div>
+        </div>
+        <ul className="competency-list">
+          {Information.coreCompetencies.map((competency) => (
+            <li key={competency}>{competency}</li>
+          ))}
+        </ul>
+        <div className="technology-row">
+          <h3>주요 기술</h3>
+          <ul>
+            {Information.skill.main.map((skill) => (
+              <li key={skill.name}>{translate[skill.name]}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="technology-row">
+          <h3>함께 사용한 기술</h3>
+          <ul>
+            {Information.skill.sub.map((skill) => (
+              <li key={skill.name}>{translate[skill.name]}</li>
+            ))}
+          </ul>
+        </div>
+        <details className="plain-details technology-details">
+          <summary>그 밖의 기술 경험 보기</summary>
+          <ul className="technology-inventory">
+            {Information.stacks.map((skill) => (
+              <li key={skill.name}>{translate[skill.name]}</li>
+            ))}
+          </ul>
+        </details>
+      </section>
+    </div>
   );
 }
-
-export default About;

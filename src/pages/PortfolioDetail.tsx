@@ -1,602 +1,305 @@
 import { roleTranslate } from "@common/enums/role";
 import translate from "@common/translate";
-import { ProjectCoverStack } from "@components/atoms/ProjectCoverStack";
 import { IssueCard } from "@components/moleculars/IssueCard";
+import ProjectMedia from "@components/organisms/ProjectMedia";
 import { during } from "@libs/during";
 import { pathJoin } from "@libs/pathJoin";
 import { ProjectModel } from "@models/ProjectModel";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import Work from "@models/Work";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import ArrowOutwardOutlinedIcon from "@mui/icons-material/ArrowOutwardOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import {
-  Box,
   Button,
-  Chip,
-  Container,
-  Divider,
-  Grid,
   IconButton,
-  Paper,
-  Stack,
-  Tooltip,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { projects } from "@storage/projects";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Notfound from "./Notfound";
 
-function SectionHeading({
-  title,
-  description,
+function SubWorks({ works }: { works: Work[] }) {
+  return (
+    <ul>
+      {works.map((work) => (
+        <li key={work.content}>
+          {work.content}
+          {work.subWorks.length > 0 && <SubWorks works={work.subWorks} />}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ProjectMetadata({
+  project,
+  wide,
 }: {
-  title: string;
-  description?: string;
+  project: ProjectModel;
+  wide: boolean;
 }) {
-  return (
-    <Stack
-      sx={{
-        gap: 0.5,
-        mb: 2.5,
-      }}
-    >
-      <Typography
-        variant="overline"
-        sx={{ color: "accent.main", fontWeight: 700, letterSpacing: 1.2 }}
-      >
-        {title}
-      </Typography>
-      {description && (
-        <Typography
-          variant="body2"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          {description}
-        </Typography>
-      )}
-    </Stack>
+  const content = (
+    <dl className="detail-metadata">
+      <div>
+        <dt>소속</dt>
+        <dd>{project.company}</dd>
+      </div>
+      <div>
+        <dt>팀</dt>
+        <dd>{project.team}</dd>
+      </div>
+      <div>
+        <dt>역할</dt>
+        <dd>{project.roles.map((role) => roleTranslate[role]).join(" · ")}</dd>
+      </div>
+      <div>
+        <dt>사용 기술</dt>
+        <dd>
+          <ul className="detail-skills">
+            {project.skills.map((skill) => (
+              <li key={skill.name}>{translate[skill.name]}</li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  );
+  return wide ? (
+    content
+  ) : (
+    <details className="plain-details project-meta-collapse">
+      <summary>사용 기술·팀 정보</summary>
+      {content}
+    </details>
   );
 }
 
-function MetaRow({
-  icon: Icon,
-  label,
-  children,
-}: {
-  icon: React.ElementType;
-  label: string;
-  children: React.ReactNode;
-}) {
-  const theme = useTheme();
-
-  return (
-    <Stack
-      direction="row"
-      sx={{
-        gap: 1.5,
-        alignItems: "flex-start",
-      }}
-    >
-      <Box
-        sx={{
-          mt: 0.25,
-          color: "accent.main",
-          display: "flex",
-        }}
-      >
-        <Icon fontSize="small" />
-      </Box>
-      <Stack
-        sx={{
-          gap: 0.5,
-          flex: 1,
-          minWidth: 0,
-        }}
-      >
-        <Typography
-          variant="caption"
-          sx={{
-            color: "text.secondary",
-            fontWeight: 600,
-          }}
-        >
-          {label}
-        </Typography>
-        <Box sx={{ color: theme.palette.text.primary }}>{children}</Box>
-      </Stack>
-    </Stack>
-  );
-}
-
-function WorkCard({ work }: { work: ProjectModel["works"][number] }) {
-  const theme = useTheme();
-
-  return (
-    <Paper
-      elevation={0}
-      sx={{
-        p: 2,
-        borderRadius: 2,
-        border: `1px solid ${theme.palette.divider}`,
-        backgroundColor: theme.palette.background.paper,
-      }}
-    >
-      <Typography
-        variant="subtitle1"
-        gutterBottom
-        sx={{
-          fontWeight: 600,
-        }}
-      >
-        {work.content}
-      </Typography>
-      {work.hasSubWorks && (
-        <Stack
-          component="ul"
-          sx={{
-            gap: 0.75,
-            m: 0,
-            pl: 2.5,
-            color: "text.secondary",
-          }}
-        >
-          {work.subWorks.map((subWork) => (
-            <Typography
-              key={subWork.content}
-              component="li"
-              variant="body2"
-              sx={{ lineHeight: 1.6 }}
-            >
-              {subWork.content}
-            </Typography>
-          ))}
-        </Stack>
-      )}
-    </Paper>
-  );
-}
-
-function PortfolioDetail() {
-  const navigate = useNavigate();
-  const theme = useTheme();
+function ProjectContent({ project }: { project: ProjectModel }) {
   const location = useLocation();
-  const page = +(location.state?.page || 1);
-  const { company, project } = useParams();
-  const [openPw, setOpenPw] = useState<{ id: string; open: boolean }[]>([]);
-
-  const projectModel = projects.find(
-    (prj) => prj.path === pathJoin("portfolio", company || "", project || ""),
-  );
-
-  useEffect(() => {
-    if (projectModel?.testAccount) {
-      setOpenPw(
-        projectModel.testAccount.map((account) => ({
-          id: account.id,
-          open: false,
-        })),
-      );
-    }
-  }, [projectModel]);
-
-  function goToList() {
-    navigate(pathJoin("/portfolio/"), { state: { page } });
-  }
-
-  function handleTogglePassword(id: string) {
-    setOpenPw((prev) =>
-      prev.map((account) =>
-        account.id === id ? { ...account, open: !account.open } : account,
-      ),
-    );
-  }
-
-  if (!projectModel) {
-    return <Notfound />;
-  }
-
-  const roleLabel = projectModel.roles
-    .map((role) => roleTranslate[role])
-    .join(", ");
-
+  const theme = useTheme();
+  const wide = useMediaQuery(theme.breakpoints.up("md"));
+  const [visible, setVisible] = useState<string[]>([]);
+  const returnTo =
+    typeof location.state?.returnTo === "string" &&
+    location.state.returnTo.startsWith("/portfolio")
+      ? location.state.returnTo
+      : `/portfolio${location.state?.page > 1 ? `?page=${location.state.page}` : ""}`;
+  const sections = [
+    { id: "contributions", name: "주요 기여" },
+    ...(project.issues?.length
+      ? [{ id: "problem-solving", name: "문제 해결" }]
+      : []),
+    ...(project.images?.length || project.cover
+      ? [{ id: "project-media", name: "구현 화면" }]
+      : []),
+    ...(project.relations?.length
+      ? [{ id: "related-projects", name: "관련 프로젝트" }]
+      : []),
+  ];
+  const images = project.images?.length
+    ? project.images
+    : project.cover
+      ? [{ src: project.cover, alt: project.title + " 구현 화면" }]
+      : [];
   return (
-    <Stack
-      sx={{
-        flex: 1,
-        height: "inherit",
-        overflow: "hidden",
-      }}
-    >
-      <Box
-        sx={{
-          flexShrink: 0,
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          backgroundColor: theme.palette.background.paper,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Stack
-            direction="row"
-            sx={{
-              alignItems: "center",
-              justifyContent: "space-between",
-              py: 1.5,
-              gap: 2,
-            }}
-          >
-            <Button
-              onClick={goToList}
-              startIcon={<ArrowBackIcon />}
-              color="inherit"
-              sx={{ minHeight: 44, fontWeight: 600 }}
-            >
-              Portfolio
-            </Button>
-
-            <Stack
-              direction="row"
-              sx={{
-                gap: 1,
-                flexWrap: "wrap",
-                justifyContent: "flex-end",
-              }}
-            >
-              {projectModel.github && (
-                <Button
-                  component="a"
-                  href={projectModel.github}
+    <article className="page-shell detail-page">
+      <Link to={returnTo} className="text-link back-link">
+        <ArrowBackOutlinedIcon />
+        프로젝트 색인
+      </Link>
+      <header className="detail-heading">
+        <Typography variant="h1" component="h1">
+          {project.title}
+        </Typography>
+        <div className="detail-byline">
+          <span>{project.company}</span>
+          <span>
+            {project.roles.map((role) => roleTranslate[role]).join(" · ")}
+          </span>
+          <span className="metadata">
+            {during(project.start, project.end, "진행 중")}
+          </span>
+        </div>
+        <div className="detail-description">
+          {project.description.map((description) => (
+            <p key={description}>{description}</p>
+          ))}
+        </div>
+      </header>
+      <div className="detail-grid">
+        <aside className="detail-rail" aria-label="프로젝트 정보와 목차">
+          <nav aria-label="프로젝트 목차">
+            {sections.map((section) => (
+              <a key={section.id} href={`#${section.id}`}>
+                {section.name}
+                <ArrowForwardOutlinedIcon aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
+          <ProjectMetadata project={project} wide={wide} />
+          {(project.github || project.demoSites?.length) && (
+            <div className="detail-external-links">
+              {project.github && (
+                <a
+                  href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  size="small"
-                  variant="outlined"
-                  startIcon={<GitHubIcon />}
-                  sx={{ minHeight: 40 }}
                 >
                   GitHub
-                </Button>
+                  <ArrowOutwardOutlinedIcon />
+                </a>
               )}
-              {projectModel.demoSites?.map((demo) => (
-                <Button
+              {project.demoSites?.map((demo, index) => (
+                <a
                   key={demo}
-                  component="a"
                   href={demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  size="small"
-                  variant="outlined"
-                  startIcon={<LanguageOutlinedIcon />}
-                  sx={{ minHeight: 40 }}
                 >
-                  Demo
-                </Button>
+                  서비스 보기
+                  {project.demoSites!.length > 1 ? ` ${index + 1}` : ""}
+                  <ArrowOutwardOutlinedIcon />
+                </a>
               ))}
-            </Stack>
-          </Stack>
-        </Container>
-      </Box>
-
-      <Box
-        sx={{
-          flex: 1,
-          overflow: "auto",
-          height: "inherit",
-        }}
-      >
-        <ProjectCoverStack projectModel={projectModel} />
-
-        <Container maxWidth="lg" sx={{ pb: 8 }}>
-          <Grid container spacing={4}>
-            <Grid size={{ xs: 12, lg: 8 }}>
-              <Box
-                sx={{
-                  mb: 5,
-                }}
-              >
-                <SectionHeading
-                  title="Contributions"
-                  description="프로젝트에서 맡은 역할과 주요 기여"
-                />
-                <Stack
-                  sx={{
-                    gap: 1.5,
-                  }}
-                >
-                  {projectModel.works.map((work) => (
-                    <WorkCard key={work.content} work={work} />
-                  ))}
-                </Stack>
-              </Box>
-
-              {projectModel.issues && projectModel.issues.length > 0 && (
-                <Box
-                  sx={{
-                    mb: 5,
-                  }}
-                >
-                  <SectionHeading
-                    title="Problem Solving"
-                    description="문제 정의부터 해결까지의 과정"
-                  />
-                  <Stack
-                    sx={{
-                      gap: 2,
-                    }}
-                  >
-                    {projectModel.issues.map((issue) => (
-                      <IssueCard key={issue.problem} issue={issue} />
-                    ))}
-                  </Stack>
-                </Box>
-              )}
-
-              {projectModel.images && projectModel.images.length > 0 && (
-                <Box>
-                  <SectionHeading
-                    title="Screenshots"
-                    description="서비스 화면 및 구현 결과"
-                  />
-                  <Stack
-                    sx={{
-                      gap: 3,
-                    }}
-                  >
-                    {projectModel.images.map(({ src, alt }) => (
-                      <Box
-                        key={src}
-                        component="figure"
-                        sx={{
-                          m: 0,
-                          borderRadius: 2,
-                          overflow: "hidden",
-                          border: `1px solid ${theme.palette.divider}`,
-                          backgroundColor: theme.palette.background.paper,
-                        }}
-                      >
-                        {src.endsWith(".mp4") ? (
-                          <Box
-                            component="video"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            src={src}
-                            sx={{
-                              width: "100%",
-                            }}
-                          />
-                        ) : (
-                          <Box
-                            component="img"
-                            src={src}
-                            alt={alt}
-                            loading="lazy"
-                            sx={{
-                              width: "100%",
-                              display: "block",
-                            }}
-                          />
-                        )}
-                        {alt && (
-                          <Typography
-                            component="figcaption"
-                            variant="caption"
-                            sx={{
-                              color: "text.secondary",
-                              px: 2,
-                              py: 1.5,
-                              display: "block",
-                            }}
-                          >
-                            {alt}
-                          </Typography>
-                        )}
-                      </Box>
-                    ))}
-                  </Stack>
-                </Box>
-              )}
-            </Grid>
-
-            <Grid size={{ xs: 12, lg: 4 }}>
-              <Paper
-                elevation={0}
-                sx={{
-                  p: 2.5,
-                  borderRadius: 2,
-                  border: `1px solid ${theme.palette.divider}`,
-                  position: { lg: "sticky" },
-                  top: { lg: 16 },
-                }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 2,
-                  }}
-                >
-                  프로젝트 정보
-                </Typography>
-
-                <Stack
-                  divider={<Divider />}
-                  sx={{
-                    gap: 2,
-                  }}
-                >
-                  <MetaRow icon={BusinessOutlinedIcon} label="소속">
-                    <Typography variant="body2">
-                      {projectModel.company}
-                    </Typography>
-                  </MetaRow>
-
-                  <MetaRow icon={CalendarTodayOutlinedIcon} label="개발 기간">
-                    <Typography variant="body2">
-                      {during(projectModel.start, projectModel.end, "진행 중")}
-                    </Typography>
-                  </MetaRow>
-
-                  <MetaRow icon={GroupsOutlinedIcon} label="팀">
-                    <Typography variant="body2">{projectModel.team}</Typography>
-                  </MetaRow>
-
-                  <MetaRow icon={PersonOutlineOutlinedIcon} label="역할">
-                    <Typography
-                      variant="body2"
-                      sx={{ textTransform: "uppercase" }}
+            </div>
+          )}
+          {project.testAccount?.length ? (
+            <details className="plain-details test-accounts">
+              <summary>테스트 계정 보기</summary>
+              {project.testAccount.map((account) => (
+                <div key={account.id}>
+                  <p>ID: {account.id}</p>
+                  <div className="password-row">
+                    <span>
+                      PW:{" "}
+                      {visible.includes(account.id)
+                        ? account.password
+                        : "••••••••"}
+                    </span>
+                    <IconButton
+                      aria-label={
+                        visible.includes(account.id)
+                          ? "비밀번호 숨기기"
+                          : "비밀번호 보기"
+                      }
+                      onClick={() =>
+                        setVisible((current) =>
+                          current.includes(account.id)
+                            ? current.filter((id) => id !== account.id)
+                            : [...current, account.id],
+                        )
+                      }
                     >
-                      {roleLabel}
-                    </Typography>
-                  </MetaRow>
-
-                  <MetaRow icon={GroupsOutlinedIcon} label="기술 스택">
-                    <Stack
-                      direction="row"
-                      sx={{
-                        flexWrap: "wrap",
-                        gap: 0.75,
-                      }}
-                    >
-                      {projectModel.skills.map((skill) => (
-                        <Tooltip key={skill.name} title={translate[skill.name]}>
-                          <Chip
-                            size="small"
-                            label={translate[skill.name]}
-                            sx={{
-                              height: 28,
-                              "& .MuiChip-label": { px: 1 },
-                            }}
-                          />
-                        </Tooltip>
-                      ))}
-                    </Stack>
-                  </MetaRow>
-
-                  {projectModel.github && (
-                    <MetaRow icon={GitHubIcon} label="깃허브">
-                      <Typography
-                        component="a"
-                        href={projectModel.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variant="body2"
-                        sx={{
-                          color: "primary.main",
-                          textDecoration: "none",
-                          wordBreak: "break-all",
-                          "&:hover": { textDecoration: "underline" },
-                        }}
-                      >
-                        {projectModel.github}
-                      </Typography>
-                    </MetaRow>
+                      {visible.includes(account.id) ? (
+                        <VisibilityOffOutlinedIcon fontSize="small" />
+                      ) : (
+                        <VisibilityOutlinedIcon fontSize="small" />
+                      )}
+                    </IconButton>
+                  </div>
+                </div>
+              ))}
+            </details>
+          ) : null}
+        </aside>
+        <div className="detail-body">
+          <section id="contributions" className="detail-section">
+            <Typography variant="h2" component="h2">
+              주요 기여
+            </Typography>
+            <div className="contributions">
+              {project.works.map((work) => (
+                <div className="contribution" key={work.content}>
+                  <Typography variant="h3" component="h3">
+                    {work.content}
+                  </Typography>
+                  {work.subWorks.length > 0 && (
+                    <SubWorks works={work.subWorks} />
                   )}
-
-                  {projectModel.demoSites &&
-                    projectModel.demoSites.length > 0 && (
-                      <MetaRow icon={LanguageOutlinedIcon} label="데모 사이트">
-                        <Stack
-                          sx={{
-                            gap: 0.5,
-                          }}
-                        >
-                          {projectModel.demoSites.map((demo) => (
-                            <Typography
-                              key={demo}
-                              component="a"
-                              href={demo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              variant="body2"
-                              sx={{
-                                color: "primary.main",
-                                textDecoration: "none",
-                                wordBreak: "break-all",
-                                "&:hover": { textDecoration: "underline" },
-                              }}
-                            >
-                              {demo}
-                            </Typography>
-                          ))}
-                        </Stack>
-                      </MetaRow>
-                    )}
-
-                  {projectModel.testAccount &&
-                    projectModel.testAccount.length > 0 && (
-                      <MetaRow
-                        icon={PersonOutlineOutlinedIcon}
-                        label="테스트 계정"
-                      >
-                        <Stack
-                          sx={{
-                            gap: 1.5,
-                          }}
-                        >
-                          {projectModel.testAccount.map((account, index) => (
-                            <Stack
-                              key={account.id}
-                              sx={{
-                                gap: 0.5,
-                              }}
-                            >
-                              <Typography variant="body2">
-                                ID: {account.id}
-                              </Typography>
-                              <Stack
-                                direction="row"
-                                sx={{
-                                  alignItems: "center",
-                                  gap: 0.5,
-                                }}
-                              >
-                                <Typography variant="body2">
-                                  PW:{" "}
-                                  {openPw[index]?.open
-                                    ? account.password
-                                    : "••••••••"}
-                                </Typography>
-                                <IconButton
-                                  size="small"
-                                  onClick={() =>
-                                    handleTogglePassword(account.id)
-                                  }
-                                  aria-label={
-                                    openPw[index]?.open
-                                      ? "비밀번호 숨기기"
-                                      : "비밀번호 보기"
-                                  }
-                                  sx={{ minWidth: 44, minHeight: 44 }}
-                                >
-                                  {openPw[index]?.open ? (
-                                    <VisibilityOffIcon fontSize="small" />
-                                  ) : (
-                                    <VisibilityIcon fontSize="small" />
-                                  )}
-                                </IconButton>
-                              </Stack>
-                            </Stack>
-                          ))}
-                        </Stack>
-                      </MetaRow>
-                    )}
-                </Stack>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-    </Stack>
+                </div>
+              ))}
+            </div>
+          </section>
+          {!!project.issues?.length && (
+            <section id="problem-solving" className="detail-section">
+              <Typography variant="h2" component="h2">
+                문제 해결
+              </Typography>
+              <div>
+                {project.issues.map((issue, index) => (
+                  <IssueCard
+                    key={issue.problem}
+                    issue={issue}
+                    expanded={index === 0}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+          {images.length > 0 && (
+            <section id="project-media" className="detail-section">
+              <Typography variant="h2" component="h2">
+                구현 화면
+              </Typography>
+              <div className="project-media-list">
+                {images.map((media) => (
+                  <ProjectMedia media={media} key={media.src} />
+                ))}
+              </div>
+            </section>
+          )}
+          {!!project.relations?.length && (
+            <section id="related-projects" className="detail-section">
+              <Typography variant="h2" component="h2">
+                관련 프로젝트
+              </Typography>
+              <ul className="related-projects">
+                {project.relations.map((related) => (
+                  <li key={related.path}>
+                    <Link
+                      className="text-link"
+                      to={related.path}
+                      state={{ returnTo }}
+                    >
+                      {related.title}
+                      <ArrowForwardOutlinedIcon />
+                    </Link>
+                    <p>{related.description[0]}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+          <div className="detail-ending">
+            <Button
+              component={Link}
+              to={returnTo}
+              variant="outlined"
+              startIcon={<ArrowBackOutlinedIcon />}
+            >
+              프로젝트 색인으로 돌아가기
+            </Button>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }
 
-export default PortfolioDetail;
+export default function PortfolioDetail() {
+  const { company, project } = useParams();
+  const model = projects.find(
+    (entry) =>
+      entry.path === pathJoin("portfolio", company || "", project || ""),
+  );
+  return model ? (
+    <ProjectContent key={model.path} project={model} />
+  ) : (
+    <Notfound />
+  );
+}

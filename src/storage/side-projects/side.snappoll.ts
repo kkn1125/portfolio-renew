@@ -15,8 +15,7 @@ export const sideSnapPoll = new ProjectModel({
   path: "/side/snappoll",
   title: "SnapPoll",
   description: [
-    // "Snappoll은 쉽고 간편한 무료 설문 및 투표 플랫폼입니다. 커뮤니티를 위한 다양한 설문과 실시간 통계 그래프를 제공해 누구나 손쉽게 투표와 설문을 만들고 분석할 수 있습니다.",
-    "누구나 손쉽게 설문과 투표를 만들고 결과를 통계 그래프로 분석 가능한 서비스",
+    "설문·투표의 생성·참여·통계 분석을 제공하는 개인 서비스; Nuvia의 선행 프로젝트",
   ],
   company: Company.Side,
   team: Team.Personal,
@@ -36,68 +35,21 @@ export const sideSnapPoll = new ProjectModel({
   start: new Date(2024, 10),
   end: new Date(2025, 0),
   works: [
-    new Work("클라이언트 사이드 URL 설계"),
-    new Work("데이터베이스 스키마 설계 및 제작"),
-    new Work("계층형 댓글 테이블 구조 설계"),
-    new Work("설문, 투표 서비스 개발"),
-    new Work("설문, 투표 생성 구조 설계"),
-    new Work("게스트 참여 설문, 투표 공유 URL 생성"),
-    new Work("비회원 설문, 투표 참여 가능한 구조 설계"),
-    new Work("API 권한 시스템 구축"),
-    new Work("페이지 권한 시스템 구축"),
-    new Work("마케팅 및 알림 메일 발송 스케줄링"),
-    new Work("수동 메일 발송 구현"),
-    new Work("백오피스 제작"),
-    new Work("SEO 최적화"),
-    new Work("클라우드 서버 배포"),
-    new Work("로그인 토큰 검증 및 로그인 유지 시스템 구현"),
-    new Work("구독 결제 시스템 설계"),
-    new Work("구독 등급에 따라 설문, 투표 제작 회수 및 응답자 수 제한"),
-    new Work("구독 등급별 추가 기능 계획 및 기능 제한 설계"),
-    new Work("회원 대시보드 그래프 유형 및 기본 통계 자료 구현"),
-    new Work("질문 간 비교 분석 그래프 로직 개발"),
+    new Work(
+      "역할·구독별 API 접근과 사용 제한",
+      "NestJS·Prisma로 설문·투표 데이터와 API를 개발하고 역할·구독 등급에 따른 생성·응답 제한을 공통 정책으로 검증",
+    ),
+    new Work(
+      "비회원 참여와 결과 분석",
+      "공유 URL을 통한 게스트 참여, 응답 통계와 질문 간 비교 그래프를 회원 대시보드에 연결",
+    ),
+    new Work(
+      "서비스 화면과 운영 기능 개발",
+      "React 화면·백오피스, 토큰 검증·메일 발송과 클라우드 배포까지 구현",
+    ),
   ],
   isSideProject: true,
-  issues: [
-    {
-      problem: "역할에 따른 API 접근 제한",
-      processes: [
-        "쿠키 데이터 검증 후 유저 데이터 조회",
-        "요청마다 역할 검증 후 허용된 역할만 비즈니스 로직 실행",
-      ],
-      solves: [
-        "Roles 데코레이터를 구현하고 역할 제한이 필요한 API에 데코레이터 적용",
-        "RoleGuard를 구현하고 미들웨어로 추가",
-        "역할에 따른 API 접근 제한 구축",
-      ],
-    },
-    {
-      problem: "구독 등급에 따른 API 기능 제한 문제",
-      processes: [
-        "쿠키 데이터 검증 후 유저 데이터 조회",
-        "유저의 구독 정보를 바탕으로 각 등급에 허용되는 기능과 생성 제한",
-      ],
-      solves: [
-        "등급에 따른 기능과 제한 조건을 상수로 정의",
-        "PlanGuard를 구현하고 미들웨어로 추가",
-        "PlanValidate 데코레이터를 구현하고 기능을 키로 사용하여 구독 등급에 따른 기능 제한 구축",
-        "설문과 투표를 두 개로 나누어 생성과 응답자 수 제한 구현",
-      ],
-    },
-    {
-      problem: "구독 관리 시스템 구축",
-      processes: [
-        "구독 등급 레퍼런스 조사",
-        "구독 등급을 4개로 나누어 등급 별로 제공할 서비스를 계획",
-        "등급별 생성 개수, 응답자  수 제한 산정",
-        "등급별 추가 기능 부여",
-      ],
-      solves: [
-        "각 등급을 플랜으로 명명하고, Free, Basic, Pro, Enterprise 로 구분",
-        "서버 비용 및 데이터베이스 누적 데이터 비용 산정 후 각 등급별 월별 구독 요금 산정",
-      ],
-    },
-  ],
+  issues: null,
   images: [
     getImage("snappoll", "guest_main.png", "게스트 메인 페이지"),
     getImage(

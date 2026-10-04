@@ -6,8 +6,8 @@ import { rebornBlockChain } from "@storage/projects/reborn/reborn.blockchain";
 
 export const companyReborn = new CompanyModel({
   name: Company.Reborn,
-  description: "블록체인 웹 페이지 제작 담당",
-  roles: [Role.Backend],
+  description: "NFT 마켓플레이스 웹 개발과 지갑 연동; 메타버스·Janus WebSocket 관련 프로젝트 참여",
+  roles: [Role.Frontend, Role.Backend],
   team: Team.Backend,
   projects: [rebornBlockChain],
   start: new Date(2022, 4),
