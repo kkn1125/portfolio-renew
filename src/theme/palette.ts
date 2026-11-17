@@ -3,30 +3,30 @@ import { PaletteMode } from "@mui/material";
 export function getPalette(mode: PaletteMode) {
   const light = mode === "light";
   const accent = {
-    main: light ? "#1F6656" : "#8ACBB5",
-    light: light ? "#E1EDE7" : "#284338",
-    dark: light ? "#164C40" : "#B2DECE",
-    contrastText: light ? "#FFFFFF" : "#131D1A",
+    main: light ? "#4A53B8" : "#B1B8FF",
+    light: light ? "#EDEEF9" : "#30334F",
+    dark: light ? "#363D91" : "#D0D4FF",
+    contrastText: light ? "#FFFFFF" : "#17181C",
   };
   return {
     mode,
     primary: accent,
-    secondary: { ...accent, main: light ? "#56655F" : "#B2C0B8" },
+    secondary: { ...accent, main: light ? "#64666E" : "#B4B5BE" },
     accent,
-    success: { main: light ? "#1F6656" : "#8ACBB5" },
+    success: { main: light ? "#237459" : "#94CFB6" },
     info: { main: light ? "#365D79" : "#A3C5DD" },
     warning: { main: light ? "#80521D" : "#E7C18E" },
     error: { main: light ? "#A03838" : "#F0A6A6" },
-    impact: { ...accent, main: light ? "#E1EDE7" : "#284338" },
+    impact: { ...accent, main: light ? "#EDEEF9" : "#30334F" },
     background: {
-      default: light ? "#F4F6F5" : "#131D1A",
-      paper: light ? "#FFFFFF" : "#1B2823",
-      highlight: light ? "#E9EEEB" : "#26372F",
+      default: light ? "#FAFAFA" : "#17181C",
+      paper: light ? "#FFFFFF" : "#222329",
+      highlight: light ? "#F0F0F3" : "#2B2D35",
     },
     text: {
-      primary: light ? "#172422" : "#E8EFEB",
-      secondary: light ? "#56655F" : "#B2C0B8",
+      primary: light ? "#202126" : "#F2F2F5",
+      secondary: light ? "#64666E" : "#B4B5BE",
     },
-    divider: light ? "#D5DDD9" : "#3B5147",
+    divider: light ? "#DEDFE5" : "#41434D",
   };
 }

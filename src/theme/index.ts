@@ -12,10 +12,10 @@ export function createAppTheme(mode: PaletteMode) {
       fontFamily: body,
       h1: {
         fontFamily: display,
-        fontSize: "clamp(2.2rem, 4vw, 3.6rem)",
+        fontSize: "clamp(2.2rem, 4.4vw, 4rem)",
         fontWeight: 650,
-        lineHeight: 1.25,
-        letterSpacing: "-.035em",
+        lineHeight: 1.22,
+        letterSpacing: "-.045em",
       },
       h2: {
         fontFamily: display,

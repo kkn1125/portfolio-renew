@@ -1,5 +1,6 @@
 import { roleTranslate } from "@common/enums/role";
 import translate from "@common/translate";
+import ProjectMedia from "@components/organisms/ProjectMedia";
 import { during } from "@libs/during";
 import { ProjectModel } from "@models/ProjectModel";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
@@ -18,6 +19,11 @@ export default function ProjectCard({
   return (
     <article className="project-row">
       <div className="project-row-meta">
+        {project.cover && (
+          <div className="project-row-preview">
+            <ProjectMedia media={{ src: project.cover, alt: "" }} />
+          </div>
+        )}
         <span>
           {project.isSideProject
             ? "개인·팀 프로젝트"

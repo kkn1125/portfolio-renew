@@ -110,7 +110,7 @@ function ProjectContent({ project }: { project: ProjectModel }) {
     <article className="page-shell detail-page">
       <Link to={returnTo} className="text-link back-link">
         <ArrowBackOutlinedIcon />
-        프로젝트 색인
+        프로젝트 목록
       </Link>
       <header className="detail-heading">
         <Typography variant="h1" component="h1">
@@ -247,8 +247,8 @@ function ProjectContent({ project }: { project: ProjectModel }) {
                 구현 화면
               </Typography>
               <div className="project-media-list">
-                {images.map((media) => (
-                  <ProjectMedia media={media} key={media.src} />
+                {images.map((media, index) => (
+                  <ProjectMedia media={media} key={`${media.src}-${index}`} />
                 ))}
               </div>
             </section>
@@ -282,7 +282,7 @@ function ProjectContent({ project }: { project: ProjectModel }) {
               variant="outlined"
               startIcon={<ArrowBackOutlinedIcon />}
             >
-              프로젝트 색인으로 돌아가기
+              프로젝트 목록으로 돌아가기
             </Button>
           </div>
         </div>

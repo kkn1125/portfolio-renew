@@ -84,7 +84,7 @@ export default function Portfolio() {
     <div className="page-shell archive-page">
       <div className="page-heading">
         <Typography variant="h1" component="h1">
-          프로젝트 색인
+          프로젝트
         </Typography>
         <p>
           실시간 서버, 업무 데이터, 운영 환경에서 해결한 문제들을 모았습니다.
